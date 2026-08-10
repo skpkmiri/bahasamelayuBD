@@ -323,73 +323,84 @@
 
                 <div class="w-full bg-kid-yellow/10 rounded-3xl border-4 border-kid-yellow p-6 shadow-sm">
                     
-                    <!-- Header Admin -->
-                    <div class="flex items-center mb-6 border-b-4 border-kid-yellow/30 pb-4">
-                        <span class="bg-white text-kid-yellow w-16 h-16 rounded-full flex items-center justify-center mr-4 shadow-sm flex-shrink-0">
-                            <i class="fas fa-user-shield text-3xl"></i>
-                        </span>
-                        <div class="text-left">
-                            <span class="block font-display text-3xl font-bold text-slate-800">Admin</span>
-                            <span class="block text-slate-600 font-medium text-base mt-1">Pasukan Pembangunan Aplikasi</span>
+                    <!-- Header Admin (Boleh diklik / Dropdown) -->
+                    <button onclick="document.getElementById('admin-content').classList.toggle('hidden'); document.getElementById('admin-arrow').classList.toggle('rotate-180')" class="w-full flex items-center justify-between mb-2 border-b-4 border-kid-yellow/30 pb-4 group cursor-pointer text-left outline-none">
+                        <div class="flex items-center">
+                            <span class="bg-white text-kid-yellow w-16 h-16 rounded-full flex items-center justify-center mr-4 shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-user-shield text-3xl"></i>
+                            </span>
+                            <div>
+                                <span class="block font-display text-2xl md:text-3xl font-bold text-slate-800">Admin</span>
+                                <span class="block text-slate-600 font-medium text-sm md:text-base mt-1">Pasukan Pembangunan Aplikasi</span>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Ketua Pasukan -->
-                    <div class="mb-5">
-                        <span class="inline-block bg-kid-orange text-white font-bold px-4 py-1.5 rounded-full text-sm mb-3 shadow-sm border-2 border-white">
-                            <i class="fas fa-crown mr-1"></i> Ketua Pasukan
-                        </span>
-                        <div class="bg-white rounded-2xl p-4 border-2 border-orange-200 shadow-sm flex items-center hover:-translate-y-1 transition-transform cursor-default">
-                            <img src="abidin.png" alt="Mohamad Abidin bin Sipek" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-kid-orange mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Abidin+Sipek&background=FA8231&color=fff';">
-                            <span class="font-bold text-slate-700 text-lg">Mohamad Abidin bin Sipek</span>
+                        <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-kid-yellow transition-colors duration-300">
+                            <i id="admin-arrow" class="fas fa-chevron-down text-kid-yellow group-hover:text-white text-xl transition-transform duration-300"></i>
                         </div>
-                    </div>
+                    </button>
 
-                    <!-- Pasukan -->
-                    <div>
-                        <span class="inline-block bg-kid-blue text-white font-bold px-4 py-1.5 rounded-full text-sm mb-3 shadow-sm border-2 border-white">
-                            <i class="fas fa-users mr-1"></i> Pasukan
-                        </span>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            
-                            <!-- Ahli 1 -->
-                            <div class="bg-white rounded-2xl p-4 border-2 border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
-                                <img src="sab.png" alt="Sabariah binti Solhi" class="w-12 h-12 rounded-full object-cover border-2 border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sabariah+Solhi&background=45B7D1&color=fff';">
+                    <!-- KANDUNGAN DROPDOWN ADMIN (Disembunyikan secara lalai) -->
+                    <div id="admin-content" class="hidden pt-4">
+
+                        <!-- Ketua Pasukan -->
+                        <div class="mb-6">
+                            <span class="inline-block bg-kid-orange text-white font-bold px-4 py-1.5 rounded-full text-sm mb-3 shadow-sm border-2 border-white">
+                                <i class="fas fa-crown mr-1 text-yellow-200"></i> Ketua Pasukan
+                            </span>
+                            <div class="bg-white rounded-2xl p-4 border-2 border-orange-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center lg:w-1/2">
+                                <img src="abidin.png" alt="Mohamad Abidin bin Sipek" class="w-14 h-14 rounded-full object-cover border-2 border-kid-orange mr-4 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mohamad+Abidin&background=FA8231&color=fff';">
                                 <div>
-                                    <span class="block font-bold text-slate-700">Sabariah binti Solhi</span>
-                                    <span class="block text-sm font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
+                                    <span class="block font-bold text-slate-800 text-lg">Mohamad Abidin bin Sipek</span>
                                 </div>
                             </div>
-
-                            <!-- Ahli 2 -->
-                            <div class="bg-white rounded-2xl p-4 border-2 border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
-                                <img src="rafeeq.png" alt="Mohd Rafeeq bin Sulaiman" class="w-12 h-12 rounded-full object-cover border-2 border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mohd+Rafeeq&background=45B7D1&color=fff';">
-                                <div>
-                                    <span class="block font-bold text-slate-700">Mohd Rafeeq bin Sulaiman</span>
-                                    <span class="block text-sm font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
-                                </div>
-                            </div>
-
-                            <!-- Ahli 3 -->
-                            <div class="bg-white rounded-2xl p-4 border-2 border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
-                                <img src="jimmy.png" alt="Jimmy anak Peter" class="w-12 h-12 rounded-full object-cover border-2 border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Jimmy+Peter&background=45B7D1&color=fff';">
-                                <div>
-                                    <span class="block font-bold text-slate-700">Jimmy anak Peter</span>
-                                    <span class="block text-sm font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
-                                </div>
-                            </div>
-
-                            <!-- Ahli 4 -->
-                            <div class="bg-white rounded-2xl p-4 border-2 border-green-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
-                                <img src="khairi.png" alt="Khairi bin Sahari" class="w-12 h-12 rounded-full object-cover border-2 border-kid-green mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Khairi+Sahari&background=26DE81&color=fff';">
-                                <div>
-                                    <span class="block font-bold text-slate-700">Khairi bin Sahari</span>
-                                    <span class="block text-sm font-bold text-kid-green mt-0.5">Guru Kod Tangan</span>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
+
+                        <!-- Pasukan -->
+                        <div>
+                            <span class="inline-block bg-kid-blue text-white font-bold px-4 py-1.5 rounded-full text-sm mb-3 shadow-sm border-2 border-white">
+                                <i class="fas fa-users mr-1"></i> Pasukan
+                            </span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                
+                                <!-- Ahli 1 -->
+                                <div class="bg-white rounded-2xl p-4 border-2 border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
+                                    <img src="sab.png" alt="Sabariah binti Solhi" class="w-12 h-12 rounded-full object-cover border-2 border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sabariah+Solhi&background=45B7D1&color=fff';">
+                                    <div>
+                                        <span class="block font-bold text-slate-700">Sabariah binti Solhi</span>
+                                        <span class="block text-sm font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
+                                    </div>
+                                </div>
+
+                                <!-- Ahli 2 -->
+                                <div class="bg-white rounded-2xl p-4 border-2 border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
+                                    <img src="rafeeq.png" alt="Mohd Rafeeq bin Sulaiman" class="w-12 h-12 rounded-full object-cover border-2 border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mohd+Rafeeq&background=45B7D1&color=fff';">
+                                    <div>
+                                        <span class="block font-bold text-slate-700">Mohd Rafeeq bin Sulaiman</span>
+                                        <span class="block text-sm font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
+                                    </div>
+                                </div>
+
+                                <!-- Ahli 3 -->
+                                <div class="bg-white rounded-2xl p-4 border-2 border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
+                                    <img src="jimmy.png" alt="Jimmy anak Peter" class="w-12 h-12 rounded-full object-cover border-2 border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Jimmy+Peter&background=45B7D1&color=fff';">
+                                    <div>
+                                        <span class="block font-bold text-slate-700">Jimmy anak Peter</span>
+                                        <span class="block text-sm font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
+                                    </div>
+                                </div>
+
+                                <!-- Ahli 4 -->
+                                <div class="bg-white rounded-2xl p-4 border-2 border-green-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
+                                    <img src="khairi.png" alt="Khairi bin Sahari" class="w-12 h-12 rounded-full object-cover border-2 border-kid-green mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Khairi+Sahari&background=26DE81&color=fff';">
+                                    <div>
+                                        <span class="block font-bold text-slate-700">Khairi bin Sahari</span>
+                                        <span class="block text-sm font-bold text-kid-green mt-0.5">Guru Kod Tangan</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> <!-- Penutup Dropdown admin-content -->
 
                 </div>
             </section>
@@ -397,6 +408,13 @@
         </div>
     </div>
 </main>
+
+    <!-- FOOTER HAK CIPTA -->
+    <footer class="w-full text-center py-5 bg-white/70 backdrop-blur-md border-t-4 border-white z-20 relative">
+        <p class="text-slate-600 font-bold text-sm md:text-base px-4">
+            Hak Cipta Terpelihara &copy; 2026 <span class="text-kid-blue">Panitia Bahasa Melayu</span>, SK Pendidikan Khas Miri.
+        </p>
+    </footer>
 
     <script>
         // CSS Ringkas untuk Animasi "Bounce In" yang ceria
