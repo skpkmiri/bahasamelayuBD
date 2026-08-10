@@ -77,35 +77,35 @@
 </head>
 <body class="bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-kid-bg text-kid-text h-screen flex flex-col font-sans overflow-hidden selection:bg-kid-yellow selection:text-kid-text">
 
-    <header class="bg-gradient-to-r from-kid-blue via-kid-purple to-kid-pink text-white shadow-md z-20 border-b-4 border-white/30 rounded-b-3xl mx-2 mt-2 relative overflow-hidden">
+    <header class="bg-gradient-to-r from-kid-blue via-kid-purple to-kid-pink text-white shadow-md z-20 border-b-4 border-white/30 rounded-b-2xl mx-3 md:mx-6 mt-0 md:mt-2 relative overflow-hidden">
         
-        <!-- Hiasan latar belakang yang comel (Buih/Bulatan) -->
+        <!-- Hiasan latar belakang yang comel -->
         <div class="absolute -top-4 -left-4 w-20 h-20 bg-white opacity-20 rounded-full"></div>
-        <div class="absolute top-8 right-12 w-12 h-12 bg-kid-yellow opacity-40 rounded-full"></div>
-        <div class="absolute -bottom-8 left-1/4 w-24 h-24 bg-white opacity-10 rounded-full"></div>
+        <div class="absolute top-8 right-1/4 w-12 h-12 bg-kid-yellow opacity-30 rounded-full"></div>
+        <div class="absolute -bottom-8 right-12 w-24 h-24 bg-white opacity-10 rounded-full"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
-            <div class="flex flex-col items-center justify-center space-y-4">
+        <div class="max-w-[90rem] mx-auto px-4 md:px-6 py-3 md:py-4 relative z-10">
+            <!-- Susunan Flex Kiri-ke-Kanan (Row) -->
+            <div class="flex flex-row items-center justify-start space-x-4 md:space-x-5">
                 
-                <!-- Logo membulat dengan border tebal (Berada di tengah) -->
-                <div class="bg-white p-1.5 rounded-full shadow-chunky border-4 border-kid-yellow h-20 w-20 md:h-24 md:w-24 flex items-center justify-center overflow-hidden transform hover:scale-110 hover:rotate-6 transition-all duration-300">
+                <!-- Logo di sebelah kiri -->
+                <div class="bg-white p-1 rounded-full shadow-sm border-[3px] border-kid-yellow h-16 w-16 md:h-20 md:w-20 flex items-center justify-center overflow-hidden transform hover:scale-105 transition-all duration-300 flex-shrink-0">
                     <img src="logo.png" alt="Logo SKPK Miri" class="h-full w-auto object-contain rounded-full" 
                          onerror="this.onerror=null; this.src='https://placehold.co/100x100/FDCB6E/ffffff?text=SKPK';">
                 </div>
                 
-                <!-- Tajuk Aplikasi dengan font Display (Fredoka) di tengah -->
-                <div class="flex flex-col items-center text-center w-full">
-                    <h1 class="text-4xl md:text-5xl font-display font-bold tracking-wider leading-tight text-white mb-3" 
-                        style="text-shadow: 0 4px 0px rgba(0, 0, 0, 0.15), 0 2px 10px rgba(0,0,0,0.2);">
+                <!-- Teks Tajuk di sebelah kanan logo -->
+                <div class="flex flex-col text-left">
+                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-display font-bold tracking-wide text-white mb-1.5" 
+                        style="text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
                         BAHASA MELAYU
                     </h1>
-                    
-                    <div class="flex flex-wrap justify-center items-center gap-3">
-                        <span class="bg-kid-yellow text-slate-800 text-sm md:text-base font-bold px-4 py-2 rounded-full shadow-chunky border-2 border-white/50 hover:-translate-y-1 transition-transform cursor-default">
-                            <i class="fas fa-ear-deaf mr-2 text-kid-orange"></i> Masalah Pendengaran
+                    <div class="flex flex-wrap gap-1.5 md:gap-2">
+                        <span class="bg-kid-yellow text-slate-800 text-[10px] md:text-xs lg:text-sm font-bold px-2.5 py-1 rounded-full shadow-sm border-2 border-white/40 whitespace-nowrap">
+                            <i class="fas fa-ear-deaf mr-1 text-kid-orange"></i> Masalah Pendengaran
                         </span>
-                        <span class="bg-kid-green text-white text-sm md:text-base font-bold px-4 py-2 rounded-full shadow-chunky border-2 border-white/50 hover:-translate-y-1 transition-transform cursor-default">
-                            <i class="fas fa-school mr-2 text-kid-yellow"></i> SK Pendidikan Khas Miri
+                        <span class="bg-kid-green text-white text-[10px] md:text-xs lg:text-sm font-bold px-2.5 py-1 rounded-full shadow-sm border-2 border-white/40 whitespace-nowrap">
+                            <i class="fas fa-school mr-1 text-kid-yellow"></i> SK Pendidikan Khas Miri
                         </span>
                     </div>
                 </div>
@@ -114,300 +114,258 @@
         </div>
     </header>
 
-    <!-- Kawasan Menu Utama (Paparan Penuh) -->
-    <main class="flex-1 overflow-y-auto mt-4 mb-8 px-4 md:px-8 w-full z-10 relative">
-        <div class="max-w-6xl mx-auto space-y-8">
+    <main class="flex-1 overflow-y-auto mt-4 mb-8 px-3 md:px-6 w-full z-10 relative">
+        <div class="max-w-[90rem] mx-auto space-y-6">
             
-            <!-- Kumpulan Tahun 1-6 (Menu Hadapan Asal) -->
-            <section class="bg-white/70 backdrop-blur-md p-6 md:p-8 rounded-[2rem] border-4 border-white shadow-floating animate-bounce-in">
-                <div class="flex items-center justify-center mb-8">
-                    <span class="bg-white text-kid-blue py-3 px-8 rounded-full font-display text-xl md:text-2xl font-bold tracking-wide inline-flex items-center shadow-sm border-2 border-kid-blue/20">
-                        <i class="fas fa-star text-kid-yellow mr-3 text-2xl md:text-3xl"></i>
-                        PILIH KELAS ANDA
-                        <i class="fas fa-star text-kid-yellow ml-3 text-2xl md:text-3xl"></i>
-                    </span>
-                </div>
+            <!-- GRID UTAMA UNTUK 3 PETAK (DESKTOP) -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-6 items-stretch">
                 
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
-                    <!-- Tahun 1: Merah -->
-                    <button class="hover-wiggle group flex flex-col items-center justify-center py-6 px-2 bg-white rounded-2xl md:rounded-3xl border-4 border-kid-red border-b-[8px] hover:border-b-4 hover:translate-y-[4px] hover:bg-red-50 transition-all duration-200 outline-none shadow-sm cursor-pointer">
-                        <span class="bg-red-100 text-kid-red w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-apple-whole text-3xl md:text-4xl"></i>
+                <!-- ================= PETAK 1: PILIH KELAS ================= -->
+                <section class="bg-white/70 backdrop-blur-md p-4 md:p-5 rounded-[2rem] border-4 border-white shadow-floating animate-bounce-in flex flex-col h-full">
+                    <div class="flex items-center justify-center mb-5">
+                        <span class="bg-white text-kid-blue py-2 px-5 rounded-full font-display text-base md:text-lg font-bold tracking-wide inline-flex items-center shadow-sm border-2 border-kid-blue/20">
+                            <i class="fas fa-star text-kid-yellow mr-2"></i> KELAS <i class="fas fa-star text-kid-yellow ml-2"></i>
                         </span>
-                        <span class="font-display text-xl md:text-2xl font-bold text-slate-700">Tahun 1</span>
-                    </button>
-                    
-                    <!-- Tahun 2: Oren -->
-                    <button class="hover-wiggle group flex flex-col items-center justify-center py-6 px-2 bg-white rounded-2xl md:rounded-3xl border-4 border-kid-orange border-b-[8px] hover:border-b-4 hover:translate-y-[4px] hover:bg-orange-50 transition-all duration-200 outline-none shadow-sm cursor-pointer">
-                        <span class="bg-orange-100 text-kid-orange w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-car text-3xl md:text-4xl"></i>
-                        </span>
-                        <span class="font-display text-xl md:text-2xl font-bold text-slate-700">Tahun 2</span>
-                    </button>
-
-                    <!-- Tahun 3: Kuning -->
-                    <button class="hover-wiggle group flex flex-col items-center justify-center py-6 px-2 bg-white rounded-2xl md:rounded-3xl border-4 border-[#E5A93D] border-b-[8px] hover:border-b-4 hover:translate-y-[4px] hover:bg-yellow-50 transition-all duration-200 outline-none shadow-sm cursor-pointer">
-                        <span class="bg-yellow-100 text-[#E5A93D] w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-sun text-3xl md:text-4xl"></i>
-                        </span>
-                        <span class="font-display text-xl md:text-2xl font-bold text-slate-700">Tahun 3</span>
-                    </button>
-
-                    <!-- Tahun 4: Hijau -->
-                    <button class="hover-wiggle group flex flex-col items-center justify-center py-6 px-2 bg-white rounded-2xl md:rounded-3xl border-4 border-kid-green border-b-[8px] hover:border-b-4 hover:translate-y-[4px] hover:bg-green-50 transition-all duration-200 outline-none shadow-sm cursor-pointer">
-                        <span class="bg-green-100 text-kid-green w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-tree text-3xl md:text-4xl"></i>
-                        </span>
-                        <span class="font-display text-xl md:text-2xl font-bold text-slate-700">Tahun 4</span>
-                    </button>
-
-                    <!-- Tahun 5: Biru -->
-                    <button class="hover-wiggle group flex flex-col items-center justify-center py-6 px-2 bg-white rounded-2xl md:rounded-3xl border-4 border-kid-blue border-b-[8px] hover:border-b-4 hover:translate-y-[4px] hover:bg-blue-50 transition-all duration-200 outline-none shadow-sm cursor-pointer">
-                        <span class="bg-blue-100 text-kid-blue w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-fish text-3xl md:text-4xl"></i>
-                        </span>
-                        <span class="font-display text-xl md:text-2xl font-bold text-slate-700">Tahun 5</span>
-                    </button>
-
-                    <!-- Tahun 6: Ungu -->
-                    <button class="hover-wiggle group flex flex-col items-center justify-center py-6 px-2 bg-white rounded-2xl md:rounded-3xl border-4 border-kid-purple border-b-[8px] hover:border-b-4 hover:translate-y-[4px] hover:bg-purple-50 transition-all duration-200 outline-none shadow-sm cursor-pointer">
-                        <span class="bg-purple-100 text-kid-purple w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-rocket text-3xl md:text-4xl"></i>
-                        </span>
-                        <span class="font-display text-xl md:text-2xl font-bold text-slate-700">Tahun 6</span>
-                    </button>
-                </div>
-            </section>
-
-            <!-- Kumpulan Buku Teks Digital (SEKSYEN BAHARU) -->
-            <section class="bg-white/70 backdrop-blur-md p-6 md:p-8 rounded-[2rem] border-4 border-white shadow-floating animate-bounce-in" style="animation-delay: 0.1s; animation-fill-mode: both;">
-                <div class="flex items-center justify-center mb-8">
-                    <span class="bg-white text-kid-blue py-3 px-8 rounded-full font-display text-xl md:text-2xl font-bold tracking-wide inline-flex items-center shadow-sm border-2 border-kid-blue/20">
-                        <i class="fas fa-book-open-reader text-kid-blue mr-3 text-2xl md:text-3xl"></i>
-                        BUKU TEKS DIGITAL
-                        <i class="fas fa-book-open-reader text-kid-blue ml-3 text-2xl md:text-3xl"></i>
-                    </span>
-                </div>
-                
-                <!-- Grid Mini Tahun 1 - 6 -->
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
-                    <!-- Tahun 1 (Satu buku) -->
-                    <div class="flex flex-col items-center py-4 px-3 bg-white rounded-2xl border-2 border-kid-red border-b-[6px] shadow-sm">
-                        <div class="flex flex-col items-center mb-4">
-                            <span class="bg-red-50 text-kid-red w-12 h-12 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-apple-whole text-xl"></i>
-                            </span>
-                            <span class="font-display text-lg font-bold text-slate-700">Tahun 1</span>
-                        </div>
-                        <div class="w-full mt-auto">
-                            <a href="https://drive.google.com/file/d/1i9vP7shzpA4H2J6oIrbhmETSn3jIH-fM/view?usp=sharing" target="_blank" class="block w-full bg-kid-red text-white text-sm font-bold py-2 rounded-lg shadow-sm hover:bg-red-500 hover:-translate-y-0.5 text-center transition-all">Buku Teks</a>
-                        </div>
                     </div>
                     
-                    <!-- Tahun 2 (Jilid 1 & 2) -->
-                    <div class="flex flex-col items-center py-4 px-3 bg-white rounded-2xl border-2 border-kid-orange border-b-[6px] shadow-sm">
-                        <div class="flex flex-col items-center mb-4">
-                            <span class="bg-orange-50 text-kid-orange w-12 h-12 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-car text-xl"></i>
+                    <div class="grid grid-cols-2 gap-3 flex-1">
+                        <!-- Tahun 1 -->
+                        <button class="hover-wiggle group flex flex-col items-center justify-center py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-red border-b-[5px] hover:border-b-[3px] hover:translate-y-[2px] transition-all shadow-sm">
+                            <span class="bg-red-50 text-kid-red w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-apple-whole text-xl md:text-2xl"></i>
                             </span>
-                            <span class="font-display text-lg font-bold text-slate-700">Tahun 2</span>
-                        </div>
-                        <div class="w-full mt-auto flex flex-col gap-2">
-                            <a href="https://drive.google.com/file/d/1XaR9atqX3N1J_E0TeOW3FHrTtxRma4nQ/view?usp=sharing" target="_blank" class="block w-full bg-kid-orange text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-orange-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
-                            <a href="https://drive.google.com/file/d/1taHFb0VDo0FKQhL7bu0bZx9NimpiIFa8/view?usp=sharing" target="_blank" class="block w-full bg-kid-orange text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-orange-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
-                        </div>
-                    </div>
-
-                    <!-- Tahun 3 (Jilid 1 & 2) -->
-                    <div class="flex flex-col items-center py-4 px-3 bg-white rounded-2xl border-2 border-[#E5A93D] border-b-[6px] shadow-sm">
-                        <div class="flex flex-col items-center mb-4">
-                            <span class="bg-yellow-50 text-[#E5A93D] w-12 h-12 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-sun text-xl"></i>
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700">Tahun 1</span>
+                        </button>
+                        
+                        <!-- Tahun 2 -->
+                        <button class="hover-wiggle group flex flex-col items-center justify-center py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-orange border-b-[5px] hover:border-b-[3px] hover:translate-y-[2px] transition-all shadow-sm">
+                            <span class="bg-orange-50 text-kid-orange w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-car text-xl md:text-2xl"></i>
                             </span>
-                            <span class="font-display text-lg font-bold text-slate-700">Tahun 3</span>
-                        </div>
-                        <div class="w-full mt-auto flex flex-col gap-2">
-                            <a href="#" target="_blank" class="block w-full bg-[#E5A93D] text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-yellow-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
-                            <a href="#" target="_blank" class="block w-full bg-[#E5A93D] text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-yellow-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
-                        </div>
-                    </div>
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700">Tahun 2</span>
+                        </button>
 
-                    <!-- Tahun 4 (Jilid 1 & 2) -->
-                    <div class="flex flex-col items-center py-4 px-3 bg-white rounded-2xl border-2 border-kid-green border-b-[6px] shadow-sm">
-                        <div class="flex flex-col items-center mb-4">
-                            <span class="bg-green-50 text-kid-green w-12 h-12 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-tree text-xl"></i>
+                        <!-- Tahun 3 -->
+                        <button class="hover-wiggle group flex flex-col items-center justify-center py-3 px-2 bg-white rounded-2xl border-[3px] border-[#E5A93D] border-b-[5px] hover:border-b-[3px] hover:translate-y-[2px] transition-all shadow-sm">
+                            <span class="bg-yellow-50 text-[#E5A93D] w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-sun text-xl md:text-2xl"></i>
                             </span>
-                            <span class="font-display text-lg font-bold text-slate-700">Tahun 4</span>
-                        </div>
-                        <div class="w-full mt-auto flex flex-col gap-2">
-                            <a href="#" target="_blank" class="block w-full bg-kid-green text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-green-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
-                            <a href="#" target="_blank" class="block w-full bg-kid-green text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-green-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
-                        </div>
-                    </div>
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700">Tahun 3</span>
+                        </button>
 
-                    <!-- Tahun 5 (Jilid 1 & 2) -->
-                    <div class="flex flex-col items-center py-4 px-3 bg-white rounded-2xl border-2 border-kid-blue border-b-[6px] shadow-sm">
-                        <div class="flex flex-col items-center mb-4">
-                            <span class="bg-blue-50 text-kid-blue w-12 h-12 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-fish text-xl"></i>
+                        <!-- Tahun 4 -->
+                        <button class="hover-wiggle group flex flex-col items-center justify-center py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-green border-b-[5px] hover:border-b-[3px] hover:translate-y-[2px] transition-all shadow-sm">
+                            <span class="bg-green-50 text-kid-green w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-tree text-xl md:text-2xl"></i>
                             </span>
-                            <span class="font-display text-lg font-bold text-slate-700">Tahun 5</span>
-                        </div>
-                        <div class="w-full mt-auto flex flex-col gap-2">
-                            <a href="#" target="_blank" class="block w-full bg-kid-blue text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-blue-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
-                            <a href="#" target="_blank" class="block w-full bg-kid-blue text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-blue-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
-                        </div>
-                    </div>
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700">Tahun 4</span>
+                        </button>
 
-                    <!-- Tahun 6 (Jilid 1 & 2) -->
-                    <div class="flex flex-col items-center py-4 px-3 bg-white rounded-2xl border-2 border-kid-purple border-b-[6px] shadow-sm">
-                        <div class="flex flex-col items-center mb-4">
-                            <span class="bg-purple-50 text-kid-purple w-12 h-12 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-rocket text-xl"></i>
+                        <!-- Tahun 5 -->
+                        <button class="hover-wiggle group flex flex-col items-center justify-center py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-blue border-b-[5px] hover:border-b-[3px] hover:translate-y-[2px] transition-all shadow-sm">
+                            <span class="bg-blue-50 text-kid-blue w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-fish text-xl md:text-2xl"></i>
                             </span>
-                            <span class="font-display text-lg font-bold text-slate-700">Tahun 6</span>
-                        </div>
-                        <div class="w-full mt-auto flex flex-col gap-2">
-                            <a href="#" target="_blank" class="block w-full bg-kid-purple text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-purple-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
-                            <a href="#" target="_blank" class="block w-full bg-kid-purple text-white text-sm font-bold py-1.5 rounded-lg shadow-sm hover:bg-purple-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700">Tahun 5</span>
+                        </button>
 
-            <!-- Kumpulan Aktiviti & Rujukan (SEKSYEN BAHARU) -->
-            <section class="bg-white/70 backdrop-blur-md p-6 md:p-8 rounded-[2rem] border-4 border-white shadow-floating animate-bounce-in" style="animation-delay: 0.15s; animation-fill-mode: both;">
-                <div class="flex items-center justify-center mb-8">
-                    <span class="bg-white text-kid-pink py-3 px-8 rounded-full font-display text-xl md:text-2xl font-bold tracking-wide inline-flex items-center shadow-sm border-2 border-kid-pink/20">
-                        <i class="fas fa-shapes text-kid-pink mr-3 text-2xl md:text-3xl"></i>
-                        AKTIVITI & RUJUKAN
-                        <i class="fas fa-shapes text-kid-pink ml-3 text-2xl md:text-3xl"></i>
-                    </span>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Permainan Bahasa -->
-                    <button class="hover-wiggle group flex items-center p-6 bg-kid-pink/10 rounded-2xl md:rounded-3xl border-4 border-kid-pink border-b-[8px] hover:border-b-4 hover:translate-y-[4px] hover:bg-kid-pink/20 transition-all duration-200 outline-none shadow-sm cursor-pointer">
-                        <span class="bg-white text-kid-pink w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mr-4 md:mr-6 shadow-sm group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                            <i class="fas fa-gamepad text-3xl md:text-4xl"></i>
+                        <!-- Tahun 6 -->
+                        <button class="hover-wiggle group flex flex-col items-center justify-center py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-purple border-b-[5px] hover:border-b-[3px] hover:translate-y-[2px] transition-all shadow-sm">
+                            <span class="bg-purple-50 text-kid-purple w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-rocket text-xl md:text-2xl"></i>
+                            </span>
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700">Tahun 6</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- ================= PETAK 2: BUKU TEKS DIGITAL ================= -->
+                <section class="bg-white/70 backdrop-blur-md p-4 md:p-5 rounded-[2rem] border-4 border-white shadow-floating animate-bounce-in flex flex-col h-full" style="animation-delay: 0.1s; animation-fill-mode: both;">
+                    <div class="flex items-center justify-center mb-5">
+                        <span class="bg-white text-kid-blue py-2 px-5 rounded-full font-display text-base md:text-lg font-bold tracking-wide inline-flex items-center shadow-sm border-2 border-kid-blue/20">
+                            <i class="fas fa-book-open-reader mr-2"></i> BUKU TEKS <i class="fas fa-book-open-reader ml-2"></i>
                         </span>
-                        <div class="text-left">
-                            <span class="block font-display text-2xl md:text-3xl font-bold text-slate-800">Permainan Bahasa</span>
-                            <span class="block text-slate-600 font-medium text-sm md:text-base mt-1">Uji minda sambil bermain</span>
-                        </div>
-                    </button>
-
-                    <!-- Rujukan Kod Tangan -->
-                    <button class="hover-wiggle group flex items-center p-6 bg-kid-blue/10 rounded-2xl md:rounded-3xl border-4 border-kid-blue border-b-[8px] hover:border-b-4 hover:translate-y-[4px] hover:bg-kid-blue/20 transition-all duration-200 outline-none shadow-sm cursor-pointer">
-                        <span class="bg-white text-kid-blue w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mr-4 md:mr-6 shadow-sm group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                            <i class="fas fa-hands text-3xl md:text-4xl"></i>
-                        </span>
-                        <div class="text-left">
-                            <span class="block font-display text-2xl md:text-3xl font-bold text-slate-800">Rujukan Kod Tangan</span>
-                            <span class="block text-slate-600 font-medium text-sm md:text-base mt-1">Panduan kod tangan BM</span>
-                        </div>
-                    </button>
-                </div>
-            </section>
-
-            <!-- Kumpulan Profil -->
-            <section class="bg-white/70 backdrop-blur-md p-6 md:p-8 rounded-[2rem] border-4 border-white shadow-floating animate-bounce-in flex flex-col justify-center" style="animation-delay: 0.2s; animation-fill-mode: both;">
-                <div class="flex items-center justify-center mb-6">
-                    <span class="bg-white text-slate-700 py-2 px-6 rounded-full font-display text-lg font-bold tracking-wide inline-flex items-center shadow-sm border-2 border-slate-200">
-                        <i class="fas fa-circle-info text-kid-yellow mr-2 text-xl"></i>
-                        MAKLUMAT
-                        <i class="fas fa-circle-info text-kid-yellow ml-2 text-xl"></i>
-                    </span>
-                </div>
-
-                <div class="w-full bg-kid-yellow/10 rounded-3xl border-4 border-kid-yellow p-6 shadow-sm">
+                    </div>
                     
-                    <!-- Header Admin (Boleh diklik / Dropdown) -->
-                    <button onclick="document.getElementById('admin-content').classList.toggle('hidden'); document.getElementById('admin-arrow').classList.toggle('rotate-180')" class="w-full flex items-center justify-between mb-2 border-b-4 border-kid-yellow/30 pb-4 group cursor-pointer text-left outline-none">
-                        <div class="flex items-center">
-                            <span class="bg-white text-kid-yellow w-16 h-16 rounded-full flex items-center justify-center mr-4 shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-user-shield text-3xl"></i>
-                            </span>
-                            <div>
-                                <span class="block font-display text-2xl md:text-3xl font-bold text-slate-800">Admin</span>
-                                <span class="block text-slate-600 font-medium text-sm md:text-base mt-1">Pasukan Pembangunan Aplikasi</span>
+                    <div class="grid grid-cols-2 gap-3 flex-1">
+                        <!-- Tahun 1 -->
+                        <div class="flex flex-col items-center justify-between py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-red border-b-[5px] shadow-sm">
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700 mb-2">Tahun 1</span>
+                            <div class="w-full mt-auto">
+                                <a href="https://drive.google.com/file/d/1i9vP7shzpA4H2J6oIrbhmETSn3jIH-fM/view?usp=sharing" target="_blank" class="block w-full bg-kid-red text-white text-xs font-bold py-1.5 rounded-lg shadow-sm hover:bg-red-500 hover:-translate-y-0.5 text-center transition-all">Buku Teks</a>
                             </div>
                         </div>
-                        <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-kid-yellow transition-colors duration-300">
-                            <i id="admin-arrow" class="fas fa-chevron-down text-kid-yellow group-hover:text-white text-xl transition-transform duration-300"></i>
+                        
+                        <!-- Tahun 2 -->
+                        <div class="flex flex-col items-center justify-between py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-orange border-b-[5px] shadow-sm">
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700 mb-2">Tahun 2</span>
+                            <div class="w-full mt-auto flex flex-col gap-1.5">
+                                <a href="https://drive.google.com/file/d/1XaR9atqX3N1J_E0TeOW3FHrTtxRma4nQ/view?usp=sharing" target="_blank" class="block w-full bg-kid-orange text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-orange-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
+                                <a href="https://drive.google.com/file/d/1taHFb0VDo0FKQhL7bu0bZx9NimpiIFa8/view?usp=sharing" target="_blank" class="block w-full bg-kid-orange text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-orange-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
+                            </div>
+                        </div>
+
+                        <!-- Tahun 3 -->
+                        <div class="flex flex-col items-center justify-between py-3 px-2 bg-white rounded-2xl border-[3px] border-[#E5A93D] border-b-[5px] shadow-sm">
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700 mb-2">Tahun 3</span>
+                            <div class="w-full mt-auto flex flex-col gap-1.5">
+                                <a href="#" target="_blank" class="block w-full bg-[#E5A93D] text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-yellow-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
+                                <a href="#" target="_blank" class="block w-full bg-[#E5A93D] text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-yellow-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
+                            </div>
+                        </div>
+
+                        <!-- Tahun 4 -->
+                        <div class="flex flex-col items-center justify-between py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-green border-b-[5px] shadow-sm">
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700 mb-2">Tahun 4</span>
+                            <div class="w-full mt-auto flex flex-col gap-1.5">
+                                <a href="#" target="_blank" class="block w-full bg-kid-green text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-green-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
+                                <a href="#" target="_blank" class="block w-full bg-kid-green text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-green-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
+                            </div>
+                        </div>
+
+                        <!-- Tahun 5 -->
+                        <div class="flex flex-col items-center justify-between py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-blue border-b-[5px] shadow-sm">
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700 mb-2">Tahun 5</span>
+                            <div class="w-full mt-auto flex flex-col gap-1.5">
+                                <a href="#" target="_blank" class="block w-full bg-kid-blue text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-blue-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
+                                <a href="#" target="_blank" class="block w-full bg-kid-blue text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-blue-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
+                            </div>
+                        </div>
+
+                        <!-- Tahun 6 -->
+                        <div class="flex flex-col items-center justify-between py-3 px-2 bg-white rounded-2xl border-[3px] border-kid-purple border-b-[5px] shadow-sm">
+                            <span class="font-display text-sm md:text-base font-bold text-slate-700 mb-2">Tahun 6</span>
+                            <div class="w-full mt-auto flex flex-col gap-1.5">
+                                <a href="#" target="_blank" class="block w-full bg-kid-purple text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-purple-500 hover:-translate-y-0.5 text-center transition-all">Jilid 1</a>
+                                <a href="#" target="_blank" class="block w-full bg-kid-purple text-white text-[11px] font-bold py-1 rounded-lg shadow-sm hover:bg-purple-500 hover:-translate-y-0.5 text-center transition-all">Jilid 2</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= PETAK 3: AKTIVITI & RUJUKAN ================= -->
+                <section class="bg-white/70 backdrop-blur-md p-4 md:p-5 rounded-[2rem] border-4 border-white shadow-floating animate-bounce-in flex flex-col h-full" style="animation-delay: 0.2s; animation-fill-mode: both;">
+                    <div class="flex items-center justify-center mb-5">
+                        <span class="bg-white text-kid-pink py-2 px-5 rounded-full font-display text-base md:text-lg font-bold tracking-wide inline-flex items-center shadow-sm border-2 border-kid-pink/20">
+                            <i class="fas fa-shapes mr-2"></i> AKTIVITI <i class="fas fa-shapes ml-2"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="flex flex-col justify-center gap-4 flex-1">
+                        <!-- Permainan Bahasa -->
+                        <button class="hover-wiggle group flex items-center p-4 md:p-5 bg-kid-pink/10 rounded-2xl border-[3px] border-kid-pink border-b-[6px] hover:border-b-[3px] hover:translate-y-[3px] transition-all shadow-sm">
+                            <span class="bg-white text-kid-pink w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-gamepad text-2xl md:text-3xl"></i>
+                            </span>
+                            <div class="text-left">
+                                <span class="block font-display text-lg md:text-xl font-bold text-slate-800">Permainan</span>
+                                <span class="block text-slate-600 font-medium text-[11px] md:text-xs mt-0.5">Uji minda interaktif</span>
+                            </div>
+                        </button>
+
+                        <!-- Rujukan Kod Tangan -->
+                        <button class="hover-wiggle group flex items-center p-4 md:p-5 bg-kid-blue/10 rounded-2xl border-[3px] border-kid-blue border-b-[6px] hover:border-b-[3px] hover:translate-y-[3px] transition-all shadow-sm">
+                            <span class="bg-white text-kid-blue w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-hands text-2xl md:text-3xl"></i>
+                            </span>
+                            <div class="text-left">
+                                <span class="block font-display text-lg md:text-xl font-bold text-slate-800">Kod Tangan</span>
+                                <span class="block text-slate-600 font-medium text-[11px] md:text-xs mt-0.5">Panduan bahasa isyarat</span>
+                            </div>
+                        </button>
+                    </div>
+                </section>
+
+            </div> <!-- PENUTUP GRID 3 PETAK -->
+
+            <!-- ================= MAKLUMAT ADMIN (DROPDOWN BAWAH SEKALI) ================= -->
+            <section class="bg-white/70 backdrop-blur-md py-3 px-5 md:py-4 md:px-6 rounded-[2rem] border-4 border-white shadow-floating animate-bounce-in flex flex-col justify-center w-full" style="animation-delay: 0.3s; animation-fill-mode: both;">
+                
+                <div class="w-full bg-kid-yellow/10 rounded-3xl border-4 border-kid-yellow py-2 px-4 md:py-3 md:px-5 shadow-sm">
+                    
+                    <!-- Header Admin (Boleh diklik / Dropdown) -->
+                    <button onclick="document.getElementById('admin-content').classList.toggle('hidden'); document.getElementById('admin-arrow').classList.toggle('rotate-180')" class="w-full flex items-center justify-between border-b-[3px] border-kid-yellow/30 pb-2 group cursor-pointer text-left outline-none">
+                        <div class="flex items-center">
+                            <span class="bg-white text-kid-yellow w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mr-3 shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-user-shield text-xl md:text-2xl"></i>
+                            </span>
+                            <div>
+                                <span class="block font-display text-lg md:text-xl font-bold text-slate-800">Admin</span>
+                                <span class="block text-slate-600 font-medium text-[11px] md:text-xs mt-0.5">Kenali Pasukan Pembangun Kami</span>
+                            </div>
+                        </div>
+                        <div class="bg-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-kid-yellow transition-colors duration-300">
+                            <i id="admin-arrow" class="fas fa-chevron-down text-kid-yellow group-hover:text-white text-base transition-transform duration-300"></i>
                         </div>
                     </button>
 
                     <!-- KANDUNGAN DROPDOWN ADMIN (Disembunyikan secara lalai) -->
-                    <div id="admin-content" class="hidden pt-4">
+                    <div id="admin-content" class="hidden pt-5">
 
                         <!-- Ketua Pasukan -->
-                        <div class="mb-6">
-                            <span class="inline-block bg-kid-orange text-white font-bold px-4 py-1.5 rounded-full text-sm mb-3 shadow-sm border-2 border-white">
+                        <div class="mb-5">
+                            <span class="inline-block bg-kid-orange text-white font-bold px-4 py-1.5 rounded-full text-xs md:text-sm mb-3 shadow-sm border-2 border-white">
                                 <i class="fas fa-crown mr-1 text-yellow-200"></i> Ketua Pasukan
                             </span>
-                            <div class="bg-white rounded-2xl p-4 border-2 border-orange-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center lg:w-1/2">
-                                <img src="abidin.png" alt="Mohamad Abidin bin Sipek" class="w-14 h-14 rounded-full object-cover border-2 border-kid-orange mr-4 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mohamad+Abidin&background=FA8231&color=fff';">
+                            <div class="bg-white rounded-2xl p-3 md:p-4 border-[3px] border-orange-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center lg:w-1/2">
+                                <img src="abidin.png" alt="Mohamad Abidin bin Sipek" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-[3px] border-kid-orange mr-4 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mohamad+Abidin&background=FA8231&color=fff';">
                                 <div>
-                                    <span class="block font-bold text-slate-800 text-lg">Mohamad Abidin bin Sipek</span>
+                                    <span class="block font-bold text-slate-800 text-sm md:text-base">Mohamad Abidin bin Sipek</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Pasukan -->
                         <div>
-                            <span class="inline-block bg-kid-blue text-white font-bold px-4 py-1.5 rounded-full text-sm mb-3 shadow-sm border-2 border-white">
+                            <span class="inline-block bg-kid-blue text-white font-bold px-4 py-1.5 rounded-full text-xs md:text-sm mb-3 shadow-sm border-2 border-white">
                                 <i class="fas fa-users mr-1"></i> Pasukan
                             </span>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 
                                 <!-- Ahli 1 -->
-                                <div class="bg-white rounded-2xl p-4 border-2 border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
-                                    <img src="sab.png" alt="Sabariah binti Solhi" class="w-12 h-12 rounded-full object-cover border-2 border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sabariah+Solhi&background=45B7D1&color=fff';">
+                                <div class="bg-white rounded-2xl p-3 md:p-4 border-[3px] border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
+                                    <img src="sab.png" alt="Sabariah binti Solhi" class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-[3px] border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sabariah+Solhi&background=45B7D1&color=fff';">
                                     <div>
-                                        <span class="block font-bold text-slate-700">Sabariah binti Solhi</span>
-                                        <span class="block text-sm font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
+                                        <span class="block font-bold text-slate-700 text-sm md:text-base">Sabariah binti Solhi</span>
+                                        <span class="block text-[11px] md:text-xs font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
                                     </div>
                                 </div>
 
                                 <!-- Ahli 2 -->
-                                <div class="bg-white rounded-2xl p-4 border-2 border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
-                                    <img src="rafeeq.png" alt="Mohd Rafeeq bin Sulaiman" class="w-12 h-12 rounded-full object-cover border-2 border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mohd+Rafeeq&background=45B7D1&color=fff';">
+                                <div class="bg-white rounded-2xl p-3 md:p-4 border-[3px] border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
+                                    <img src="rafeeq.png" alt="Mohd Rafeeq bin Sulaiman" class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-[3px] border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mohd+Rafeeq&background=45B7D1&color=fff';">
                                     <div>
-                                        <span class="block font-bold text-slate-700">Mohd Rafeeq bin Sulaiman</span>
-                                        <span class="block text-sm font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
+                                        <span class="block font-bold text-slate-700 text-sm md:text-base">Mohd Rafeeq bin Sulaiman</span>
+                                        <span class="block text-[11px] md:text-xs font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
                                     </div>
                                 </div>
 
                                 <!-- Ahli 3 -->
-                                <div class="bg-white rounded-2xl p-4 border-2 border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
-                                    <img src="jimmy.png" alt="Jimmy anak Peter" class="w-12 h-12 rounded-full object-cover border-2 border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Jimmy+Peter&background=45B7D1&color=fff';">
+                                <div class="bg-white rounded-2xl p-3 md:p-4 border-[3px] border-blue-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
+                                    <img src="jimmy.png" alt="Jimmy anak Peter" class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-[3px] border-kid-blue mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Jimmy+Peter&background=45B7D1&color=fff';">
                                     <div>
-                                        <span class="block font-bold text-slate-700">Jimmy anak Peter</span>
-                                        <span class="block text-sm font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
+                                        <span class="block font-bold text-slate-700 text-sm md:text-base">Jimmy anak Peter</span>
+                                        <span class="block text-[11px] md:text-xs font-bold text-kid-blue mt-0.5">Guru Bahasa Melayu BD</span>
                                     </div>
                                 </div>
 
                                 <!-- Ahli 4 -->
-                                <div class="bg-white rounded-2xl p-4 border-2 border-green-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
-                                    <img src="khairi.png" alt="Khairi bin Sahari" class="w-12 h-12 rounded-full object-cover border-2 border-kid-green mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Khairi+Sahari&background=26DE81&color=fff';">
+                                <div class="bg-white rounded-2xl p-3 md:p-4 border-[3px] border-green-200 shadow-sm hover:-translate-y-1 transition-transform cursor-default flex items-center">
+                                    <img src="khairi.png" alt="Khairi bin Sahari" class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-[3px] border-kid-green mr-3 shadow-sm flex-shrink-0" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Khairi+Sahari&background=26DE81&color=fff';">
                                     <div>
-                                        <span class="block font-bold text-slate-700">Khairi bin Sahari</span>
-                                        <span class="block text-sm font-bold text-kid-green mt-0.5">Guru Kod Tangan</span>
+                                        <span class="block font-bold text-slate-700 text-sm md:text-base">Khairi bin Sahari</span>
+                                        <span class="block text-[11px] md:text-xs font-bold text-kid-green mt-0.5">Guru Kod Tangan</span>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                    </div> <!-- Penutup Dropdown admin-content -->
-
+                    </div> 
                 </div>
             </section>
 
         </div>
-    </div>
-</main>
+    </main>
 
     <!-- FOOTER HAK CIPTA -->
     <footer class="w-full text-center py-5 bg-white/70 backdrop-blur-md border-t-4 border-white z-20 relative">
