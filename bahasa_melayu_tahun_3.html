@@ -202,14 +202,14 @@
                                 ]
                             },
                             {
-                                id: 'u2a4', name: "Aktiviti 4: Padankan Kata Kerja", type: "padan-overlay",
-                                image: "Screenshot 2026-08-17 155716_2.jpg",
+                                id: 'u2a4', name: "Aktiviti 4: KATA NAMA AM", type: "padan-overlay",
+                                image: "katakerja.png",
                                 targets: [
-                                    { ans: "majalah", top: 30, left: 66, w: 18, h: 8 },
-                                    { ans: "rak", top: 70, left: 56, w: 18, h: 8 },
-                                    { ans: "meja", top: 40, left: 12, w: 18, h: 8 },
-                                    { ans: "permaidani", top: 65, left: 81, w: 18, h: 8 },
-                                    { ans: "pembersih vakum", top: 88, left: 42, w: 20, h: 8 }
+                                    { ans: "majalah", top: 25, left: 70, w: 18, h: 8 },
+                                    { ans: "rak", top: 60, left: 82, w: 18, h: 8 },
+                                    { ans: "meja", top: 35, left: 18, w: 16, h: 8 },
+                                    { ans: "permaidani", top: 85, left: 55, w: 18, h: 8 },
+                                    { ans: "pembersih vakum", top: 73, left: 28, w: 20, h: 8 }
                                 ],
                                 pool: ["majalah", "rak", "meja", "permaidani", "pembersih vakum"]
                             }
@@ -497,7 +497,6 @@
                              </div>`;
                 } else {
                     html += `<div onclick="tapPlace(${i})" class="w-full h-12 md:h-14 border-4 border-dashed rounded-xl flex items-center justify-center font-bold transition-all ${hoverClass}">
-                                <span class="${isTargeted ? 'text-rose-500' : 'text-transparent'}">Letak Sini</span>
                              </div>`;
                 }
                 html += `</div>`;
