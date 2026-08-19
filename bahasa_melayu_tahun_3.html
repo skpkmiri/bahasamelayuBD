@@ -43,71 +43,72 @@
 </head>
 <body class="min-h-screen pb-10">
 
-    <!-- Navigasi Tepi -->
     <div class="fixed top-2 left-2 md:top-4 md:left-4 flex gap-2 z-50">
-        <button onclick="goHome()" class="btn-3d bg-blue-500 text-white p-3 md:p-4 rounded-full text-xl shadow-[0_5px_0_#0b3982] hover:bg-blue-400">
-            <i class="fas fa-home"></i>
+        <button onclick="goHome()" class="btn-3d bg-white/80 p-2 md:p-3 rounded-full shadow-[0_4px_0_#ccc] hover:bg-white backdrop-blur-sm transition-all border-2 border-gray-100">
+            <img src="home.png" alt="Home" class="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md">
         </button>
-        <button id="btn-back" onclick="goBack()" class="btn-3d bg-yellow-400 text-yellow-900 p-3 md:p-4 rounded-full text-xl shadow-[0_5px_0_#b78a00] hover:bg-yellow-300 hidden">
-            <i class="fas fa-arrow-left"></i>
+        <button id="btn-back" onclick="goBack()" class="btn-3d bg-white/80 p-2 md:p-3 rounded-full shadow-[0_4px_0_#ccc] hover:bg-white backdrop-blur-sm transition-all border-2 border-gray-100 hidden">
+            <img src="kembali.png" alt="Kembali" class="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md">
         </button>
     </div>
 
-    <!-- Banner Utama (Hanya di Paparan Hadapan) -->
-    <header id="main-banner" class="pt-16 pb-6 text-center w-full max-w-4xl mx-auto px-4 fade-in">
-        <h1 class="text-5xl md:text-7xl text-blue-600 drop-shadow-[4px_4px_0_#fff] mb-2" style="text-shadow: 3px 3px 0 #FFF, -3px -3px 0 #FFF, 3px -3px 0 #FFF, -3px 3px 0 #FFF, 5px 5px 15px rgba(0,0,0,0.1);">
+    <header id="main-banner" class="pt-16 pb-6 text-center w-full max-w-6xl mx-auto px-4 fade-in">
+        <h1 class="text-5xl md:text-7xl text-blue-600 drop-shadow-[4px_4px_0_#fff] mb-2 font-chewy" style="text-shadow: 3px 3px 0 #FFF, -3px -3px 0 #FFF, 3px -3px 0 #FFF, -3px 3px 0 #FFF, 5px 5px 15px rgba(0,0,0,0.1);">
             BAHASA MELAYU
         </h1>
-        <h2 class="text-4xl md:text-5xl text-rose-500 drop-shadow-[3px_3px_0_#fff]" style="text-shadow: 2px 2px 0 #FFF, -2px -2px 0 #FFF, 2px -2px 0 #FFF, -2px 2px 0 #FFF;">
+        <h2 class="text-4xl md:text-5xl text-rose-500 drop-shadow-[3px_3px_0_#fff] font-chewy" style="text-shadow: 2px 2px 0 #FFF, -2px -2px 0 #FFF, 2px -2px 0 #FFF, -2px 2px 0 #FFF;">
             TAHUN 3
         </h2>
         <div class="w-24 h-1.5 bg-yellow-400 mx-auto mt-6 rounded-full"></div>
     </header>
 
-    <!-- CONTAINER UTAMA -->
     <main class="max-w-6xl mx-auto px-4 mt-6">
         
         <!-- VIEW 1: HOME (Grid Tema) -->
         <section id="view-home" class="view-section fade-in">
-            <div class="bg-white/60 backdrop-blur-sm p-6 md:p-10 rounded-[2.5rem] shadow-2xl border-4 border-white/60 max-w-5xl mx-auto">
-                <div id="tema-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 justify-center w-full">
+            <div class="bg-white/60 backdrop-blur-md p-6 md:p-10 rounded-[2.5rem] shadow-2xl border-4 border-white max-w-5xl mx-auto relative overflow-hidden">
+                <!-- Hiasan latar belon -->
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 text-6xl opacity-30 animate-pulse">🎈</div>
+                
+                <div id="tema-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 justify-center w-full relative z-10">
                     <!-- Dijana melalui JS -->
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 2: SENARAI UNIT -->
+        <!-- VIEW 2: SENARAI UNIT (Tengah Skrin) -->
         <section id="view-units" class="view-section hidden fade-in">
-            <h2 id="title-tema" class="text-3xl md:text-5xl text-center font-chewy text-purple-600 mb-8 drop-shadow-md bg-white py-4 rounded-3xl border-4 border-purple-200"></h2>
-            <div id="unit-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Dijana melalui JS -->
+            <div class="flex flex-col justify-center items-center min-h-[65vh] w-full max-w-5xl mx-auto">
+                <h2 id="title-tema" class="text-3xl md:text-5xl text-center font-chewy text-purple-600 mb-8 drop-shadow-md bg-white px-8 py-4 rounded-3xl border-4 border-purple-200 shadow-lg"></h2>
+                <div id="unit-grid" class="flex flex-wrap justify-center items-stretch gap-6 w-full">
+                    <!-- Dijana melalui JS -->
+                </div>
             </div>
         </section>
 
         <!-- VIEW 3: SENARAI AKTIVITI -->
         <section id="view-activities" class="view-section hidden fade-in">
-            <h2 id="title-unit" class="text-3xl md:text-4xl text-center font-chewy text-teal-600 mb-8 drop-shadow-md bg-white py-4 rounded-3xl border-4 border-teal-200 px-4"></h2>
+            <h2 id="title-unit" class="text-3xl md:text-4xl text-center font-chewy text-teal-600 mb-8 drop-shadow-md bg-white py-4 rounded-3xl border-4 border-teal-200 px-4 shadow-lg"></h2>
             <div id="activity-list" class="flex flex-col gap-4 max-w-2xl mx-auto">
                 <!-- Dijana melalui JS -->
             </div>
             <!-- Ruang Kosong (Jika tiada aktiviti) -->
-            <div id="ruang-kosong" class="hidden text-center mt-10 p-10 bg-gradient-to-br from-white to-blue-50 border-4 border-yellow-400 border-dashed rounded-3xl relative overflow-hidden shadow-lg">
-                <div class="absolute top-4 left-4 animate-bounce text-2xl">⭐</div>
-                <div class="absolute bottom-4 right-4 animate-bounce text-2xl" style="animation-delay: 0.5s;">🎈</div>
-                <div class="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform hover:scale-110">
-                    <i class="fas fa-shapes text-5xl text-blue-500"></i>
+            <div id="ruang-kosong" class="hidden text-center mt-10 p-10 bg-gradient-to-br from-white to-blue-50 border-4 border-yellow-400 rounded-3xl relative overflow-hidden shadow-xl">
+                <div class="absolute top-4 left-4 animate-bounce text-3xl">⭐</div>
+                <div class="absolute bottom-4 right-4 animate-bounce text-3xl" style="animation-delay: 0.5s;">🎈</div>
+                <div class="w-28 h-28 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform hover:scale-110 shadow-inner">
+                    <i class="fas fa-shapes text-6xl text-blue-500"></i>
                 </div>
-                <h3 class="text-3xl font-chewy text-rose-500 mb-2">Ruang Pembelajaran</h3>
-                <p class="text-blue-800 font-bold text-lg">Kandungan unit ini akan ditambah pada masa akan datang!</p>
+                <h3 class="text-4xl font-chewy text-rose-500 mb-3 drop-shadow-sm">Ruang Pembelajaran</h3>
+                <p class="text-blue-800 font-bold text-xl bg-white/60 p-3 rounded-xl inline-block">Kandungan unit ini akan ditambah pada masa akan datang!</p>
             </div>
         </section>
 
         <!-- VIEW 4: PLAYGROUND (Main Aktiviti) -->
         <section id="view-play" class="view-section hidden fade-in">
-            <div class="bg-white/90 backdrop-blur-sm p-4 md:p-8 rounded-3xl border-4 border-indigo-200 shadow-xl max-w-5xl mx-auto min-h-[60vh] flex flex-col">
-                <h2 id="play-title" class="text-2xl md:text-3xl font-chewy text-indigo-600 mb-6 text-center border-b-4 border-dashed border-indigo-100 pb-4"></h2>
-                
-                <div id="play-container" class="flex-grow flex flex-col justify-center">
+            <div class="bg-white/95 backdrop-blur-md p-4 md:p-8 rounded-3xl border-4 border-indigo-200 shadow-2xl max-w-5xl mx-auto min-h-[60vh] flex flex-col relative overflow-hidden">
+                <h2 id="play-title" class="text-2xl md:text-4xl font-chewy text-indigo-600 mb-8 text-center border-b-4 border-dashed border-indigo-100 pb-4"></h2>
+                <div id="play-container" class="flex-grow flex flex-col justify-center items-center">
                     <!-- Kandungan interaktif disuntik di sini -->
                 </div>
             </div>
@@ -117,11 +118,14 @@
 
     <!-- MODAL MAKLUM BALAS (Betul / Salah) -->
     <div id="modal-feedback" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[100] backdrop-blur-sm p-4">
-        <div class="bg-white p-8 rounded-3xl text-center w-full max-w-md mx-auto shadow-2xl border-4 border-white bounce-in">
-            <div id="feedback-icon" class="text-6xl mb-4"></div>
-            <h3 id="feedback-title" class="text-3xl font-chewy mb-4"></h3>
-            <p id="feedback-message" class="text-lg text-gray-600 font-bold mb-6 leading-relaxed"></p>
-            <button id="btn-next" class="w-full btn-3d bg-blue-500 text-white font-bold text-xl py-4 rounded-xl shadow-[0_5px_0_#0b3982]">
+        <div class="bg-white p-8 rounded-3xl text-center w-full max-w-md mx-auto shadow-2xl border-4 border-white bounce-in relative">
+            <div class="absolute top-0 left-0 -mt-6 -ml-6 text-4xl">✨</div>
+            <div class="absolute bottom-0 right-0 -mb-6 -mr-6 text-4xl">🎉</div>
+            
+            <div id="feedback-icon" class="text-7xl mb-4 drop-shadow-md"></div>
+            <h3 id="feedback-title" class="text-4xl font-chewy mb-4"></h3>
+            <p id="feedback-message" class="text-xl text-gray-600 font-bold mb-8 leading-relaxed"></p>
+            <button id="btn-next" class="w-full btn-3d bg-blue-500 text-white font-chewy text-2xl py-4 rounded-2xl shadow-[0_6px_0_#0b3982] border-2 border-blue-400">
                 Seterusnya
             </button>
         </div>
@@ -179,7 +183,7 @@
                                 ]
                             },
                             {
-                                id: 'u2a2', name: "Aktiviti 2: Padankan Kod Tangan", type: "padan",
+                                id: 'u2a2', name: "Aktiviti 2: Padankan Kod Tangan", type: "padan", cols: 3,
                                 targets: [
                                     { image: "memanggang.png", ans: "memanggang" },
                                     { image: "menggoreng.png", ans: "menggoreng" },
@@ -205,10 +209,10 @@
                                 id: 'u2a4', name: "Aktiviti 4: KATA NAMA AM", type: "padan-overlay",
                                 image: "katakerja.png",
                                 targets: [
-                                    { ans: "majalah", top: 25, left: 70, w: 18, h: 8 },
-                                    { ans: "rak", top: 60, left: 82, w: 18, h: 8 },
-                                    { ans: "meja", top: 35, left: 18, w: 16, h: 8 },
-                                    { ans: "permaidani", top: 85, left: 55, w: 18, h: 8 },
+                                    { ans: "majalah", top: 30, left: 46, w: 18, h: 8 },
+                                    { ans: "rak", top: 70, left: 36, w: 18, h: 8 },
+                                    { ans: "meja", top: 40, left: 2, w: 16, h: 8 },
+                                    { ans: "permaidani", top: 65, left: 61, w: 18, h: 8 },
                                     { ans: "pembersih vakum", top: 73, left: 28, w: 20, h: 8 }
                                 ],
                                 pool: ["majalah", "rak", "meja", "permaidani", "pembersih vakum"]
@@ -219,13 +223,13 @@
                         title: "Unit 3: Jom ke Rumah Pak Cik Man",
                         activities: [
                             {
-                                id: 'u3a1', name: "Aktiviti 1: Isi Tempat Kosong", type: "padan",
+                                id: 'u3a1', name: "Aktiviti 1: Isi Tempat Kosong", type: "padan", cols: 2,
                                 targets: [
-                                    { text: "________ ialah buku teks saya.", ans: "Ini" },
-                                    { text: "________ adalah sekolah baru.", ans: "itu" },
-                                    { text: "Nama ________ Syafik.", ans: "saya" },
-                                    { text: "________ sedang membaca buku.", ans: "Dia" },
-                                    { text: "________ bermain bola bersama-sama.", ans: "Kami" }
+                                    { text: "____________ ialah buku teks saya.", ans: "Ini" },
+                                    { text: "____________ adalah sekolah baru.", ans: "itu" },
+                                    { text: "Nama ____________ Syafik.", ans: "saya" },
+                                    { text: "____________ sedang membaca buku.", ans: "Dia" },
+                                    { text: "____________ bermain bola bersama-sama.", ans: "Kami" }
                                 ],
                                 pool: ["Ini", "itu", "saya", "Dia", "Kami"]
                             },
@@ -248,9 +252,126 @@
             {
                 tema: "TEMA 2: KEMASYARAKATAN", color: "from-purple-400 to-purple-600",
                 units: [
-                    { title: "Unit 4: Sepakat Membawa Berkat", activities: [] },
-                    { title: "Unit 5: Seronoknya Hidup Berjiran", activities: [] },
-                    { title: "Unit 6: Kami Prihatin", activities: [] }
+                    {
+                        title: "Unit 4: Sepakat Membawa Berkat",
+                        activities: [
+                            {
+                                id: 'u4a1', name: "Aktiviti 1: Padankan Isyarat", type: "padan", cols: 3,
+                                targets: [
+                                    { image: "banjir.png", ans: "banjir" },
+                                    { image: "mangsa.png", ans: "mangsa" },
+                                    { image: "amal.png", ans: "amal" },
+                                    { image: "balairaya.png", ans: "balairaya" },
+                                    { image: "kumpul.png", ans: "kumpul" },
+                                    { image: "sumbang.png", ans: "sumbang" },
+                                    { image: "pasang.png", ans: "pasang" },
+                                    { image: "tebing.png", ans: "tebing" },
+                                    { image: "aur.png", ans: "aur" },
+                                    { text: "Bagai aur dengan tebing", ans: "Bagai aur dengan tebing" },
+                                    { text: "Sepakat membawa berkat", ans: "Sepakat membawa berkat" }
+                                ],
+                                pool: ["banjir", "mangsa", "amal", "balairaya", "kumpul", "sumbang", "pasang", "tebing", "aur", "Bagai aur dengan tebing", "Sepakat membawa berkat"]
+                            },
+                            {
+                                id: 'u4a2', name: "Aktiviti 2: Susun Ayat", type: "susun-ayat",
+                                items: [
+                                    { media: "buangsampah.png", ans: "Syafik dan Openg membantu ayah mengumpul sampah." },
+                                    { media: "mengumpulranting.png", ans: "Sarah dan Priya mengumpul ranting kering." },
+                                    { media: "mengelap.png", ans: "Wei Hong dan Jeriah mengelap papan tanda." },
+                                    { media: "kitarsemula.png", ans: "Priya dan Syafik memasukkan barang kitar semula ke dalam tong kitar semula." },
+                                    { media: "mengecat.png", ans: "Wei Hong dan ayahnya mengecat pondok di tepi pantai." },
+                                    { media: "memberiair.png", ans: "Ibu dan kakak memberikan air kepada orang ramai." }
+                                ]
+                            },
+                            {
+                                id: 'u4a3', name: "Aktiviti 3: Penjodoh Bilangan", type: "padan-3-kolum",
+                                items: [
+                                    { image: "buku.png", nama: "buku", penjodoh: "buah" },
+                                    { image: "bola.png", nama: "bola", penjodoh: "biji" },
+                                    { image: "cat.png", nama: "cat", penjodoh: "tin" },
+                                    { image: "beruscat.png", nama: "berus cat", penjodoh: "batang" },
+                                    { image: "pitapelekat.png", nama: "pita pelekat", penjodoh: "segulung" }
+                                ],
+                                pool: ["buku", "bola", "cat", "berus cat", "pita pelekat", "buah", "biji", "tin", "batang", "segulung"]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Unit 5: Seronoknya Hidup Berjiran",
+                        activities: [
+                            {
+                                id: 'u5a1', name: "Aktiviti 1: KATA SILA", type: "padan", cols: 3,
+                                targets: [
+                                    { image: "sila.png", ans: "sila" },
+                                    { image: "jemput.png", ans: "jemput" },
+                                    { image: "tolong.png", ans: "tolong" },
+                                    { image: "minta.png", ans: "minta" },
+                                    { image: "jangan.png", ans: "jangan" },
+                                    { image: "harap.png", ans: "harap" }
+                                ],
+                                pool: ["sila", "jemput", "tolong", "minta", "jangan", "harap"]
+                            },
+                            {
+                                id: 'u5a2', name: "Aktiviti 2: Baca Petikan", type: "bacaan", image: "bersatuteguh.png"
+                            },
+                            {
+                                id: 'u5a3', name: "Aktiviti 3: Kata Kerja Aktif Transitif", type: "isi-kosong",
+                                items: [
+                                    { media: "menunggangbasikal.png", ayat: "Priya ______________ menuju ke rumah Puan Mei.", ans: "menunggang basikal" },
+                                    { media: "memberikan1.png", ayat: "Priya ______________ sebalang muruku kepada Puan Mei.", ans: "memberikan" },
+                                    { media: "memetik.png", ayat: "Puan Mei ______________ buah mangga di hadapan rumahnya.", ans: "memetik" },
+                                    { media: "memberikan2.png", ayat: "Puan Mei _____________ buah mangga tersebut kepada Priya.", ans: "memberikan" }
+                                ],
+                                pool: ["menunggang basikal", "memberikan", "memetik", "memberikan"]
+                            },
+                            {
+                                id: 'u5a4', name: "Aktiviti 4: Kata Kerja Tak Transitif", type: "isi-kosong",
+                                items: [
+                                    { media: "berjogging.png", ayat: "Bapa Openg dan bapa Priya sedang ________.", ans: "berjogging" },
+                                    { media: "berdiri.png", ayat: "Ibu Openg sedang _________ di sebelah pintu dewan ketika penceramah tiba.", ans: "berdiri" },
+                                    { media: "berbual.png", ayat: "Ibu Jeriah dan ibu Priya sedang _________ mesra.", ans: "berbual" }
+                                ],
+                                pool: ["berjogging", "berdiri", "berbual"]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Unit 6: Kami Prihatin",
+                        activities: [
+                            {
+                                id: 'u6a1', name: "Aktiviti 1: Pemahaman", type: "mcq-berkaitan", overallImage: "petikan.png",
+                                items: [
+                                    { q: "Nama kawan baharu Sarah ialah ______________.", options: ["Mala", "Syafik", "Siti"], ans: "Mala" },
+                                    { q: "Mala duduk ________________________________", options: ["berasa sedih sebab tidak ada kawan", "berasa gembira sebab dapat kawan baru", "berasa mengantuk kerana banyak belajar"], ans: "berasa sedih sebab tidak ada kawan" }
+                                ]
+                            },
+                            {
+                                id: 'u6a2', name: "Aktiviti 2: Kata kerja pasif (Padan)", type: "mcq",
+                                items: [
+                                    { media: "baiki.png", type: "image", ans: "Paip bocor di rumah Syafik telah dibaiki oleh bapa Wei Hong semalam." },
+                                    { media: "selamat.png", type: "image", ans: "Anak-anak kucing itu diselamatkan oleh Openg dan Syafik." },
+                                    { media: "pimpin.png", type: "image", ans: "Nenek Syafik dipimpin oleh Sarah dan Priya" },
+                                    { media: "sampai.png", type: "image", ans: "Bantuan pakaian sekolah telah disampaikan oleh guru besar kepada murid-murid miskin." }
+                                ],
+                                pool: [
+                                    "Paip bocor di rumah Syafik telah dibaiki oleh bapa Wei Hong semalam.",
+                                    "Anak-anak kucing itu diselamatkan oleh Openg dan Syafik.",
+                                    "Nenek Syafik dipimpin oleh Sarah dan Priya",
+                                    "Bantuan pakaian sekolah telah disampaikan oleh guru besar kepada murid-murid miskin."
+                                ]
+                            },
+                            {
+                                id: 'u6a3', name: "Aktiviti 3: Kata Kerja Pasif (Seret)", type: "padan", cols: 1,
+                                targets: [
+                                    { text: "Paip bocor di rumah Syafik telah ____________ oleh bapa Wei Hong semalam.", ans: "dibaiki" },
+                                    { text: "Anak-anak kucing itu ____________ oleh Openg dan Syafik.", ans: "diselamatkan" },
+                                    { text: "Nenek Syafik ____________ oleh Sarah dan Priya.", ans: "dipimpin" },
+                                    { text: "Bantuan pakaian sekolah telah ____________ oleh guru besar kepada murid-murid miskin.", ans: "disampaikan" }
+                                ],
+                                pool: ["dibaiki", "diselamatkan", "dipimpin", "disampaikan"]
+                            }
+                        ]
+                    }
                 ]
             },
             {
@@ -265,11 +386,10 @@
             { tema: "TEMA 5: PERPADUAN", color: "from-blue-400 to-blue-600", units: [] }
         ];
 
-        // --- SISTEM STATE (Penyimpan Data Semasa) ---
         let navHistory = ['view-home'];
-        let activeData = null; // Menyimpan data aktiviti yang sedang berjalan
-        let stepIndex = 0; // Untuk aktiviti jenis MCQ
-        let selectedIndex = null; // Untuk Drag & Drop sentuhan
+        let activeData = null; 
+        let stepIndex = 0; 
+        let selectedIndex = null; 
 
         function navigateTo(viewId) {
             document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
@@ -278,7 +398,6 @@
             navHistory.push(viewId);
             updateNavButtons();
             
-            // Sembunyikan banner utama jika bukan di Home
             const banner = document.getElementById('main-banner');
             if (viewId === 'view-home') banner.classList.remove('hidden');
             else banner.classList.add('hidden');
@@ -286,7 +405,7 @@
 
         function goBack() {
             if (navHistory.length > 1) {
-                navHistory.pop(); // buang view sekarang
+                navHistory.pop(); 
                 const prev = navHistory[navHistory.length - 1];
                 
                 document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
@@ -295,6 +414,7 @@
                 updateNavButtons();
                 const banner = document.getElementById('main-banner');
                 if (prev === 'view-home') banner.classList.remove('hidden');
+                else banner.classList.add('hidden');
             }
         }
 
@@ -314,10 +434,9 @@
             
             dataKurikulum.forEach((tema, idx) => {
                 const btn = document.createElement('button');
-                // Susunan khas Tema 5 ke tengah
                 const specialClass = (idx === 4) ? 'sm:col-span-2 mx-auto w-full sm:w-[50%]' : 'w-full';
-                btn.className = `btn-3d p-6 md:p-8 rounded-3xl text-white font-chewy text-2xl md:text-3xl text-left flex justify-between items-center shadow-lg hover:shadow-xl bg-gradient-to-r ${tema.color} ${specialClass} border-b-[6px] border-black/20`;
-                btn.innerHTML = `<span>${tema.tema}</span> <i class="fas fa-chevron-right ml-2 text-white/50"></i>`;
+                btn.className = `btn-3d p-4 md:p-6 rounded-3xl text-white font-chewy text-2xl md:text-3xl text-left flex justify-between items-center shadow-lg hover:shadow-xl bg-gradient-to-r ${tema.color} ${specialClass} border-b-[6px] border-black/20`;
+                btn.innerHTML = `<span>${tema.tema}</span> <i class="fas fa-chevron-right ml-2 text-white/50 text-xl"></i>`;
                 btn.onclick = () => openTema(idx);
                 grid.appendChild(btn);
             });
@@ -333,16 +452,16 @@
             if (temaData.units && temaData.units.length > 0) {
                 temaData.units.forEach((unit, idx) => {
                     const btn = document.createElement('button');
-                    btn.className = `btn-3d bg-white rounded-3xl p-6 text-center border-4 border-gray-100 shadow-xl group hover:border-purple-300 flex flex-col items-center`;
+                    btn.className = `btn-3d w-full sm:w-[45%] md:w-[30%] bg-white rounded-3xl p-6 text-center border-4 border-gray-100 shadow-xl group hover:border-purple-300 flex flex-col items-center`;
                     btn.innerHTML = `
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-chewy text-white bg-gradient-to-br ${temaData.color} mb-4">${idx + 1}</div>
-                        <div class="text-lg md:text-xl font-bold text-gray-700 leading-snug">${unit.title}</div>
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl font-chewy text-white bg-gradient-to-br ${temaData.color} mb-4 shadow-inner">${idx + 1}</div>
+                        <div class="text-xl md:text-2xl font-bold text-gray-700 leading-snug">${unit.title}</div>
                     `;
                     btn.onclick = () => openUnit(temaIdx, idx);
                     grid.appendChild(btn);
                 });
             } else {
-                grid.innerHTML = `<div class="col-span-full text-center text-gray-500 font-bold p-10 bg-white rounded-3xl">Kandungan tema ini akan dikemas kini kelak!</div>`;
+                grid.innerHTML = `<div class="w-full text-center text-gray-500 font-bold p-10 bg-white rounded-3xl">Kandungan tema ini akan dikemas kini kelak!</div>`;
             }
             navigateTo('view-units');
         }
@@ -361,10 +480,10 @@
                 
                 unitData.activities.forEach((act, actIdx) => {
                     const btn = document.createElement('button');
-                    btn.className = `btn-3d w-full bg-white p-5 rounded-2xl border-4 border-teal-100 flex items-center gap-4 hover:bg-teal-50 text-left shadow-md mb-2`;
+                    btn.className = `btn-3d w-full bg-white p-5 rounded-2xl border-4 border-teal-100 flex items-center gap-4 hover:bg-teal-50 text-left shadow-md mb-3`;
                     btn.innerHTML = `
-                        <div class="bg-teal-500 text-white w-12 h-12 rounded-xl flex items-center justify-center text-2xl"><i class="fas fa-play"></i></div>
-                        <div class="font-bold text-xl text-teal-800">${act.name}</div>
+                        <div class="bg-teal-500 text-white w-14 h-14 rounded-xl flex items-center justify-center text-2xl shadow-inner"><i class="fas fa-play"></i></div>
+                        <div class="font-bold text-xl md:text-2xl text-teal-800">${act.name}</div>
                     `;
                     btn.onclick = () => openActivity(temaIdx, unitIdx, actIdx);
                     list.appendChild(btn);
@@ -377,19 +496,21 @@
         }
 
         function openActivity(temaIdx, unitIdx, actIdx) {
-            // Salin data aktiviti supaya tidak mengubah data asal
             activeData = JSON.parse(JSON.stringify(dataKurikulum[temaIdx].units[unitIdx].activities[actIdx]));
             document.getElementById('play-title').innerText = activeData.name;
             
-            // Set up state
             stepIndex = 0;
             selectedIndex = null;
             
-            // Sediakan fail data dalaman tambahan jika perlu
+            // Format state berdasarkan jenis aktiviti
             if (activeData.type === 'padan' || activeData.type === 'padan-overlay') {
                 activeData.poolState = activeData.pool.map((t, i) => ({ text: t, used: false, id: i }));
             } else if (activeData.type === 'kategori-inline') {
                 activeData.pool.forEach((p, i) => { p.id = i; p.catId = null; });
+            } else if (activeData.type === 'padan-3-kolum') {
+                activeData.poolState = activeData.pool.map((t, i) => ({ text: t, used: false, id: i }));
+                activeData.targetsNama = activeData.items.map(it => ({ ans: it.nama, placedId: undefined }));
+                activeData.targetsPenjodoh = activeData.items.map(it => ({ ans: it.penjodoh, placedId: undefined }));
             }
 
             renderActivityView();
@@ -404,33 +525,38 @@
             else if (activeData.type === 'padan') renderPadan(container);
             else if (activeData.type === 'padan-overlay') renderPadanOverlay(container);
             else if (activeData.type === 'kategori-inline') renderKategoriInline(container);
+            else if (activeData.type === 'susun-ayat') renderSusunAyat(container);
+            else if (activeData.type === 'padan-3-kolum') renderPadan3Kolum(container);
+            else if (activeData.type === 'bacaan') renderBacaan(container);
+            else if (activeData.type === 'isi-kosong') renderIsiKosong(container);
+            else if (activeData.type === 'mcq-berkaitan') renderMCQBerkaitan(container);
+        }
+
+        function tapSelect(poolIndex) {
+            selectedIndex = (selectedIndex === poolIndex) ? null : poolIndex; 
+            renderActivityView();
         }
 
         function renderMCQ(container) {
-            if (stepIndex >= activeData.items.length) {
-                showCompletion();
-                return;
-            }
+            if (stepIndex >= activeData.items.length) { showCompletion(); return; }
             
             const q = activeData.items[stepIndex];
             
-            // Jana 4 Pilihan Rawak (1 Betul, 3 Salah)
             let wrongOptions = activeData.pool.filter(opt => opt !== q.ans);
             wrongOptions = wrongOptions.sort(() => 0.5 - Math.random()).slice(0, 3);
             let options = [q.ans, ...wrongOptions].sort(() => 0.5 - Math.random());
 
             let mediaHtml = '';
             if (q.type === 'video') {
-                mediaHtml = `<div class="bg-black p-2 rounded-xl mb-4 md:mb-0 w-full flex justify-center shadow-lg">
-                                <video src="${q.media}" controls autoplay class="max-h-[50vh] max-w-full rounded-lg"></video>
+                mediaHtml = `<div class="bg-black p-2 rounded-xl mb-4 md:mb-0 w-full flex justify-center shadow-lg border-4 border-gray-200">
+                                <video src="${q.media}" controls autoplay class="max-h-[40vh] max-w-full rounded-lg"></video>
                              </div>`;
             } else {
-                mediaHtml = `<img src="${q.media}" alt="Soalan" class="max-h-[50vh] object-contain rounded-xl shadow-lg border-4 border-white mb-4 md:mb-0">`;
+                mediaHtml = `<img src="${q.media}" alt="Soalan" class="max-h-[40vh] object-contain rounded-xl shadow-lg border-4 border-white mb-4 md:mb-0">`;
             }
 
-            // Layout Side-by-Side untuk menjimatkan ruang skrin
             let html = `
-                <div class="flex flex-col md:flex-row gap-6 items-center w-full">
+                <div class="flex flex-col md:flex-row gap-6 items-center w-full max-w-5xl mx-auto">
                     <div class="w-full md:w-1/2 flex justify-center">
                         ${mediaHtml}
                     </div>
@@ -438,21 +564,42 @@
             `;
             
             options.forEach((opt, idx) => {
-                html += `<button onclick="checkMCQ(${idx})" class="btn-3d w-full bg-white border-4 border-blue-200 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left md:text-lg hover:bg-blue-50 hover:border-blue-400">
+                html += `<button onclick="checkMCQ(${idx})" class="btn-3d w-full bg-white border-4 border-blue-200 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md">
                             ${opt}
                          </button>`;
             });
             
             html += `</div></div>
-                     <div class="text-center mt-6 text-gray-500 font-bold bg-gray-100 rounded-full py-1 px-4 inline-block mx-auto">
+                     <div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">
                         Soalan ${stepIndex + 1} / ${activeData.items.length}
                      </div>`;
                      
             container.innerHTML = html;
-            
-            // Simpan jawapan untuk semakan melalui index butang
             activeData.currentOptions = options; 
             activeData.currentAns = q.ans;
+        }
+
+        function renderMCQBerkaitan(container) {
+            if (stepIndex >= activeData.items.length) { showCompletion(); return; }
+            const item = activeData.items[stepIndex];
+            
+            let html = `<div class="w-full flex flex-col items-center max-w-4xl mx-auto">`;
+            
+            html += `<img src="${activeData.overallImage}" class="w-full md:max-w-2xl object-contain rounded-3xl shadow-xl border-4 border-white mb-6">`;
+            html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-6 md:p-8 rounded-3xl shadow-md border-4 border-purple-200 mb-6 text-center text-xl md:text-2xl font-bold text-purple-900">${item.q}</div>`;
+            
+            html += `<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-4">`;
+            let options = [...item.options].sort(() => 0.5 - Math.random());
+            activeData.currentOptions = options;
+            activeData.currentAns = item.ans;
+            
+            options.forEach((opt, idx) => {
+                html += `<button onclick="checkMCQ(${idx})" class="btn-3d w-full bg-white border-4 border-blue-300 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-center text-lg hover:bg-blue-50 hover:border-blue-500 shadow-md">${opt}</button>`;
+            });
+            html += `</div>`;
+            html += `<div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
+            html += `</div>`;
+            container.innerHTML = html;
         }
 
         function checkMCQ(optIndex) {
@@ -468,9 +615,9 @@
         }
 
         function renderPadan(container) {
-            let html = `<div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8 w-full">`;
+            const colClass = activeData.cols === 2 ? 'md:grid-cols-2' : (activeData.cols === 1 ? 'grid-cols-1' : 'md:grid-cols-3');
+            let html = `<div class="grid grid-cols-2 ${colClass} gap-4 md:gap-6 mb-8 w-full">`;
             
-            // Bahagian Target
             activeData.targets.forEach((t, i) => {
                 const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
                 const isTargeted = selectedIndex !== null;
@@ -478,49 +625,237 @@
                 
                 let contentHtml = '';
                 if (t.image) {
-                    contentHtml = `<img src="${t.image}" class="h-24 md:h-32 object-contain mx-auto mb-4 rounded border-2 border-gray-100">`;
+                    contentHtml = `<img src="${t.image}" class="h-24 md:h-32 object-contain mx-auto mb-4 rounded-xl border-2 border-gray-100">`;
                 } else if (t.text) {
-                    contentHtml = `<div class="text-lg md:text-xl font-bold text-center mb-4 text-gray-700">${t.text}</div>`;
+                    contentHtml = `<div class="text-base md:text-xl font-bold text-center mb-4 text-gray-700 leading-snug">${t.text}</div>`;
                 }
                 
-                html += `<div class="bg-white p-4 rounded-xl shadow-md border-2 border-gray-100 flex flex-col justify-between h-full">
-                            ${contentHtml}
-                            `;
+                html += `<div class="bg-white p-4 rounded-2xl shadow-lg border-4 border-gray-100 flex flex-col justify-between h-full">
+                            ${contentHtml}`;
                             
                 if (placedItem) {
-                    html += `<div class="w-full bg-green-100 text-green-800 border-4 border-green-500 font-bold p-2 md:p-3 rounded-xl text-center md:text-lg shadow-sm">
-                                <i class="fas fa-check-circle mr-1"></i>${placedItem.text}
+                    html += `<div class="w-full bg-green-100 text-green-800 border-4 border-green-500 font-bold p-3 rounded-xl text-center text-lg md:text-xl shadow-sm">
+                                <i class="fas fa-check-circle mr-2"></i>${placedItem.text}
                              </div>`;
                 } else {
-                    html += `<div onclick="tapPlace(${i})" class="w-full h-12 md:h-14 border-4 border-dashed rounded-xl flex items-center justify-center font-bold transition-all ${hoverClass}">
-                             </div>`;
+                    html += `<div onclick="tapPlace(${i})" class="w-full h-14 border-4 border-dashed rounded-xl flex items-center justify-center font-bold transition-all ${hoverClass}"></div>`;
                 }
                 html += `</div>`;
             });
             html += `</div>`;
             
-            // Bahagian Pool (Pilihan Jawapan)
-            html += `<div class="bg-blue-50 p-4 rounded-2xl border-4 border-blue-200"><h3 class="text-center font-bold text-blue-400 mb-3 uppercase tracking-wider">Pilihan Jawapan</h3><div class="flex flex-wrap gap-3 justify-center">`;
+            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-4xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider">PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
             
             activeData.poolState.forEach((p, i) => {
                 if (p.used) return;
                 const isSelected = selectedIndex === i;
-                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-lg' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-100';
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-sm md:text-base transition-all ${btnClass}">
-                            ${p.text}
-                         </button>`;
+                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
             });
-            
             html += `</div></div>`;
             container.innerHTML = html;
         }
 
+        function renderPadan3Kolum(container) {
+            let html = `<div class="grid grid-cols-3 gap-2 md:gap-6 mb-8 w-full max-w-5xl items-stretch">`;
+            html += `<div class="font-bold text-center text-rose-500 mb-2 text-xl md:text-2xl font-chewy">NAMA</div>
+                     <div class="font-bold text-center text-blue-500 mb-2 text-xl md:text-2xl font-chewy">GAMBAR</div>
+                     <div class="font-bold text-center text-teal-500 mb-2 text-xl md:text-2xl font-chewy">PENJODOH BILANGAN</div>`;
+
+            activeData.items.forEach((item, i) => {
+                const targetNama = activeData.targetsNama[i];
+                const placedNama = targetNama.placedId !== undefined ? activeData.poolState.find(p => p.id === targetNama.placedId) : null;
+                const hoverClassNama = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-gray-50';
+                
+                html += `<div class="flex items-center justify-center h-full w-full">`;
+                if (placedNama) {
+                    html += `<div class="w-full p-2 md:p-4 bg-green-100 text-green-800 border-4 border-green-500 font-bold rounded-xl text-center shadow-md text-sm md:text-xl">${placedNama.text}</div>`;
+                } else {
+                    html += `<div onclick="tapPlace3Kolum('nama', ${i})" class="w-full h-16 md:h-20 border-4 border-dashed rounded-xl transition-all ${hoverClassNama}"></div>`;
+                }
+                html += `</div>`;
+
+                html += `<div class="flex items-center justify-center bg-white rounded-2xl shadow-sm border-2 border-gray-100 p-2"><img src="${item.image}" class="h-16 md:h-24 object-contain"></div>`;
+
+                const targetPenjodoh = activeData.targetsPenjodoh[i];
+                const placedPenjodoh = targetPenjodoh.placedId !== undefined ? activeData.poolState.find(p => p.id === targetPenjodoh.placedId) : null;
+                const hoverClassPenjodoh = selectedIndex !== null ? 'border-teal-400 bg-teal-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-gray-50';
+                
+                html += `<div class="flex items-center justify-center h-full w-full">`;
+                if (placedPenjodoh) {
+                    html += `<div class="w-full p-2 md:p-4 bg-green-100 text-green-800 border-4 border-green-500 font-bold rounded-xl text-center shadow-md text-sm md:text-xl">${placedPenjodoh.text}</div>`;
+                } else {
+                    html += `<div onclick="tapPlace3Kolum('penjodoh', ${i})" class="w-full h-16 md:h-20 border-4 border-dashed rounded-xl transition-all ${hoverClassPenjodoh}"></div>`;
+                }
+                html += `</div>`;
+            });
+            html += `</div>`;
+
+            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-4xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider">PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
+            activeData.poolState.forEach((p, i) => {
+                if (p.used) return;
+                const isSelected = selectedIndex === i;
+                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
+            });
+            html += `</div></div>`;
+            container.innerHTML = html;
+        }
+
+        function tapPlace3Kolum(type, index) {
+            if (selectedIndex === null) return;
+            const poolItem = activeData.poolState[selectedIndex];
+            const targetList = type === 'nama' ? activeData.targetsNama : activeData.targetsPenjodoh;
+            const target = targetList[index];
+
+            if (poolItem.text === target.ans) {
+                target.placedId = poolItem.id;
+                poolItem.used = true;
+                selectedIndex = null;
+                renderActivityView();
+                
+                if (activeData.targetsNama.every(t => t.placedId !== undefined) && activeData.targetsPenjodoh.every(t => t.placedId !== undefined)) {
+                    setTimeout(showCompletion, 600);
+                }
+            } else {
+                selectedIndex = null;
+                showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
+            }
+        }
+
+        function renderSusunAyat(container) {
+            if (stepIndex >= activeData.items.length) { showCompletion(); return; }
+            const item = activeData.items[stepIndex];
+            
+            if (!activeData.currentItem || activeData.currentItem.ans !== item.ans) {
+                activeData.currentItem = item;
+                const correctWords = item.ans.trim().split(/\s+/);
+                activeData.targets = correctWords.map(w => ({ ans: w, placedId: undefined }));
+                let shuffledWords = [...correctWords].sort(() => 0.5 - Math.random());
+                activeData.poolState = shuffledWords.map((w, i) => ({ text: w, used: false, id: i }));
+            }
+
+            let html = `<div class="w-full max-w-4xl mx-auto flex flex-col items-center">`;
+            html += `<img src="${item.media}" class="max-h-[40vh] object-contain rounded-2xl shadow-xl border-4 border-white mb-8">`;
+            
+            html += `<div class="flex flex-wrap gap-2 justify-center w-full mb-8 bg-blue-50 p-6 rounded-3xl shadow-inner border-4 border-blue-100 min-h-[100px] items-center">`;
+            activeData.targets.forEach((t, i) => {
+                const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
+                if (placedItem) {
+                    html += `<div class="p-3 md:p-4 bg-green-100 text-green-800 border-4 border-green-500 font-bold rounded-xl shadow-md text-lg md:text-xl">${placedItem.text}</div>`;
+                } else {
+                    const hoverClass = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-white';
+                    html += `<div onclick="tapPlaceSusun(${i})" class="h-14 md:h-16 w-24 md:w-28 border-4 border-dashed rounded-xl transition-all ${hoverClass}"></div>`;
+                }
+            });
+            html += `</div>`;
+
+            html += `<div class="flex flex-wrap gap-3 justify-center w-full">`;
+            activeData.poolState.forEach((p, i) => {
+                if (p.used) return;
+                const isSelected = selectedIndex === i;
+                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-50';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
+            });
+            html += `</div>`;
+            html += `<div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function tapPlaceSusun(targetIndex) {
+            if (selectedIndex === null) return;
+            const poolItem = activeData.poolState[selectedIndex];
+            const target = activeData.targets[targetIndex];
+
+            if (poolItem.text === target.ans) {
+                target.placedId = poolItem.id;
+                poolItem.used = true;
+                selectedIndex = null;
+                renderActivityView();
+                
+                if (activeData.targets.every(t => t.placedId !== undefined)) {
+                    setTimeout(() => {
+                        stepIndex++;
+                        renderActivityView();
+                    }, 1200);
+                }
+            } else {
+                selectedIndex = null;
+                showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
+            }
+        }
+
+        function renderIsiKosong(container) {
+            if (stepIndex >= activeData.items.length) { showCompletion(); return; }
+            const item = activeData.items[stepIndex];
+            
+            if (!activeData.currentItem || activeData.currentItem.ans !== item.ans) {
+                activeData.currentItem = item;
+                activeData.poolState = activeData.pool.map((w, i) => ({ text: w, used: false, id: i }));
+                activeData.target = { ans: item.ans, placedId: undefined };
+            }
+
+            let html = `<div class="flex flex-col md:flex-row gap-8 items-center w-full max-w-5xl mx-auto">`;
+            html += `<div class="w-full md:w-1/2 flex justify-center"><img src="${item.media}" class="max-h-[45vh] object-contain rounded-2xl shadow-xl border-4 border-white"></div>`;
+            
+            html += `<div class="w-full md:w-1/2 flex flex-col gap-6 items-center">`;
+            
+            const placedItem = activeData.target.placedId !== undefined ? activeData.poolState.find(p => p.id === activeData.target.placedId) : null;
+            let blankHtml = '';
+            if (placedItem) {
+                 blankHtml = `<span class="px-4 py-2 mx-2 bg-green-100 text-green-800 border-b-4 border-green-500 font-bold rounded-xl inline-block shadow-sm">${placedItem.text}</span>`;
+            } else {
+                 const hoverClass = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-400 bg-gray-100';
+                 blankHtml = `<span onclick="tapPlaceIsiKosong()" class="px-10 py-4 mx-2 border-b-4 border-dashed rounded-xl inline-block transition-all ${hoverClass}"></span>`;
+            }
+
+            let sentenceHtml = item.ayat.replace(/_+/, blankHtml);
+            html += `<div class="text-2xl md:text-3xl font-bold text-gray-700 bg-white p-8 rounded-3xl shadow-lg border-4 border-blue-100 leading-relaxed text-center w-full">${sentenceHtml}</div>`;
+
+            html += `<div class="flex flex-wrap gap-3 justify-center w-full bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner">`;
+            activeData.poolState.forEach((p, i) => {
+                if (p.used && p.text === activeData.target.ans && activeData.target.placedId === p.id) return;
+                const isSelected = selectedIndex === i;
+                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-100';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
+            });
+            html += `</div>`;
+            html += `<div class="text-center mt-4 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
+            html += `</div></div>`;
+            
+            container.innerHTML = html;
+        }
+
+        function tapPlaceIsiKosong() {
+            if (selectedIndex === null) return;
+            const poolItem = activeData.poolState[selectedIndex];
+            
+            if (poolItem.text === activeData.target.ans) {
+                activeData.target.placedId = poolItem.id;
+                selectedIndex = null;
+                renderActivityView();
+                setTimeout(() => { stepIndex++; renderActivityView(); }, 1200);
+            } else {
+                selectedIndex = null;
+                showFeedback(false, activeData.target.ans, poolItem.text, () => renderActivityView());
+            }
+        }
+
+        function renderBacaan(container) {
+            let html = `<div class="w-full flex flex-col items-center gap-8">
+                <img src="${activeData.image}" class="max-w-full md:max-w-3xl rounded-3xl shadow-2xl border-4 border-white">
+                <button onclick="showCompletion()" class="btn-3d bg-green-500 hover:bg-green-400 text-white font-chewy text-3xl py-4 px-12 rounded-3xl border-b-[6px] border-green-700 shadow-xl bounce-in">
+                    Selesai Membaca!
+                </button>
+            </div>`;
+            container.innerHTML = html;
+        }
+
         function renderPadanOverlay(container) {
-            // Container Gambar Utama
             let html = `<div class="relative w-full max-w-4xl mx-auto mb-8 border-4 border-white shadow-2xl rounded-2xl overflow-hidden bg-white">
                             <img src="${activeData.image}" class="w-full h-auto block select-none pointer-events-none">`;
             
-            // Kotak Target Overlay
             activeData.targets.forEach((t, i) => {
                 const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
                 const isTargeted = selectedIndex !== null;
@@ -528,57 +863,43 @@
                 html += `<div class="absolute" style="top: ${t.top}%; left: ${t.left}%; width: ${t.w}%; height: ${t.h}%;">`;
                 
                 if (placedItem) {
-                    html += `<div class="w-full h-full bg-green-100 text-green-800 border-2 border-green-600 font-bold flex items-center justify-center text-[9px] md:text-sm shadow-lg overflow-hidden p-1 text-center leading-tight rounded">
+                    html += `<div class="w-full h-full bg-green-100 text-green-800 border-4 border-green-600 font-bold flex items-center justify-center text-[10px] md:text-base shadow-lg overflow-hidden p-1 text-center leading-tight rounded-xl">
                                 ${placedItem.text}
                              </div>`;
                 } else {
-                    const hoverClass = isTargeted ? 'border-rose-500 bg-rose-300/60 animate-pulse ring-4 ring-rose-300 cursor-pointer' : 'border-gray-800 bg-white/50';
-                    html += `<div onclick="tapPlace(${i})" class="w-full h-full border-2 md:border-4 border-dashed rounded shadow-md backdrop-blur-sm transition-all ${hoverClass}"></div>`;
+                    const hoverClass = isTargeted ? 'border-rose-500 bg-rose-300/60 animate-pulse ring-4 ring-rose-300 cursor-pointer' : 'border-gray-800 border-dashed bg-white/40';
+                    html += `<div onclick="tapPlace(${i})" class="w-full h-full border-4 rounded-xl shadow-md backdrop-blur-sm transition-all ${hoverClass}"></div>`;
                 }
                 html += `</div>`;
             });
             
             html += `</div>`;
-            
-            // Bahagian Pool
-            html += `<div class="flex flex-wrap gap-3 justify-center w-full max-w-4xl mx-auto bg-blue-50 p-4 rounded-2xl border-4 border-blue-200">`;
+            html += `<div class="flex flex-wrap gap-3 justify-center w-full max-w-4xl mx-auto bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner">`;
             activeData.poolState.forEach((p, i) => {
                 if (p.used) return;
                 const isSelected = selectedIndex === i;
-                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-lg' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-100';
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-sm md:text-base transition-all ${btnClass}">
-                            ${p.text}
-                         </button>`;
+                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
             });
             html += `</div>`;
             container.innerHTML = html;
         }
 
-        // Logik Tap & Drop Umum
-        function tapSelect(poolIndex) {
-            selectedIndex = (selectedIndex === poolIndex) ? null : poolIndex; // Toggle
-            renderActivityView();
-        }
-
         function tapPlace(targetIndex) {
             if (selectedIndex === null) return;
-            
             const poolItem = activeData.poolState[selectedIndex];
             const target = activeData.targets[targetIndex];
             
             if (poolItem.text === target.ans) {
-                // Betul
                 target.placedId = poolItem.id;
                 poolItem.used = true;
                 selectedIndex = null;
                 renderActivityView();
                 
-                // Semak siap sepenuhnya
                 if (activeData.targets.every(t => t.placedId !== undefined)) {
                     setTimeout(showCompletion, 600);
                 }
             } else {
-                // Salah
                 selectedIndex = null;
                 showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
             }
@@ -586,13 +907,11 @@
 
         function renderKategoriInline(container) {
             let html = `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mb-8">`;
-            
-            // Ruang Kategori
             activeData.categories.forEach(cat => {
                 const itemsInCat = activeData.pool.filter(p => p.catId === cat.id);
-                html += `<div class="bg-white border-4 border-purple-200 rounded-2xl p-4 shadow-md min-h-[200px] flex flex-col">
-                            <h3 class="text-xl font-chewy text-purple-600 text-center border-b-2 border-purple-100 pb-2 mb-4">${cat.name}</h3>
-                            <div onclick="tapPlaceKategori('${cat.id}')" class="flex-grow flex flex-col gap-2 rounded-xl p-2 ${selectedIndex !== null ? 'bg-purple-50 border-2 border-dashed border-purple-400 cursor-pointer' : 'bg-gray-50 border-2 border-dashed border-transparent'} transition-colors">
+                html += `<div class="bg-white border-4 border-purple-200 rounded-3xl p-6 shadow-xl min-h-[250px] flex flex-col">
+                            <h3 class="text-2xl font-chewy text-purple-600 text-center border-b-4 border-dashed border-purple-100 pb-3 mb-4">${cat.name}</h3>
+                            <div onclick="tapPlaceKategori('${cat.id}')" class="flex-grow flex flex-col gap-3 rounded-2xl p-4 ${selectedIndex !== null ? 'bg-purple-50 border-4 border-dashed border-purple-400 cursor-pointer animate-pulse' : 'bg-gray-50 border-4 border-dashed border-transparent'} transition-colors">
                             `;
                             
                 itemsInCat.forEach(item => {
@@ -600,40 +919,35 @@
                     let icon = '';
                     if (activeData.isChecked) {
                         const isCorrect = item.ans === cat.id;
-                        styleClass = isCorrect ? 'bg-green-100 text-green-800 border-green-500 shadow' : 'bg-red-50 text-red-500 border-red-300 line-through opacity-80';
-                        icon = isCorrect ? '<i class="fas fa-check text-green-600 mr-2"></i>' : '<i class="fas fa-times text-red-500 mr-2"></i>';
+                        styleClass = isCorrect ? 'bg-green-100 text-green-800 border-green-500 shadow-md' : 'bg-red-50 text-red-500 border-red-300 line-through opacity-80';
+                        icon = isCorrect ? '<i class="fas fa-check-circle text-green-600 mr-2"></i>' : '<i class="fas fa-times-circle text-red-500 mr-2"></i>';
                     }
-                    html += `<div onclick="kembalikanItemKategori(${item.id}); event.stopPropagation();" class="p-3 border-2 rounded-lg font-bold text-center cursor-pointer ${styleClass}">
+                    html += `<div onclick="kembalikanItemKategori(${item.id}); event.stopPropagation();" class="p-3 border-4 rounded-xl font-bold text-center cursor-pointer text-lg ${styleClass}">
                                 ${icon}${item.text}
                              </div>`;
                 });
                 
-                html += `   </div>
-                         </div>`;
+                html += `   </div></div>`;
             });
             html += `</div>`;
             
-            // Butang Semak
             if (!activeData.isChecked && activeData.pool.every(p => p.catId !== null)) {
-                html += `<button onclick="semakKategori()" class="btn-3d w-full max-w-sm mx-auto mb-8 bg-green-500 text-white font-chewy text-2xl py-4 rounded-2xl border-b-[6px] border-green-700 shadow-xl block">
+                html += `<button onclick="semakKategori()" class="btn-3d w-full max-w-sm mx-auto mb-8 bg-yellow-400 text-yellow-900 font-chewy text-3xl py-4 rounded-3xl border-b-[6px] border-yellow-600 shadow-xl block">
                             Semak Jawapan
                          </button>`;
             } else if (activeData.isChecked) {
-                html += `<button onclick="showCompletion()" class="btn-3d w-full max-w-sm mx-auto mb-8 bg-blue-500 text-white font-chewy text-2xl py-4 rounded-2xl border-b-[6px] border-blue-700 shadow-xl block bounce-in">
+                html += `<button onclick="showCompletion()" class="btn-3d w-full max-w-sm mx-auto mb-8 bg-blue-500 text-white font-chewy text-3xl py-4 rounded-3xl border-b-[6px] border-blue-700 shadow-xl block bounce-in">
                             Selesai Seterusnya!
                          </button>`;
             }
 
-            // Pool Bawah
             if (!activeData.isChecked) {
-                html += `<div class="flex flex-wrap gap-3 justify-center w-full max-w-4xl mx-auto bg-gray-100 p-4 rounded-2xl border-4 border-gray-200">`;
+                html += `<div class="flex flex-wrap gap-3 justify-center w-full max-w-4xl mx-auto bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner">`;
                 activeData.pool.forEach((p) => {
                     if (p.catId !== null) return;
                     const isSelected = selectedIndex === p.id;
-                    const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-lg' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-200';
-                    html += `<button onclick="tapSelect(${p.id})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-sm md:text-base transition-all ${btnClass}">
-                                ${p.text}
-                             </button>`;
+                    const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
+                    html += `<button onclick="tapSelect(${p.id})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
                 });
                 html += `</div>`;
             }
@@ -647,14 +961,12 @@
             selectedIndex = null;
             renderActivityView();
         }
-        
         function kembalikanItemKategori(itemId) {
             if (activeData.isChecked) return;
             const item = activeData.pool.find(p => p.id === itemId);
             item.catId = null;
             renderActivityView();
         }
-        
         function semakKategori() {
             activeData.isChecked = true;
             renderActivityView();
@@ -668,31 +980,30 @@
             const btn = document.getElementById('btn-next');
             
             if (isCorrect) {
-                icon.innerHTML = '<span class="text-green-500">🌟</span>';
+                icon.innerHTML = '<span class="text-green-500 drop-shadow-md">🌟</span>';
                 title.innerText = 'Syabas!';
-                title.className = 'text-4xl font-chewy text-green-500 mb-4';
-                msg.innerHTML = 'Jawapan anda betul!';
+                title.className = 'text-5xl font-chewy text-green-500 mb-4 drop-shadow-sm';
+                msg.innerHTML = 'Hebat! Jawapan anda tepat sekali.';
             } else {
-                icon.innerHTML = '<span class="text-rose-500">💡</span>';
+                icon.innerHTML = '<span class="text-rose-500 drop-shadow-md">💡</span>';
                 title.innerText = 'Cuba Lagi!';
-                title.className = 'text-4xl font-chewy text-rose-500 mb-4';
-                msg.innerHTML = `Jawapan anda salah.<br><br><span class="text-sm text-gray-400">Jawapan sebenar:</span><br><span class="text-blue-600">${rightAns}</span>`;
+                title.className = 'text-5xl font-chewy text-rose-500 mb-4 drop-shadow-sm';
+                msg.innerHTML = `Jawapan anda kurang tepat.<br><br><span class="text-base text-gray-400">Jawapan sebenar:</span><br><span class="text-blue-600 text-2xl font-bold bg-blue-50 p-2 rounded-lg inline-block mt-2 border-2 border-blue-100">${rightAns}</span>`;
             }
             
             btn.onclick = () => {
                 modal.classList.add('hidden');
                 if (callback) callback();
             };
-            
             modal.classList.remove('hidden');
         }
 
         function showCompletion() {
             const modal = document.getElementById('modal-feedback');
-            document.getElementById('feedback-icon').innerHTML = '🏆';
+            document.getElementById('feedback-icon').innerHTML = '<span class="drop-shadow-lg">🏆</span>';
             const title = document.getElementById('feedback-title');
             title.innerText = 'Tahniah!';
-            title.className = 'text-4xl font-chewy text-yellow-500 mb-4';
+            title.className = 'text-5xl font-chewy text-yellow-500 mb-4 drop-shadow-sm';
             
             document.getElementById('feedback-message').innerHTML = `Anda telah berjaya melengkapkan aktiviti ini dengan cemerlang!`;
             
@@ -702,7 +1013,6 @@
                 modal.classList.add('hidden');
                 goBack();
             };
-            
             modal.classList.remove('hidden');
         }
 
