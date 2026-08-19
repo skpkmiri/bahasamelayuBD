@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Melayu Tahun 2 (Ketidakupayaan Pendengaran)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            /* Background matching the book cover vibe - light blue sky to green meadow */
+            background: linear-gradient(to bottom, #e0f7fa 0%, #b2ebf2 40%, #c8e6c9 100%);
+            min-height: 100vh;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .title-font {
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 1px;
+        }
+
+        /* Fun animations for buttons and elements */
+        .hover-bounce:hover {
+            transform: translateY(-5px) scale(1.02);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Decorative background elements */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.8;
+            z-index: -1;
+        }
+        
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .cloud1 { width: 100px; height: 30px; top: 10%; left: 10%; animation: float 15s linear infinite; }
+        .cloud1::before { width: 40px; height: 40px; top: -20px; left: 15px; }
+        .cloud1::after { width: 50px; height: 50px; top: -30px; right: 15px; }
+
+        .cloud2 { width: 120px; height: 40px; top: 20%; right: 15%; animation: float 20s linear infinite reverse; }
+        .cloud2::before { width: 50px; height: 50px; top: -25px; left: 20px; }
+        .cloud2::after { width: 60px; height: 60px; top: -35px; right: 20px; }
+
+        @keyframes float {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Theme colors */
+        .bg-tema-1 { background-color: #ffb74d; } /* Orange */
+        .bg-tema-2 { background-color: #81c784; } /* Green */
+        .bg-tema-3 { background-color: #64b5f6; } /* Blue */
+        .bg-tema-4 { background-color: #e57373; } /* Red */
+        .bg-tema-5 { background-color: #ba68c8; } /* Purple */
+
+        /* Hide elements dynamically */
+        .hidden-view {
+            display: none !important;
+        }
+        
+        /* Fade in animation for views */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 relative">
+
+    <!-- Decorative Clouds -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+        
+        <!-- Header -->
+        <header class="text-center mb-10 fade-in">
+            <h1 class="text-5xl md:text-6xl text-blue-800 drop-shadow-md mb-2">BAHASA MELAYU</h1>
+            <h2 class="text-3xl md:text-4xl text-purple-700 drop-shadow-sm mb-1">TAHUN 2</h2>
+            <p class="text-xl font-bold text-gray-700 bg-white/60 inline-block px-4 py-1 rounded-full">(Ketidakupayaan Pendengaran)</p>
+        </header>
+
+        <!-- VIEW: MAIN MENU -->
+        <div id="main-menu" class="fade-in">
+            <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 card-shadow border-4 border-white">
+                <h3 class="text-center text-3xl text-pink-600 mb-8 pb-4 border-b-4 border-dashed border-pink-200">SENARAI TEMA</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="theme-grid">
+                    <!-- Themes will be generated here via JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: UNIT DETAILS -->
+        <div id="unit-view" class="hidden-view fade-in">
+            <!-- Navigation Bar for Unit View -->
+            <div class="flex justify-between items-center mb-6">
+                <button onclick="showMainMenu()" class="bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-3 px-6 rounded-full card-shadow hover-bounce flex items-center gap-2 border-4 border-white text-lg transition-colors">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Senarai Tema
+                </button>
+            </div>
+
+            <div class="bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-10 card-shadow border-4 border-white" id="unit-content">
+                <!-- Unit content will be generated here -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-10 text-gray-600 font-semibold text-sm">
+        <p>Aplikasi Pembelajaran Bahasa Melayu Tahun 2 (Masalah Pendengaran)</p>
+    </footer>
+
+    <script>
+        // Data Structure based on the provided image "Tema dan Unit BM Tahun 2.jpg"
+        const kandunganData = [
+            {
+                id: 1,
+                tema: "TEMA 1",
+                tajuk: "KELUARGA BAHAGIA",
+                colorClass: "bg-tema-1",
+                icon: "fa-home",
+                units: [
+                    { num: 1, name: "Hari Keluarga" },
+                    { num: 2, name: "Bapa Saudara Amin" },
+                    { num: 3, name: "Sepupu Amin" }
+                ]
+            },
+            {
+                id: 2,
+                tema: "TEMA 2",
+                tajuk: "SIHAT DAN CERDAS",
+                colorClass: "bg-tema-2",
+                icon: "fa-heartbeat",
+                units: [
+                    { num: 4, name: "Makanan Sihat" },
+                    { num: 5, name: "Jagalah Kebersihan" },
+                    { num: 6, name: "Mari Bersenam" }
+                ]
+            },
+            {
+                id: 3,
+                tema: "TEMA 3",
+                tajuk: "HIDUP BERJIRAN",
+                colorClass: "bg-tema-3",
+                icon: "fa-users",
+                units: [
+                    { num: 7, name: "Keluarga Pak Cik Hadi" },
+                    { num: 8, name: "Jiran Saya" },
+                    { num: 9, name: "Jiranku Kawanku" }
+                ]
+            },
+            {
+                id: 4,
+                tema: "TEMA 4",
+                tajuk: "MINGGU KOKURIKULUM",
+                colorClass: "bg-tema-4",
+                icon: "emoji-🏸",
+                units: [
+                    { num: 10, name: "Sukaneka" },
+                    { num: 11, name: "Jualan Amal Sekolah" },
+                    { num: 12, name: "Hari Keusahawanan" }
+                ]
+            },
+            {
+                id: 5,
+                tema: "TEMA 5",
+                tajuk: "TANAMAN KAMI",
+                colorClass: "bg-tema-5",
+                icon: "fa-seedling",
+                units: [
+                    { num: 13, name: "Kebun Sekolah" },
+                    { num: 14, name: "Dusun Datuk Amin" },
+                    { num: 15, name: "Mari Bertani" }
+                ]
+            }
+        ];
+
+        function renderMainMenu() {
+            const grid = document.getElementById('theme-grid');
+            grid.innerHTML = '';
+
+            kandunganData.forEach(temaData => {
+                const card = document.createElement('div');
+                // Apply theme color class dynamically
+                card.className = `${temaData.colorClass} rounded-2xl p-6 text-white card-shadow hover-bounce cursor-pointer border-4 border-white transform transition duration-300 flex flex-col justify-center items-center h-48 text-center`;
+                
+                // When clicked, open the unit view for this theme
+                card.onclick = () => showTema(temaData.id);
+
+                let iconDisplay = '';
+                if (temaData.icon.startsWith('fa-')) {
+                    iconDisplay = `<i class="fas ${temaData.icon} text-5xl mb-4 opacity-90 drop-shadow-md"></i>`;
+                } else if (temaData.icon.startsWith('emoji-')) {
+                    const emojiChar = temaData.icon.replace('emoji-', '');
+                    // Menggunakan filter CSS untuk menukarkan emoji kepada warna putih solid
+                    iconDisplay = `<div class="text-5xl mb-4 opacity-90 drop-shadow-md"><span style="filter: brightness(0) invert(1); display: inline-block;">${emojiChar}</span></div>`;
+                }
+
+                card.innerHTML = `
+                    ${iconDisplay}
+                    <span class="bg-white/30 text-white py-1 px-3 rounded-lg font-bold text-sm tracking-wide mb-2 inline-block">
+                        ${temaData.tema}
+                    </span>
+                    <h4 class="title-font text-2xl leading-tight drop-shadow-sm">${temaData.tajuk}</h4>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function showTema(id) {
+            const temaData = kandunganData.find(t => t.id === id);
+            if (!temaData) return;
+
+            // Hide main menu, show unit view
+            document.getElementById('main-menu').classList.add('hidden-view');
+            const unitView = document.getElementById('unit-view');
+            unitView.classList.remove('hidden-view');
+            
+            // Re-trigger animation
+            unitView.classList.remove('fade-in');
+            void unitView.offsetWidth; // trigger reflow
+            unitView.classList.add('fade-in');
+
+            const content = document.getElementById('unit-content');
+            
+            // Build the unit view HTML
+            let unitsHTML = temaData.units.map((unit, index) => {
+                // Alternating pastel colors for unit buttons
+                const colors = ['bg-pink-100 border-pink-300 text-pink-800', 'bg-blue-100 border-blue-300 text-blue-800', 'bg-green-100 border-green-300 text-green-800'];
+                const color = colors[index % colors.length];
+
+                return `
+                    <button class="w-full text-left ${color} border-4 p-4 rounded-2xl mb-4 hover-bounce card-shadow flex items-center justify-between group transition-all" onclick="alertPembangunan()">
+                        <div class="flex items-center gap-4">
+                            <span class="text-xl font-bold title-font">Unit ${unit.num}: ${unit.name}</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-2xl opacity-50 group-hover:opacity-100 group-hover:translate-x-2 transition-all"></i>
+                    </button>
+                `;
+            }).join('');
+
+            content.innerHTML = `
+                <div class="text-center mb-8">
+                    <div class="inline-block ${temaData.colorClass} text-white px-6 py-2 rounded-full title-font text-xl mb-3 card-shadow border-2 border-white">
+                        ${temaData.tema}
+                    </div>
+                    <h2 class="text-4xl text-gray-800 title-font mb-2">${temaData.tajuk}</h2>
+                    <p class="text-gray-500 font-bold">Sila pilih unit untuk mula belajar</p>
+                </div>
+                
+                <div class="max-w-2xl mx-auto">
+                    ${unitsHTML}
+                </div>
+                
+                <!-- Mock area for visual interest (Sign language hint) -->
+                <div class="mt-10 p-6 bg-yellow-50 rounded-2xl border-2 border-yellow-200 text-center max-w-2xl mx-auto">
+                    <h4 class="title-font text-yellow-800 mb-2"><i class="fas fa-hands-asl-interpreting mr-2"></i>Ruang Interaktif</h4>
+                    <p class="text-gray-600 text-sm font-semibold">Bahagian ini akan memaparkan video kod tangan atau latihan interaktif bagi setiap unit.</p>
+                </div>
+            `;
+        }
+
+        function showMainMenu() {
+            document.getElementById('unit-view').classList.add('hidden-view');
+            
+            const mainMenu = document.getElementById('main-menu');
+            mainMenu.classList.remove('hidden-view');
+            
+            // Re-trigger animation
+            mainMenu.classList.remove('fade-in');
+            void mainMenu.offsetWidth; // trigger reflow
+            mainMenu.classList.add('fade-in');
+        }
+
+        // Placeholder for future development
+        function alertPembangunan() {
+            // Cikgu requested no alert(), so we create a nice custom modal instead
+            createModal("Dalam Pembangunan", "Kandungan pembelajaran untuk unit ini sedang dibangunkan. Nantikan kemunculannya!");
+        }
+
+        function createModal(title, message) {
+            // Check if modal already exists
+            if (document.getElementById('custom-modal')) {
+                document.getElementById('custom-modal').remove();
+            }
+
+            const modal = document.createElement('div');
+            modal.id = 'custom-modal';
+            modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 fade-in';
+            
+            modal.innerHTML = `
+                <div class="bg-white p-8 rounded-3xl max-w-sm w-full mx-4 card-shadow text-center border-4 border-blue-200">
+                    <div class="text-blue-500 text-5xl mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="title-font text-2xl text-gray-800 mb-2">${title}</h3>
+                    <p class="text-gray-600 font-semibold mb-6">${message}</p>
+                    <button onclick="document.getElementById('custom-modal').remove()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors w-full title-font">
+                        Baik, Cikgu!
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        // Initialize the application on load
+        window.onload = () => {
+            renderMainMenu();
+        };
+    </script>
+</body>
+</html>

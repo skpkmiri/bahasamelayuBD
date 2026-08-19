@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Melayu Tahun 5</title>
+    
+    <!-- Memuatkan Tailwind CSS untuk penggayaan yang pantas dan responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Memuatkan Google Fonts: Fredoka (sangat mesra kanak-kanak dan mudah dibaca) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        'kid-blue': '#4facfe',
+                        'kid-green': '#00f2fe',
+                        'tema-1': '#FF9A9E', /* Kekeluargaan */
+                        'tema-2': '#A18CD1', /* Kesihatan */
+                        'tema-3': '#FBC2EB', /* Keselamatan */
+                        'tema-4': '#FFD194', /* Kemasyarakatan */
+                        'tema-5': '#A1FFCE', /* Perpaduan */
+                    },
+                    boxShadow: {
+                        'kid': '0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                        'btn': '0 6px 0px 0px rgba(0,0,0,0.2)',
+                        'btn-hover': '0 2px 0px 0px rgba(0,0,0,0.2)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f9ff;
+            background-image: radial-gradient(#bae6fd 15%, transparent 15%), radial-gradient(#bae6fd 15%, transparent 15%);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            margin: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .btn-press {
+            transition: all 0.1s ease-in-out;
+        }
+        
+        .btn-press:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px 0px rgba(0,0,0,0.2);
+        }
+
+        .view-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 4px solid white;
+        }
+        
+        /* Floating animation for decoration */
+        .float-anim {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 pb-20">
+
+    <!-- Navigasi Atas / Top Bar -->
+    <nav class="fixed top-0 w-full z-50 glass-card shadow-md px-4 py-3 flex justify-between items-center">
+        <button onclick="navigate('tema-grid')" class="btn-press flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-400 text-white px-5 py-2 rounded-full font-bold shadow-btn border-2 border-white text-lg">
+            🏠 <span class="hidden sm:inline">HOME</span>
+        </button>
+        
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-center flex-1 mx-4 drop-shadow-sm uppercase tracking-wider">
+            Bahasa Melayu Tahun 5
+        </h1>
+    </nav>
+
+    <!-- Ruang Kosong untuk Navigasi -->
+    <div class="h-24"></div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main id="app-container" class="max-w-6xl mx-auto px-4 mt-4">
+
+        <!-- ================= VIEW 1: TEMA & UNIT GRID (MENU UTAMA) ================= -->
+        <section id="view-tema-grid" class="view-section active">
+            <div class="text-center mb-10 bg-white/70 p-6 rounded-[2rem] backdrop-blur-md border-4 border-white shadow-kid">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-blue-700 flex items-center justify-center gap-3 drop-shadow-sm">
+                    <span>📚</span> Modul Pembelajaran
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-700 font-medium mt-3">Mari belajar! Sila pilih tema dan unit di bawah.</p>
+            </div>
+
+            <!-- Grid Kontena Tema (Dijana oleh JS) -->
+            <div id="tema-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Kandungan dijana secara dinamik oleh JavaScript -->
+            </div>
+        </section>
+
+        <!-- ================= VIEW 3: UNIT DETAIL (Jom Belajar / Ulang Kaji) ================= -->
+        <section id="view-unit-detail" class="view-section">
+            <div class="flex flex-col sm:flex-row items-center justify-between mb-8 bg-white/60 p-4 rounded-2xl backdrop-blur-sm border-2 border-white gap-4">
+                <div class="flex-1 text-center sm:text-left">
+                    <h3 id="detail-tema-title" class="text-xl font-bold text-gray-500 uppercase tracking-wide">TEMA</h3>
+                    <h2 id="detail-unit-title" class="text-3xl sm:text-4xl font-bold text-blue-700 mt-1">Tajuk Unit</h2>
+                </div>
+                <button onclick="navigate('tema-grid')" class="btn-press bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-2xl font-bold border-2 border-gray-300 w-full sm:w-auto">
+                    ⬅️ Kembali ke Tema
+                </button>
+            </div>
+
+            <div class="flex justify-center max-w-4xl mx-auto mt-12">
+                <!-- Placeholder Kandungan Belum Siap -->
+                <div class="bg-white/80 p-10 rounded-[2rem] border-4 border-dashed border-gray-300 shadow-kid text-center w-full max-w-2xl transform transition duration-300 hover:scale-105">
+                    <span class="text-7xl block mb-6 animate-pulse">🚧</span>
+                    <h3 class="text-3xl font-extrabold text-gray-600 mb-3 drop-shadow-sm">Modul Sedang Dibina</h3>
+                    <p class="text-xl text-gray-500 font-medium">Aktiviti pembelajaran untuk unit ini akan dikemas kini oleh cikgu kelak.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= VIEW 4: MOCK CONTENT DISPLAY ================= -->
+        <section id="view-content" class="view-section text-center">
+            <div class="glass-card rounded-3xl p-8 max-w-3xl mx-auto mt-10 shadow-kid relative overflow-hidden">
+                <!-- Hiasan latar -->
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
+                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
+                
+                <h2 id="content-title" class="text-4xl font-bold text-blue-600 mb-6 relative z-10">Tajuk Modul</h2>
+                <div class="bg-gray-100 rounded-2xl p-8 border-4 border-dashed border-gray-300 mb-8 relative z-10 flex flex-col items-center justify-center min-h-[300px]">
+                    <span class="text-6xl mb-4">🚧</span>
+                    <h3 class="text-2xl font-bold text-gray-600">Ruangan Kandungan Pembelajaran</h3>
+                    <p class="text-gray-500 mt-2">Cikgu boleh meletakkan gambar rajah, video isyarat tangan, atau soalan interaktif di sini.</p>
+                </div>
+                
+                <button onclick="navigate('unit-detail')" class="btn-press bg-gradient-to-r from-red-400 to-red-500 text-white px-8 py-3 rounded-full font-bold shadow-btn border-2 border-white text-xl relative z-10">
+                    ⬅️ Kembali
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Data Struktur berdasarkan buku teks BM Tahun 5 (Pendidikan Khas Ketidakupayaan Pendengaran)
+        const kurikulumData = [
+            {
+                tema: "TEMA 1: KEKELUARGAAN",
+                warna: "bg-tema-1",
+                shadow: "shadow-[0_6px_0_0_#e68a8e]",
+                unit: [
+                    { id: 1, tajuk: "Harapan Keluarga" },
+                    { id: 2, tajuk: "Keluargaku Hebat" },
+                    { id: 3, tajuk: "Hubungan yang Erat" }
+                ]
+            },
+            {
+                tema: "TEMA 2: KESIHATAN DAN KEBERSIHAN",
+                warna: "bg-tema-2",
+                shadow: "shadow-[0_6px_0_0_#8976b3]",
+                unit: [
+                    { id: 4, tajuk: "Jagalah Dirimu" },
+                    { id: 5, tajuk: "Persekitaran yang Sihat" },
+                    { id: 6, tajuk: "Sayangi Dirimu" }
+                ]
+            },
+            {
+                tema: "TEMA 3: UTAMAKAN KESELAMATAN",
+                warna: "bg-tema-3",
+                shadow: "shadow-[0_6px_0_0_#dca3cd]",
+                unit: [
+                    { id: 7, tajuk: "Fikir Dahulu Sebelum Buat" },
+                    { id: 8, tajuk: "Seronoknya ke Sekolah" },
+                    { id: 9, tajuk: "Jangan Cuai" }
+                ]
+            },
+            {
+                tema: "TEMA 4: KEMASYARAKATAN",
+                warna: "bg-tema-4",
+                shadow: "shadow-[0_6px_0_0_#e6b87d]",
+                unit: [
+                    { id: 10, tajuk: "Komuniti Sepakat" },
+                    { id: 11, tajuk: "Baktiku untukmu" },
+                    { id: 12, tajuk: "Bersatu Teguh Bercerai Roboh" }
+                ]
+            },
+            {
+                tema: "TEMA 5: PERPADUAN",
+                warna: "bg-tema-5",
+                shadow: "shadow-[0_6px_0_0_#8de6b7]",
+                unit: [
+                    { id: 13, tajuk: "Muafakat Membawa Berkat" },
+                    { id: 14, tajuk: "Berganding Bahu" },
+                    { id: 15, tajuk: "Semangat Kekitaan" }
+                ]
+            }
+        ];
+
+        // State variables
+        let currentUnitTajuk = "";
+        let currentTemaTajuk = "";
+
+        // Fungsi Paparan Grid Tema & Unit
+        function renderTemaGrid() {
+            const container = document.getElementById('tema-container');
+            container.innerHTML = ''; // Kosongkan sebelum render semula
+
+            kurikulumData.forEach((kumpulan, index) => {
+                // Bina kad Tema
+                const temaCard = document.createElement('div');
+                temaCard.className = `glass-card rounded-[2rem] overflow-hidden flex flex-col h-full transform transition duration-300 hover:-translate-y-2 hover:shadow-kid`;
+                
+                // Header Tema
+                const header = document.createElement('div');
+                header.className = `${kumpulan.warna} text-white font-extrabold text-xl p-5 text-center shadow-md relative z-10`;
+                header.innerHTML = kumpulan.tema;
+                temaCard.appendChild(header);
+
+                // Kontena Senarai Unit
+                const unitList = document.createElement('div');
+                unitList.className = "p-5 flex-1 flex flex-col gap-3 bg-white/50";
+                
+                kumpulan.unit.forEach(unit => {
+                    const unitBtn = document.createElement('button');
+                    unitBtn.className = `btn-press w-full text-left bg-white rounded-xl p-4 border-2 border-gray-100 flex items-center gap-4 ${kumpulan.shadow} hover:bg-gray-50 transition`;
+                    unitBtn.onclick = () => openUnitDetail(kumpulan.tema, unit.id, unit.tajuk);
+                    
+                    unitBtn.innerHTML = `
+                        <div class="${kumpulan.warna} text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0 border-2 border-white shadow-sm">
+                            ${unit.id}
+                        </div>
+                        <div class="flex-1">
+                            <span class="block text-sm font-bold text-gray-400 uppercase">Unit ${unit.id}</span>
+                            <span class="block text-lg font-bold text-gray-700 leading-tight">${unit.tajuk}</span>
+                        </div>
+                        <span class="text-2xl text-gray-300 group-hover:text-gray-500">👉</span>
+                    `;
+                    unitList.appendChild(unitBtn);
+                });
+
+                temaCard.appendChild(unitList);
+                container.appendChild(temaCard);
+            });
+        }
+
+        // Fungsi Navigasi Antara Views
+        function navigate(viewName) {
+            // Sembunyikan semua section
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Tunjuk section yang dipilih
+            document.getElementById(`view-${viewName}`).classList.add('active');
+            
+            // Tatal ke atas
+            window.scrollTo(0, 0);
+        }
+
+        // Fungsi Buka Maklumat Unit (Jom Belajar & Ulang Kaji)
+        function openUnitDetail(temaTajuk, unitId, unitTajuk) {
+            currentTemaTajuk = temaTajuk;
+            currentUnitTajuk = `Unit ${unitId}: ${unitTajuk}`;
+            
+            document.getElementById('detail-tema-title').innerText = currentTemaTajuk;
+            document.getElementById('detail-unit-title').innerText = currentUnitTajuk;
+            
+            navigate('unit-detail');
+        }
+
+        // Fungsi Tunjuk Paparan Kandungan (Mock)
+        function showContent(jenisKandungan) {
+            const tajukPenuh = `${currentUnitTajuk} - ${jenisKandungan}`;
+            document.getElementById('content-title').innerText = tajukPenuh;
+            navigate('content');
+        }
+
+        // Mulakan aplikasi apabila dimuatkan
+        window.onload = () => {
+            renderTemaGrid();
+        };
+    </script>
+</body>
+</html>
