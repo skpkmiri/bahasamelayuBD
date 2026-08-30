@@ -43,7 +43,6 @@
     </style>
 </head>
 <body class="min-h-screen pb-10">
-
     <div class="fixed top-2 left-2 md:top-4 md:left-4 flex gap-2 z-50">
         <button onclick="goHome()" class="btn-3d bg-white/80 p-2 md:p-3 rounded-full shadow-[0_4px_0_#ccc] hover:bg-white backdrop-blur-sm transition-all border-2 border-gray-100">
             <img src="home.png" alt="Home" class="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md" onerror="this.src='https://placehold.co/100x100/FF5252/FFFFFF?text=H'">
@@ -425,7 +424,7 @@
                                 pool: ["bersenam.png", "melontar.png", "mengelecek.png"]
                             },
                             {
-                                id: 'u7a4', name: "Aktiviti 4: Pemahaman", type: "mcq-berkaitan", overallImage: "dialog.png",
+                                id: 'u7a4', name: "Aktiviti 4: Pemahaman", type: "mcq-berkaitan", overallImage: "dialog.png", layOutFormat: "vertical",
                                 items: [
                                     { q: "1. Bilakah waktu yang sesuai untuk kita berjogging?", options: ["Waktu yang sesuai untuk berjogging adalah waktu petang.", "Waktu pagi", "Waktu malam"], ans: "Waktu yang sesuai untuk berjogging adalah waktu petang." },
                                     { q: "2. Di manakah kita boleh berjogging?", options: ["Kita boleh berjogging di taman.", "Di dalam rumah", "Di jalan raya"], ans: "Kita boleh berjogging di taman." },
@@ -448,7 +447,7 @@
                         title: "Unit 8: Alam Bersih Hidup Bahagia", 
                         activities: [
                             {
-                                id: 'u8a1', name: "Aktiviti 1: Pemahaman", type: "mcq-berkaitan", overallImage: "syafik.png",
+                                id: 'u8a1', name: "Aktiviti 1: Pemahaman", type: "mcq-berkaitan", overallImage: "syafik.png", layOutFormat: "vertical",
                                 items: [
                                     { q: "1. Mengapakah keluarga Syafik menjaga kebersihan rumah?", options: ["Keluarga syafik menjaga kebersihan rumah supaya rumah sentiasa bersih dan kemas.", "Supaya mereka boleh bermain di luar rumah.", "Untuk memastikan mereka mendapat hadiah."], ans: "Keluarga syafik menjaga kebersihan rumah supaya rumah sentiasa bersih dan kemas." },
                                     { q: "2. Mengapakah kita perlu menjaga persekitaran yang bersih?", options: ["Persekitaran yang bersih akan menjadikan hidup kita lebih sihat, cergas dan selesa.", "Supaya banyak nyamuk dan serangga datang.", "Kerana jiran menyuruh berbuat demikian."], ans: "Persekitaran yang bersih akan menjadikan hidup kita lebih sihat, cergas dan selesa." },
@@ -489,7 +488,7 @@
                         title: "Unit 9: Gaya Hidup Sihat", 
                         activities: [
                             {
-                                id: 'u9a1', name: "Aktiviti 1: Pemahaman", type: "mcq-berkaitan", overallImage: "Screenshot 2026-08-30 202730.jpg",
+                                id: 'u9a1', name: "Aktiviti 1: Pemahaman", type: "mcq-berkaitan", overallImage: "bolajaring.png", layOutFormat: "vertical",
                                 items: [
                                     { q: "1. Permainan apakah yang dilatih oleh Cikgu Rina?", options: ["Bola jaring", "Bola sepak", "Badminton"], ans: "Bola jaring" },
                                     { q: "2. Pilih 3 kebaikan bermain bola jaring.", type: "multi", reqCount: 3, options: ["Badan akan menjadi sihat.", "Badan akan berasa lebih cergas dan bertenaga.", "Dapat kawan baharu dari kelas lain.", "Menjadikan kita malas dan letih.", "Membazirkan masa terluang."], ans: ["Badan akan menjadi sihat.", "Badan akan berasa lebih cergas dan bertenaga.", "Dapat kawan baharu dari kelas lain."] },
@@ -522,7 +521,113 @@
                     }
                 ]
             },
-            { tema: "TEMA 4: KESELAMATAN", color: "from-orange-400 to-orange-600", units: [] },
+            { 
+                tema: "TEMA 4: KESELAMATAN", color: "from-orange-400 to-orange-600", 
+                units: [
+                    {
+                        title: "Unit 10: Keselamatan di Dapur",
+                        activities: [
+                            {
+                                id: 'u10a1', name: "Aktiviti 1: Susun Perkataan", type: "susun-ayat",
+                                items: [
+                                    { media: "Emak.png", ans: "Saya membantu emak meletakkan roti di atas piring." },
+                                    { media: "Teko.png", ans: "Emak memasukkan uncang teh ke dalam teko." },
+                                    { media: "Pisau.png", ans: "Emak menyimpan pisau dan gunting ke dalam laci." }
+                                ]
+                            },
+                            {
+                                id: 'u10a2', name: "Aktiviti 2: Pilih Ayat", type: "mcq",
+                                items: [
+                                    { media: "Emak.png", type: "image", ans: "Saya membantu emak meletakkan roti di atas piring." },
+                                    { media: "Teko.png", type: "image", ans: "Emak memasukkan uncang teh ke dalam teko." },
+                                    { media: "Pisau.png", type: "image", ans: "Emak menyimpan pisau dan gunting ke dalam laci." }
+                                ],
+                                pool: ["Saya membantu emak meletakkan roti di atas piring.", "Emak memasukkan uncang teh ke dalam teko.", "Emak menyimpan pisau dan gunting ke dalam laci.", "Emak memegang cerek panas dengan menggunakan sarung tangan."]
+                            },
+                            {
+                                id: 'u10a3', name: "Aktiviti 3: Isi Tempat Kosong", type: "isi-kosong-perenggan",
+                                images: ["Emak.png", "Teko.png", "Pisau.png"],
+                                text: "Cuti sekolah sudah bermula. Saya bangun awal untuk membantu emak menyediakan sarapan.<br><br>[0] membantu [1] meletakkan roti di atas [2]. Emak pula membuat [3].<br><br>Mula-mula, emak memasukkan uncang teh ke dalam [4]. Kemudian, emak menuang air panas ke dalam teko. Emak memegang [5] dengan menggunakan [6].<br><br>Selepas bersarapan, kami mengemas dapur bersama-sama. Emak menyimpan alatan tajam seperti [7] dan [8] ke dalam [9].<br><br>Saya berasa gembira kerana dapat menolong emak di dapur.",
+                                blanks: ["Saya", "emak", "piring", "air teh", "teko", "cerek", "sarung tangan", "pisau", "gunting", "laci"],
+                                pool: ["Saya", "emak", "piring", "air teh", "teko", "cerek", "sarung tangan", "pisau", "gunting", "laci"]
+                            },
+                            {
+                                id: 'u10a4', name: "Aktiviti 4: Padankan Kata Hubung", type: "padan", cols: 2,
+                                targets: [
+                                    { image: "atau.png", ans: "atau" },
+                                    { image: "untuk.png", ans: "untuk" },
+                                    { image: "dan.png", ans: "dan" },
+                                    { image: "sambil.png", ans: "sambil" }
+                                ],
+                                pool: ["atau", "untuk", "dan", "sambil"]
+                            },
+                            {
+                                id: 'u10a5', name: "Aktiviti 5: Cari Kata Hubung", type: "word-search"
+                            }
+                        ]
+                    },
+                    {
+                        title: "Unit 11: Lawatan ke Balai Bomba",
+                        activities: [
+                            {
+                                id: 'u11a1', name: "Aktiviti 1: Lengkapkan Peta Minda", type: "padan-overlay",
+                                image: "Screenshot 2026-08-30 214809.png",
+                                targets: [
+                                    { ans: "sarung tangan", top: 4, left: 2, w: 24, h: 25 },
+                                    { ans: "alat pemadam api", top: 35, left: 2, w: 24, h: 25 },
+                                    { ans: "kasut perlindungan", top: 68, left: 2, w: 24, h: 25 },
+                                    { ans: "topi keselamatan", top: 4, left: 74, w: 24, h: 25 },
+                                    { ans: "baju operasi bomba", top: 35, left: 74, w: 24, h: 25 },
+                                    { ans: "pelindung pernafasan", top: 68, left: 74, w: 24, h: 25 }
+                                ],
+                                pool: ["sarung tangan", "alat pemadam api", "kasut perlindungan", "topi keselamatan", "baju operasi bomba", "pelindung pernafasan", "tali pinggang", "cermin mata", "sarung kaki", "payung"]
+                            },
+                            {
+                                id: 'u11a2', name: "Aktiviti 2: Pilih Ayat Sesuai", type: "mcq",
+                                items: [
+                                    { media: "bomba1.png", type: "image", ans: "SK Taman Cempaka telah mengadakan lawatan sambil belajar ke Balai Bomba Sri Setia. Lawatan ini disertai oleh 32 orang murid dan 5 orang guru. Kami pergi dengan menaiki bas sekolah." },
+                                    { media: "bomba2.png", type: "image", ans: "Setibanya kami di sana, kami disambut oleh seorang pegawai bomba. Pegawai bomba tersebut telah memberikan taklimat." },
+                                    { media: "bomba3.png", type: "image", ans: "Kemudian kami dibawa melawat ke galeri bomba. Banyak alatan, bahan-bahan Sejarah dan anugerah-anugerah yang pernah diterima." },
+                                    { media: "bomba4.png", type: "image", ans: "Selepas itu, kami mengunjungi pameran kenderaan bomba. Ada pelbagai jenis kenderaan bomba seperti motosikal, van, kereta dan lori." },
+                                    { media: "bomba5.png", type: "image", ans: "Kemudian pegawai bomba membuat demonstrasi cara menggunakan alat pemadam api dengan betul kepada murid-murid." },
+                                    { media: "bomba6.png", type: "image", ans: "Tepat jam 12.30 tengah hari, kami bergerak pulang dengan perasaan yang sangat gembira dengan lawatan hari ini." }
+                                ],
+                                pool: [
+                                    "SK Taman Cempaka telah mengadakan lawatan sambil belajar ke Balai Bomba Sri Setia. Lawatan ini disertai oleh 32 orang murid dan 5 orang guru. Kami pergi dengan menaiki bas sekolah.",
+                                    "Setibanya kami di sana, kami disambut oleh seorang pegawai bomba. Pegawai bomba tersebut telah memberikan taklimat.",
+                                    "Kemudian kami dibawa melawat ke galeri bomba. Banyak alatan, bahan-bahan Sejarah dan anugerah-anugerah yang pernah diterima.",
+                                    "Selepas itu, kami mengunjungi pameran kenderaan bomba. Ada pelbagai jenis kenderaan bomba seperti motosikal, van, kereta dan lori.",
+                                    "Kemudian pegawai bomba membuat demonstrasi cara menggunakan alat pemadam api dengan betul kepada murid-murid.",
+                                    "Tepat jam 12.30 tengah hari, kami bergerak pulang dengan perasaan yang sangat gembira dengan lawatan hari ini."
+                                ]
+                            },
+                            {
+                                id: 'u11a3', name: "Aktiviti 3: Lengkapkan Laporan", type: "padan", cols: 1, overallImage: "Screenshot 2026-08-30 215000.png",
+                                targets: [
+                                    { text: "Selepas itu, kami mengunjungi pameran ____________.", ans: "kenderaan bomba" },
+                                    { text: "Ada ____________ kenderaan bomba seperti motosikal, van, kereta dan lori.", ans: "pelbagai jenis" },
+                                    { text: "Kemudian pegawai bomba membuat ____________", ans: "demonstrasi" },
+                                    { text: "cara menggunakan ____________ dengan betul", ans: "alat pemadam api" },
+                                    { text: "kepada ____________.", ans: "murid-murid" },
+                                    { text: "Tepat jam 12:30 tengah hari, kami ____________.", ans: "bergerak pulang" },
+                                    { text: "Kami ____________.", ans: "berasa sangat gembira" }
+                                ],
+                                pool: ["kenderaan bomba", "pelbagai jenis", "demonstrasi", "alat pemadam api", "murid-murid", "bergerak pulang", "berasa sangat gembira"]
+                            },
+                            {
+                                id: 'u11a4', name: "Aktiviti 4: Carta Alir Pemadam Api", type: "padan", cols: 4,
+                                targets: [
+                                    { text: "Langkah 1", ans: "cara1.png" },
+                                    { text: "Langkah 2", ans: "cara2.png" },
+                                    { text: "Langkah 3", ans: "cara3.png" },
+                                    { text: "Langkah 4", ans: "cara4.png" }
+                                ],
+                                pool: ["cara1.png", "cara2.png", "cara3.png", "cara4.png"]
+                            }
+                        ]
+                    }
+                ] 
+            },
             { tema: "TEMA 5: PERPADUAN", color: "from-blue-400 to-blue-600", units: [] }
         ];
 
@@ -559,7 +664,6 @@
         }
 
         function goHome() {
-            // Sistem SPA berkesan tanpa menggunakan fail terpisah
             navHistory = ['view-home'];
             document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
             document.getElementById('view-home').classList.remove('hidden');
@@ -675,6 +779,153 @@
             else if (activeData.type === 'isi-kosong') renderIsiKosong(container);
             else if (activeData.type === 'mcq-berkaitan') renderMCQBerkaitan(container);
             else if (activeData.type === 'hotspot-klik') renderHotspotKlik(container);
+            else if (activeData.type === 'isi-kosong-perenggan') renderIsiKosongPerenggan(container);
+            else if (activeData.type === 'word-search') renderWordSearch(container);
+        }
+
+        function renderIsiKosongPerenggan(container) {
+            if (!activeData.targets) {
+                activeData.targets = activeData.blanks.map(b => ({ ans: b, placedId: undefined }));
+                activeData.poolState = activeData.pool.map((w, i) => ({ text: w, used: false, id: i }));
+            }
+
+            let html = `<div class="w-full max-w-5xl mx-auto flex flex-col items-center gap-6">`;
+            
+            if (activeData.images) {
+                html += `<div class="flex gap-4 justify-center flex-wrap mb-4 bg-white/50 p-4 rounded-3xl border-4 border-dashed border-gray-300 w-full shadow-inner">`;
+                activeData.images.forEach(img => {
+                    html += `<img src="${img}" class="h-28 md:h-40 object-contain rounded-2xl shadow-md border-4 border-white transform transition hover:scale-105 bg-white">`;
+                });
+                html += `</div>`;
+            }
+
+            let textHtml = activeData.text;
+            activeData.targets.forEach((t, i) => {
+                const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
+                let slotHtml = '';
+                if (placedItem) {
+                    slotHtml = `<span class="px-4 py-1 mx-1 bg-green-100 text-green-800 border-b-4 border-green-500 font-bold rounded-lg inline-block shadow-sm">${placedItem.text}</span>`;
+                } else {
+                    const hSlot = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-400 bg-gray-100';
+                    slotHtml = `<span onclick="tapPlacePerenggan(${i})" class="px-8 py-3 mx-1 border-b-4 border-dashed rounded-lg inline-block transition-all ${hSlot} min-w-[80px]"></span>`;
+                }
+                textHtml = textHtml.replace(`[${i}]`, slotHtml);
+            });
+
+            html += `<div class="text-xl md:text-2xl font-bold text-gray-700 bg-white p-6 md:p-10 rounded-3xl shadow-xl border-4 border-blue-100 leading-loose w-full text-justify lg:leading-[2.5]">${textHtml}</div>`;
+            
+            html += `<div class="flex flex-wrap gap-3 justify-center w-full bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner mt-4">`;
+            activeData.poolState.forEach((p, i) => {
+                if (p.used) return;
+                const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-100';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 px-5 rounded-xl text-lg transition-all ${btnClass}">${p.text}</button>`;
+            });
+            html += `</div></div>`;
+            container.innerHTML = html;
+        }
+
+        function tapPlacePerenggan(tIdx) {
+            if (selectedIndex === null) return;
+            const poolItem = activeData.poolState[selectedIndex];
+            const target = activeData.targets[tIdx];
+
+            if (poolItem.text === target.ans) {
+                target.placedId = poolItem.id;
+                poolItem.used = true;
+                selectedIndex = null;
+                renderActivityView();
+                if (activeData.targets.every(t => t.placedId !== undefined)) {
+                    setTimeout(paparTamatAktiviti, 800);
+                }
+            } else {
+                selectedIndex = null;
+                showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
+            }
+        }
+
+        function renderWordSearch(container) {
+            if (!activeData.grid) {
+                activeData.grid = [
+                    ['S','A','M','B','I','L','P','Q'],
+                    ['K','A','Y','D','V','N','Z','U'],
+                    ['G','T','F','A','L','O','P','N'],
+                    ['U','A','W','N','Q','X','M','T'],
+                    ['Y','U','D','A','N','H','J','U'],
+                    ['O','L','O','K','M','H','T','K'],
+                    ['I','J','K','L','M','N','O','P'],
+                    ['Q','R','S','T','U','V','W','X']
+                ];
+                activeData.words = ['SAMBIL', 'ATAU', 'DAN', 'UNTUK'];
+                activeData.foundWords = [];
+                activeData.selectedCells = [];
+            }
+
+            let html = `<div class="w-full flex flex-col md:flex-row gap-8 items-center md:items-start justify-center max-w-5xl mx-auto">`;
+            
+            html += `<div class="bg-white p-4 md:p-6 rounded-3xl shadow-xl border-4 border-indigo-200">
+                        <div class="grid grid-cols-8 gap-1 md:gap-2">`;
+                        
+            for (let r = 0; r < 8; r++) {
+                for (let c = 0; c < 8; c++) {
+                    const isSelected = activeData.selectedCells.some(cell => cell.r === r && cell.c === c);
+                    const isFound = activeData.foundWords.some(wObj => wObj.cells.some(cell => cell.r === r && cell.c === c));
+                    
+                    let btnClass = 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-indigo-50';
+                    if (isFound) btnClass = 'bg-green-400 text-white border-green-600 shadow-inner scale-95';
+                    else if (isSelected) btnClass = 'bg-yellow-400 text-yellow-900 border-yellow-600 scale-105 shadow-md';
+                    
+                    html += `<button onclick="tapWordSearch(${r}, ${c})" class="w-10 h-10 md:w-14 md:h-14 rounded-xl border-b-4 font-bold text-xl md:text-2xl transition-all flex items-center justify-center ${btnClass} ${isFound ? 'pointer-events-none' : ''}">${activeData.grid[r][c]}</button>`;
+                }
+            }
+            html += `</div>
+                     <button onclick="clearWordSearch()" class="mt-6 w-full btn-3d bg-rose-500 text-white font-bold font-chewy text-xl py-3 rounded-xl border-b-4 border-rose-700 shadow-md">Padam Pilihan Semasa</button>
+                     </div>`;
+                     
+            html += `<div class="w-full md:w-1/3 bg-indigo-50 p-6 rounded-3xl border-4 border-indigo-200 shadow-inner">
+                        <h3 class="text-2xl font-chewy text-indigo-700 mb-6 text-center border-b-4 border-dashed border-indigo-200 pb-2">CARI PERKATAAN</h3>
+                        <div class="flex flex-col gap-3">`;
+                        
+            activeData.words.forEach(w => {
+                const isFound = activeData.foundWords.some(fw => fw.word === w);
+                const styleClass = isFound ? 'bg-green-100 text-green-600 border-green-400 line-through opacity-70' : 'bg-white text-indigo-900 border-indigo-300 shadow-sm';
+                const icon = isFound ? '<i class="fas fa-check-circle mr-3"></i>' : '<i class="fas fa-search mr-3 opacity-50"></i>';
+                html += `<div class="font-bold text-xl p-3 md:p-4 border-4 rounded-xl flex items-center ${styleClass}">${icon}${w}</div>`;
+            });
+            
+            html += `</div></div></div>`;
+            container.innerHTML = html;
+        }
+
+        function tapWordSearch(r, c) {
+            const existingIdx = activeData.selectedCells.findIndex(cell => cell.r === r && cell.c === c);
+            if (existingIdx > -1) {
+                activeData.selectedCells.splice(existingIdx, 1);
+            } else {
+                activeData.selectedCells.push({r, c, char: activeData.grid[r][c]});
+            }
+            
+            const selectedWord = activeData.selectedCells.map(c => c.char).join('');
+            const reversedWord = activeData.selectedCells.map(c => c.char).reverse().join('');
+            
+            let matchedWord = activeData.words.find(w => w === selectedWord || w === reversedWord);
+            
+            if (matchedWord && !activeData.foundWords.some(fw => fw.word === matchedWord)) {
+                activeData.foundWords.push({
+                    word: matchedWord,
+                    cells: [...activeData.selectedCells]
+                });
+                activeData.selectedCells = [];
+                if (activeData.foundWords.length === activeData.words.length) {
+                    setTimeout(paparTamatAktiviti, 600);
+                }
+            }
+            
+            renderActivityView();
+        }
+
+        function clearWordSearch() {
+            activeData.selectedCells = [];
+            renderActivityView();
         }
 
         function tapSelect(poolIndex) {
@@ -823,44 +1074,93 @@
                 activeData.multiSelected = []; 
             }
             
-            // Susunan Bersebelahan (Side-by-side)
-            let html = `<div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start w-full max-w-6xl mx-auto">`;
-            
-            // BAHAGIAN KIRI: Gambar Petikan
-            html += `<div class="w-full lg:w-1/2 flex justify-center bg-gray-50/50 p-3 md:p-5 rounded-3xl shadow-inner border-4 border-gray-200 sticky top-4">
-                        <img src="${activeData.overallImage}" class="w-full max-h-[45vh] lg:max-h-[70vh] object-contain rounded-2xl shadow-sm bg-white">
-                     </div>`;
-            
-            // BAHAGIAN KANAN: Soalan & Pilihan Jawapan
-            html += `<div class="w-full lg:w-1/2 flex flex-col gap-4">`;
-            html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-5 md:p-6 rounded-3xl shadow-md border-4 border-purple-200 text-center text-xl md:text-2xl font-bold text-purple-900 leading-snug">${item.q}</div>`;
-            
-            html += `<div class="w-full flex flex-col gap-4">`;
-            activeData.currentOptions.forEach((opt) => {
-                const safeOpt = opt.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+            let html = '';
+
+            // Check if this activity requires vertical layout (Unit 7, 8, 9)
+            if (activeData.layOutFormat === 'vertical') {
+                html += `<div class="flex flex-col gap-6 lg:gap-8 items-center w-full max-w-6xl mx-auto">`;
+                
+                // Gambar Petikan di Atas
+                html += `<div class="w-full flex justify-center bg-gray-50/50 p-3 md:p-5 rounded-3xl shadow-inner border-4 border-gray-200">
+                            <img src="${activeData.overallImage}" class="w-full max-w-3xl max-h-[45vh] lg:max-h-[60vh] object-contain rounded-2xl shadow-sm bg-white">
+                         </div>`;
+                
+                // Soalan & Pilihan Jawapan di Bawah
+                html += `<div class="w-full max-w-4xl flex flex-col gap-4">`;
+                html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-5 md:p-6 rounded-3xl shadow-md border-4 border-purple-200 text-center text-xl md:text-2xl font-bold text-purple-900 leading-snug">${item.q}</div>`;
+                
+                // Determine if options are short enough for inline layout
+                const areOptionsShort = activeData.currentOptions.every(opt => opt.length < 25);
+                const optionsLayoutClass = areOptionsShort ? 'flex flex-row flex-wrap justify-center gap-4' : 'flex flex-col gap-4';
+
+                html += `<div class="w-full ${optionsLayoutClass}">`;
+                activeData.currentOptions.forEach((opt) => {
+                    const safeOpt = opt.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+                    
+                    if (item.type === 'multi') {
+                        const isSelected = activeData.multiSelected.includes(opt);
+                        const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-[1.02] shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50';
+                        const icon = isSelected ? '<i class="fas fa-check-circle mr-3 text-2xl drop-shadow-md flex-shrink-0"></i>' : '<i class="far fa-circle mr-3 text-2xl opacity-50 flex-shrink-0"></i>';
+                        const widthClass = areOptionsShort ? 'flex-1 min-w-[200px] text-center justify-center' : 'w-full text-left';
+                        html += `<button onclick="toggleMultiMCQ('${safeOpt}')" class="btn-3d ${widthClass} border-4 font-bold p-4 md:p-5 rounded-2xl text-lg md:text-xl transition-all flex items-center ${btnClass}">${icon}<span>${opt}</span></button>`;
+                    } else {
+                        const widthClass = areOptionsShort ? 'flex-1 min-w-[200px] text-center justify-center' : 'w-full text-left';
+                        html += `<button onclick="checkMCQ('${safeOpt}')" class="btn-3d ${widthClass} bg-white border-4 border-blue-300 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors flex items-center justify-center">${opt}</button>`;
+                    }
+                });
+                html += `</div>`;
                 
                 if (item.type === 'multi') {
-                    const isSelected = activeData.multiSelected.includes(opt);
-                    const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-[1.02] shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50';
-                    const icon = isSelected ? '<i class="fas fa-check-circle mr-3 text-2xl drop-shadow-md flex-shrink-0"></i>' : '<i class="far fa-circle mr-3 text-2xl opacity-50 flex-shrink-0"></i>';
-                    html += `<button onclick="toggleMultiMCQ('${safeOpt}')" class="btn-3d w-full border-4 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl transition-all flex items-center ${btnClass}">${icon}<span>${opt}</span></button>`;
-                } else {
-                    html += `<button onclick="checkMCQ('${safeOpt}')" class="btn-3d w-full bg-white border-4 border-blue-300 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors">${opt}</button>`;
+                    const isReady = activeData.multiSelected.length === item.reqCount;
+                    html += `<div class="mt-4 flex flex-col items-center bg-blue-50 p-5 rounded-3xl border-4 border-blue-200 w-full shadow-inner">
+                                <div class="text-xl font-bold text-gray-700 mb-3">Pilihan Semasa: <span class="${isReady ? 'text-green-600 text-2xl' : 'text-rose-500 text-2xl'}">${activeData.multiSelected.length} / ${item.reqCount}</span></div>
+                                <button onclick="checkMultiMCQ()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 px-8 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${isReady ? 'animate-bounce hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${isReady ? '' : 'disabled'}>Semak Jawapan!</button>
+                             </div>`;
                 }
-            });
-            html += `</div>`;
-            
-            if (item.type === 'multi') {
-                const isReady = activeData.multiSelected.length === item.reqCount;
-                html += `<div class="mt-4 flex flex-col items-center bg-blue-50 p-5 rounded-3xl border-4 border-blue-200 w-full shadow-inner">
-                            <div class="text-xl font-bold text-gray-700 mb-3">Pilihan Semasa: <span class="${isReady ? 'text-green-600 text-2xl' : 'text-rose-500 text-2xl'}">${activeData.multiSelected.length} / ${item.reqCount}</span></div>
-                            <button onclick="checkMultiMCQ()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 px-8 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${isReady ? 'animate-bounce hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${isReady ? '' : 'disabled'}>Semak Jawapan!</button>
+                
+                html += `<div class="text-center mt-6 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
+                
+                html += `</div></div>`;
+            } else {
+                // Susunan Bersebelahan (Side-by-side) - Original Layout
+                html += `<div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start w-full max-w-6xl mx-auto">`;
+                
+                // BAHAGIAN KIRI: Gambar Petikan
+                html += `<div class="w-full lg:w-1/2 flex justify-center bg-gray-50/50 p-3 md:p-5 rounded-3xl shadow-inner border-4 border-gray-200 sticky top-4">
+                            <img src="${activeData.overallImage}" class="w-full max-h-[45vh] lg:max-h-[70vh] object-contain rounded-2xl shadow-sm bg-white">
                          </div>`;
+                
+                // BAHAGIAN KANAN: Soalan & Pilihan Jawapan
+                html += `<div class="w-full lg:w-1/2 flex flex-col gap-4">`;
+                html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-5 md:p-6 rounded-3xl shadow-md border-4 border-purple-200 text-center text-xl md:text-2xl font-bold text-purple-900 leading-snug">${item.q}</div>`;
+                
+                html += `<div class="w-full flex flex-col gap-4">`;
+                activeData.currentOptions.forEach((opt) => {
+                    const safeOpt = opt.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+                    
+                    if (item.type === 'multi') {
+                        const isSelected = activeData.multiSelected.includes(opt);
+                        const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-[1.02] shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50';
+                        const icon = isSelected ? '<i class="fas fa-check-circle mr-3 text-2xl drop-shadow-md flex-shrink-0"></i>' : '<i class="far fa-circle mr-3 text-2xl opacity-50 flex-shrink-0"></i>';
+                        html += `<button onclick="toggleMultiMCQ('${safeOpt}')" class="btn-3d w-full border-4 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl transition-all flex items-center ${btnClass}">${icon}<span>${opt}</span></button>`;
+                    } else {
+                        html += `<button onclick="checkMCQ('${safeOpt}')" class="btn-3d w-full bg-white border-4 border-blue-300 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors">${opt}</button>`;
+                    }
+                });
+                html += `</div>`;
+                
+                if (item.type === 'multi') {
+                    const isReady = activeData.multiSelected.length === item.reqCount;
+                    html += `<div class="mt-4 flex flex-col items-center bg-blue-50 p-5 rounded-3xl border-4 border-blue-200 w-full shadow-inner">
+                                <div class="text-xl font-bold text-gray-700 mb-3">Pilihan Semasa: <span class="${isReady ? 'text-green-600 text-2xl' : 'text-rose-500 text-2xl'}">${activeData.multiSelected.length} / ${item.reqCount}</span></div>
+                                <button onclick="checkMultiMCQ()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 px-8 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${isReady ? 'animate-bounce hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${isReady ? '' : 'disabled'}>Semak Jawapan!</button>
+                             </div>`;
+                }
+                
+                html += `<div class="text-center mt-6 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
+                
+                html += `</div></div>`;
             }
-            
-            html += `<div class="text-center mt-6 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
-            
-            html += `</div></div>`;
             container.innerHTML = html;
         }
 
@@ -912,8 +1212,20 @@
         }
 
         function renderPadan(container) {
-            const colClass = activeData.cols === 2 ? 'md:grid-cols-2' : (activeData.cols === 1 ? 'grid-cols-1' : 'md:grid-cols-3');
-            let html = `<div class="grid grid-cols-2 ${colClass} gap-4 md:gap-6 mb-8 w-full">`;
+            let html = ``;
+
+            if (activeData.overallImage) {
+                html += `<div class="w-full flex justify-center mb-6"><img src="${activeData.overallImage}" class="max-h-[40vh] object-contain rounded-2xl shadow-md border-4 border-white bg-white/50 p-2"></div>`;
+            } else if (activeData.overallImages) {
+                html += `<div class="flex flex-wrap justify-center gap-4 mb-8 w-full bg-white/40 p-4 rounded-3xl border-4 border-dashed border-gray-300">`;
+                activeData.overallImages.forEach(img => {
+                    html += `<img src="${img}" class="h-28 md:h-40 object-contain rounded-2xl shadow-xl border-4 border-white transform transition hover:scale-105">`;
+                });
+                html += `</div>`;
+            }
+
+            const colClass = activeData.cols === 4 ? 'grid-cols-2 lg:grid-cols-4' : (activeData.cols === 2 ? 'md:grid-cols-2' : (activeData.cols === 1 ? 'grid-cols-1' : 'md:grid-cols-3'));
+            html += `<div class="grid grid-cols-2 ${colClass} gap-4 md:gap-6 mb-8 w-full">`;
             
             activeData.targets.forEach((t, i) => {
                 const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
@@ -928,23 +1240,32 @@
                             ${contentHtml}`;
                             
                 if (placedItem) {
-                    html += `<div class="w-full bg-green-100 text-green-800 border-4 border-green-500 font-bold p-3 rounded-xl text-center text-lg md:text-xl shadow-sm">
-                                <i class="fas fa-check-circle mr-2"></i>${placedItem.text}
+                    let placedContent = placedItem.text.match(/\.(jpeg|jpg|gif|png)$/) != null
+                        ? `<img src="${placedItem.text}" class="h-14 md:h-20 object-contain mx-auto rounded-md drop-shadow-sm">`
+                        : `<i class="fas fa-check-circle mr-2 hidden md:inline"></i>${placedItem.text}`;
+                        
+                    html += `<div class="w-full bg-green-100 text-green-800 border-4 border-green-500 font-bold p-2 md:p-3 rounded-xl text-center text-sm md:text-xl shadow-sm flex items-center justify-center">
+                                ${placedContent}
                              </div>`;
                 } else {
-                    html += `<div onclick="tapPlaceNormal(${i})" class="w-full h-14 border-4 border-dashed rounded-xl flex items-center justify-center font-bold transition-all ${hoverClass}"></div>`;
+                    html += `<div onclick="tapPlaceNormal(${i})" class="w-full h-14 md:h-16 border-4 border-dashed rounded-xl flex items-center justify-center font-bold transition-all ${hoverClass}"></div>`;
                 }
                 html += `</div>`;
             });
             
             html += `</div>`;
-            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-4xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider"><i class="fas fa-hand-pointer mr-2"></i>PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
+            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-5xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider"><i class="fas fa-hand-pointer mr-2 animate-bounce"></i>PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
             
             activeData.poolState.forEach((p, i) => {
                 if (p.used) return;
                 const isSelected = selectedIndex === i;
                 const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
+                
+                let poolContent = p.text.match(/\.(jpeg|jpg|gif|png)$/) != null
+                    ? `<img src="${p.text}" class="h-12 md:h-16 w-auto object-contain pointer-events-none drop-shadow-md rounded-md">`
+                    : p.text;
+                    
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all flex items-center justify-center min-w-[80px] ${btnClass}">${poolContent}</button>`;
             });
             html += `</div></div>`;
             container.innerHTML = html;
