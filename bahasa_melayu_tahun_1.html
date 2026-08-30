@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Melayu Tahun 1</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
+
+    <script>
+        // Konfigurasi Tailwind untuk warna terang dan font
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'kids-title': ['"Fredoka One"', 'cursive'],
+                        'kids-body': ['"Comic Neue"', 'cursive', 'sans-serif'],
+                    },
+                    colors: {
+                        'theme-1': '#FF1493', // Deep Pink
+                        'theme-2': '#FF6500', // Bright Orange
+                        'theme-3': '#FFD700', // Gold/Yellow
+                        'theme-4': '#00EA00', // Neon Green
+                        'theme-5': '#00BFFF', // Deep Sky Blue
+                        'theme-6': '#9D00FF', // Bright Purple
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Latar Belakang Abjad dan Nombor yang ceria */
+        body {
+            background-color: #f8fafc;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Ctext x='40' y='80' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='60' fill='%23FF1493' opacity='0.12' transform='rotate(-15, 40, 80)'%3EA%3C/text%3E%3Ctext x='240' y='90' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='75' fill='%2300BFFF' opacity='0.12' transform='rotate(20, 240, 90)'%3E1%3C/text%3E%3Ctext x='90' y='270' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='55' fill='%23FF6500' opacity='0.12' transform='rotate(10, 90, 270)'%3Eb%3C/text%3E%3Ctext x='290' y='320' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='70' fill='%2300EA00' opacity='0.12' transform='rotate(-25, 290, 320)'%3E2%3C/text%3E%3Ctext x='180' y='200' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='65' fill='%239D00FF' opacity='0.12' transform='rotate(5, 180, 200)'%3EC%3C/text%3E%3Ctext x='30' y='350' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='50' fill='%23FFD700' opacity='0.20' transform='rotate(15, 30, 350)'%3E3%3C/text%3E%3Ctext x='140' y='50' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='45' fill='%23FF1493' opacity='0.12' transform='rotate(-10, 140, 50)'%3Ed%3C/text%3E%3Ctext x='340' y='180' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='60' fill='%23FF6500' opacity='0.12' transform='rotate(25, 340, 180)'%3E4%3C/text%3E%3C/svg%3E");
+            background-size: 400px 400px;
+            font-family: 'Comic Neue', cursive, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Animasi mudah untuk butang (hover dan aktif) */
+        .btn-hover-effect {
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s;
+        }
+        .btn-hover-effect:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        .btn-hover-effect:active {
+            transform: scale(0.95);
+        }
+
+        /* Untuk sembunyikan elemen secara berkesan */
+        .hidden-screen {
+            display: none !important;
+        }
+        
+        .unit-card {
+            border-radius: 2rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800 pb-20">
+
+    <!-- Pengepala Utama (Sentiasa Kelihatan) -->
+    <header class="bg-white shadow-md p-4 sticky top-0 z-50 rounded-b-3xl mx-2 md:mx-10 border-b-8 border-yellow-400">
+        <div class="max-w-5xl mx-auto flex justify-between items-center relative">
+            
+            <!-- Butang Home (Kiri) -->
+            <button id="btn-home" onclick="showHomeScreen()" class="text-white hover:text-gray-200 btn-hover-effect bg-blue-500 p-3 rounded-full flex flex-col items-center justify-center w-16 h-16 border-4 border-blue-700 shadow-lg">
+                <i class="fas fa-home text-2xl"></i>
+            </button>
+
+            <!-- Tajuk Aplikasi -->
+            <h1 class="text-3xl md:text-5xl font-kids-title text-center flex-1 px-4 drop-shadow-sm tracking-wide">
+                <span class="text-red-500">B</span><span class="text-orange-500">A</span><span class="text-yellow-500">H</span><span class="text-green-500">A</span><span class="text-blue-500">S</span><span class="text-indigo-500">A</span> 
+                <span class="text-pink-500">M</span><span class="text-red-500">E</span><span class="text-orange-500">L</span><span class="text-yellow-500">A</span><span class="text-green-500">Y</span><span class="text-blue-500">U</span><br class="md:hidden">
+                <span class="text-indigo-500">T</span><span class="text-pink-500">A</span><span class="text-red-500">H</span><span class="text-orange-500">U</span><span class="text-yellow-500">N</span> 
+                <span class="text-green-500 text-4xl md:text-6xl ml-2">1</span>
+            </h1>
+
+            <!-- Butang Kembali (Kanan) -->
+            <button id="btn-back" onclick="goBack()" class="hidden-screen text-white hover:text-gray-200 btn-hover-effect bg-orange-500 p-3 rounded-full flex flex-col items-center justify-center w-16 h-16 border-4 border-orange-700 shadow-lg">
+                <i class="fas fa-arrow-left text-2xl"></i>
+            </button>
+            
+            <!-- Ruang kosong pengganti butang back di skrin utama untuk keseimbangan flexbox -->
+            <div id="spacer-back" class="w-16 h-16"></div>
+        </div>
+    </header>
+
+    <!-- KANDUNGAN UTAMA -->
+    <main class="max-w-6xl mx-auto mt-8 px-4">
+        
+        <!-- SKRIN 1: MENU UTAMA (SENARAI TEMA) -->
+        <div id="screen-home">
+            <h2 class="text-center text-3xl font-kids-title text-gray-700 mb-8 bg-white/80 inline-block px-8 py-2 rounded-full border-4 border-dashed border-pink-400 mx-auto w-fit block shadow-sm">
+                Pilih Tema Pembelajaran
+            </h2>
+            
+            <!-- Grid Menu Tema -->
+            <div id="theme-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 p-4">
+                <!-- Butang Tema akan dijana oleh JavaScript di sini -->
+            </div>
+        </div>
+
+        <!-- SKRIN 2: SENARAI UNIT BAGI TEMA -->
+        <div id="screen-unit-list" class="hidden-screen">
+            <div class="bg-white rounded-3xl p-6 shadow-lg border-4 border-dashed border-blue-400 mb-8 text-center relative overflow-hidden">
+                <!-- Elemen hiasan latar -->
+                <div class="absolute -top-10 -right-10 text-9xl text-blue-100 opacity-50 z-0">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                
+                <h2 id="current-theme-title" class="text-3xl md:text-4xl font-kids-title relative z-10">
+                    <!-- Tajuk Tema akan dipaparkan di sini -->
+                </h2>
+            </div>
+
+            <!-- Grid Menu Unit -->
+            <div id="unit-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- Butang Unit akan dijana oleh JavaScript di sini -->
+            </div>
+        </div>
+
+        <!-- SKRIN 3: KANDUNGAN PEMBELAJARAN (Paparan untuk sesi pengajaran) -->
+        <div id="screen-unit-content" class="hidden-screen">
+            <div class="bg-white rounded-3xl p-8 shadow-xl border-8 border-theme-4 min-h-[50vh] flex flex-col items-center justify-center text-center relative">
+                
+                <div class="absolute top-4 right-4 text-gray-400 opacity-20 text-6xl">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+
+                <span id="content-unit-number" class="bg-theme-4 text-white font-kids-title px-6 py-2 rounded-full text-xl mb-4 shadow-md border-2 border-green-700"></span>
+                <h2 id="content-unit-title" class="text-4xl md:text-5xl font-kids-title text-gray-800 mb-6 drop-shadow-sm"></h2>
+                
+                <div class="w-full max-w-2xl bg-blue-50 border-4 border-blue-200 rounded-2xl p-10 flex flex-col items-center shadow-inner mt-4">
+                    <i class="fas fa-desktop text-6xl text-blue-300 mb-4 animate-pulse"></i>
+                    <p class="text-2xl font-bold text-gray-600">
+                        Ruang Paparan Digital Cikgu
+                    </p>
+                    <p class="text-lg text-gray-500 mt-2">
+                        (Letakkan video, gambar bersaiz besar, atau teks interaktif di sini untuk paparan kelas)
+                    </p>
+                    
+                    <button onclick="goBack()" class="mt-8 bg-orange-500 hover:bg-orange-600 text-white font-kids-title text-xl py-3 px-8 rounded-full border-b-4 border-orange-700 btn-hover-effect shadow-md flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Kembali ke Senarai Unit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- DATA & LOGIK JAVASCRIPT -->
+    <script>
+        // Data Kurikulum Bahasa Melayu Tahun 1 (Berdasarkan gambar)
+        const curriculumData = [
+            {
+                id: 1, title: "TEMA 1", name: "KELUARGA", colorClass: "bg-pink-500", 
+                units: [
+                    { id: "UNIT 1", name: "Cerita Adam", title: "Keluarga Adam", page: 2 },
+                    { id: "UNIT 2", name: "Keluarga Adam", title: "Cerita Keluarga", page: 7 },
+                    { id: "UNIT 3", name: "Kasih Emak", title: "Sayang Keluarga", page: 13 },
+                    { id: "UNIT 4", name: "Kasih Bapa", title: "Hargai Bapa", page: 19 },
+                    { id: "UNIT 5", name: "Adik-beradik Adam", title: "Adik-beradik", page: 25 }
+                ]
+            },
+            {
+                id: 2, title: "TEMA 2", name: "BERSIH DAN SIHAT", colorClass: "bg-orange-500",
+                units: [
+                    { id: "UNIT 6", name: "Kebersihan Diri", title: "Badan Bersih", page: 32 },
+                    { id: "UNIT 7", name: "Rumahku Bersih", title: "Rumah Selesa", page: 37 },
+                    { id: "UNIT 8", name: "Kelasku Bersih dan Kemas", title: "Kelas Ceria", page: 43 },
+                    { id: "UNIT 9", name: "Amalan Sihat di Sekolah", title: "Sekolah Sihat", page: 49 },
+                    { id: "UNIT 10", name: "Masyarakat", title: "Hidup Bermasyarakat", page: 55 }
+                ]
+            },
+            {
+                id: 3, title: "TEMA 3", name: "KESELAMATAN DIRI", colorClass: "bg-yellow-400",
+                units: [
+                    { id: "UNIT 11", name: "Rumah Saya", title: "Keselamatan Rumah", page: 62 },
+                    { id: "UNIT 12", name: "Selamat dan Bersih", title: "Sentiasa Selamat", page: 67 },
+                    { id: "UNIT 13", name: "Selamat di Sini", title: "Keselamatan Kawasan", page: 73 },
+                    { id: "UNIT 14", name: "Taman Permainan", title: "Bermain Selamat", page: 79 },
+                    { id: "UNIT 15", name: "Keselamatan Jalan Raya", title: "Awas di Jalan", page: 85 }
+                ]
+            },
+            {
+                id: 4, title: "TEMA 4", name: "HIDUP BAHAGIA", colorClass: "bg-green-500",
+                units: [
+                    { id: "UNIT 16", name: "Hidup Sejahtera", title: "Kehidupan Aman", page: 92 },
+                    { id: "UNIT 17", name: "Kasihnya Kawan", title: "Rakan Sebaya", page: 97 },
+                    { id: "UNIT 18", name: "Indahnya Hidup Berjiran", title: "Jiran Sepakat", page: 103 },
+                    { id: "UNIT 19", name: "Taman Perumahan Saya", title: "Kawasan Saya", page: 109 },
+                    { id: "UNIT 20", name: "Raikan Bersama", title: "Sambutan Perayaan", page: 115 }
+                ]
+            },
+            {
+                id: 5, title: "TEMA 5", name: "PERTANIAN DAN PENTERNAKAN", colorClass: "bg-blue-500",
+                units: [
+                    { id: "UNIT 21", name: "Mari Berkebun", title: "Kebun Kita", page: 122 },
+                    { id: "UNIT 22", name: "Sayur-sayuran dan Buah-buahan", title: "Makanan Berkhasiat", page: 129 },
+                    { id: "UNIT 23", name: "Ternakan Ayam", title: "Ayam Kampung", page: 135 },
+                    { id: "UNIT 24", name: "Haiwan Ternakan", title: "Haiwan Belaan", page: 141 },
+                    { id: "UNIT 25", name: "Mari Bercucuk Tanam", title: "Tanam Sendiri", page: 147 }
+                ]
+            },
+            {
+                id: 6, title: "TEMA 6", name: "INDAHNYA DUNIAKU", colorClass: "bg-purple-500",
+                units: [
+                    { id: "UNIT 26", name: "Taman Rekreasi", title: "Taman Santai", page: 154 },
+                    { id: "UNIT 27", name: "Berkelah", title: "Masa Keluarga", page: 161 },
+                    { id: "UNIT 28", name: "Mari Kitar Semula", title: "Cintai Alam", page: 169 },
+                    { id: "UNIT 29", name: "Sayangi Alam", title: "Alam Sekitar", page: 177 },
+                    { id: "UNIT 30", name: "Mari Bercuti", title: "Bercuti Bersama", page: 185 }
+                ]
+            }
+        ];
+
+        // State Pengurusan Skrin
+        let currentScreenState = 'home'; // 'home', 'unitList', 'unitContent'
+        let currentThemeIdSelected = null;
+
+        // Inisialisasi Aplikasi ketika dimuatkan
+        window.onload = () => {
+            renderHomeMenu();
+            showHomeScreen();
+        };
+
+        // Fungsi untuk menjana paparan menu utama (Tema)
+        function renderHomeMenu() {
+            const themeGrid = document.getElementById('theme-grid');
+            themeGrid.innerHTML = ''; // Kosongkan sebelum isi
+
+            // Ikon-ikon rawak untuk tema agar nampak menarik (hanya hiasan visual)
+            const themeIcons = ['fa-users', 'fa-soap', 'fa-shield-halved', 'fa-face-smile-beam', 'fa-tractor', 'fa-earth-asia'];
+
+            curriculumData.forEach((theme, index) => {
+                const iconClass = themeIcons[index % themeIcons.length];
+                
+                // Cipta kad butang untuk setiap tema
+                const themeCard = document.createElement('button');
+                themeCard.className = `${theme.colorClass} unit-card p-6 flex flex-col items-center justify-center text-center btn-hover-effect cursor-pointer w-full h-full min-h-[160px] shadow-xl border-4 border-white`;
+                themeCard.onclick = () => showUnitList(theme.id);
+
+                // Tetapkan warna teks supaya jelas pada latar belakang yang sangat terang (kuning perlukan teks gelap)
+                const titleColor = (theme.id === 3) ? 'text-gray-900' : 'text-white';
+                const subtitleColor = (theme.id === 3) ? 'text-gray-900' : 'text-white';
+                const iconColor = (theme.id === 3) ? 'text-gray-900' : 'text-white';
+
+                themeCard.innerHTML = `
+                    <div class="bg-white/40 p-4 rounded-full mb-4 shadow-sm border-2 border-white/60">
+                        <i class="fas ${iconClass} text-5xl ${iconColor} opacity-90"></i>
+                    </div>
+                    <h3 class="text-xl font-kids-title ${titleColor} tracking-wider drop-shadow-md">${theme.title}</h3>
+                    <p class="text-3xl font-bold mt-2 ${subtitleColor} drop-shadow-md uppercase">${theme.name}</p>
+                `;
+                themeGrid.appendChild(themeCard);
+            });
+        }
+
+        // Fungsi untuk memaparkan senarai unit bagi tema yang dipilih
+        function showUnitList(themeId) {
+            currentThemeIdSelected = themeId;
+            currentScreenState = 'unitList';
+            
+            // Cari data tema
+            const theme = curriculumData.find(t => t.id === themeId);
+            if (!theme) return;
+
+            // Set tajuk tema di atas grid unit
+            const titleColorClass = theme.colorClass.replace('bg-', 'text-');
+            // Kekalkan warna teks jika kuning (supaya boleh dibaca)
+            const finalTitleColor = (themeId === 3) ? 'text-yellow-600' : titleColorClass;
+
+            document.getElementById('current-theme-title').innerHTML = `
+                <span class="text-gray-500 text-2xl block mb-2 font-kids-body font-bold">${theme.title}</span> 
+                <span class="${finalTitleColor} text-4xl">${theme.name}</span>
+            `;
+
+            const unitGrid = document.getElementById('unit-grid');
+            unitGrid.innerHTML = ''; // Kosongkan grid
+
+            // Menjana kad untuk setiap unit
+            theme.units.forEach((unit, index) => {
+                // Warna berselang seli untuk kad unit agar nampak pelbagai dan terang berseri
+                const colors = ['bg-pink-400', 'bg-orange-400', 'bg-yellow-400', 'bg-green-400', 'bg-blue-400'];
+                const cardColor = colors[index % colors.length];
+                const borderColor = cardColor.replace('400', '600');
+
+                const unitCard = document.createElement('button');
+                unitCard.className = `${cardColor} border-4 ${borderColor} rounded-3xl p-5 flex flex-col items-center text-center btn-hover-effect cursor-pointer w-full relative overflow-hidden shadow-lg h-full`;
+                unitCard.onclick = () => showUnitContent(theme, unit);
+
+                // Nombor halaman di bucu untuk rujukan guru/buku teks
+                unitCard.innerHTML = `
+                    <div class="absolute top-2 right-2 bg-white text-xs font-bold py-1 px-2 rounded-lg text-gray-800 border-2 border-gray-300 shadow-sm">
+                        M/S ${unit.page}
+                    </div>
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-md border-4 ${borderColor}">
+                        <span class="text-3xl font-kids-title text-gray-800">${unit.id.replace('UNIT ', '')}</span>
+                    </div>
+                    <h4 class="text-xl font-kids-title text-gray-900 mb-2 drop-shadow-sm leading-tight">${unit.name}</h4>
+                `;
+                unitGrid.appendChild(unitCard);
+            });
+
+            // Paparkan skrin senarai unit
+            showScreen('screen-unit-list');
+        }
+
+        // Fungsi untuk memaparkan skrin kandungan untuk unit tertentu
+        function showUnitContent(theme, unit) {
+            currentScreenState = 'unitContent';
+            
+            document.getElementById('content-unit-number').textContent = `${theme.title} - ${unit.id}`;
+            document.getElementById('content-unit-title').textContent = unit.name;
+            
+            showScreen('screen-unit-content');
+        }
+
+        // Fungsi kembali ke Skrin Utama (Home)
+        function showHomeScreen() {
+            currentScreenState = 'home';
+            currentThemeIdSelected = null;
+            showScreen('screen-home');
+        }
+
+        // Fungsi navigasi 'Kembali' (Back Button)
+        function goBack() {
+            if (currentScreenState === 'unitContent') {
+                // Jika di dalam unit, kembali ke senarai unit tema tersebut
+                if (currentThemeIdSelected) {
+                    showUnitList(currentThemeIdSelected);
+                } else {
+                    showHomeScreen();
+                }
+            } else if (currentScreenState === 'unitList') {
+                // Jika di senarai unit, kembali ke paparan utama
+                showHomeScreen();
+            }
+        }
+
+        // Fungsi utiliti untuk menukar paparan antara skrin
+        function showScreen(screenIdToShow) {
+            const screens = ['screen-home', 'screen-unit-list', 'screen-unit-content'];
+            
+            // Sembunyi/Papar skrin yang berkenaan
+            screens.forEach(screenId => {
+                const el = document.getElementById(screenId);
+                if (screenId === screenIdToShow) {
+                    el.classList.remove('hidden-screen');
+                } else {
+                    el.classList.add('hidden-screen');
+                }
+            });
+
+            // Kawal butang 'Back' (Kembali) di atas - sembunyikan jika di Home
+            const btnBack = document.getElementById('btn-back');
+            const spacerBack = document.getElementById('spacer-back');
+            
+            if (screenIdToShow === 'screen-home') {
+                btnBack.classList.add('hidden-screen');
+                spacerBack.classList.remove('hidden-screen');
+            } else {
+                btnBack.classList.remove('hidden-screen');
+                spacerBack.classList.add('hidden-screen');
+            }
+            
+            // Tatal ke atas secara lancar setiap kali tukar skrin
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

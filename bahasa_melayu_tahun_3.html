@@ -24,6 +24,7 @@
         }
         .btn-3d:hover { transform: translateY(-4px); }
         .btn-3d:active { transform: translateY(4px); box-shadow: 0 0px 0 transparent !important; }
+        .btn-3d:disabled { transform: translateY(0); pointer-events: none; }
         
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
@@ -45,10 +46,10 @@
 
     <div class="fixed top-2 left-2 md:top-4 md:left-4 flex gap-2 z-50">
         <button onclick="goHome()" class="btn-3d bg-white/80 p-2 md:p-3 rounded-full shadow-[0_4px_0_#ccc] hover:bg-white backdrop-blur-sm transition-all border-2 border-gray-100">
-            <img src="home.png" alt="Home" class="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md">
+            <img src="home.png" alt="Home" class="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md" onerror="this.src='https://placehold.co/100x100/FF5252/FFFFFF?text=H'">
         </button>
         <button id="btn-back" onclick="goBack()" class="btn-3d bg-white/80 p-2 md:p-3 rounded-full shadow-[0_4px_0_#ccc] hover:bg-white backdrop-blur-sm transition-all border-2 border-gray-100 hidden">
-            <img src="kembali.png" alt="Kembali" class="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md">
+            <img src="kembali.png" alt="Kembali" class="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md" onerror="this.src='https://placehold.co/100x100/4CAF50/FFFFFF?text=B'">
         </button>
     </div>
 
@@ -67,16 +68,14 @@
         <!-- VIEW 1: HOME (Grid Tema) -->
         <section id="view-home" class="view-section fade-in">
             <div class="bg-white/60 backdrop-blur-md p-6 md:p-10 rounded-[2.5rem] shadow-2xl border-4 border-white max-w-5xl mx-auto relative overflow-hidden">
-                <!-- Hiasan latar belon -->
                 <div class="absolute top-0 right-0 -mt-4 -mr-4 text-6xl opacity-30 animate-pulse">🎈</div>
-                
                 <div id="tema-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 justify-center w-full relative z-10">
                     <!-- Dijana melalui JS -->
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 2: SENARAI UNIT (Tengah Skrin) -->
+        <!-- VIEW 2: SENARAI UNIT (Center Aligned) -->
         <section id="view-units" class="view-section hidden fade-in">
             <div class="flex flex-col justify-center items-center min-h-[65vh] w-full max-w-5xl mx-auto">
                 <h2 id="title-tema" class="text-3xl md:text-5xl text-center font-chewy text-purple-600 mb-8 drop-shadow-md bg-white px-8 py-4 rounded-3xl border-4 border-purple-200 shadow-lg"></h2>
@@ -92,7 +91,7 @@
             <div id="activity-list" class="flex flex-col gap-4 max-w-2xl mx-auto">
                 <!-- Dijana melalui JS -->
             </div>
-            <!-- Ruang Kosong (Jika tiada aktiviti) -->
+            
             <div id="ruang-kosong" class="hidden text-center mt-10 p-10 bg-gradient-to-br from-white to-blue-50 border-4 border-yellow-400 rounded-3xl relative overflow-hidden shadow-xl">
                 <div class="absolute top-4 left-4 animate-bounce text-3xl">⭐</div>
                 <div class="absolute bottom-4 right-4 animate-bounce text-3xl" style="animation-delay: 0.5s;">🎈</div>
@@ -106,17 +105,16 @@
 
         <!-- VIEW 4: PLAYGROUND (Main Aktiviti) -->
         <section id="view-play" class="view-section hidden fade-in">
-            <div class="bg-white/95 backdrop-blur-md p-4 md:p-8 rounded-3xl border-4 border-indigo-200 shadow-2xl max-w-5xl mx-auto min-h-[60vh] flex flex-col relative overflow-hidden">
+            <div class="bg-white/95 backdrop-blur-md p-4 md:p-8 rounded-3xl border-4 border-indigo-200 shadow-2xl max-w-6xl mx-auto min-h-[60vh] flex flex-col relative overflow-hidden">
                 <h2 id="play-title" class="text-2xl md:text-4xl font-chewy text-indigo-600 mb-8 text-center border-b-4 border-dashed border-indigo-100 pb-4"></h2>
-                <div id="play-container" class="flex-grow flex flex-col justify-center items-center">
-                    <!-- Kandungan interaktif disuntik di sini -->
+                <div id="play-container" class="flex-grow flex flex-col justify-center items-center w-full">
+                    <!-- Kandungan disuntik di sini -->
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- MODAL MAKLUM BALAS (Betul / Salah) -->
     <div id="modal-feedback" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[100] backdrop-blur-sm p-4">
         <div class="bg-white p-8 rounded-3xl text-center w-full max-w-md mx-auto shadow-2xl border-4 border-white bounce-in relative">
             <div class="absolute top-0 left-0 -mt-6 -ml-6 text-4xl">✨</div>
@@ -132,7 +130,6 @@
     </div>
 
     <script>
-        // --- DATA PANGKALAN KURIKULUM ---
         const dataKurikulum = [
             {
                 tema: "TEMA 1: KEKELUARGAAN", color: "from-rose-400 to-rose-600",
@@ -284,13 +281,13 @@
                                 ]
                             },
                             {
-                                id: 'u4a3', name: "Aktiviti 3: Penjodoh Bilangan", type: "padan-3-kolum",
+                                id: 'u4a3', name: "Aktiviti 3: Padankan Penjodoh Bilangan", type: "padan-3-kolum",
                                 items: [
-                                    { image: "buku.png", nama: "buku", penjodoh: "buah" },
-                                    { image: "bola.png", nama: "bola", penjodoh: "biji" },
-                                    { image: "cat.png", nama: "cat", penjodoh: "tin" },
-                                    { image: "beruscat.png", nama: "berus cat", penjodoh: "batang" },
-                                    { image: "pitapelekat.png", nama: "pita pelekat", penjodoh: "segulung" }
+                                    { image: "buku.png", nama: "buah", penjodoh: "buku" },
+                                    { image: "bola.png", nama: "biji", penjodoh: "bola" },
+                                    { image: "cat.png", nama: "tin", penjodoh: "cat" },
+                                    { image: "beruscat.png", nama: "batang", penjodoh: "berus cat" },
+                                    { image: "pitapelekat.png", nama: "segulung", penjodoh: "pita pelekat" }
                                 ],
                                 pool: ["buku", "bola", "cat", "berus cat", "pita pelekat", "buah", "biji", "tin", "batang", "segulung"]
                             }
@@ -377,9 +374,152 @@
             {
                 tema: "TEMA 3: KESIHATAN DAN KEBERSIHAN", color: "from-teal-400 to-teal-600",
                 units: [
-                    { title: "Unit 7: Saya Sihat Saya Gembira", activities: [] },
-                    { title: "Unit 8: Alam Bersih Hidup Bahagia", activities: [] },
-                    { title: "Unit 9: Gaya Hidup Sihat", activities: [] }
+                    { 
+                        title: "Unit 7: Saya Sihat Saya Gembira", 
+                        activities: [
+                            {
+                                id: 'u7a1', name: "Aktiviti 1: Padankan Isyarat", type: "padan", cols: 3,
+                                targets: [
+                                    { image: "karbohidrat.png", ans: "karbohidrat" },
+                                    { image: "protein.png", ans: "protein" },
+                                    { image: "vitamin.png", ans: "vitamin" },
+                                    { image: "lemak.png", ans: "lemak" },
+                                    { image: "khasiat.png", ans: "khasiat" },
+                                    { image: "seimbang.png", ans: "seimbang" }
+                                ],
+                                pool: ["karbohidrat", "protein", "vitamin", "lemak", "khasiat", "seimbang"]
+                            },
+                            {
+                                id: 'u7a2', name: "Aktiviti 2: Makanan Berkhasiat", type: "hotspot-klik",
+                                image: "makananberkhasiat.png",
+                                hotspots: [
+                                    // Karbohidrat (Bawah)
+                                    { id: 'h_roti', text: 'Roti', top: 85, left: 75, w: 15, h: 10, type: 'karbohidrat' },
+                                    { id: 'h_nasi', text: 'Nasi', top: 88, left: 45, w: 15, h: 8, type: 'karbohidrat' },
+                                    { id: 'h_ubi', text: 'Ubi / Kentang', top: 85, left: 10, w: 20, h: 10, type: 'karbohidrat' },
+                                    { id: 'h_jagung', text: 'Jagung / Bijirin', top: 85, left: 32, w: 12, h: 10, type: 'karbohidrat' },
+                                    // Vitamin (Sayur & Buah)
+                                    { id: 'h_buah', text: 'Buah-buahan', top: 65, left: 60, w: 25, h: 12, type: 'vitamin' },
+                                    { id: 'h_sayur', text: 'Sayur-sayuran', top: 65, left: 15, w: 30, h: 12, type: 'vitamin' },
+                                    // Protein (Tengah Atas)
+                                    { id: 'h_ikan', text: 'Ikan / Daging', top: 48, left: 28, w: 15, h: 8, type: 'protein' },
+                                    { id: 'h_ayam', text: 'Ayam', top: 40, left: 55, w: 25, h: 15, type: 'protein' },
+                                    { id: 'h_susu', text: 'Susu / Tenusu', top: 40, left: 40, w: 12, h: 10, type: 'protein' },
+                                    // Lemak (Puncak)
+                                    { id: 'h_minyak', text: 'Minyak / Lemak', top: 15, left: 40, w: 20, h: 15, type: 'lemak' }
+                                ],
+                                items: [
+                                    { q: "1. Pilih 3 makanan berkhasiat.", targetType: 'any', reqCount: 3 },
+                                    { q: "2. Pilih 3 makanan yang mengandungi protein.", targetType: 'protein', reqCount: 3 },
+                                    { q: "3. Nyatakan 3 makanan yang mengandungi karbohidrat.", targetType: 'karbohidrat', reqCount: 3 }
+                                ]
+                            },
+                            {
+                                id: 'u7a3', name: "Aktiviti 3: Padankan Isyarat", type: "padan-overlay",
+                                image: "membaca.png",
+                                targets: [
+                                    { ans: "bersenam.png", top: 7, left: 70, w: 17, h: 11 },
+                                    { ans: "melontar.png", top: 45, left: 31, w: 17, h: 11 },
+                                    { ans: "mengelecek.png", top: 72, left: 63, w: 17, h: 11 }
+                                ],
+                                pool: ["bersenam.png", "melontar.png", "mengelecek.png"]
+                            },
+                            {
+                                id: 'u7a4', name: "Aktiviti 4: Pemahaman", type: "mcq-berkaitan", overallImage: "dialog.png",
+                                items: [
+                                    { q: "1. Bilakah waktu yang sesuai untuk kita berjogging?", options: ["Waktu yang sesuai untuk berjogging adalah waktu petang.", "Waktu pagi", "Waktu malam"], ans: "Waktu yang sesuai untuk berjogging adalah waktu petang." },
+                                    { q: "2. Di manakah kita boleh berjogging?", options: ["Kita boleh berjogging di taman.", "Di dalam rumah", "Di jalan raya"], ans: "Kita boleh berjogging di taman." },
+                                    { q: "3. Apakah kebaikan berjogging?", options: ["Berjogging merupakan senaman yang menyihatkan badan.", "Meletihkan badan", "Membuang masa"], ans: "Berjogging merupakan senaman yang menyihatkan badan." }
+                                ]
+                            },
+                            {
+                                id: 'u7a5', name: "Aktiviti 5: Padankan Isyarat Kata Adjektif", type: "padan", cols: 2,
+                                targets: [
+                                    { image: "hampir.png", ans: "hampir" },
+                                    { image: "dekat.png", ans: "dekat" },
+                                    { image: "jauh.png", ans: "jauh" },
+                                    { image: "rapat.png", ans: "rapat" }
+                                ],
+                                pool: ["hampir", "dekat", "jauh", "rapat"]
+                            }
+                        ]
+                    },
+                    { 
+                        title: "Unit 8: Alam Bersih Hidup Bahagia", 
+                        activities: [
+                            {
+                                id: 'u8a1', name: "Aktiviti 1: Pemahaman", type: "mcq-berkaitan", overallImage: "syafik.png",
+                                items: [
+                                    { q: "1. Mengapakah keluarga Syafik menjaga kebersihan rumah?", options: ["Keluarga syafik menjaga kebersihan rumah supaya rumah sentiasa bersih dan kemas.", "Supaya mereka boleh bermain di luar rumah.", "Untuk memastikan mereka mendapat hadiah."], ans: "Keluarga syafik menjaga kebersihan rumah supaya rumah sentiasa bersih dan kemas." },
+                                    { q: "2. Mengapakah kita perlu menjaga persekitaran yang bersih?", options: ["Persekitaran yang bersih akan menjadikan hidup kita lebih sihat, cergas dan selesa.", "Supaya banyak nyamuk dan serangga datang.", "Kerana jiran menyuruh berbuat demikian."], ans: "Persekitaran yang bersih akan menjadikan hidup kita lebih sihat, cergas dan selesa." },
+                                    { q: "3. Apakah cara lain untuk kita menjaga kebersihan rumah? (Pilih 2)", type: "multi", reqCount: 2, options: ["Menyapu dan mengemop lantai setiap hari.", "Membuang sampah ke dalam tong sampah yang bertutup.", "Membiarkan pinggan kotor di atas meja.", "Menyepahkan mainan di ruang tamu."], ans: ["Menyapu dan mengemop lantai setiap hari.", "Membuang sampah ke dalam tong sampah yang bertutup."] }
+                                ]
+                            },
+                            {
+                                id: 'u8a2', name: "Aktiviti 2: Kata Adjektif Perasaan", type: "padan", cols: 3,
+                                targets: [
+                                    { image: "suka.png", ans: "suka" },
+                                    { image: "sayang.png", ans: "sayang" },
+                                    { image: "gembira.png", ans: "gembira" }
+                                ],
+                                pool: ["suka", "sayang", "gembira"]
+                            },
+                            {
+                                id: 'u8a3', name: "Aktiviti 3: Lengkapkan Petikan (Perasaan)", type: "isi-kosong",
+                                items: [
+                                    { media: "Screenshot 2026-08-30 202627.jpg", ayat: "Guru besar sangat ____________ akan usaha yang ditunjukkan oleh ahli Kelab Alam Sekitar.", ans: "suka" },
+                                    { media: "Screenshot 2026-08-30 202627.jpg", ayat: "Ini juga tanda kita ____________ akan sekolah.", ans: "sayang" },
+                                    { media: "Screenshot 2026-08-30 202627.jpg", ayat: "Syafik dan kawan-kawannya ____________ kerana dapat menjaga kebersihan kawasan sekolah.", ans: "gembira" }
+                                ],
+                                pool: ["suka", "sayang", "gembira"]
+                            },
+                            {
+                                id: 'u8a4', name: "Aktiviti 4: Lengkapkan Petikan (Jarak)", type: "isi-kosong",
+                                items: [
+                                    { media: "Screenshot 2026-08-30 202702.jpg", ayat: "Syafik bersenam setiap petang di taman yang ____________ dengan rumahnya.", ans: "hampir" },
+                                    { media: "Screenshot 2026-08-30 202702.jpg", ayat: "Openg selalu pergi ke gelanggang futsal yang tidak ____________ dari rumahnya.", ans: "jauh" },
+                                    { media: "Screenshot 2026-08-30 202702.jpg", ayat: "Wei Hong bermain badminton ____________ dengan gelanggang futsal.", ans: "dekat" },
+                                    { media: "Screenshot 2026-08-30 202702.jpg", ayat: "Openg meletakkan raketnya ____________ dengannya semasa berehat di gelanggang.", ans: "rapat" }
+                                ],
+                                pool: ["hampir", "jauh", "dekat", "rapat"]
+                            }
+                        ]
+                    },
+                    { 
+                        title: "Unit 9: Gaya Hidup Sihat", 
+                        activities: [
+                            {
+                                id: 'u9a1', name: "Aktiviti 1: Pemahaman", type: "mcq-berkaitan", overallImage: "Screenshot 2026-08-30 202730.jpg",
+                                items: [
+                                    { q: "1. Permainan apakah yang dilatih oleh Cikgu Rina?", options: ["Bola jaring", "Bola sepak", "Badminton"], ans: "Bola jaring" },
+                                    { q: "2. Pilih 3 kebaikan bermain bola jaring.", type: "multi", reqCount: 3, options: ["Badan akan menjadi sihat.", "Badan akan berasa lebih cergas dan bertenaga.", "Dapat kawan baharu dari kelas lain.", "Menjadikan kita malas dan letih.", "Membazirkan masa terluang."], ans: ["Badan akan menjadi sihat.", "Badan akan berasa lebih cergas dan bertenaga.", "Dapat kawan baharu dari kelas lain."] },
+                                    { q: "3. Apakah maksud gaya hidup sihat?", options: ["Gaya hidup sihat ialah kita sentiasa menjaga kesihatan dan kebersihan diri serta alam sekitar.", "Makan makanan yang manis setiap hari supaya gembira.", "Bermain permainan video sepanjang malam tanpa tidur."], ans: "Gaya hidup sihat ialah kita sentiasa menjaga kesihatan dan kebersihan diri serta alam sekitar." }
+                                ]
+                            },
+                            {
+                                id: 'u9a2', name: "Aktiviti 2: Kata Adjektif Pancaindera", type: "padan", cols: 3,
+                                targets: [
+                                    { image: "wangi.png", ans: "wangi" },
+                                    { image: "serak.png", ans: "serak" },
+                                    { image: "rata.png", ans: "rata" }
+                                ],
+                                pool: ["wangi", "serak", "rata"]
+                            },
+                            {
+                                id: 'u9a3', name: "Aktiviti 3: Kata Adjektif", type: "kategori-inline",
+                                categories: [
+                                    { id: 'c-jarak', name: "Kata Adjektif Jarak" },
+                                    { id: 'c-perasaan', name: "Kata Adjektif Perasaan" },
+                                    { id: 'c-panca', name: "Kata Adjektif Pancaindera" }
+                                ],
+                                pool: [
+                                    { text: "hampir", ans: 'c-jarak' }, { text: "jauh", ans: 'c-jarak' }, { text: "dekat", ans: 'c-jarak' }, { text: "rapat", ans: 'c-jarak' },
+                                    { text: "suka", ans: 'c-perasaan' }, { text: "sayang", ans: 'c-perasaan' }, { text: "gembira", ans: 'c-perasaan' },
+                                    { text: "wangi", ans: 'c-panca' }, { text: "serak", ans: 'c-panca' }, { text: "rata", ans: 'c-panca' }
+                                ]
+                            }
+                        ]
+                    }
                 ]
             },
             { tema: "TEMA 4: KESELAMATAN", color: "from-orange-400 to-orange-600", units: [] },
@@ -419,7 +559,12 @@
         }
 
         function goHome() {
-            window.location.href = 'index.html';
+            // Sistem SPA berkesan tanpa menggunakan fail terpisah
+            navHistory = ['view-home'];
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById('view-home').classList.remove('hidden');
+            document.getElementById('main-banner').classList.remove('hidden');
+            updateNavButtons();
         }
 
         function updateNavButtons() {
@@ -502,7 +647,6 @@
             stepIndex = 0;
             selectedIndex = null;
             
-            // Format state berdasarkan jenis aktiviti
             if (activeData.type === 'padan' || activeData.type === 'padan-overlay') {
                 activeData.poolState = activeData.pool.map((t, i) => ({ text: t, used: false, id: i }));
             } else if (activeData.type === 'kategori-inline') {
@@ -530,6 +674,7 @@
             else if (activeData.type === 'bacaan') renderBacaan(container);
             else if (activeData.type === 'isi-kosong') renderIsiKosong(container);
             else if (activeData.type === 'mcq-berkaitan') renderMCQBerkaitan(container);
+            else if (activeData.type === 'hotspot-klik') renderHotspotKlik(container);
         }
 
         function tapSelect(poolIndex) {
@@ -537,34 +682,126 @@
             renderActivityView();
         }
 
-        function renderMCQ(container) {
-            if (stepIndex >= activeData.items.length) { showCompletion(); return; }
+        function renderHotspotKlik(container) {
+            const qData = activeData.items[stepIndex];
             
+            if (!activeData.selectedHotspots || activeData.currentQ !== stepIndex) {
+                activeData.selectedHotspots = [];
+                activeData.currentQ = stepIndex;
+            }
+
+            let html = `<div class="flex flex-col md:flex-row gap-8 items-start w-full max-w-6xl mx-auto">`;
+            
+            html += `<div class="w-full md:w-2/3 relative rounded-3xl shadow-2xl border-4 border-white overflow-hidden bg-white">
+                        <img src="${activeData.image}" class="w-full h-auto block select-none pointer-events-none">`;
+            
+            activeData.hotspots.forEach(hs => {
+                const isSelected = activeData.selectedHotspots.includes(hs.id);
+                const styleClass = isSelected ? 'bg-green-400/50 border-4 border-green-600 scale-105 z-10' : 'bg-white/10 hover:bg-white/30 border-2 border-dashed border-gray-800/50';
+                
+                html += `<div onclick="tapHotspot('${hs.id}')" class="absolute rounded-xl transition-all cursor-pointer flex items-center justify-center group ${styleClass}" style="top: ${hs.top}%; left: ${hs.left}%; width: ${hs.w}%; height: ${hs.h}%;">
+                            <div class="absolute -top-12 bg-black text-white font-bold py-1 px-3 rounded-lg text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg z-20">
+                                ${hs.text}
+                            </div>
+                            ${isSelected ? '<i class="fas fa-check-circle text-3xl text-green-700 drop-shadow-md bg-white rounded-full"></i>' : ''}
+                         </div>`;
+            });
+            
+            html += `</div>`;
+            
+            html += `<div class="w-full md:w-1/3 flex flex-col gap-6">
+                        <div class="bg-blue-50 p-6 rounded-3xl shadow-md border-4 border-blue-200">
+                            <h3 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4 leading-snug">${qData.q}</h3>
+                            <div class="flex items-center gap-2 text-lg font-bold text-gray-600 mb-6 bg-white p-3 rounded-xl border-2 border-blue-100">
+                                <span>Pilihan Semasa: </span>
+                                <span class="${activeData.selectedHotspots.length === qData.reqCount ? 'text-green-600 font-black' : 'text-rose-500'} text-2xl">
+                                    ${activeData.selectedHotspots.length} / ${qData.reqCount}
+                                </span>
+                            </div>
+                            <button onclick="semakHotspot()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-4 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${activeData.selectedHotspots.length === qData.reqCount ? 'animate-bounce shadow-yellow-400/50 hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${activeData.selectedHotspots.length === qData.reqCount ? '' : 'disabled'}>
+                                Semak Jawapan!
+                            </button>
+                        </div>
+                        <div class="text-center text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200 shadow-sm mx-auto">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>
+                     </div>`;
+                     
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function tapHotspot(hsId) {
+            const qData = activeData.items[stepIndex];
+            const idx = activeData.selectedHotspots.indexOf(hsId);
+            
+            if (idx > -1) {
+                activeData.selectedHotspots.splice(idx, 1);
+            } else {
+                if (activeData.selectedHotspots.length < qData.reqCount) {
+                    activeData.selectedHotspots.push(hsId);
+                }
+            }
+            renderActivityView();
+        }
+
+        function semakHotspot() {
+            const qData = activeData.items[stepIndex];
+            const selectedObj = activeData.selectedHotspots.map(id => activeData.hotspots.find(h => h.id === id));
+            
+            let isAllCorrect = false;
+            if (qData.targetType === 'any') {
+                isAllCorrect = true; // Bebas pilih
+            } else {
+                isAllCorrect = selectedObj.every(hs => hs.type === qData.targetType);
+            }
+            
+            if (isAllCorrect) {
+                showFeedback(true, '', '', () => { 
+                    stepIndex++; 
+                    if (stepIndex >= activeData.items.length) {
+                        stepIndex--; // Berhenti di skrin akhir
+                        paparTamatAktiviti();
+                    } else {
+                        renderActivityView(); 
+                    }
+                });
+            } else {
+                const wrongOnes = selectedObj.filter(hs => hs.type !== qData.targetType).map(hs => hs.text).join(", ");
+                const expectedText = qData.targetType === 'any' ? 'Mana-mana makanan berkhasiat' : `Makanan jenis ${qData.targetType.toUpperCase()}`;
+                showFeedback(false, expectedText, wrongOnes, () => {
+                    activeData.selectedHotspots = []; renderActivityView();
+                });
+            }
+        }
+
+        function renderMCQ(container) {
             const q = activeData.items[stepIndex];
             
-            let wrongOptions = activeData.pool.filter(opt => opt !== q.ans);
-            wrongOptions = wrongOptions.sort(() => 0.5 - Math.random()).slice(0, 3);
-            let options = [q.ans, ...wrongOptions].sort(() => 0.5 - Math.random());
+            if (!activeData.currentOptions || activeData.currentQ !== stepIndex) {
+                let wrongOptions = activeData.pool.filter(opt => opt !== q.ans);
+                wrongOptions = wrongOptions.sort(() => 0.5 - Math.random()).slice(0, 3);
+                activeData.currentOptions = [q.ans, ...wrongOptions].sort(() => 0.5 - Math.random());
+                activeData.currentAns = q.ans;
+                activeData.currentQ = stepIndex;
+            }
 
             let mediaHtml = '';
             if (q.type === 'video') {
-                mediaHtml = `<div class="bg-black p-2 rounded-xl mb-4 md:mb-0 w-full flex justify-center shadow-lg border-4 border-gray-200">
-                                <video src="${q.media}" controls autoplay class="max-h-[40vh] max-w-full rounded-lg"></video>
-                             </div>`;
+                mediaHtml = `<video src="${q.media}" controls autoplay class="max-h-[40vh] w-full object-cover rounded-2xl border-4 border-gray-200"></video>`;
             } else {
-                mediaHtml = `<img src="${q.media}" alt="Soalan" class="max-h-[40vh] object-contain rounded-xl shadow-lg border-4 border-white mb-4 md:mb-0">`;
+                mediaHtml = `<img src="${q.media}" class="max-h-[40vh] object-contain rounded-2xl border-4 border-white shadow-md">`;
             }
 
             let html = `
                 <div class="flex flex-col md:flex-row gap-6 items-center w-full max-w-5xl mx-auto">
-                    <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="w-full md:w-1/2 flex justify-center bg-gray-100/50 p-4 rounded-3xl shadow-inner">
                         ${mediaHtml}
                     </div>
                     <div class="w-full md:w-1/2 grid grid-cols-1 gap-4">
             `;
             
-            options.forEach((opt, idx) => {
-                html += `<button onclick="checkMCQ(${idx})" class="btn-3d w-full bg-white border-4 border-blue-200 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md">
+            activeData.currentOptions.forEach((opt, idx) => {
+                const safeOpt = opt.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+                html += `<button onclick="checkMCQ('${safeOpt}')" class="btn-3d w-full bg-white border-4 border-blue-200 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors">
                             ${opt}
                          </button>`;
             });
@@ -573,44 +810,104 @@
                      <div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">
                         Soalan ${stepIndex + 1} / ${activeData.items.length}
                      </div>`;
-                     
             container.innerHTML = html;
-            activeData.currentOptions = options; 
-            activeData.currentAns = q.ans;
         }
 
         function renderMCQBerkaitan(container) {
-            if (stepIndex >= activeData.items.length) { showCompletion(); return; }
             const item = activeData.items[stepIndex];
             
-            let html = `<div class="w-full flex flex-col items-center max-w-4xl mx-auto">`;
+            if (!activeData.currentOptions || activeData.currentQ !== stepIndex) {
+                activeData.currentOptions = [...item.options].sort(() => 0.5 - Math.random());
+                activeData.currentAns = item.ans;
+                activeData.currentQ = stepIndex;
+                activeData.multiSelected = []; 
+            }
             
-            html += `<img src="${activeData.overallImage}" class="w-full md:max-w-2xl object-contain rounded-3xl shadow-xl border-4 border-white mb-6">`;
-            html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-6 md:p-8 rounded-3xl shadow-md border-4 border-purple-200 mb-6 text-center text-xl md:text-2xl font-bold text-purple-900">${item.q}</div>`;
+            // Susunan Bersebelahan (Side-by-side)
+            let html = `<div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start w-full max-w-6xl mx-auto">`;
             
-            html += `<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-4">`;
-            let options = [...item.options].sort(() => 0.5 - Math.random());
-            activeData.currentOptions = options;
-            activeData.currentAns = item.ans;
+            // BAHAGIAN KIRI: Gambar Petikan
+            html += `<div class="w-full lg:w-1/2 flex justify-center bg-gray-50/50 p-3 md:p-5 rounded-3xl shadow-inner border-4 border-gray-200 sticky top-4">
+                        <img src="${activeData.overallImage}" class="w-full max-h-[45vh] lg:max-h-[70vh] object-contain rounded-2xl shadow-sm bg-white">
+                     </div>`;
             
-            options.forEach((opt, idx) => {
-                html += `<button onclick="checkMCQ(${idx})" class="btn-3d w-full bg-white border-4 border-blue-300 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-center text-lg hover:bg-blue-50 hover:border-blue-500 shadow-md">${opt}</button>`;
+            // BAHAGIAN KANAN: Soalan & Pilihan Jawapan
+            html += `<div class="w-full lg:w-1/2 flex flex-col gap-4">`;
+            html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-5 md:p-6 rounded-3xl shadow-md border-4 border-purple-200 text-center text-xl md:text-2xl font-bold text-purple-900 leading-snug">${item.q}</div>`;
+            
+            html += `<div class="w-full flex flex-col gap-4">`;
+            activeData.currentOptions.forEach((opt) => {
+                const safeOpt = opt.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+                
+                if (item.type === 'multi') {
+                    const isSelected = activeData.multiSelected.includes(opt);
+                    const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-[1.02] shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50';
+                    const icon = isSelected ? '<i class="fas fa-check-circle mr-3 text-2xl drop-shadow-md flex-shrink-0"></i>' : '<i class="far fa-circle mr-3 text-2xl opacity-50 flex-shrink-0"></i>';
+                    html += `<button onclick="toggleMultiMCQ('${safeOpt}')" class="btn-3d w-full border-4 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl transition-all flex items-center ${btnClass}">${icon}<span>${opt}</span></button>`;
+                } else {
+                    html += `<button onclick="checkMCQ('${safeOpt}')" class="btn-3d w-full bg-white border-4 border-blue-300 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors">${opt}</button>`;
+                }
             });
             html += `</div>`;
-            html += `<div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
-            html += `</div>`;
+            
+            if (item.type === 'multi') {
+                const isReady = activeData.multiSelected.length === item.reqCount;
+                html += `<div class="mt-4 flex flex-col items-center bg-blue-50 p-5 rounded-3xl border-4 border-blue-200 w-full shadow-inner">
+                            <div class="text-xl font-bold text-gray-700 mb-3">Pilihan Semasa: <span class="${isReady ? 'text-green-600 text-2xl' : 'text-rose-500 text-2xl'}">${activeData.multiSelected.length} / ${item.reqCount}</span></div>
+                            <button onclick="checkMultiMCQ()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 px-8 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${isReady ? 'animate-bounce hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${isReady ? '' : 'disabled'}>Semak Jawapan!</button>
+                         </div>`;
+            }
+            
+            html += `<div class="text-center mt-6 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
+            
+            html += `</div></div>`;
             container.innerHTML = html;
         }
 
-        function checkMCQ(optIndex) {
-            const selected = activeData.currentOptions[optIndex];
-            const correct = activeData.currentAns;
-            
-            if (selected === correct) {
-                stepIndex++;
-                showFeedback(true, correct, selected, () => renderActivityView());
+        function toggleMultiMCQ(opt) {
+            const item = activeData.items[stepIndex];
+            const idx = activeData.multiSelected.indexOf(opt);
+            if (idx > -1) {
+                activeData.multiSelected.splice(idx, 1);
             } else {
-                showFeedback(false, correct, selected, () => renderActivityView());
+                if (activeData.multiSelected.length < item.reqCount) {
+                    activeData.multiSelected.push(opt);
+                }
+            }
+            renderActivityView();
+        }
+
+        function checkMultiMCQ() {
+            const item = activeData.items[stepIndex];
+            const correctAns = item.ans;
+            const isAllCorrect = activeData.multiSelected.every(ans => correctAns.includes(ans)) && activeData.multiSelected.length === correctAns.length;
+
+            if (isAllCorrect) {
+                showFeedback(true, '', '', () => { 
+                    stepIndex++; 
+                    activeData.multiSelected = [];
+                    if (stepIndex >= activeData.items.length) { stepIndex--; paparTamatAktiviti(); }
+                    else renderActivityView(); 
+                });
+            } else {
+                const wrongOnes = activeData.multiSelected.filter(ans => !correctAns.includes(ans)).join(" & ");
+                const expected = correctAns.join("<br><br>• ");
+                showFeedback(false, "• " + expected, wrongOnes || "Sila lengkapkan pilihan", () => {
+                    activeData.multiSelected = []; renderActivityView();
+                });
+            }
+        }
+
+        function checkMCQ(selectedSafe) {
+            const correct = activeData.currentAns;
+            if (selectedSafe === correct) {
+                showFeedback(true, correct, selectedSafe, () => { 
+                    stepIndex++; 
+                    if (stepIndex >= activeData.items.length) { stepIndex--; paparTamatAktiviti(); }
+                    else renderActivityView(); 
+                });
+            } else {
+                showFeedback(false, correct, selectedSafe, () => renderActivityView());
             }
         }
 
@@ -621,16 +918,13 @@
             activeData.targets.forEach((t, i) => {
                 const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
                 const isTargeted = selectedIndex !== null;
-                const hoverClass = isTargeted ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-gray-50';
+                const hoverClass = isTargeted ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse shadow-rose-200' : 'border-gray-300 bg-gray-50';
                 
                 let contentHtml = '';
-                if (t.image) {
-                    contentHtml = `<img src="${t.image}" class="h-24 md:h-32 object-contain mx-auto mb-4 rounded-xl border-2 border-gray-100">`;
-                } else if (t.text) {
-                    contentHtml = `<div class="text-base md:text-xl font-bold text-center mb-4 text-gray-700 leading-snug">${t.text}</div>`;
-                }
+                if (t.image) contentHtml = `<img src="${t.image}" class="h-24 md:h-32 object-contain mx-auto mb-4 rounded-xl border-2 border-gray-100">`;
+                else if (t.text) contentHtml = `<div class="text-base md:text-xl font-bold text-center mb-4 text-gray-700 leading-snug">${t.text}</div>`;
                 
-                html += `<div class="bg-white p-4 rounded-2xl shadow-lg border-4 border-gray-100 flex flex-col justify-between h-full">
+                html += `<div class="bg-white p-4 rounded-2xl shadow-lg border-4 border-gray-100 flex flex-col justify-between h-full hover:border-blue-200 transition-colors">
                             ${contentHtml}`;
                             
                 if (placedItem) {
@@ -638,13 +932,13 @@
                                 <i class="fas fa-check-circle mr-2"></i>${placedItem.text}
                              </div>`;
                 } else {
-                    html += `<div onclick="tapPlace(${i})" class="w-full h-14 border-4 border-dashed rounded-xl flex items-center justify-center font-bold transition-all ${hoverClass}"></div>`;
+                    html += `<div onclick="tapPlaceNormal(${i})" class="w-full h-14 border-4 border-dashed rounded-xl flex items-center justify-center font-bold transition-all ${hoverClass}"></div>`;
                 }
                 html += `</div>`;
             });
-            html += `</div>`;
             
-            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-4xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider">PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
+            html += `</div>`;
+            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-4xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider"><i class="fas fa-hand-pointer mr-2"></i>PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
             
             activeData.poolState.forEach((p, i) => {
                 if (p.used) return;
@@ -653,202 +947,6 @@
                 html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
             });
             html += `</div></div>`;
-            container.innerHTML = html;
-        }
-
-        function renderPadan3Kolum(container) {
-            let html = `<div class="grid grid-cols-3 gap-2 md:gap-6 mb-8 w-full max-w-5xl items-stretch">`;
-            html += `<div class="font-bold text-center text-rose-500 mb-2 text-xl md:text-2xl font-chewy">NAMA</div>
-                     <div class="font-bold text-center text-blue-500 mb-2 text-xl md:text-2xl font-chewy">GAMBAR</div>
-                     <div class="font-bold text-center text-teal-500 mb-2 text-xl md:text-2xl font-chewy">PENJODOH BILANGAN</div>`;
-
-            activeData.items.forEach((item, i) => {
-                const targetNama = activeData.targetsNama[i];
-                const placedNama = targetNama.placedId !== undefined ? activeData.poolState.find(p => p.id === targetNama.placedId) : null;
-                const hoverClassNama = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-gray-50';
-                
-                html += `<div class="flex items-center justify-center h-full w-full">`;
-                if (placedNama) {
-                    html += `<div class="w-full p-2 md:p-4 bg-green-100 text-green-800 border-4 border-green-500 font-bold rounded-xl text-center shadow-md text-sm md:text-xl">${placedNama.text}</div>`;
-                } else {
-                    html += `<div onclick="tapPlace3Kolum('nama', ${i})" class="w-full h-16 md:h-20 border-4 border-dashed rounded-xl transition-all ${hoverClassNama}"></div>`;
-                }
-                html += `</div>`;
-
-                html += `<div class="flex items-center justify-center bg-white rounded-2xl shadow-sm border-2 border-gray-100 p-2"><img src="${item.image}" class="h-16 md:h-24 object-contain"></div>`;
-
-                const targetPenjodoh = activeData.targetsPenjodoh[i];
-                const placedPenjodoh = targetPenjodoh.placedId !== undefined ? activeData.poolState.find(p => p.id === targetPenjodoh.placedId) : null;
-                const hoverClassPenjodoh = selectedIndex !== null ? 'border-teal-400 bg-teal-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-gray-50';
-                
-                html += `<div class="flex items-center justify-center h-full w-full">`;
-                if (placedPenjodoh) {
-                    html += `<div class="w-full p-2 md:p-4 bg-green-100 text-green-800 border-4 border-green-500 font-bold rounded-xl text-center shadow-md text-sm md:text-xl">${placedPenjodoh.text}</div>`;
-                } else {
-                    html += `<div onclick="tapPlace3Kolum('penjodoh', ${i})" class="w-full h-16 md:h-20 border-4 border-dashed rounded-xl transition-all ${hoverClassPenjodoh}"></div>`;
-                }
-                html += `</div>`;
-            });
-            html += `</div>`;
-
-            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-4xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider">PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
-            activeData.poolState.forEach((p, i) => {
-                if (p.used) return;
-                const isSelected = selectedIndex === i;
-                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300';
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
-            });
-            html += `</div></div>`;
-            container.innerHTML = html;
-        }
-
-        function tapPlace3Kolum(type, index) {
-            if (selectedIndex === null) return;
-            const poolItem = activeData.poolState[selectedIndex];
-            const targetList = type === 'nama' ? activeData.targetsNama : activeData.targetsPenjodoh;
-            const target = targetList[index];
-
-            if (poolItem.text === target.ans) {
-                target.placedId = poolItem.id;
-                poolItem.used = true;
-                selectedIndex = null;
-                renderActivityView();
-                
-                if (activeData.targetsNama.every(t => t.placedId !== undefined) && activeData.targetsPenjodoh.every(t => t.placedId !== undefined)) {
-                    setTimeout(showCompletion, 600);
-                }
-            } else {
-                selectedIndex = null;
-                showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
-            }
-        }
-
-        function renderSusunAyat(container) {
-            if (stepIndex >= activeData.items.length) { showCompletion(); return; }
-            const item = activeData.items[stepIndex];
-            
-            if (!activeData.currentItem || activeData.currentItem.ans !== item.ans) {
-                activeData.currentItem = item;
-                const correctWords = item.ans.trim().split(/\s+/);
-                activeData.targets = correctWords.map(w => ({ ans: w, placedId: undefined }));
-                let shuffledWords = [...correctWords].sort(() => 0.5 - Math.random());
-                activeData.poolState = shuffledWords.map((w, i) => ({ text: w, used: false, id: i }));
-            }
-
-            let html = `<div class="w-full max-w-4xl mx-auto flex flex-col items-center">`;
-            html += `<img src="${item.media}" class="max-h-[40vh] object-contain rounded-2xl shadow-xl border-4 border-white mb-8">`;
-            
-            html += `<div class="flex flex-wrap gap-2 justify-center w-full mb-8 bg-blue-50 p-6 rounded-3xl shadow-inner border-4 border-blue-100 min-h-[100px] items-center">`;
-            activeData.targets.forEach((t, i) => {
-                const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
-                if (placedItem) {
-                    html += `<div class="p-3 md:p-4 bg-green-100 text-green-800 border-4 border-green-500 font-bold rounded-xl shadow-md text-lg md:text-xl">${placedItem.text}</div>`;
-                } else {
-                    const hoverClass = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-white';
-                    html += `<div onclick="tapPlaceSusun(${i})" class="h-14 md:h-16 w-24 md:w-28 border-4 border-dashed rounded-xl transition-all ${hoverClass}"></div>`;
-                }
-            });
-            html += `</div>`;
-
-            html += `<div class="flex flex-wrap gap-3 justify-center w-full">`;
-            activeData.poolState.forEach((p, i) => {
-                if (p.used) return;
-                const isSelected = selectedIndex === i;
-                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-50';
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
-            });
-            html += `</div>`;
-            html += `<div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
-            html += `</div>`;
-            container.innerHTML = html;
-        }
-
-        function tapPlaceSusun(targetIndex) {
-            if (selectedIndex === null) return;
-            const poolItem = activeData.poolState[selectedIndex];
-            const target = activeData.targets[targetIndex];
-
-            if (poolItem.text === target.ans) {
-                target.placedId = poolItem.id;
-                poolItem.used = true;
-                selectedIndex = null;
-                renderActivityView();
-                
-                if (activeData.targets.every(t => t.placedId !== undefined)) {
-                    setTimeout(() => {
-                        stepIndex++;
-                        renderActivityView();
-                    }, 1200);
-                }
-            } else {
-                selectedIndex = null;
-                showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
-            }
-        }
-
-        function renderIsiKosong(container) {
-            if (stepIndex >= activeData.items.length) { showCompletion(); return; }
-            const item = activeData.items[stepIndex];
-            
-            if (!activeData.currentItem || activeData.currentItem.ans !== item.ans) {
-                activeData.currentItem = item;
-                activeData.poolState = activeData.pool.map((w, i) => ({ text: w, used: false, id: i }));
-                activeData.target = { ans: item.ans, placedId: undefined };
-            }
-
-            let html = `<div class="flex flex-col md:flex-row gap-8 items-center w-full max-w-5xl mx-auto">`;
-            html += `<div class="w-full md:w-1/2 flex justify-center"><img src="${item.media}" class="max-h-[45vh] object-contain rounded-2xl shadow-xl border-4 border-white"></div>`;
-            
-            html += `<div class="w-full md:w-1/2 flex flex-col gap-6 items-center">`;
-            
-            const placedItem = activeData.target.placedId !== undefined ? activeData.poolState.find(p => p.id === activeData.target.placedId) : null;
-            let blankHtml = '';
-            if (placedItem) {
-                 blankHtml = `<span class="px-4 py-2 mx-2 bg-green-100 text-green-800 border-b-4 border-green-500 font-bold rounded-xl inline-block shadow-sm">${placedItem.text}</span>`;
-            } else {
-                 const hoverClass = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-400 bg-gray-100';
-                 blankHtml = `<span onclick="tapPlaceIsiKosong()" class="px-10 py-4 mx-2 border-b-4 border-dashed rounded-xl inline-block transition-all ${hoverClass}"></span>`;
-            }
-
-            let sentenceHtml = item.ayat.replace(/_+/, blankHtml);
-            html += `<div class="text-2xl md:text-3xl font-bold text-gray-700 bg-white p-8 rounded-3xl shadow-lg border-4 border-blue-100 leading-relaxed text-center w-full">${sentenceHtml}</div>`;
-
-            html += `<div class="flex flex-wrap gap-3 justify-center w-full bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner">`;
-            activeData.poolState.forEach((p, i) => {
-                if (p.used && p.text === activeData.target.ans && activeData.target.placedId === p.id) return;
-                const isSelected = selectedIndex === i;
-                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-100';
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
-            });
-            html += `</div>`;
-            html += `<div class="text-center mt-4 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
-            html += `</div></div>`;
-            
-            container.innerHTML = html;
-        }
-
-        function tapPlaceIsiKosong() {
-            if (selectedIndex === null) return;
-            const poolItem = activeData.poolState[selectedIndex];
-            
-            if (poolItem.text === activeData.target.ans) {
-                activeData.target.placedId = poolItem.id;
-                selectedIndex = null;
-                renderActivityView();
-                setTimeout(() => { stepIndex++; renderActivityView(); }, 1200);
-            } else {
-                selectedIndex = null;
-                showFeedback(false, activeData.target.ans, poolItem.text, () => renderActivityView());
-            }
-        }
-
-        function renderBacaan(container) {
-            let html = `<div class="w-full flex flex-col items-center gap-8">
-                <img src="${activeData.image}" class="max-w-full md:max-w-3xl rounded-3xl shadow-2xl border-4 border-white">
-                <button onclick="showCompletion()" class="btn-3d bg-green-500 hover:bg-green-400 text-white font-chewy text-3xl py-4 px-12 rounded-3xl border-b-[6px] border-green-700 shadow-xl bounce-in">
-                    Selesai Membaca!
-                </button>
-            </div>`;
             container.innerHTML = html;
         }
 
@@ -859,33 +957,48 @@
             activeData.targets.forEach((t, i) => {
                 const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
                 const isTargeted = selectedIndex !== null;
-                
-                html += `<div class="absolute" style="top: ${t.top}%; left: ${t.left}%; width: ${t.w}%; height: ${t.h}%;">`;
+                html += `<div class="absolute flex items-center justify-center" style="top: ${t.top}%; left: ${t.left}%; width: ${t.w}%; height: ${t.h}%;">`;
                 
                 if (placedItem) {
-                    html += `<div class="w-full h-full bg-green-100 text-green-800 border-4 border-green-600 font-bold flex items-center justify-center text-[10px] md:text-base shadow-lg overflow-hidden p-1 text-center leading-tight rounded-xl">
-                                ${placedItem.text}
+                    let innerContent = placedItem.text.match(/\.(jpeg|jpg|gif|png)$/) != null
+                        ? `<img src="${placedItem.text}" class="w-full h-full object-contain p-1">`
+                        : placedItem.text;
+
+                    html += `<div class="w-full h-full bg-white text-green-800 border-4 border-green-600 font-bold flex items-center justify-center text-xs md:text-base shadow-lg overflow-hidden p-0 text-center leading-tight rounded-xl">
+                                ${innerContent}
                              </div>`;
                 } else {
-                    const hoverClass = isTargeted ? 'border-rose-500 bg-rose-300/60 animate-pulse ring-4 ring-rose-300 cursor-pointer' : 'border-gray-800 border-dashed bg-white/40';
-                    html += `<div onclick="tapPlace(${i})" class="w-full h-full border-4 rounded-xl shadow-md backdrop-blur-sm transition-all ${hoverClass}"></div>`;
+                    const hoverClass = isTargeted ? 'border-rose-500 bg-rose-300/60 animate-pulse ring-4 ring-rose-300 cursor-pointer' : 'bg-transparent cursor-pointer hover:bg-black/20';
+                    html += `<div onclick="tapPlaceOverlay(${i})" class="w-full h-full rounded-xl transition-all ${hoverClass}"></div>`;
                 }
                 html += `</div>`;
             });
             
             html += `</div>`;
-            html += `<div class="flex flex-wrap gap-3 justify-center w-full max-w-4xl mx-auto bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner">`;
+            html += `<div class="flex flex-wrap gap-4 md:gap-6 justify-center w-full max-w-4xl mx-auto bg-blue-50 p-6 md:p-8 rounded-3xl border-4 border-blue-200 shadow-inner">`;
             activeData.poolState.forEach((p, i) => {
                 if (p.used) return;
-                const isSelected = selectedIndex === i;
-                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
+                const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
+                
+                let poolContent = p.text.match(/\.(jpeg|jpg|gif|png)$/) != null
+                    ? `<img src="${p.text}" class="h-20 md:h-32 w-auto object-contain pointer-events-none drop-shadow-md">`
+                    : p.text;
+
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-8 font-bold p-3 md:p-5 rounded-2xl text-lg md:text-xl transition-all flex items-center justify-center min-w-[100px] md:min-w-[140px] ${btnClass}">${poolContent}</button>`;
             });
             html += `</div>`;
             container.innerHTML = html;
         }
 
-        function tapPlace(targetIndex) {
+        function tapPlaceNormal(targetIndex) {
+            tapPlaceLogic(targetIndex, renderPadan);
+        }
+
+        function tapPlaceOverlay(targetIndex) {
+            tapPlaceLogic(targetIndex, renderPadanOverlay);
+        }
+
+        function tapPlaceLogic(targetIndex, renderFunc) {
             if (selectedIndex === null) return;
             const poolItem = activeData.poolState[selectedIndex];
             const target = activeData.targets[targetIndex];
@@ -895,9 +1008,61 @@
                 poolItem.used = true;
                 selectedIndex = null;
                 renderActivityView();
-                
+                if (activeData.targets.every(t => t.placedId !== undefined)) setTimeout(paparTamatAktiviti, 600);
+            } else {
+                selectedIndex = null;
+                showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
+            }
+        }
+
+        function renderSusunAyat(container) {
+            const item = activeData.items[stepIndex];
+            
+            if (!activeData.currentItem || activeData.currentItem.ans !== item.ans) {
+                activeData.currentItem = item;
+                const words = item.ans.trim().split(/\s+/);
+                activeData.targets = words.map(w => ({ ans: w, placedId: undefined }));
+                activeData.poolState = [...words].sort(() => 0.5 - Math.random()).map((w, i) => ({ text: w, used: false, id: i }));
+            }
+
+            let html = `<div class="w-full max-w-4xl mx-auto flex flex-col items-center">`;
+            html += `<img src="${item.media}" class="max-h-[40vh] object-contain rounded-2xl shadow-xl border-4 border-white mb-8">`;
+            
+            html += `<div class="flex flex-wrap gap-2 justify-center w-full mb-8 bg-blue-50 p-6 rounded-3xl shadow-inner border-4 border-blue-100 min-h-[100px] items-center">`;
+            activeData.targets.forEach((t, i) => {
+                const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
+                if (placedItem) html += `<div class="p-3 md:p-4 bg-green-100 text-green-800 border-4 border-green-500 font-bold rounded-xl shadow-md text-lg md:text-xl">${placedItem.text}</div>`;
+                else html += `<div onclick="tapPlaceSusun(${i})" class="h-14 md:h-16 w-24 md:w-28 border-4 border-dashed rounded-xl transition-all ${selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-white'}"></div>`;
+            });
+            html += `</div>`;
+
+            html += `<div class="flex flex-wrap gap-3 justify-center w-full">`;
+            activeData.poolState.forEach((p, i) => {
+                if (p.used) return;
+                const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-50';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
+            });
+            html += `</div>`;
+            html += `<div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div></div>`;
+            container.innerHTML = html;
+        }
+
+        function tapPlaceSusun(tIdx) {
+            if (selectedIndex === null) return;
+            const poolItem = activeData.poolState[selectedIndex];
+            const target = activeData.targets[tIdx];
+
+            if (poolItem.text === target.ans) {
+                target.placedId = poolItem.id;
+                poolItem.used = true;
+                selectedIndex = null;
+                renderActivityView();
                 if (activeData.targets.every(t => t.placedId !== undefined)) {
-                    setTimeout(showCompletion, 600);
+                    setTimeout(() => { 
+                        stepIndex++; 
+                        if (stepIndex >= activeData.items.length) { stepIndex--; paparTamatAktiviti(); }
+                        else renderActivityView(); 
+                    }, 1200);
                 }
             } else {
                 selectedIndex = null;
@@ -905,14 +1070,60 @@
             }
         }
 
+        function renderIsiKosong(container) {
+            const item = activeData.items[stepIndex];
+            
+            if (!activeData.currentItem || activeData.currentItem.ans !== item.ans) {
+                activeData.currentItem = item;
+                activeData.poolState = activeData.pool.map((w, i) => ({ text: w, used: false, id: i }));
+                activeData.target = { ans: item.ans, placedId: undefined };
+            }
+
+            let html = `<div class="flex flex-col md:flex-row gap-8 items-center w-full max-w-5xl mx-auto">`;
+            html += `<div class="w-full md:w-1/2 flex justify-center"><img src="${item.media}" class="max-h-[45vh] object-contain rounded-2xl shadow-xl border-4 border-white"></div>`;
+            html += `<div class="w-full md:w-1/2 flex flex-col gap-6 items-center">`;
+            
+            const placedItem = activeData.target.placedId !== undefined ? activeData.poolState.find(p => p.id === activeData.target.placedId) : null;
+            const blankHtml = placedItem ? `<span class="px-4 py-2 mx-2 bg-green-100 text-green-800 border-b-4 border-green-500 font-bold rounded-xl inline-block shadow-sm">${placedItem.text}</span>` : `<span onclick="tapPlaceIsiKosong()" class="px-10 py-4 mx-2 border-b-4 border-dashed rounded-xl inline-block transition-all ${selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-400 bg-gray-100'}"></span>`;
+
+            html += `<div class="text-2xl md:text-3xl font-bold text-gray-700 bg-white p-8 rounded-3xl shadow-lg border-4 border-blue-100 leading-relaxed text-center w-full">${item.ayat.replace(/_+/, blankHtml)}</div>`;
+            html += `<div class="flex flex-wrap gap-3 justify-center w-full bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner">`;
+            
+            activeData.poolState.forEach((p, i) => {
+                if (p.used && p.text === activeData.target.ans && activeData.target.placedId === p.id) return;
+                const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-100';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
+            });
+            
+            html += `</div><div class="text-center mt-4 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div></div></div>`;
+            container.innerHTML = html;
+        }
+
+        function tapPlaceIsiKosong() {
+            if (selectedIndex === null) return;
+            const poolItem = activeData.poolState[selectedIndex];
+            if (poolItem.text === activeData.target.ans) {
+                activeData.target.placedId = poolItem.id;
+                selectedIndex = null;
+                renderActivityView();
+                setTimeout(() => { 
+                    stepIndex++; 
+                    if (stepIndex >= activeData.items.length) { stepIndex--; paparTamatAktiviti(); }
+                    else renderActivityView(); 
+                }, 1200);
+            } else {
+                selectedIndex = null;
+                showFeedback(false, activeData.target.ans, poolItem.text, () => renderActivityView());
+            }
+        }
+
         function renderKategoriInline(container) {
-            let html = `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mb-8">`;
+            let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-8 max-w-6xl mx-auto">`;
             activeData.categories.forEach(cat => {
                 const itemsInCat = activeData.pool.filter(p => p.catId === cat.id);
-                html += `<div class="bg-white border-4 border-purple-200 rounded-3xl p-6 shadow-xl min-h-[250px] flex flex-col">
+                html += `<div class="bg-white border-4 border-purple-200 rounded-3xl p-6 shadow-xl min-h-[250px] flex flex-col hover:border-purple-300 transition-colors">
                             <h3 class="text-2xl font-chewy text-purple-600 text-center border-b-4 border-dashed border-purple-100 pb-3 mb-4">${cat.name}</h3>
-                            <div onclick="tapPlaceKategori('${cat.id}')" class="flex-grow flex flex-col gap-3 rounded-2xl p-4 ${selectedIndex !== null ? 'bg-purple-50 border-4 border-dashed border-purple-400 cursor-pointer animate-pulse' : 'bg-gray-50 border-4 border-dashed border-transparent'} transition-colors">
-                            `;
+                            <div onclick="tapPlaceKategori('${cat.id}')" class="flex-grow flex flex-col gap-3 rounded-2xl p-4 transition-colors ${selectedIndex !== null && !activeData.isChecked ? 'bg-purple-50 border-4 border-dashed border-purple-400 cursor-pointer animate-pulse' : 'bg-gray-50 border-4 border-dashed border-transparent'}">`;
                             
                 itemsInCat.forEach(item => {
                     let styleClass = 'bg-blue-100 text-blue-800 border-blue-300';
@@ -922,31 +1133,24 @@
                         styleClass = isCorrect ? 'bg-green-100 text-green-800 border-green-500 shadow-md' : 'bg-red-50 text-red-500 border-red-300 line-through opacity-80';
                         icon = isCorrect ? '<i class="fas fa-check-circle text-green-600 mr-2"></i>' : '<i class="fas fa-times-circle text-red-500 mr-2"></i>';
                     }
-                    html += `<div onclick="kembalikanItemKategori(${item.id}); event.stopPropagation();" class="p-3 border-4 rounded-xl font-bold text-center cursor-pointer text-lg ${styleClass}">
-                                ${icon}${item.text}
-                             </div>`;
+                    html += `<div onclick="kembalikanItemKategori(${item.id}); event.stopPropagation();" class="p-3 border-4 rounded-xl font-bold text-center cursor-pointer text-lg ${styleClass}">${icon}${item.text}</div>`;
                 });
                 
-                html += `   </div></div>`;
+                html += `</div></div>`;
             });
             html += `</div>`;
             
             if (!activeData.isChecked && activeData.pool.every(p => p.catId !== null)) {
-                html += `<button onclick="semakKategori()" class="btn-3d w-full max-w-sm mx-auto mb-8 bg-yellow-400 text-yellow-900 font-chewy text-3xl py-4 rounded-3xl border-b-[6px] border-yellow-600 shadow-xl block">
-                            Semak Jawapan
-                         </button>`;
+                html += `<button onclick="semakKategori()" class="btn-3d w-full max-w-sm mx-auto mb-8 bg-yellow-400 text-yellow-900 font-chewy text-3xl py-4 rounded-3xl border-b-[6px] border-yellow-600 shadow-xl block animate-bounce hover:bg-yellow-300">Semak Jawapan</button>`;
             } else if (activeData.isChecked) {
-                html += `<button onclick="showCompletion()" class="btn-3d w-full max-w-sm mx-auto mb-8 bg-blue-500 text-white font-chewy text-3xl py-4 rounded-3xl border-b-[6px] border-blue-700 shadow-xl block bounce-in">
-                            Selesai Seterusnya!
-                         </button>`;
+                html += `<button onclick="paparTamatAktiviti()" class="btn-3d w-full max-w-sm mx-auto mb-8 bg-blue-500 text-white font-chewy text-3xl py-4 rounded-3xl border-b-[6px] border-blue-700 shadow-xl block bounce-in hover:bg-blue-400">Selesai Berbincang!</button>`;
             }
 
             if (!activeData.isChecked) {
                 html += `<div class="flex flex-wrap gap-3 justify-center w-full max-w-4xl mx-auto bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner">`;
-                activeData.pool.forEach((p) => {
+                activeData.pool.forEach(p => {
                     if (p.catId !== null) return;
-                    const isSelected = selectedIndex === p.id;
-                    const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
+                    const btnClass = selectedIndex === p.id ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
                     html += `<button onclick="tapSelect(${p.id})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
                 });
                 html += `</div>`;
@@ -956,20 +1160,66 @@
 
         function tapPlaceKategori(catId) {
             if (selectedIndex === null || activeData.isChecked) return;
-            const item = activeData.pool.find(p => p.id === selectedIndex);
-            item.catId = catId;
+            activeData.pool.find(p => p.id === selectedIndex).catId = catId;
             selectedIndex = null;
             renderActivityView();
         }
         function kembalikanItemKategori(itemId) {
             if (activeData.isChecked) return;
-            const item = activeData.pool.find(p => p.id === itemId);
-            item.catId = null;
+            activeData.pool.find(p => p.id === itemId).catId = null;
             renderActivityView();
         }
-        function semakKategori() {
-            activeData.isChecked = true;
-            renderActivityView();
+        function semakKategori() { activeData.isChecked = true; renderActivityView(); }
+
+        function renderBacaan(container) {
+            container.innerHTML = `<div class="w-full flex flex-col items-center gap-8"><img src="${activeData.image}" class="max-w-full md:max-w-3xl rounded-3xl shadow-2xl border-4 border-white"><button onclick="paparTamatAktiviti()" class="btn-3d bg-green-500 hover:bg-green-400 text-white font-chewy text-3xl py-4 px-12 rounded-3xl border-b-[6px] border-green-700 shadow-xl bounce-in">Selesai Membaca!</button></div>`;
+        }
+
+        function renderPadan3Kolum(container) {
+            let html = `<div class="grid grid-cols-3 gap-2 md:gap-6 mb-8 w-full max-w-5xl items-stretch">
+                            <div class="font-bold text-center text-rose-500 mb-2 text-xl md:text-2xl font-chewy">NAMA</div>
+                            <div class="font-bold text-center text-blue-500 mb-2 text-xl md:text-2xl font-chewy">GAMBAR</div>
+                            <div class="font-bold text-center text-teal-500 mb-2 text-xl md:text-2xl font-chewy">PENJODOH BILANGAN</div>`;
+
+            activeData.items.forEach((item, i) => {
+                const pNama = activeData.targetsNama[i].placedId !== undefined ? activeData.poolState.find(p => p.id === activeData.targetsNama[i].placedId) : null;
+                const hNama = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-gray-50';
+                html += `<div class="flex items-center justify-center h-full w-full">`;
+                if (pNama) html += `<div class="w-full p-2 md:p-4 bg-green-100 text-green-800 border-4 border-green-500 font-bold rounded-xl text-center shadow-md text-sm md:text-xl">${pNama.text}</div>`;
+                else html += `<div onclick="tapPlace3Kolum('nama', ${i})" class="w-full h-16 md:h-20 border-4 border-dashed rounded-xl transition-all ${hNama}"></div>`;
+                html += `</div><div class="flex items-center justify-center bg-white rounded-2xl shadow-sm border-2 border-gray-100 p-2"><img src="${item.image}" class="h-16 md:h-24 object-contain"></div>`;
+
+                const pPenj = activeData.targetsPenjodoh[i].placedId !== undefined ? activeData.poolState.find(p => p.id === activeData.targetsPenjodoh[i].placedId) : null;
+                const hPenj = selectedIndex !== null ? 'border-teal-400 bg-teal-50 cursor-pointer animate-pulse' : 'border-gray-300 bg-gray-50';
+                html += `<div class="flex items-center justify-center h-full w-full">`;
+                if (pPenj) html += `<div class="w-full p-2 md:p-4 bg-green-100 text-green-800 border-4 border-green-500 font-bold rounded-xl text-center shadow-md text-sm md:text-xl">${pPenj.text}</div>`;
+                else html += `<div onclick="tapPlace3Kolum('penjodoh', ${i})" class="w-full h-16 md:h-20 border-4 border-dashed rounded-xl transition-all ${hPenj}"></div>`;
+                html += `</div>`;
+            });
+            
+            html += `</div><div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-4xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider"><i class="fas fa-hand-pointer mr-2"></i>PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
+            activeData.poolState.forEach((p, i) => {
+                if (p.used) return;
+                const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
+            });
+            html += `</div></div>`;
+            container.innerHTML = html;
+        }
+
+        function tapPlace3Kolum(type, index) {
+            if (selectedIndex === null) return;
+            const poolItem = activeData.poolState[selectedIndex];
+            const target = type === 'nama' ? activeData.targetsNama[index] : activeData.targetsPenjodoh[index];
+
+            if (poolItem.text === target.ans) {
+                target.placedId = poolItem.id; poolItem.used = true; selectedIndex = null;
+                renderActivityView();
+                if (activeData.targetsNama.every(t => t.placedId !== undefined) && activeData.targetsPenjodoh.every(t => t.placedId !== undefined)) setTimeout(paparTamatAktiviti, 600);
+            } else {
+                selectedIndex = null;
+                showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
+            }
         }
 
         function showFeedback(isCorrect, rightAns, wrongAns, callback) {
@@ -977,7 +1227,6 @@
             const icon = document.getElementById('feedback-icon');
             const title = document.getElementById('feedback-title');
             const msg = document.getElementById('feedback-message');
-            const btn = document.getElementById('btn-next');
             
             if (isCorrect) {
                 icon.innerHTML = '<span class="text-green-500 drop-shadow-md">🌟</span>';
@@ -988,35 +1237,31 @@
                 icon.innerHTML = '<span class="text-rose-500 drop-shadow-md">💡</span>';
                 title.innerText = 'Cuba Lagi!';
                 title.className = 'text-5xl font-chewy text-rose-500 mb-4 drop-shadow-sm';
-                msg.innerHTML = `Jawapan anda kurang tepat.<br><br><span class="text-base text-gray-400">Jawapan sebenar:</span><br><span class="text-blue-600 text-2xl font-bold bg-blue-50 p-2 rounded-lg inline-block mt-2 border-2 border-blue-100">${rightAns}</span>`;
+                msg.innerHTML = `Jawapan anda kurang tepat.<br><br><span class="text-base text-gray-400">Jawapan sebenar:</span><br><span class="text-blue-600 text-xl font-bold bg-blue-50 p-2 md:p-3 rounded-lg inline-block mt-2 border-2 border-blue-100">${rightAns}</span>`;
             }
             
-            btn.onclick = () => {
-                modal.classList.add('hidden');
-                if (callback) callback();
-            };
+            document.getElementById('btn-next').innerText = 'Seterusnya';
+            document.getElementById('btn-next').onclick = () => { modal.classList.add('hidden'); if (callback) callback(); };
             modal.classList.remove('hidden');
         }
 
-        function showCompletion() {
+        function paparTamatAktiviti() {
             const modal = document.getElementById('modal-feedback');
             document.getElementById('feedback-icon').innerHTML = '<span class="drop-shadow-lg">🏆</span>';
             const title = document.getElementById('feedback-title');
             title.innerText = 'Tahniah!';
             title.className = 'text-5xl font-chewy text-yellow-500 mb-4 drop-shadow-sm';
-            
             document.getElementById('feedback-message').innerHTML = `Anda telah berjaya melengkapkan aktiviti ini dengan cemerlang!`;
             
-            const btnNext = document.getElementById('btn-next');
-            btnNext.innerText = 'Kembali ke Unit';
-            btnNext.onclick = () => {
+            document.getElementById('btn-next').innerText = 'Tutup & Bincang';
+            document.getElementById('btn-next').onclick = () => {
                 modal.classList.add('hidden');
-                goBack();
+                // Skrin dibiarkan supaya guru boleh bincang dengan murid pada soalan terakhir
             };
             modal.classList.remove('hidden');
         }
 
-        // Init App on load
+        // Start App
         window.onload = initApp;
 
     </script>
