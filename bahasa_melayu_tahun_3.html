@@ -65,7 +65,6 @@
 
     <main class="max-w-6xl mx-auto px-4 mt-6">
         
-        <!-- VIEW 1: HOME (Grid Tema) -->
         <section id="view-home" class="view-section fade-in">
             <div class="bg-white/60 backdrop-blur-md p-6 md:p-10 rounded-[2.5rem] shadow-2xl border-4 border-white max-w-5xl mx-auto relative overflow-hidden">
                 <div class="absolute top-0 right-0 -mt-4 -mr-4 text-6xl opacity-30 animate-pulse">🎈</div>
@@ -75,7 +74,6 @@
             </div>
         </section>
 
-        <!-- VIEW 2: SENARAI UNIT (Center Aligned) -->
         <section id="view-units" class="view-section hidden fade-in">
             <div class="flex flex-col justify-center items-center min-h-[65vh] w-full max-w-5xl mx-auto">
                 <h2 id="title-tema" class="text-3xl md:text-5xl text-center font-chewy text-purple-600 mb-8 drop-shadow-md bg-white px-8 py-4 rounded-3xl border-4 border-purple-200 shadow-lg"></h2>
@@ -85,7 +83,6 @@
             </div>
         </section>
 
-        <!-- VIEW 3: SENARAI AKTIVITI -->
         <section id="view-activities" class="view-section hidden fade-in">
             <h2 id="title-unit" class="text-3xl md:text-4xl text-center font-chewy text-teal-600 mb-8 drop-shadow-md bg-white py-4 rounded-3xl border-4 border-teal-200 px-4 shadow-lg"></h2>
             <div id="activity-list" class="flex flex-col gap-4 max-w-2xl mx-auto">
@@ -103,7 +100,6 @@
             </div>
         </section>
 
-        <!-- VIEW 4: PLAYGROUND (Main Aktiviti) -->
         <section id="view-play" class="view-section hidden fade-in">
             <div class="bg-white/95 backdrop-blur-md p-4 md:p-8 rounded-3xl border-4 border-indigo-200 shadow-2xl max-w-6xl mx-auto min-h-[60vh] flex flex-col relative overflow-hidden">
                 <h2 id="play-title" class="text-2xl md:text-4xl font-chewy text-indigo-600 mb-8 text-center border-b-4 border-dashed border-indigo-100 pb-4"></h2>
@@ -207,11 +203,11 @@
                                 id: 'u2a4', name: "Aktiviti 4: KATA NAMA AM", type: "padan-overlay",
                                 image: "katakerja.png",
                                 targets: [
-                                    { ans: "majalah", top: 39, left: 67, w: 16, h: 7 },
-                                    { ans: "rak", top: 53, left: 82, w: 15, h: 7 },
-                                    { ans: "meja", top: 53, left: 11, w: 16, h: 7 },
-                                    { ans: "permaidani", top: 68, left: 35, w: 18, h: 7 },
-                                    { ans: "pembersih vakum", top: 84, left: 56, w: 20, h: 7 }
+                                    { ans: "majalah", top: 38, left: 63, w: 16, h: 7 },
+                                    { ans: "rak", top: 51.5, left: 77.5, w: 15, h: 7 },
+                                    { ans: "meja", top: 52, left: 14, w: 16, h: 7 },
+                                    { ans: "permaidani", top: 67, left: 40, w: 18, h: 7 },
+                                    { ans: "pembersih vakum", top: 81.5, left: 51.5, w: 20, h: 7 }
                                 ],
                                 pool: ["majalah", "rak", "meja", "permaidani", "pembersih vakum"]
                             }
@@ -262,13 +258,13 @@
                                     { image: "balairaya.png", ans: "balairaya" },
                                     { image: "kumpul.png", ans: "kumpul" },
                                     { image: "sumbang.png", ans: "sumbang" },
-                                    { image: "pasang.png", ans: "pasang" },
+                                    { image: "pasangbiru.png", ans: "pasang" },
                                     { image: "tebing.png", ans: "tebing" },
                                     { image: "aur.png", ans: "aur" },
-                                    { image: "sepakat.png", ans: "Sepakat Membawa Berkat" },
-                                    { image: "bagai.png", ans: "Bagai Aur dengan Tebing" }
+                                    { image: "sepakatberkat.png", ans: "Sepakat Membawa Berkat" },
+                                    { image: "bagaiaur.png", ans: "Bagai Aur dengan Tebing" }
                                 ],
-                                pool: ["banjir", "mangsa", "amal", "balairaya", "kumpul", "sumbang", "pasang", "tebing", "aur", "Sepakat Membawa Berkat", "Bagai Aur dengan Tebing"]
+                                pool: ["banjir", "mangsa", "amal", "balairaya", "kumpul", "sumbang", "pasang", "tebing", "aur", "Bagai Aur dengan Tebing", "Sepakat Membawa Berkat"]
                             },
                             {
                                 id: 'u4a2', name: "Aktiviti 2: Susun Ayat", type: "susun-ayat",
@@ -358,7 +354,7 @@
                                 ]
                             },
                             {
-                                id: 'u6a3', name: "Aktiviti 3: Kata Kerja Pasif (Seret)", type: "isi-kosong-perenggan",
+                                id: 'u6a3', name: "Aktiviti 3: Kata Kerja Pasif (Seret & Lepas)", type: "isi-kosong-perenggan",
                                 text: "1. Paip bocor di rumah Syafik telah [0] oleh bapa Wei Hong semalam.<br><br>2. Anak-anak kucing itu [1] oleh Openg dan Syafik.<br><br>3. Nenek Syafik [2] oleh Sarah dan Priya.<br><br>4. Bantuan pakaian sekolah telah [3] oleh guru besar kepada murid-murid miskin.",
                                 pool: ["dibaiki", "diselamatkan", "dipimpin", "disampaikan"]
                             }
@@ -388,15 +384,19 @@
                                 id: 'u7a2', name: "Aktiviti 2: Makanan Berkhasiat", type: "hotspot-klik",
                                 image: "makananberkhasiat.png",
                                 hotspots: [
+                                    // Karbohidrat (Bawah)
                                     { id: 'h_roti', text: 'Roti', top: 85, left: 75, w: 15, h: 10, type: 'karbohidrat' },
                                     { id: 'h_nasi', text: 'Nasi', top: 88, left: 45, w: 15, h: 8, type: 'karbohidrat' },
                                     { id: 'h_ubi', text: 'Ubi / Kentang', top: 85, left: 10, w: 20, h: 10, type: 'karbohidrat' },
                                     { id: 'h_jagung', text: 'Jagung / Bijirin', top: 85, left: 32, w: 12, h: 10, type: 'karbohidrat' },
+                                    // Vitamin (Sayur & Buah)
                                     { id: 'h_buah', text: 'Buah-buahan', top: 65, left: 60, w: 25, h: 12, type: 'vitamin' },
                                     { id: 'h_sayur', text: 'Sayur-sayuran', top: 65, left: 15, w: 30, h: 12, type: 'vitamin' },
+                                    // Protein (Tengah Atas)
                                     { id: 'h_ikan', text: 'Ikan / Daging', top: 48, left: 28, w: 15, h: 8, type: 'protein' },
                                     { id: 'h_ayam', text: 'Ayam', top: 40, left: 55, w: 25, h: 15, type: 'protein' },
                                     { id: 'h_susu', text: 'Susu / Tenusu', top: 40, left: 40, w: 12, h: 10, type: 'protein' },
+                                    // Lemak (Puncak)
                                     { id: 'h_minyak', text: 'Minyak / Lemak', top: 15, left: 40, w: 20, h: 15, type: 'lemak' }
                                 ],
                                 items: [
@@ -407,9 +407,9 @@
                             },
                             {
                                 id: 'u7a3', name: "Aktiviti 3: Padankan Isyarat", type: "padan-overlay",
-                                image: "membaca.png", choicesPosition: "top", fontClass: "text-xs md:text-sm p-0",
+                                image: "membaca.png", choicesPosition: "top",
                                 targets: [
-                                    { ans: "bersenam.png", top: 22.2, left: 60, w: 11.5, h: 8 },
+                                    { ans: "bersenam.png", top: 18.2, left: 63.8, w: 11.5, h: 8 },
                                     { ans: "melontar.png", top: 49.3, left: 33.5, w: 11.5, h: 8 },
                                     { ans: "mengelecek.png", top: 73.5, left: 57.5, w: 11.5, h: 8 }
                                 ],
@@ -451,7 +451,7 @@
                                 targets: [
                                     { image: "suka.png", ans: "suka" },
                                     { image: "sayang.png", ans: "sayang" },
-                                    { image: "gembira.png", ans: "gembira" }
+                                    { image: "gembirakuning.png", ans: "gembira" }
                                 ],
                                 pool: ["suka", "sayang", "gembira"]
                             },
@@ -459,9 +459,9 @@
                                 id: 'u8a3', name: "Aktiviti 3: Lengkapkan Petikan (Perasaan)", type: "padan-overlay",
                                 image: "alamsekitar.png", choicesPosition: "bottom", fontClass: "text-xs md:text-sm p-0 md:p-1",
                                 targets: [
-                                    { ans: "suka", top: 16.5, left: 16.5, w: 8.5, h: 4.5 },
-                                    { ans: "sayang", top: 60.5, left: 54, w: 12.5, h: 4.5 },
-                                    { ans: "gembira", top: 72, left: 47, w: 14.5, h: 4.5 }
+                                    { ans: "suka", top: 67.5, left: 24, w: 8.5, h: 4.5 },
+                                    { ans: "sayang", top: 88, left: 58.5, w: 12.5, h: 4.5 },
+                                    { ans: "gembira", top: 95.5, left: 54, w: 14.5, h: 4.5 }
                                 ],
                                 pool: ["suka", "sayang", "gembira"]
                             },
@@ -514,8 +514,8 @@
                     }
                 ]
             },
-            { 
-                tema: "TEMA 4: KESELAMATAN", color: "from-orange-400 to-orange-600", 
+            {
+                tema: "TEMA 4: KESELAMATAN", color: "from-orange-400 to-orange-600",
                 units: [
                     {
                         title: "Unit 10: Pentingnya Keselamatan",
@@ -546,7 +546,7 @@
                             {
                                 id: 'u10a3', name: "Aktiviti 3: Isi Tempat Kosong", type: "isi-kosong-perenggan",
                                 images: ["Emak.png", "Teko.png", "Pisau.png"],
-                                text: "Cuti sekolah sudah bermula. [0] bangun awal untuk membantu [1] menyediakan sarapan. Saya membantu emak meletakkan roti di atas [2]. Emak pula membuat [3]. Mula-mula, emak memasukkan uncang teh ke dalam [4]. Kemudian, emak menuang air panas ke dalam teko. Emak memegang [5] dengan menggunakan [6]. Selepas bersarapan, kami mengemas dapur bersama-sama. Emak menyimpan alatan tajam seperi [7] dan [8] ke dalam [9]. Saya berasa gembira kerana dapat menolong emak di dapur.",
+                                text: "Cuti sekolah sudah bermula. [0] bangun awal untuk membantu [1] menyediakan sarapan.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Saya membantu emak meletakkan roti di atas [2]. Emak pula membuat [3]. Mula-mula, emak memasukkan uncang teh ke dalam [4]. Kemudian, emak menuang air panas ke dalam teko. Emak memegang [5] dengan menggunakan [6].<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Selepas bersarapan, kami mengemas dapur bersama-sama. Emak menyimpan alatan tajam seperi [7] dan [8] ke dalam [9].<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Saya berasa gembira kerana dapat menolong emak di dapur.",
                                 pool: ["Saya", "emak", "piring", "air teh", "teko", "cerek", "sarung tangan", "pisau", "gunting", "laci"]
                             },
                             {
@@ -580,16 +580,16 @@
                         activities: [
                             {
                                 id: 'u11a1', name: "Aktiviti 1: Lengkapkan Peta Minda", type: "padan-overlay",
-                                image: "petaminda.png", choicesPosition: "bottom",
+                                image: "petaminda.png", choicesPosition: "bottom", fontClass: "text-xs md:text-sm p-1 md:p-2",
                                 targets: [
-                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 30, left: 3, w: 25, h: 15 },
-                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 55, left: 3, w: 25, h: 15 },
-                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 80, left: 3, w: 25, h: 15 },
-                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 30, left: 72, w: 25, h: 15 },
-                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 55, left: 72, w: 25, h: 15 },
-                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 80, left: 72, w: 25, h: 15 }
+                                    { ans: ["sarungtangan.png", "alat.png", "kasutbomba.png", "topi.png", "baju.png", "pelindung.png"], top: 31, left: 3, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasutbomba.png", "topi.png", "baju.png", "pelindung.png"], top: 55, left: 3, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasutbomba.png", "topi.png", "baju.png", "pelindung.png"], top: 78, left: 3, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasutbomba.png", "topi.png", "baju.png", "pelindung.png"], top: 31, left: 74, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasutbomba.png", "topi.png", "baju.png", "pelindung.png"], top: 55, left: 74, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasutbomba.png", "topi.png", "baju.png", "pelindung.png"], top: 78, left: 74, w: 23, h: 18 }
                                 ],
-                                pool: ["walkie.png", "lampu.png", "tali.png", "hos.png", "pelindung.png", "baju.png", "topi.png", "kasut.png", "alat.png", "sarungtangan.png"]
+                                pool: ["walkie.png", "lampu.png", "tali.png", "hos.png", "pelindung.png", "baju.png", "topi.png", "kasutbomba.png", "alat.png", "sarungtangan.png"]
                             },
                             {
                                 id: 'u11a2', name: "Aktiviti 2: Pilih Ayat Sesuai", type: "mcq",
@@ -649,8 +649,8 @@
                             },
                             {
                                 id: 'u12a2', name: "Aktiviti 2: Kata Tanya", type: "padan", cols: 2,
-                                targets: [{ image: "dimanakah.png", ans: "mana" }, { image: "siapakah.png", ans: "siapa" }, { image: "berapakah.png", ans: "berapa" }, { image: "mengapakah.png", ans: "mengapa" }],
-                                pool: ["mana", "siapa", "berapa", "mengapa"]
+                                targets: [{ image: "dimanakah.png", ans: "dimanakah" }, { image: "siapakah.png", ans: "siapakah" }, { image: "berapakah.png", ans: "berapakah" }, { image: "mengapakah.png", ans: "mengapakah" }],
+                                pool: ["dimanakah", "siapakah", "berapakah", "mengapakah"]
                             },
                             {
                                 id: 'u12a3', name: "Aktiviti 3: Kata Arah", type: "padan", cols: 2,
@@ -659,10 +659,10 @@
                             }
                         ]
                     }
-                ] 
+                ]
             },
-            { 
-                tema: "TEMA 5: PERPADUAN", color: "from-blue-400 to-blue-600", 
+            {
+                tema: "TEMA 5: PERPADUAN", color: "from-blue-400 to-blue-600",
                 units: [
                     {
                         title: "Unit 13: Jadikan Inspirasi",
@@ -702,19 +702,12 @@
                                 ]
                             },
                             {
-                                id: 'u14a3', name: "Aktiviti 3: Isi Tempat Kosong", type: "padan-overlay", image: "pertandingan.png", choicesPosition: "top", fontClass: "text-sm md:text-sm p-2",
+                                id: 'u14a3', name: "Aktiviti 3: Isi Tempat Kosong", type: "padan-overlay", image: "pertandingan.png", choicesPosition: "top", fontClass: "text-xs md:text-sm p-1 md:p-2",
                                 targets: [
-                                    { ans: "Sarah", top: 19, left: 6, w: 12, h: 5 },
-                                    { ans: "Priya", top: 19, left: 20, w: 11, h: 5 },
-                                    { ans: "Jeriah", top: 19, left: 38, w: 11, h: 5 },
-                                    { ans: "bulan hadapan", top: 23, left: 56, w: 19, h: 5 },
-                                    { ans: "Sarah", top: 28, left: 7, w: 16, h: 5 },
-                                    { ans: "bilik tarian", top: 41, left: 10, w: 16, h: 5 },
-                                    { ans: "Sarah", top: 74, left: 7, w: 12, h: 5 },
-                                    { ans: "johan", top: 79, left: 27, w: 16, h: 5 },
-                                    { ans: "Sarah", top: 84, left: 7, w: 16, h: 5 },
-                                    { ans: "Priya", top: 84, left: 25, w: 19, h: 5 },
-                                    { ans: "Jeriah", top: 89, left: 7, w: 19, h: 5 }
+                                    { ans: "Sarah", top: 18, left: 6, w: 12, h: 5 }, { ans: "Priya", top: 18, left: 20, w: 11, h: 5 }, { ans: "Jeriah", top: 18, left: 38, w: 11, h: 5 },
+                                    { ans: "bulan hadapan", top: 22, left: 56, w: 19, h: 5 }, { ans: "Sarah", top: 26, left: 7, w: 16, h: 5 }, { ans: "bilik tarian", top: 39, left: 10, w: 16, h: 5 },
+                                    { ans: "Sarah", top: 72, left: 7, w: 12, h: 5 }, { ans: "johan", top: 77, left: 27, w: 16, h: 5 }, { ans: "Sarah", top: 82, left: 7, w: 16, h: 5 },
+                                    { ans: "Priya", top: 82, left: 25, w: 19, h: 5 }, { ans: "Jeriah", top: 87, left: 7, w: 19, h: 5 }
                                 ],
                                 pool: ["Sarah", "Priya", "Jeriah", "bulan hadapan", "bilik tarian", "johan"]
                             }
@@ -736,12 +729,11 @@
                             },
                             {
                                 id: 'u15a3', name: "Aktiviti 3: Salin Semula", type: "salin-menaip",
-                                image: "salinsemula.png",
-                                minWords: 30
+                                image: "salinsemula.png", minWords: 30
                             }
                         ]
                     }
-                ] 
+                ]
             }
         ];
 
@@ -785,10 +777,6 @@
             const btnBack = document.getElementById('btn-back');
             if (navHistory.length > 1) btnBack.classList.remove('hidden');
             else btnBack.classList.add('hidden');
-        }
-
-        function isImage(text) {
-            return /\.(jpeg|jpg|gif|png|webp)(\?.*)?$/i.test(String(text).trim());
         }
 
         function initApp() {
@@ -870,7 +858,7 @@
             } else if (activeData.type === 'kategori-inline') {
                 activeData.pool.forEach((p, i) => { p.id = i; p.catId = null; });
             } else if (activeData.type === 'padan-3-kolum') {
-                activeData.poolState = activeData.pool.map((t, i) => ({ text: t, used: false, id: i })).sort(() => 0.5 - Math.random());
+                activeData.poolState = activeData.pool.map((t, i) => ({ text: t, used: false, id: i }));
                 activeData.targetsNama = activeData.items.map(it => ({ ans: it.nama, placedId: undefined }));
                 activeData.targetsPenjodoh = activeData.items.map(it => ({ ans: it.penjodoh, placedId: undefined }));
             }
@@ -888,13 +876,13 @@
                 case 'mcq': return "Pilih satu jawapan yang paling tepat.";
                 case 'mcq-berkaitan': return "Pilih jawapan yang betul berdasarkan maklumat yang diberikan.";
                 case 'padan': return "Klik pilihan jawapan di bawah, kemudian klik pada petak kosong yang sepadan. Klik semula jawapan untuk menukarnya jika tersalah jawab.";
-                case 'padan-overlay': return "Klik pilihan jawapan, kemudian letakkan ke dalam petak kosong pada gambar. Klik semula jawapan untuk menukarnya jika tersalah jawab.";
+                case 'padan-overlay': return "Klik pilihan jawapan, kemudian letakkan ke dalam petak kosong pada gambar. Klik semula jawapan untuk menukarnya.";
                 case 'padan-3-kolum': return "Klik pilihan jawapan, kemudian susun ke dalam lajur yang betul. Klik semula untuk menukar jawapan jika tersilap.";
-                case 'susun-ayat': return "Klik dan susun perkataan di bawah mengikut urutan untuk membentuk ayat yang betul. Klik semula untuk menukar jawapan jika tersilap.";
-                case 'kategori-inline': return "Klik pilihan jawapan dan masukkan ke dalam kumpulan kategori yang betul. Klik semula pada kategori untuk mengeluarkan jawapan.";
+                case 'susun-ayat': return "Klik dan susun perkataan di bawah mengikut urutan. Klik semula untuk menukar jawapan jika tersilap.";
+                case 'kategori-inline': return "Klik pilihan jawapan dan masukkan ke dalam kumpulan kategori yang betul. Klik semula pada kategori untuk menukar.";
                 case 'bacaan': return "Sila baca petikan di bawah dengan teliti sebelum meneruskan pembelajaran.";
                 case 'isi-kosong': return "Klik pilihan jawapan, kemudian klik pada tempat kosong pada ayat. Klik semula jawapan untuk membatalkan pilihan.";
-                case 'isi-kosong-perenggan': return "Klik pilihan jawapan, kemudian klik pada tempat kosong di dalam petikan. Klik semula sekiranya ingin membetulkan kesilapan.";
+                case 'isi-kosong-perenggan': return "Klik atau seret (drag) pilihan jawapan ke dalam tempat kosong. Klik semula jawapan sekiranya ingin membetulkan kesilapan.";
                 case 'hotspot-klik': return "Klik pada bahagian gambar yang betul berdasarkan soalan yang diberikan.";
                 case 'word-search': return "Klik pada huruf-huruf bersebelahan di dalam grid untuk mencari perkataan tersembunyi.";
                 case 'salin-menaip': return "Taip semula petikan di atas ke dalam ruangan yang disediakan dengan ejaan yang betul.";
@@ -938,33 +926,6 @@
             selectedIndex = (selectedIndex === poolIndex) ? null : poolIndex; 
             renderActivityView();
         }
-
-        function renderMCQ(container) {
-            const q = activeData.items[stepIndex];
-            if (!activeData.currentOptions || activeData.currentQ !== stepIndex) {
-                let wrongOptions = activeData.pool.filter(opt => opt !== q.ans);
-                wrongOptions = wrongOptions.sort(() => 0.5 - Math.random()).slice(0, 3);
-                activeData.currentOptions = [q.ans, ...wrongOptions].sort(() => 0.5 - Math.random());
-                activeData.currentAns = q.ans;
-                activeData.currentQ = stepIndex;
-            }
-
-            let mediaHtml = '';
-            if (q.type === 'video') mediaHtml = `<video src="${q.media}" controls autoplay class="max-h-[40vh] w-full object-cover rounded-2xl border-4 border-gray-200"></video>`;
-            else mediaHtml = `<img src="${q.media}" class="max-h-[40vh] object-contain rounded-2xl border-4 border-white shadow-md">`;
-
-            let html = `
-                <div class="flex flex-col md:flex-row gap-6 items-center w-full max-w-5xl mx-auto">
-                    <div class="w-full md:w-1/2 flex justify-center bg-gray-100/50 p-4 rounded-3xl shadow-inner">${mediaHtml}</div>
-                    <div class="w-full md:w-1/2 grid grid-cols-1 gap-4">
-            `;
-            activeData.currentOptions.forEach((opt, idx) => {
-                html += `<button onclick="checkMCQ(${idx})" class="btn-3d w-full bg-white border-4 border-blue-200 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors">${opt}</button>`;
-            });
-            html += `</div></div><div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
-            container.innerHTML = html;
-        }
-
         function checkMCQ(optIdx) {
             const selectedSafe = activeData.currentOptions[optIdx];
             const correct = activeData.currentAns;
@@ -976,109 +937,6 @@
                 });
             } else {
                 showFeedback(false, correct, selectedSafe, () => renderActivityView());
-            }
-        }
-
-        function renderMCQBerkaitan(container) {
-            const item = activeData.items[stepIndex];
-            if (!activeData.currentOptions || activeData.currentQ !== stepIndex) {
-                activeData.currentOptions = [...item.options].sort(() => 0.5 - Math.random());
-                activeData.currentAns = item.ans;
-                activeData.currentQ = stepIndex;
-                activeData.multiSelected = []; 
-            }
-            
-            let html = '';
-            if (activeData.layOutFormat === 'vertical') {
-                html += `<div class="flex flex-col gap-6 lg:gap-8 items-center w-full max-w-6xl mx-auto">`;
-                html += `<div class="w-full flex justify-center bg-gray-50/50 p-3 md:p-5 rounded-3xl shadow-inner border-4 border-gray-200">
-                            <img src="${activeData.overallImage}" class="w-full max-w-3xl max-h-[45vh] lg:max-h-[60vh] object-contain rounded-2xl shadow-sm bg-white">
-                         </div>`;
-                html += `<div class="w-full max-w-4xl flex flex-col gap-4">`;
-                html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-5 md:p-6 rounded-3xl shadow-md border-4 border-purple-200 text-center text-xl md:text-2xl font-bold text-purple-900 leading-snug">${item.q}</div>`;
-                
-                const areOptionsShort = activeData.currentOptions.every(opt => opt.length < 25);
-                const optionsLayoutClass = areOptionsShort ? 'flex flex-row flex-wrap justify-center gap-4' : 'flex flex-col gap-4';
-                html += `<div class="w-full ${optionsLayoutClass}">`;
-                activeData.currentOptions.forEach((opt, idx) => {
-                    if (item.type === 'multi') {
-                        const isSelected = activeData.multiSelected.includes(opt);
-                        const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-[1.02] shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50';
-                        const icon = isSelected ? '<i class="fas fa-check-circle mr-3 text-2xl drop-shadow-md flex-shrink-0"></i>' : '<i class="far fa-circle mr-3 text-2xl opacity-50 flex-shrink-0"></i>';
-                        const widthClass = areOptionsShort ? 'flex-1 min-w-[200px] text-center justify-center' : 'w-full text-left';
-                        html += `<button onclick="toggleMultiMCQ(${idx})" class="btn-3d ${widthClass} border-4 font-bold p-4 md:p-5 rounded-2xl text-lg md:text-xl transition-all flex items-center ${btnClass}">${icon}<span>${opt}</span></button>`;
-                    } else {
-                        const widthClass = areOptionsShort ? 'flex-1 min-w-[200px] text-center justify-center' : 'w-full text-left';
-                        html += `<button onclick="checkMCQ(${idx})" class="btn-3d ${widthClass} bg-white border-4 border-blue-300 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors flex items-center justify-center">${opt}</button>`;
-                    }
-                });
-                html += `</div>`;
-                
-                if (item.type === 'multi') {
-                    const isReady = activeData.multiSelected.length === item.reqCount;
-                    html += `<div class="mt-4 flex flex-col items-center bg-blue-50 p-5 rounded-3xl border-4 border-blue-200 w-full shadow-inner">
-                                <div class="text-xl font-bold text-gray-700 mb-3">Pilihan Semasa: <span class="${isReady ? 'text-green-600 text-2xl' : 'text-rose-500 text-2xl'}">${activeData.multiSelected.length} / ${item.reqCount}</span></div>
-                                <button onclick="checkMultiMCQ()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 px-8 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${isReady ? 'animate-bounce hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${isReady ? '' : 'disabled'}>Semak Jawapan!</button>
-                             </div>`;
-                }
-                html += `<div class="text-center mt-6 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
-                html += `</div></div>`;
-            } else {
-                html += `<div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start w-full max-w-6xl mx-auto">`;
-                html += `<div class="w-full lg:w-1/2 flex justify-center bg-gray-50/50 p-3 md:p-5 rounded-3xl shadow-inner border-4 border-gray-200 sticky top-4">
-                            <img src="${activeData.overallImage}" class="w-full max-h-[45vh] lg:max-h-[70vh] object-contain rounded-2xl shadow-sm bg-white">
-                         </div>`;
-                html += `<div class="w-full lg:w-1/2 flex flex-col gap-4">`;
-                html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-5 md:p-6 rounded-3xl shadow-md border-4 border-purple-200 text-center text-xl md:text-2xl font-bold text-purple-900 leading-snug">${item.q}</div>`;
-                html += `<div class="w-full flex flex-col gap-4">`;
-                activeData.currentOptions.forEach((opt, idx) => {
-                    if (item.type === 'multi') {
-                        const isSelected = activeData.multiSelected.includes(opt);
-                        const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-[1.02] shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50';
-                        const icon = isSelected ? '<i class="fas fa-check-circle mr-3 text-2xl drop-shadow-md flex-shrink-0"></i>' : '<i class="far fa-circle mr-3 text-2xl opacity-50 flex-shrink-0"></i>';
-                        html += `<button onclick="toggleMultiMCQ(${idx})" class="btn-3d w-full border-4 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl transition-all flex items-center ${btnClass}">${icon}<span>${opt}</span></button>`;
-                    } else {
-                        html += `<button onclick="checkMCQ(${idx})" class="btn-3d w-full bg-white border-4 border-blue-300 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors">${opt}</button>`;
-                    }
-                });
-                html += `</div>`;
-                if (item.type === 'multi') {
-                    const isReady = activeData.multiSelected.length === item.reqCount;
-                    html += `<div class="mt-4 flex flex-col items-center bg-blue-50 p-5 rounded-3xl border-4 border-blue-200 w-full shadow-inner">
-                                <div class="text-xl font-bold text-gray-700 mb-3">Pilihan Semasa: <span class="${isReady ? 'text-green-600 text-2xl' : 'text-rose-500 text-2xl'}">${activeData.multiSelected.length} / ${item.reqCount}</span></div>
-                                <button onclick="checkMultiMCQ()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 px-8 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${isReady ? 'animate-bounce hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${isReady ? '' : 'disabled'}>Semak Jawapan!</button>
-                             </div>`;
-                }
-                html += `<div class="text-center mt-6 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
-                html += `</div></div>`;
-            }
-            container.innerHTML = html;
-        }
-
-        function toggleMultiMCQ(optIdx) {
-            const item = activeData.items[stepIndex];
-            const opt = activeData.currentOptions[optIdx];
-            const idx = activeData.multiSelected.indexOf(opt);
-            if (idx > -1) activeData.multiSelected.splice(idx, 1);
-            else if (activeData.multiSelected.length < item.reqCount) activeData.multiSelected.push(opt);
-            renderActivityView();
-        }
-
-        function checkMultiMCQ() {
-            const item = activeData.items[stepIndex];
-            const correctAns = item.ans;
-            const isAllCorrect = activeData.multiSelected.every(ans => correctAns.includes(ans)) && activeData.multiSelected.length === correctAns.length;
-
-            if (isAllCorrect) {
-                showFeedback(true, '', '', () => { 
-                    stepIndex++; activeData.multiSelected = [];
-                    if (stepIndex >= activeData.items.length) { stepIndex--; paparTamatAktiviti(); }
-                    else renderActivityView(); 
-                });
-            } else {
-                const wrongOnes = activeData.multiSelected.filter(ans => !correctAns.includes(ans)).join(" & ");
-                const expected = correctAns.join("<br><br>• ");
-                showFeedback(false, "• " + expected, wrongOnes || "Sila lengkapkan pilihan", () => { activeData.multiSelected = []; renderActivityView(); });
             }
         }
 
@@ -1110,7 +968,8 @@
                             ${contentHtml}`;
                             
                 if (placedItem) {
-                    let placedContent = isImage(placedItem.text)
+                    let isImage = /\.(jpeg|jpg|gif|png)/i.test(String(placedItem.text).trim());
+                    let placedContent = isImage
                         ? `<img src="${String(placedItem.text).trim()}" class="h-14 md:h-20 object-contain mx-auto rounded-md drop-shadow-sm">`
                         : `<i class="fas fa-check-circle mr-2 hidden md:inline"></i>${placedItem.text}`;
                         
@@ -1129,7 +988,8 @@
                 const isSelected = selectedIndex === i;
                 const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
                 
-                let poolContent = isImage(p.text)
+                let isImage = /\.(jpeg|jpg|gif|png)/i.test(String(p.text).trim());
+                let poolContent = isImage
                     ? `<img src="${String(p.text).trim()}" class="h-12 md:h-16 w-auto object-contain pointer-events-none drop-shadow-md rounded-md">`
                     : p.text;
                 html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all flex items-center justify-center min-w-[80px] ${btnClass}">${poolContent}</button>`;
@@ -1154,7 +1014,8 @@
                 htmlImage += `<div class="absolute flex items-center justify-center" style="top: ${t.top}%; left: ${t.left}%; width: ${t.w}%; height: ${t.h}%;">`;
                 
                 if (placedItem) {
-                    let innerContent = isImage(placedItem.text)
+                    let isImage = /\.(jpeg|jpg|gif|png)/i.test(String(placedItem.text).trim());
+                    let innerContent = isImage
                         ? `<img src="${String(placedItem.text).trim()}" class="w-full h-full object-contain p-1">`
                         : placedItem.text;
 
@@ -1175,7 +1036,8 @@
                 if (p.used) return;
                 const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
                 
-                let poolContent = isImage(p.text)
+                let isImage = /\.(jpeg|jpg|gif|png)/i.test(String(p.text).trim());
+                let poolContent = isImage
                     ? `<img src="${String(p.text).trim()}" class="h-14 md:h-20 w-auto object-contain pointer-events-none drop-shadow-md">`
                     : p.text;
                 htmlPoolInner += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-2 md:p-3 rounded-xl ${fontStyle} transition-all flex items-center justify-center min-w-[80px] md:min-w-[100px] ${btnClass}">${poolContent}</button>`;
@@ -1389,90 +1251,6 @@
             }
         }
 
-        function renderIsiKosongPerenggan(container) {
-            if (!activeData.targets) {
-                const matches = activeData.text.match(/\[\d+\]/g) || [];
-                activeData.targets = matches.map((b, i) => ({ id: i, placedId: undefined, ansKey: b }));
-            }
-
-            let html = `<div class="w-full max-w-5xl mx-auto flex flex-col items-center gap-4">`;
-            
-            if (activeData.images) {
-                html += `<div class="flex gap-4 justify-center flex-wrap mb-2 bg-white/50 p-3 rounded-3xl border-4 border-dashed border-gray-300 w-full shadow-inner">`;
-                activeData.images.forEach(img => {
-                    html += `<img src="${img}" class="h-20 md:h-32 object-contain rounded-2xl shadow-md border-4 border-white transform transition hover:scale-105 bg-white">`;
-                });
-                html += `</div>`;
-            }
-
-            let textHtml = activeData.text;
-            activeData.targets.forEach((t, i) => {
-                const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
-                let slotHtml = '';
-                if (placedItem) {
-                    slotHtml = `<span class="px-2 py-0.5 mx-1 bg-green-100 text-green-800 border-b-2 border-green-500 font-bold rounded-md inline-block shadow-sm whitespace-nowrap min-w-[50px] text-center cursor-pointer hover:bg-red-100 hover:border-red-500 hover:text-red-800 transition-colors" onclick="kembalikanPerenggan(${i})">${placedItem.text}</span>`;
-                } else {
-                    const hSlot = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-400 bg-gray-100';
-                    slotHtml = `<span onclick="tapPlacePerenggan(${i})" class="px-5 py-1.5 mx-1 border-b-2 border-dashed rounded-md inline-block transition-all ${hSlot} min-w-[50px]"></span>`;
-                }
-                textHtml = textHtml.replace(`[${i}]`, slotHtml);
-            });
-
-            const styling = activeData.textClass || "text-sm md:text-base lg:text-lg leading-relaxed md:leading-loose text-justify";
-            const aspectStyle = activeData.layOutFormat === '16:9' ? 'aspect-[16/9]' : 'aspect-[4/3] md:aspect-[16/9]';
-
-            html += `<div class="w-full ${aspectStyle} max-h-[50vh] overflow-y-auto bg-white p-5 md:p-8 rounded-3xl shadow-xl border-4 border-blue-100 hide-scroll mx-auto">
-                        <div class="font-bold text-gray-700 w-full ${styling}">${textHtml}</div>
-                     </div>`;
-            
-            html += `<div class="flex flex-wrap gap-2 justify-center w-full bg-blue-50 p-4 rounded-3xl border-4 border-blue-200 shadow-inner mt-2">`;
-            activeData.poolState.forEach((p, i) => {
-                if (p.used) return;
-                const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-100';
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-2 px-3 rounded-xl text-sm md:text-base transition-all ${btnClass}">${p.text}</button>`;
-            });
-            html += `</div>`;
-            
-            html += `<button onclick="semakPerenggan()" class="btn-3d w-full max-w-sm mt-4 bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg block mx-auto transition-all ${activeData.targets.every(t => t.placedId !== undefined) ? 'animate-bounce shadow-yellow-400/50 hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${activeData.targets.every(t => t.placedId !== undefined) ? '' : 'disabled'}>Semak Laporan</button>`;
-
-            html += `</div>`;
-            container.innerHTML = html;
-        }
-
-        function tapPlacePerenggan(tIdx) {
-            if (selectedIndex === null) return;
-            if (activeData.targets[tIdx].placedId !== undefined) {
-                activeData.poolState.find(p => p.id === activeData.targets[tIdx].placedId).used = false;
-            }
-            activeData.targets[tIdx].placedId = activeData.poolState[selectedIndex].id;
-            activeData.poolState[selectedIndex].used = true;
-            selectedIndex = null;
-            renderActivityView();
-        }
-
-        function kembalikanPerenggan(tIdx) {
-            const placedId = activeData.targets[tIdx].placedId;
-            if (placedId !== undefined) activeData.poolState.find(p => p.id === placedId).used = false;
-            activeData.targets[tIdx].placedId = undefined;
-            renderActivityView();
-        }
-
-        function semakPerenggan() {
-            const correctAnswers = activeData.pool; 
-            let isAllCorrect = true;
-            
-            activeData.targets.forEach((t, i) => {
-                const placedItem = activeData.poolState.find(p => p.id === t.placedId);
-                if (!placedItem || placedItem.text !== activeData.pool[i]) isAllCorrect = false;
-            });
-
-            if (isAllCorrect) {
-                showFeedback(true, '', '', () => { paparTamatAktiviti(); });
-            } else {
-                showFeedback(false, "Sila pastikan semua jawapan diletakkan di tempat yang betul berdasarkan turutan yang logik.", "Terdapat kesalahan pada susunan jawapan anda.", () => { renderActivityView(); });
-            }
-        }
-
         function renderKategoriInline(container) {
             let html = `<div class="flex flex-wrap justify-center items-stretch gap-6 w-full mb-8 max-w-6xl mx-auto">`;
             activeData.categories.forEach(cat => {
@@ -1520,14 +1298,16 @@
             selectedIndex = null;
             renderActivityView();
         }
-
         function kembalikanItemKategori(itemId) {
             if (activeData.isChecked) return;
             activeData.pool.find(p => p.id === itemId).catId = null;
             renderActivityView();
         }
-
         function semakKategori() { activeData.isChecked = true; renderActivityView(); }
+
+        function renderBacaan(container) {
+            container.innerHTML = `<div class="w-full flex flex-col items-center gap-8"><img src="${activeData.image}" class="max-w-full md:max-w-3xl rounded-3xl shadow-2xl border-4 border-white"><button onclick="paparTamatAktiviti()" class="btn-3d bg-green-500 hover:bg-green-400 text-white font-chewy text-3xl py-4 px-12 rounded-3xl border-b-[6px] border-green-700 shadow-xl bounce-in">Selesai Membaca!</button></div>`;
+        }
 
         function renderPadan3Kolum(container) {
             let html = `<div class="grid grid-cols-3 gap-2 md:gap-6 mb-8 w-full max-w-5xl items-stretch">
@@ -1604,176 +1384,6 @@
             }
         }
 
-        function renderSalinMenaip(container) {
-            let html = `<div class="flex flex-col lg:flex-row gap-6 w-full max-w-6xl mx-auto items-stretch">`;
-            
-            html += `<div class="w-full lg:w-1/2 flex justify-center bg-blue-50 p-4 rounded-3xl shadow-inner border-4 border-blue-200">
-                        <img src="${activeData.image}" class="w-full object-contain rounded-2xl shadow-md border-4 border-white bg-white">
-                     </div>`;
-                     
-            html += `<div class="w-full lg:w-1/2 flex flex-col gap-4">
-                        <div class="bg-yellow-50 p-4 md:p-6 rounded-3xl shadow-md border-4 border-yellow-200 flex-grow flex flex-col">
-                            <h3 class="text-xl md:text-2xl font-chewy text-yellow-800 mb-4 text-center border-b-4 border-dashed border-yellow-200 pb-2">Taip Semula Petikan Di Sini</h3>
-                            <textarea id="taip-ruang" class="w-full flex-grow min-h-[250px] p-4 rounded-xl border-4 border-yellow-300 focus:outline-none focus:border-yellow-500 focus:ring-4 ring-yellow-200 text-lg md:text-xl text-gray-800 resize-none font-bold shadow-inner" style="background-image: repeating-linear-gradient(transparent, transparent 31px, #fcd34d 31px, #fcd34d 32px); line-height: 32px; background-attachment: local;" placeholder="Mula menaip di sini..."></textarea>
-                        </div>
-                        <button onclick="semakSalinMenaip()" class="btn-3d w-full bg-green-500 text-white font-chewy text-2xl py-4 rounded-2xl border-b-[6px] border-green-700 shadow-xl hover:bg-green-400 transition-all bounce-in">
-                            Semak Jawapan!
-                        </button>
-                     </div>`;
-                     
-            html += `</div>`;
-            container.innerHTML = html;
-        }
-
-        function semakSalinMenaip() {
-            const text = document.getElementById('taip-ruang').value.trim();
-            const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
-            
-            if (wordCount >= (activeData.minWords || 30)) {
-                showFeedback(true, '', '', () => { paparTamatAktiviti(); });
-            } else {
-                showFeedback(false, "Sila taip petikan dengan lebih panjang berdasarkan gambar.", "Petikan anda terlalu pendek atau belum lengkap.", () => {});
-            }
-        }
-
-        function renderBacaan(container) {
-            container.innerHTML = `<div class="w-full flex flex-col items-center gap-8"><img src="${activeData.image}" class="max-w-full md:max-w-3xl rounded-3xl shadow-2xl border-4 border-white"><button onclick="paparTamatAktiviti()" class="btn-3d bg-green-500 hover:bg-green-400 text-white font-chewy text-3xl py-4 px-12 rounded-3xl border-b-[6px] border-green-700 shadow-xl bounce-in">Selesai Membaca!</button></div>`;
-        }
-
-        function renderWordSearch(container) {
-            if (!activeData.selectedCells) {
-                activeData.foundWords = [];
-                activeData.selectedCells = [];
-            }
-
-            let html = `<div class="w-full flex flex-col md:flex-row gap-8 items-center md:items-start justify-center max-w-5xl mx-auto">`;
-            
-            html += `<div class="bg-white p-4 md:p-6 rounded-3xl shadow-xl border-4 border-indigo-200">
-                        <div class="grid grid-cols-8 gap-1 md:gap-2">`;
-                        
-            for (let r = 0; r < 8; r++) {
-                for (let c = 0; c < 8; c++) {
-                    const isSelected = activeData.selectedCells.some(cell => cell.r === r && cell.c === c);
-                    const isFound = activeData.foundWords.some(wObj => wObj.cells.some(cell => cell.r === r && cell.c === c));
-                    
-                    let btnClass = 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-indigo-50';
-                    if (isFound) btnClass = 'bg-green-400 text-white border-green-600 shadow-inner scale-95';
-                    else if (isSelected) btnClass = 'bg-yellow-400 text-yellow-900 border-yellow-600 scale-105 shadow-md';
-                    
-                    html += `<button onclick="tapWordSearch(${r}, ${c})" class="w-10 h-10 md:w-14 md:h-14 rounded-xl border-b-4 font-bold text-xl md:text-2xl transition-all flex items-center justify-center ${btnClass} ${isFound ? 'pointer-events-none' : ''}">${activeData.grid[r][c]}</button>`;
-                }
-            }
-            html += `</div>
-                     <button onclick="clearWordSearch()" class="mt-6 w-full btn-3d bg-rose-500 text-white font-bold font-chewy text-xl py-3 rounded-xl border-b-4 border-rose-700 shadow-md">Padam Pilihan Semasa</button>
-                     </div>`;
-                     
-            html += `<div class="w-full md:w-1/3 bg-indigo-50 p-6 rounded-3xl border-4 border-indigo-200 shadow-inner">
-                        <h3 class="text-2xl font-chewy text-indigo-700 mb-6 text-center border-b-4 border-dashed border-indigo-200 pb-2">CARI PERKATAAN</h3>
-                        <div class="flex flex-col gap-3">`;
-                        
-            activeData.words.forEach(w => {
-                const isFound = activeData.foundWords.some(fw => fw.word === w);
-                const styleClass = isFound ? 'bg-green-100 text-green-600 border-green-400 line-through opacity-70' : 'bg-white text-indigo-900 border-indigo-300 shadow-sm';
-                const icon = isFound ? '<i class="fas fa-check-circle mr-3"></i>' : '<i class="fas fa-search mr-3 opacity-50"></i>';
-                html += `<div class="font-bold text-xl p-3 md:p-4 border-4 rounded-xl flex items-center ${styleClass}">${icon}${w}</div>`;
-            });
-            
-            html += `</div></div></div>`;
-            container.innerHTML = html;
-        }
-
-        function tapWordSearch(r, c) {
-            const existingIdx = activeData.selectedCells.findIndex(cell => cell.r === r && cell.c === c);
-            if (existingIdx > -1) {
-                activeData.selectedCells.splice(existingIdx, 1);
-            } else {
-                activeData.selectedCells.push({r, c, char: activeData.grid[r][c]});
-            }
-            
-            const selectedWord = activeData.selectedCells.map(c => c.char).join('');
-            const reversedWord = activeData.selectedCells.map(c => c.char).reverse().join('');
-            
-            let matchedWord = activeData.words.find(w => w === selectedWord || w === reversedWord);
-            
-            if (matchedWord && !activeData.foundWords.some(fw => fw.word === matchedWord)) {
-                activeData.foundWords.push({ word: matchedWord, cells: [...activeData.selectedCells] });
-                activeData.selectedCells = [];
-                if (activeData.foundWords.length === activeData.words.length) setTimeout(paparTamatAktiviti, 600);
-            }
-            renderActivityView();
-        }
-
-        function clearWordSearch() {
-            activeData.selectedCells = [];
-            renderActivityView();
-        }
-
-        function renderHotspotKlik(container) {
-            const qData = activeData.items[stepIndex];
-            if (!activeData.selectedHotspots || activeData.currentQ !== stepIndex) {
-                activeData.selectedHotspots = [];
-                activeData.currentQ = stepIndex;
-            }
-
-            let html = `<div class="flex flex-col md:flex-row gap-8 items-start w-full max-w-6xl mx-auto">`;
-            
-            html += `<div class="w-full md:w-2/3 relative rounded-3xl shadow-2xl border-4 border-white overflow-hidden bg-white">
-                        <img src="${activeData.image}" class="w-full h-auto block select-none pointer-events-none">`;
-            
-            activeData.hotspots.forEach((hs, hsIdx) => {
-                const isSelected = activeData.selectedHotspots.includes(hs.id);
-                const styleClass = isSelected ? 'bg-green-400/50 border-4 border-green-600 scale-105 z-10' : 'bg-white/10 hover:bg-white/30 border-2 border-dashed border-gray-800/50';
-                html += `<div onclick="tapHotspot(${hsIdx})" class="absolute rounded-xl transition-all cursor-pointer flex items-center justify-center group ${styleClass}" style="top: ${hs.top}%; left: ${hs.left}%; width: ${hs.w}%; height: ${hs.h}%;">
-                            <div class="absolute -top-12 bg-black text-white font-bold py-1 px-3 rounded-lg text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg z-20">${hs.text}</div>
-                            ${isSelected ? '<i class="fas fa-check-circle text-3xl text-green-700 drop-shadow-md bg-white rounded-full"></i>' : ''}
-                         </div>`;
-            });
-            html += `</div>`;
-            
-            html += `<div class="w-full md:w-1/3 flex flex-col gap-6">
-                        <div class="bg-blue-50 p-6 rounded-3xl shadow-md border-4 border-blue-200">
-                            <h3 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4 leading-snug">${qData.q}</h3>
-                            <div class="flex items-center gap-2 text-lg font-bold text-gray-600 mb-6 bg-white p-3 rounded-xl border-2 border-blue-100">
-                                <span>Pilihan Semasa: </span>
-                                <span class="${activeData.selectedHotspots.length === qData.reqCount ? 'text-green-600 font-black' : 'text-rose-500'} text-2xl">${activeData.selectedHotspots.length} / ${qData.reqCount}</span>
-                            </div>
-                            <button onclick="semakHotspot()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-4 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${activeData.selectedHotspots.length === qData.reqCount ? 'animate-bounce shadow-yellow-400/50 hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${activeData.selectedHotspots.length === qData.reqCount ? '' : 'disabled'}>Semak Jawapan!</button>
-                        </div>
-                        <div class="text-center text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200 shadow-sm mx-auto">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>
-                     </div>`;
-                     
-            html += `</div>`;
-            container.innerHTML = html;
-        }
-
-        function tapHotspot(hsIdx) {
-            const hsId = activeData.hotspots[hsIdx].id;
-            const qData = activeData.items[stepIndex];
-            const idx = activeData.selectedHotspots.indexOf(hsId);
-            if (idx > -1) activeData.selectedHotspots.splice(idx, 1);
-            else if (activeData.selectedHotspots.length < qData.reqCount) activeData.selectedHotspots.push(hsId);
-            renderActivityView();
-        }
-
-        function semakHotspot() {
-            const qData = activeData.items[stepIndex];
-            const selectedObj = activeData.selectedHotspots.map(id => activeData.hotspots.find(h => h.id === id));
-            
-            let isAllCorrect = (qData.targetType === 'any') ? true : selectedObj.every(hs => hs.type === qData.targetType);
-            
-            if (isAllCorrect) {
-                showFeedback(true, '', '', () => { 
-                    stepIndex++; 
-                    if (stepIndex >= activeData.items.length) { stepIndex--; paparTamatAktiviti(); }
-                    else { renderActivityView(); }
-                });
-            } else {
-                const wrongOnes = selectedObj.filter(hs => hs.type !== qData.targetType).map(hs => hs.text).join(", ");
-                const expectedText = qData.targetType === 'any' ? 'Mana-mana makanan berkhasiat' : `Makanan jenis ${qData.targetType.toUpperCase()}`;
-                showFeedback(false, expectedText, wrongOnes, () => { activeData.selectedHotspots = []; renderActivityView(); });
-            }
-        }
-
         function showFeedback(isCorrect, rightAns, wrongAns, callback) {
             const modal = document.getElementById('modal-feedback');
             const icon = document.getElementById('feedback-icon');
@@ -1789,7 +1399,7 @@
                 icon.innerHTML = '<span class="text-rose-500 drop-shadow-md">💡</span>';
                 title.innerText = 'Cuba Lagi!';
                 title.className = 'text-5xl font-chewy text-rose-500 mb-4 drop-shadow-sm';
-                msg.innerHTML = `Terdapat kesalahan pada jawapan anda.<br><br><span class="text-base text-gray-400">Petunjuk/Jawapan Sebenar:</span><br><span class="text-blue-600 text-xl font-bold bg-blue-50 p-2 md:p-3 rounded-lg inline-block mt-2 border-2 border-blue-100">${rightAns}</span>`;
+                msg.innerHTML = `Jawapan anda kurang tepat.<br><br><span class="text-base text-gray-400">Peringatan:</span><br><span class="text-blue-600 text-xl font-bold bg-blue-50 p-2 md:p-3 rounded-lg inline-block mt-2 border-2 border-blue-100">${rightAns}</span>`;
             }
             
             document.getElementById('btn-next').innerText = 'Seterusnya';
@@ -1806,11 +1416,221 @@
             document.getElementById('feedback-message').innerHTML = `Anda telah berjaya melengkapkan aktiviti ini dengan cemerlang!`;
             
             document.getElementById('btn-next').innerText = 'Tutup & Bincang';
-            document.getElementById('btn-next').onclick = () => { modal.classList.add('hidden'); };
+            document.getElementById('btn-next').onclick = () => {
+                modal.classList.add('hidden');
+            };
             modal.classList.remove('hidden');
         }
 
-        // Start App
+        function renderMCQ(container) {
+            const item = activeData.items[stepIndex];
+            if (!activeData.currentOptions) {
+                activeData.currentOptions = [...activeData.pool].sort(() => 0.5 - Math.random());
+                activeData.currentAns = item.ans;
+            }
+            let html = `<div class="w-full max-w-4xl mx-auto flex flex-col items-center">`;
+            if (item.type === 'image') html += `<img src="${item.media}" class="max-h-[40vh] object-contain rounded-2xl shadow-xl border-4 border-white mb-8">`;
+            else if (item.type === 'video') html += `<video src="${item.media}" controls class="max-h-[40vh] rounded-2xl shadow-xl border-4 border-white mb-8"></video>`;
+            html += `<div class="flex flex-col gap-4 w-full">`;
+            activeData.currentOptions.forEach((opt, i) => {
+                html += `<button onclick="checkMCQ(${i})" class="btn-3d bg-white hover:bg-blue-50 text-blue-800 border-4 border-blue-200 font-bold p-4 rounded-xl text-lg md:text-xl text-left transition-all shadow-md flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 shrink-0">${String.fromCharCode(65 + i)}</div>
+                            <div>${opt}</div>
+                         </button>`;
+            });
+            html += `</div><div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div></div>`;
+            container.innerHTML = html;
+        }
+
+        function renderMCQBerkaitan(container) {
+            if (!activeData.initialized) {
+                activeData.items.forEach(item => { if (!item.userAns) item.userAns = null; });
+                activeData.initialized = true;
+            }
+            let html = `<div class="flex flex-col md:flex-row gap-6 w-full max-w-6xl mx-auto items-start">`;
+            html += `<div class="w-full md:w-1/2"><img src="${activeData.overallImage}" class="w-full h-auto object-contain rounded-2xl shadow-xl border-4 border-white sticky top-4"></div>`;
+            html += `<div class="w-full md:w-1/2 flex flex-col gap-8">`;
+            activeData.items.forEach((item, qIdx) => {
+                html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-100 shadow-inner"><h3 class="text-xl font-bold text-gray-800 mb-4">${item.q}</h3><div class="flex flex-col gap-3">`;
+                item.options.forEach((opt) => {
+                    const isSelected = item.userAns === opt || (Array.isArray(item.userAns) && item.userAns.includes(opt));
+                    const btnClass = isSelected ? 'bg-blue-500 text-white border-blue-600 shadow-md' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50';
+                    const clickHandler = item.type === 'multi' ? `checkMCQMulti(${qIdx}, '${opt.replace(/'/g, "\\'")}')` : `checkMCQSingle(${qIdx}, '${opt.replace(/'/g, "\\'")}')`;
+                    html += `<button onclick="${clickHandler}" class="btn-3d border-2 p-3 rounded-xl text-left transition-all ${btnClass}">${opt}</button>`;
+                });
+                html += `</div></div>`;
+            });
+            html += `<button onclick="semakMCQBerkaitan()" class="btn-3d w-full mt-4 bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg hover:bg-yellow-300">Semak Jawapan</button></div></div>`;
+            container.innerHTML = html;
+        }
+
+        window.checkMCQSingle = function(qIdx, opt) { activeData.items[qIdx].userAns = opt; renderActivityView(); }
+        window.checkMCQMulti = function(qIdx, opt) { 
+            let ans = activeData.items[qIdx].userAns || [];
+            if (ans.includes(opt)) ans = ans.filter(a => a !== opt); else if (ans.length < activeData.items[qIdx].reqCount) ans.push(opt);
+            activeData.items[qIdx].userAns = ans; 
+            renderActivityView(); 
+        }
+        window.semakMCQBerkaitan = function() {
+            let isCorrect = true;
+            activeData.items.forEach(item => {
+                if (item.type === 'multi') {
+                    if (!item.userAns || item.userAns.length !== item.ans.length || !item.userAns.every(a => item.ans.includes(a))) isCorrect = false;
+                } else {
+                    if (item.userAns !== item.ans) isCorrect = false;
+                }
+            });
+            if (isCorrect) showFeedback(true, '', '', () => paparTamatAktiviti());
+            else showFeedback(false, "Sila semak semula pilihan anda.", "Terdapat jawapan yang kurang tepat.", () => {});
+        }
+
+        function renderIsiKosongPerenggan(container) {
+            if (!activeData.poolState) {
+                activeData.poolState = [...activeData.pool].sort(() => 0.5 - Math.random()).map((t, i) => ({ text: t, used: false, id: i }));
+                activeData.targets = Array(activeData.pool.length).fill().map(() => ({ placedId: undefined }));
+            }
+            let html = `<div class="w-full max-w-5xl mx-auto flex flex-col gap-8">`;
+            if (activeData.images) {
+                html += `<div class="flex justify-center gap-4 flex-wrap">`;
+                activeData.images.forEach(img => { html += `<img src="${img}" class="h-32 object-contain rounded-xl border-4 border-white shadow-md">`; });
+                html += `</div>`;
+            }
+            let textContent = activeData.text;
+            activeData.targets.forEach((target, i) => {
+                const placedItem = target.placedId !== undefined ? activeData.poolState.find(p => p.id === target.placedId) : null;
+                const blankHtml = placedItem 
+                    ? `<span onclick="kembalikanPerenggan(${i})" class="inline-block px-3 py-1 mx-1 bg-green-100 text-green-800 border-b-4 border-green-500 font-bold rounded-lg cursor-pointer hover:bg-red-100 hover:border-red-500 hover:text-red-800 transition-colors align-middle shadow-sm">${placedItem.text}</span>` 
+                    : `<span onclick="tapPlacePerenggan(${i})" class="inline-block px-8 py-3 mx-1 border-b-4 border-dashed rounded-lg cursor-pointer align-middle transition-all ${selectedIndex !== null ? 'border-rose-400 bg-rose-50 animate-pulse' : 'border-gray-400 bg-gray-100'}"></span>`;
+                textContent = textContent.replace(`[${i}]`, blankHtml);
+            });
+            html += `<div class="bg-white p-6 md:p-8 rounded-3xl shadow-lg border-4 border-blue-100 text-lg md:text-xl text-gray-700 leading-loose ${activeData.textClass || ''}">${textContent}</div>`;
+            html += `<div class="flex flex-wrap gap-3 justify-center bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner">`;
+            activeData.poolState.forEach((p, i) => {
+                if (p.used) return;
+                const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-100';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-2 md:p-3 rounded-xl text-base md:text-lg transition-all ${btnClass}">${p.text}</button>`;
+            });
+            html += `</div>`;
+            const allPlaced = activeData.targets.every(t => t.placedId !== undefined);
+            html += `<button onclick="semakPerenggan()" class="btn-3d w-full max-w-sm mt-4 mx-auto block bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${allPlaced ? 'animate-bounce shadow-yellow-400/50 hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${allPlaced ? '' : 'disabled'}>Semak Jawapan</button></div>`;
+            container.innerHTML = html;
+        }
+        
+        window.tapPlacePerenggan = function(i) {
+            if (selectedIndex === null) return;
+            const poolItem = activeData.poolState[selectedIndex];
+            if (activeData.targets[i].placedId !== undefined) {
+                activeData.poolState.find(p => p.id === activeData.targets[i].placedId).used = false;
+            }
+            activeData.targets[i].placedId = poolItem.id;
+            poolItem.used = true;
+            selectedIndex = null;
+            renderActivityView();
+        }
+        window.kembalikanPerenggan = function(i) {
+            if (activeData.targets[i].placedId !== undefined) {
+                activeData.poolState.find(p => p.id === activeData.targets[i].placedId).used = false;
+                activeData.targets[i].placedId = undefined;
+                renderActivityView();
+            }
+        }
+        window.semakPerenggan = function() {
+            let isCorrect = true;
+            activeData.targets.forEach((t, i) => {
+                const p = activeData.poolState.find(p => p.id === t.placedId);
+                if (!p || p.text !== activeData.pool[i]) isCorrect = false;
+            });
+            if (isCorrect) showFeedback(true, '', '', () => paparTamatAktiviti());
+            else showFeedback(false, "Sila periksa dan betulkan semula (Klik jawapan untuk menariknya semula).", "Terdapat kesalahan pada jawapan anda.", () => renderActivityView());
+        }
+
+        function renderHotspotKlik(container) {
+            if(!activeData.selectedHotspots) activeData.selectedHotspots = [];
+            let html = `<div class="relative w-full max-w-4xl mx-auto border-4 border-white shadow-2xl rounded-2xl overflow-hidden bg-white mb-6">
+                            <img src="${activeData.image}" class="w-full h-auto block select-none pointer-events-none">`;
+            activeData.hotspots.forEach((h) => {
+                const isSelected = activeData.selectedHotspots.includes(h.id);
+                const style = `top: ${h.top}%; left: ${h.left}%; width: ${h.w}%; height: ${h.h}%;`;
+                const bgClass = isSelected ? 'bg-green-500/50 border-4 border-green-500' : 'hover:bg-blue-300/30 border-2 border-transparent hover:border-blue-300 cursor-pointer';
+                html += `<div onclick="toggleHotspot('${h.id}')" class="absolute rounded-xl transition-all ${bgClass}" style="${style}"></div>`;
+            });
+            html += `</div>`;
+            
+            const qItem = activeData.items[stepIndex];
+            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 w-full max-w-4xl mx-auto">
+                        <h3 class="text-xl font-bold text-blue-900 mb-4 text-center">${qItem.q}</h3>
+                        <div class="text-center font-bold text-gray-600 mb-4">Pilih ${qItem.reqCount} kawasan. (Terpilih: ${activeData.selectedHotspots.length})</div>
+                        <button onclick="semakHotspot()" class="btn-3d w-full max-w-sm mx-auto block bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${activeData.selectedHotspots.length === qItem.reqCount ? 'animate-bounce' : 'opacity-50'}" ${activeData.selectedHotspots.length === qItem.reqCount ? '' : 'disabled'}>Semak Jawapan</button>
+                     </div>`;
+            container.innerHTML = html;
+        }
+        
+        window.toggleHotspot = function(hId) {
+            if (activeData.selectedHotspots.includes(hId)) {
+                activeData.selectedHotspots = activeData.selectedHotspots.filter(id => id !== hId);
+            } else {
+                const reqCount = activeData.items[stepIndex].reqCount;
+                if (activeData.selectedHotspots.length < reqCount) {
+                    activeData.selectedHotspots.push(hId);
+                }
+            }
+            renderActivityView();
+        }
+        window.semakHotspot = function() {
+            const qItem = activeData.items[stepIndex];
+            let isCorrect = true;
+            if (qItem.targetType !== 'any') {
+                activeData.selectedHotspots.forEach(id => {
+                    const h = activeData.hotspots.find(x => x.id === id);
+                    if (h.type !== qItem.targetType) isCorrect = false;
+                });
+            }
+            if (isCorrect) {
+                showFeedback(true, '', '', () => {
+                    stepIndex++;
+                    activeData.selectedHotspots = [];
+                    if (stepIndex >= activeData.items.length) { stepIndex--; paparTamatAktiviti(); }
+                    else renderActivityView();
+                });
+            } else {
+                showFeedback(false, "Sila pastikan anda memilih bahagian yang tepat.", "Pilihan anda kurang tepat.", () => { activeData.selectedHotspots = []; renderActivityView(); });
+            }
+        }
+
+        function renderWordSearch(container) {
+            let html = `<div class="flex flex-col items-center gap-6 w-full max-w-3xl mx-auto">
+                            <div class="grid grid-rows-${activeData.grid.length} gap-1 bg-white p-4 rounded-2xl shadow-lg border-4 border-blue-100">`;
+            activeData.grid.forEach((row) => {
+                html += `<div class="flex gap-1">`;
+                row.forEach((letter) => {
+                    html += `<div class="w-10 h-10 md:w-12 md:h-12 bg-blue-50 font-bold text-xl md:text-2xl text-blue-900 flex items-center justify-center rounded-lg border-2 border-blue-200 cursor-pointer hover:bg-blue-200 transition-colors">${letter}</div>`;
+                });
+                html += `</div>`;
+            });
+            html += `</div><button onclick="paparTamatAktiviti()" class="btn-3d w-full max-w-sm mt-4 bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg hover:bg-yellow-300">Selesai Mencari</button></div>`;
+            container.innerHTML = html;
+        }
+
+        function renderSalinMenaip(container) {
+            let html = `<div class="w-full max-w-4xl mx-auto flex flex-col gap-6 items-center">
+                            <img src="${activeData.image}" class="max-h-[40vh] object-contain rounded-2xl shadow-xl border-4 border-white">
+                            <textarea id="salin-textarea" class="w-full h-48 p-4 rounded-2xl border-4 border-blue-200 shadow-inner text-lg md:text-xl text-gray-800 focus:border-blue-500 focus:outline-none resize-none" placeholder="Taip semula petikan di sini..."></textarea>
+                            <button onclick="semakSalinMenaip()" class="btn-3d w-full max-w-sm mt-4 bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg hover:bg-yellow-300">Selesai Menaip</button>
+                        </div>`;
+            container.innerHTML = html;
+        }
+        
+        window.semakSalinMenaip = function() {
+            const text = document.getElementById('salin-textarea').value.trim();
+            const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+            if (wordCount >= (activeData.minWords || 10)) {
+                showFeedback(true, '', '', () => paparTamatAktiviti());
+            } else {
+                showFeedback(false, "Sila taip petikan dengan lengkap mengikut jumlah perkataan minimum.", "Teks terlalu pendek atau kosong.", () => {});
+            }
+        }
+
+        // Jalankan App
         window.onload = initApp;
 
     </script>
