@@ -35,14 +35,13 @@
             }
         }
     </script>
+    
     <style>
         /* Latar Belakang Abjad dan Nombor yang ceria */
-        body {
+        .bg-pattern {
             background-color: #f8fafc;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Ctext x='40' y='80' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='60' fill='%23FF1493' opacity='0.12' transform='rotate(-15, 40, 80)'%3EA%3C/text%3E%3Ctext x='240' y='90' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='75' fill='%2300BFFF' opacity='0.12' transform='rotate(20, 240, 90)'%3E1%3C/text%3E%3Ctext x='90' y='270' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='55' fill='%23FF6500' opacity='0.12' transform='rotate(10, 90, 270)'%3Eb%3C/text%3E%3Ctext x='290' y='320' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='70' fill='%2300EA00' opacity='0.12' transform='rotate(-25, 290, 320)'%3E2%3C/text%3E%3Ctext x='180' y='200' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='65' fill='%239D00FF' opacity='0.12' transform='rotate(5, 180, 200)'%3EC%3C/text%3E%3Ctext x='30' y='350' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='50' fill='%23FFD700' opacity='0.20' transform='rotate(15, 30, 350)'%3E3%3C/text%3E%3Ctext x='140' y='50' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='45' fill='%23FF1493' opacity='0.12' transform='rotate(-10, 140, 50)'%3Ed%3C/text%3E%3Ctext x='340' y='180' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='60' fill='%23FF6500' opacity='0.12' transform='rotate(25, 340, 180)'%3E4%3C/text%3E%3C/svg%3E");
             background-size: 400px 400px;
-            font-family: 'Comic Neue', cursive, sans-serif;
-            min-height: 100vh;
         }
 
         /* Animasi mudah untuk butang (hover dan aktif) */
@@ -67,101 +66,102 @@
         }
     </style>
 </head>
-<body class="text-gray-800 pb-20">
 
-    <!-- Pengepala Utama (Sentiasa Kelihatan) -->
-    <header class="bg-white shadow-md p-4 sticky top-0 z-50 rounded-b-3xl mx-2 md:mx-10 border-b-8 border-yellow-400">
-        <div class="max-w-5xl mx-auto flex justify-between items-center relative">
-            
-            <!-- Butang Home (Kiri) -->
-            <button id="btn-home" onclick="showHomeScreen()" class="text-white hover:text-gray-200 btn-hover-effect bg-blue-500 p-3 rounded-full flex flex-col items-center justify-center w-16 h-16 border-4 border-blue-700 shadow-lg">
-                <i class="fas fa-home text-2xl"></i>
-            </button>
+<body class="bg-gray-900 h-screen w-screen flex items-center justify-center overflow-hidden font-kids-body text-gray-800 p-2 md:p-4">
 
-            <!-- Tajuk Aplikasi -->
-            <h1 class="text-3xl md:text-5xl font-kids-title text-center flex-1 px-4 drop-shadow-sm tracking-wide">
-                <span class="text-red-500">B</span><span class="text-orange-500">A</span><span class="text-yellow-500">H</span><span class="text-green-500">A</span><span class="text-blue-500">S</span><span class="text-indigo-500">A</span> 
-                <span class="text-pink-500">M</span><span class="text-red-500">E</span><span class="text-orange-500">L</span><span class="text-yellow-500">A</span><span class="text-green-500">Y</span><span class="text-blue-500">U</span><br class="md:hidden">
-                <span class="text-indigo-500">T</span><span class="text-pink-500">A</span><span class="text-red-500">H</span><span class="text-orange-500">U</span><span class="text-yellow-500">N</span> 
-                <span class="text-green-500 text-4xl md:text-6xl ml-2">1</span>
-            </h1>
+    <!-- 16:9 Wrapper Container (Fit to screen) -->
+    <div class="relative w-full h-full max-h-full aspect-video bg-pattern flex flex-col overflow-hidden shadow-2xl rounded-2xl md:rounded-3xl mx-auto" style="max-width: calc(100vh * 16 / 9);">
 
-            <!-- Butang Kembali (Kanan) -->
-            <button id="btn-back" onclick="goBack()" class="hidden-screen text-white hover:text-gray-200 btn-hover-effect bg-orange-500 p-3 rounded-full flex flex-col items-center justify-center w-16 h-16 border-4 border-orange-700 shadow-lg">
-                <i class="fas fa-arrow-left text-2xl"></i>
-            </button>
-            
-            <!-- Ruang kosong pengganti butang back di skrin utama untuk keseimbangan flexbox -->
-            <div id="spacer-back" class="w-16 h-16"></div>
-        </div>
-    </header>
-
-    <!-- KANDUNGAN UTAMA -->
-    <main class="max-w-6xl mx-auto mt-8 px-4">
-        
-        <!-- SKRIN 1: MENU UTAMA (SENARAI TEMA) -->
-        <div id="screen-home">
-            <h2 class="text-center text-3xl font-kids-title text-gray-700 mb-8 bg-white/80 inline-block px-8 py-2 rounded-full border-4 border-dashed border-pink-400 mx-auto w-fit block shadow-sm">
-                Pilih Tema Pembelajaran
-            </h2>
-            
-            <!-- Grid Menu Tema -->
-            <div id="theme-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 p-4">
-                <!-- Butang Tema akan dijana oleh JavaScript di sini -->
-            </div>
-        </div>
-
-        <!-- SKRIN 2: SENARAI UNIT BAGI TEMA -->
-        <div id="screen-unit-list" class="hidden-screen">
-            <div class="bg-white rounded-3xl p-6 shadow-lg border-4 border-dashed border-blue-400 mb-8 text-center relative overflow-hidden">
-                <!-- Elemen hiasan latar -->
-                <div class="absolute -top-10 -right-10 text-9xl text-blue-100 opacity-50 z-0">
-                    <i class="fas fa-book-open"></i>
-                </div>
+        <!-- Pengepala Utama (Sentiasa Kelihatan) -->
+        <header class="bg-white shadow-sm p-2 md:p-4 z-50 rounded-b-3xl mx-2 md:mx-10 border-b-8 border-yellow-400 flex-shrink-0">
+            <div class="max-w-6xl mx-auto flex justify-between items-center relative">
                 
-                <h2 id="current-theme-title" class="text-3xl md:text-4xl font-kids-title relative z-10">
-                    <!-- Tajuk Tema akan dipaparkan di sini -->
+                <!-- Butang Home (Kiri) - Menggunakan home.png -->
+                <button id="btn-home" onclick="window.location.href='index.html'" class="hover:opacity-80 btn-hover-effect flex flex-col items-center justify-center w-16 h-16 md:w-20 md:h-20 drop-shadow-md">
+                    <img src="home.png" alt="Home" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/80x80/2563eb/white?text=Home'">
+                </button>
+
+                <!-- Tajuk Aplikasi -->
+                <h1 class="text-2xl md:text-5xl font-kids-title text-center flex-1 px-2 md:px-4 drop-shadow-sm tracking-wide">
+                    <span class="text-red-500">B</span><span class="text-orange-500">A</span><span class="text-yellow-500">H</span><span class="text-green-500">A</span><span class="text-blue-500">S</span><span class="text-indigo-500">A</span> 
+                    <span class="text-pink-500">M</span><span class="text-red-500">E</span><span class="text-orange-500">L</span><span class="text-yellow-500">A</span><span class="text-green-500">Y</span><span class="text-blue-500">U</span><br class="md:hidden">
+                    <span class="text-indigo-500">T</span><span class="text-pink-500">A</span><span class="text-red-500">H</span><span class="text-orange-500">U</span><span class="text-yellow-500">N</span> 
+                    <span class="text-green-500 text-4xl md:text-6xl ml-1 md:ml-2">1</span>
+                </h1>
+
+                <!-- Butang Kembali (Kanan) - Menggunakan kembali.png -->
+                <button id="btn-back" onclick="goBack()" class="hidden-screen hover:opacity-80 btn-hover-effect flex flex-col items-center justify-center w-16 h-16 md:w-20 md:h-20 drop-shadow-md">
+                    <img src="kembali.png" alt="Kembali" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/80x80/f97316/white?text=Kembali'">
+                </button>
+                
+                <!-- Ruang kosong pengganti butang back di skrin utama untuk keseimbangan flexbox -->
+                <div id="spacer-back" class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0"></div>
+            </div>
+        </header>
+
+        <!-- KANDUNGAN UTAMA (Memenuhi ruang yang tinggal) -->
+        <main class="w-full flex-1 flex flex-col px-4 pb-4 overflow-hidden relative">
+            
+            <!-- SKRIN 1: MENU UTAMA (SENARAI TEMA) -->
+            <div id="screen-home" class="flex-1 flex flex-col w-full h-full pt-4">
+                <h2 class="text-center text-2xl md:text-3xl font-kids-title text-gray-700 mb-4 bg-white/80 inline-block px-8 py-2 rounded-full border-4 border-dashed border-pink-400 mx-auto w-fit shadow-sm flex-shrink-0">
+                    Pilih Tema Pembelajaran
                 </h2>
-            </div>
-
-            <!-- Grid Menu Unit -->
-            <div id="unit-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                <!-- Butang Unit akan dijana oleh JavaScript di sini -->
-            </div>
-        </div>
-
-        <!-- SKRIN 3: KANDUNGAN PEMBELAJARAN (Paparan untuk sesi pengajaran) -->
-        <div id="screen-unit-content" class="hidden-screen">
-            <div class="bg-white rounded-3xl p-8 shadow-xl border-8 border-theme-4 min-h-[50vh] flex flex-col items-center justify-center text-center relative">
                 
-                <div class="absolute top-4 right-4 text-gray-400 opacity-20 text-6xl">
-                    <i class="fas fa-chalkboard-teacher"></i>
+                <!-- Grid Menu Tema (3x2) - 3 Lajur, 2 Baris untuk menutupi ruang -->
+                <div id="theme-grid" class="grid grid-cols-3 grid-rows-2 gap-3 md:gap-5 flex-1 h-full min-h-0 pb-2">
+                    <!-- Butang Tema akan dijana oleh JavaScript di sini -->
                 </div>
+            </div>
 
-                <span id="content-unit-number" class="bg-theme-4 text-white font-kids-title px-6 py-2 rounded-full text-xl mb-4 shadow-md border-2 border-green-700"></span>
-                <h2 id="content-unit-title" class="text-4xl md:text-5xl font-kids-title text-gray-800 mb-6 drop-shadow-sm"></h2>
-                
-                <div class="w-full max-w-2xl bg-blue-50 border-4 border-blue-200 rounded-2xl p-10 flex flex-col items-center shadow-inner mt-4">
-                    <i class="fas fa-desktop text-6xl text-blue-300 mb-4 animate-pulse"></i>
-                    <p class="text-2xl font-bold text-gray-600">
-                        Ruang Paparan Digital Cikgu
-                    </p>
-                    <p class="text-lg text-gray-500 mt-2">
-                        (Letakkan video, gambar bersaiz besar, atau teks interaktif di sini untuk paparan kelas)
-                    </p>
+            <!-- SKRIN 2: SENARAI UNIT BAGI TEMA -->
+            <div id="screen-unit-list" class="hidden-screen flex-1 flex flex-col w-full h-full pt-4">
+                <div class="bg-white rounded-3xl p-4 shadow-lg border-4 border-dashed border-blue-400 mb-4 text-center relative overflow-hidden flex-shrink-0">
+                    <!-- Elemen hiasan latar -->
+                    <div class="absolute -top-10 -right-10 text-9xl text-blue-100 opacity-50 z-0">
+                        <i class="fas fa-book-open"></i>
+                    </div>
                     
-                    <button onclick="goBack()" class="mt-8 bg-orange-500 hover:bg-orange-600 text-white font-kids-title text-xl py-3 px-8 rounded-full border-b-4 border-orange-700 btn-hover-effect shadow-md flex items-center gap-2">
-                        <i class="fas fa-arrow-left"></i> Kembali ke Senarai Unit
-                    </button>
+                    <h2 id="current-theme-title" class="text-2xl md:text-3xl font-kids-title relative z-10">
+                        <!-- Tajuk Tema akan dipaparkan di sini -->
+                    </h2>
+                </div>
+
+                <!-- Grid Menu Unit (5 Lajur, 1 Baris) -->
+                <div id="unit-grid" class="grid grid-cols-5 gap-3 md:gap-4 flex-1 h-full min-h-0 pb-2">
+                    <!-- Butang Unit akan dijana oleh JavaScript di sini -->
                 </div>
             </div>
-        </div>
 
-    </main>
+            <!-- SKRIN 3: KANDUNGAN PEMBELAJARAN (Paparan untuk sesi pengajaran) -->
+            <div id="screen-unit-content" class="hidden-screen flex-1 flex flex-col w-full h-full pt-4 pb-2">
+                <div class="bg-white rounded-3xl p-6 shadow-xl border-8 border-theme-4 flex-1 flex flex-col items-center justify-center text-center relative h-full min-h-0 overflow-y-auto">
+                    
+                    <div class="absolute top-4 right-4 text-gray-400 opacity-20 text-6xl">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+
+                    <span id="content-unit-number" class="bg-theme-4 text-white font-kids-title px-6 py-2 rounded-full text-xl mb-4 shadow-md border-2 border-green-700"></span>
+                    <h2 id="content-unit-title" class="text-4xl md:text-5xl font-kids-title text-gray-800 mb-6 drop-shadow-sm"></h2>
+                    
+                    <div class="w-full max-w-2xl bg-blue-50 border-4 border-blue-200 rounded-2xl p-10 flex flex-col items-center shadow-inner mt-4">
+                        <i class="fas fa-desktop text-6xl text-blue-300 mb-4 animate-pulse"></i>
+                        <p class="text-2xl font-bold text-gray-600">
+                            Ruang Paparan Digital Cikgu
+                        </p>
+                        <p class="text-lg text-gray-500 mt-2">
+                            (Letakkan video, gambar bersaiz besar, atau teks interaktif di sini)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div> <!-- End 16:9 Wrapper -->
 
     <!-- DATA & LOGIK JAVASCRIPT -->
     <script>
-        // Data Kurikulum Bahasa Melayu Tahun 1 (Berdasarkan gambar)
+        // Data Kurikulum Bahasa Melayu Tahun 1
         const curriculumData = [
             {
                 id: 1, title: "TEMA 1", name: "KELUARGA", colorClass: "bg-pink-500", 
@@ -235,7 +235,7 @@
             showHomeScreen();
         };
 
-        // Fungsi untuk menjana paparan menu utama (Tema)
+        // Fungsi untuk menjana paparan menu utama (Tema 3x2)
         function renderHomeMenu() {
             const themeGrid = document.getElementById('theme-grid');
             themeGrid.innerHTML = ''; // Kosongkan sebelum isi
@@ -246,9 +246,9 @@
             curriculumData.forEach((theme, index) => {
                 const iconClass = themeIcons[index % themeIcons.length];
                 
-                // Cipta kad butang untuk setiap tema
+                // Cipta kad butang untuk setiap tema (memenuhi ruang grid 3x2)
                 const themeCard = document.createElement('button');
-                themeCard.className = `${theme.colorClass} unit-card p-6 flex flex-col items-center justify-center text-center btn-hover-effect cursor-pointer w-full h-full min-h-[160px] shadow-xl border-4 border-white`;
+                themeCard.className = `${theme.colorClass} unit-card p-2 md:p-4 flex flex-col items-center justify-center text-center btn-hover-effect cursor-pointer w-full h-full shadow-xl border-4 border-white`;
                 themeCard.onclick = () => showUnitList(theme.id);
 
                 // Tetapkan warna teks supaya jelas pada latar belakang yang sangat terang (kuning perlukan teks gelap)
@@ -257,11 +257,11 @@
                 const iconColor = (theme.id === 3) ? 'text-gray-900' : 'text-white';
 
                 themeCard.innerHTML = `
-                    <div class="bg-white/40 p-4 rounded-full mb-4 shadow-sm border-2 border-white/60">
-                        <i class="fas ${iconClass} text-5xl ${iconColor} opacity-90"></i>
+                    <div class="bg-white/40 p-3 rounded-full mb-2 md:mb-4 shadow-sm border-2 border-white/60">
+                        <i class="fas ${iconClass} text-4xl md:text-6xl ${iconColor} opacity-90"></i>
                     </div>
-                    <h3 class="text-xl font-kids-title ${titleColor} tracking-wider drop-shadow-md">${theme.title}</h3>
-                    <p class="text-3xl font-bold mt-2 ${subtitleColor} drop-shadow-md uppercase">${theme.name}</p>
+                    <h3 class="text-lg md:text-2xl font-kids-title ${titleColor} tracking-wider drop-shadow-md">${theme.title}</h3>
+                    <p class="text-xl md:text-3xl font-bold mt-1 ${subtitleColor} drop-shadow-md uppercase leading-tight">${theme.name}</p>
                 `;
                 themeGrid.appendChild(themeCard);
             });
@@ -282,14 +282,14 @@
             const finalTitleColor = (themeId === 3) ? 'text-yellow-600' : titleColorClass;
 
             document.getElementById('current-theme-title').innerHTML = `
-                <span class="text-gray-500 text-2xl block mb-2 font-kids-body font-bold">${theme.title}</span> 
-                <span class="${finalTitleColor} text-4xl">${theme.name}</span>
+                <span class="text-gray-500 text-xl md:text-2xl block mb-1 font-kids-body font-bold">${theme.title}</span> 
+                <span class="${finalTitleColor} text-3xl md:text-4xl">${theme.name}</span>
             `;
 
             const unitGrid = document.getElementById('unit-grid');
             unitGrid.innerHTML = ''; // Kosongkan grid
 
-            // Menjana kad untuk setiap unit
+            // Menjana kad untuk setiap unit (Grid 5x1)
             theme.units.forEach((unit, index) => {
                 // Warna berselang seli untuk kad unit agar nampak pelbagai dan terang berseri
                 const colors = ['bg-pink-400', 'bg-orange-400', 'bg-yellow-400', 'bg-green-400', 'bg-blue-400'];
@@ -297,7 +297,7 @@
                 const borderColor = cardColor.replace('400', '600');
 
                 const unitCard = document.createElement('button');
-                unitCard.className = `${cardColor} border-4 ${borderColor} rounded-3xl p-5 flex flex-col items-center text-center btn-hover-effect cursor-pointer w-full relative overflow-hidden shadow-lg h-full`;
+                unitCard.className = `${cardColor} border-4 ${borderColor} rounded-3xl p-3 md:p-5 flex flex-col items-center justify-center text-center btn-hover-effect cursor-pointer w-full h-full relative overflow-hidden shadow-lg`;
                 unitCard.onclick = () => showUnitContent(theme, unit);
 
                 // Nombor halaman di bucu untuk rujukan guru/buku teks
@@ -305,10 +305,10 @@
                     <div class="absolute top-2 right-2 bg-white text-xs font-bold py-1 px-2 rounded-lg text-gray-800 border-2 border-gray-300 shadow-sm">
                         M/S ${unit.page}
                     </div>
-                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-md border-4 ${borderColor}">
-                        <span class="text-3xl font-kids-title text-gray-800">${unit.id.replace('UNIT ', '')}</span>
+                    <div class="w-16 h-16 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center mb-2 md:mb-4 shadow-md border-4 ${borderColor}">
+                        <span class="text-2xl md:text-4xl font-kids-title text-gray-800">${unit.id.replace('UNIT ', '')}</span>
                     </div>
-                    <h4 class="text-xl font-kids-title text-gray-900 mb-2 drop-shadow-sm leading-tight">${unit.name}</h4>
+                    <h4 class="text-lg md:text-2xl font-kids-title text-gray-900 mb-1 md:mb-2 drop-shadow-sm leading-tight">${unit.name}</h4>
                 `;
                 unitGrid.appendChild(unitCard);
             });
@@ -327,7 +327,7 @@
             showScreen('screen-unit-content');
         }
 
-        // Fungsi kembali ke Skrin Utama (Home)
+        // Fungsi kembali ke Skrin Utama (Home) tanpa guna href jika perlu fallback (walaupun butang guna href index.html)
         function showHomeScreen() {
             currentScreenState = 'home';
             currentThemeIdSelected = null;
@@ -374,9 +374,6 @@
                 btnBack.classList.remove('hidden-screen');
                 spacerBack.classList.add('hidden-screen');
             }
-            
-            // Tatal ke atas secara lancar setiap kali tukar skrin
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
