@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Melayu Tahun 5 - Tema 5: Perpaduan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fredoka', 'Quicksand', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .text-shadow-sm {
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+        }
+        .text-shadow-lg {
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.25);
+        }
+        .grid-letter {
+            transition: all 0.15s ease;
+        }
+        .grid-letter.selected {
+            background-color: #fde047;
+            color: #1e293b;
+            transform: scale(1.08);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .grid-letter.found {
+            background-color: #4ade80 !important;
+            color: #ffffff !important;
+            border-color: #16a34a !important;
+        }
+        /* Pulse Animation for buttons */
+        @keyframes subtle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-bounce-subtle {
+            animation: subtle-bounce 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="h-[100dvh] w-screen overflow-hidden bg-gradient-to-br from-amber-100 via-sky-100 to-emerald-100 flex flex-col text-slate-800">
+
+    <!-- HEADER / BAR NAVIGASI (Tetap 1 Skrin) -->
+    <header class="h-16 md:h-20 bg-white/80 backdrop-blur-md border-b-4 border-amber-300 px-4 flex items-center justify-between shrink-0 z-20 shadow-sm">
+        <div class="flex items-center space-x-2">
+            <!-- Butang Kembali (kembali.png) -->
+            <button onclick="window.history.back()" title="Kembali" class="group flex items-center justify-center bg-rose-400 hover:bg-rose-500 text-white rounded-2xl p-2 md:px-3.5 md:py-2 transition transform active:scale-95 shadow-md border-b-4 border-rose-600">
+                <img src="kembali.png" alt="Kembali" class="w-6 h-6 object-contain" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                <i class="fa-solid fa-arrow-left text-xl hidden md:mr-1"></i>
+                <span class="hidden md:inline font-bold text-sm">Kembali</span>
+            </button>
+            
+            <!-- Butang Home (home.png) -->
+            <button onclick="window.location.href='index.html'" title="Laman Utama" class="group flex items-center justify-center bg-amber-400 hover:bg-amber-500 text-amber-950 rounded-2xl p-2 md:px-3.5 md:py-2 transition transform active:scale-95 shadow-md border-b-4 border-amber-600">
+                <img src="home.png" alt="Home" class="w-6 h-6 object-contain" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                <i class="fa-solid fa-house text-xl hidden md:mr-1"></i>
+                <span class="hidden md:inline font-bold text-sm">Utama</span>
+            </button>
+        </div>
+
+        <!-- Tajuk Utama -->
+        <div class="text-center">
+            <span class="bg-amber-300 text-amber-900 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider hidden sm:inline-block">Tahun 5</span>
+            <h1 class="text-lg md:text-2xl font-bold text-sky-800 tracking-wide text-shadow-sm flex items-center justify-center gap-1">
+                <span>Tema 5: Perpaduan</span>
+            </h1>
+        </div>
+
+        <!-- Badge Unit/Status -->
+        <div class="flex items-center">
+            <div id="unit-badge" class="bg-indigo-500 text-white px-3 py-1 md:px-4 md:py-1.5 rounded-full font-bold text-xs md:text-sm shadow-sm flex items-center gap-1.5">
+                <i class="fa-solid fa-star text-yellow-300"></i>
+                <span id="unit-badge-text">Pilih Unit</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ROSTER SKRIN UTAMA / AKTIVITI (Dynamic Container strictly max h-[calc(100dvh-5rem)]) -->
+    <main class="flex-grow min-h-0 w-full relative overflow-hidden flex flex-col justify-between">
+
+        <!-- 1. SKRIN MENU UTAMA -->
+        <section id="screen-menu" class="h-full w-full flex flex-col justify-center items-center p-4 md:p-6 space-y-4 md:space-y-6">
+            <div class="text-center max-w-xl">
+                <div class="inline-block p-3 bg-white rounded-3xl shadow-lg border-4 border-sky-300 mb-2">
+                    <span class="text-4xl md:text-5xl">🤝</span>
+                </div>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-sky-900 mb-1">Mari Belajar Bersama!</h2>
+                <p class="text-sm md:text-base text-slate-600 font-semibold">Pilih Unit Aktiviti Bahasa Melayu di bawah untuk mula bermain.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5 w-full max-w-4xl px-2">
+                <!-- Card Unit 13 -->
+                <button onclick="switchScreen('screen-unit13')" class="group relative bg-white hover:bg-emerald-50 border-4 border-emerald-400 rounded-3xl p-4 md:p-6 text-left shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 flex flex-col justify-between h-40 md:h-52">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-emerald-100 text-emerald-800 font-bold text-xs px-3 py-1 rounded-full border border-emerald-300">UNIT 13</span>
+                        <span class="text-3xl group-hover:scale-125 transition-transform">🔍</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg md:text-xl font-bold text-emerald-900 group-hover:text-emerald-600">Muafakat Membawa Berkat</h3>
+                        <p class="text-xs md:text-sm text-slate-500 mt-1">Aktiviti Cari Perkataan</p>
+                    </div>
+                    <div class="w-full bg-emerald-500 text-white font-bold text-center py-1.5 rounded-xl text-xs md:text-sm mt-2 shadow-sm">
+                        Mula Main <i class="fa-solid fa-circle-play ml-1"></i>
+                    </div>
+                </button>
+
+                <!-- Card Unit 14 -->
+                <button onclick="switchScreen('screen-unit14')" class="group relative bg-white hover:bg-sky-50 border-4 border-sky-400 rounded-3xl p-4 md:p-6 text-left shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 flex flex-col justify-between h-40 md:h-52">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-sky-100 text-sky-800 font-bold text-xs px-3 py-1 rounded-full border border-sky-300">UNIT 14</span>
+                        <span class="text-3xl group-hover:scale-125 transition-transform">✍️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg md:text-xl font-bold text-sky-900 group-hover:text-sky-600">Berganding Bahu</h3>
+                        <p class="text-xs md:text-sm text-slate-500 mt-1">Aktiviti Taip Semula Teks</p>
+                    </div>
+                    <div class="w-full bg-sky-500 text-white font-bold text-center py-1.5 rounded-xl text-xs md:text-sm mt-2 shadow-sm">
+                        Mula Main <i class="fa-solid fa-circle-play ml-1"></i>
+                    </div>
+                </button>
+
+                <!-- Card Unit 15 -->
+                <button onclick="switchScreen('screen-unit15')" class="group relative bg-white hover:bg-purple-50 border-4 border-purple-400 rounded-3xl p-4 md:p-6 text-left shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 flex flex-col justify-between h-40 md:h-52">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-purple-100 text-purple-800 font-bold text-xs px-3 py-1 rounded-full border border-purple-300">UNIT 15</span>
+                        <span class="text-3xl group-hover:scale-125 transition-transform">🤟</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg md:text-xl font-bold text-purple-900 group-hover:text-purple-600">Semangat Kekitaan</h3>
+                        <p class="text-xs md:text-sm text-slate-500 mt-1">Padan Kod Tangan & Perkataan</p>
+                    </div>
+                    <div class="w-full bg-purple-500 text-white font-bold text-center py-1.5 rounded-xl text-xs md:text-sm mt-2 shadow-sm">
+                        Mula Main <i class="fa-solid fa-circle-play ml-1"></i>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. SKRIN UNIT 13: CARI PERKATAAN -->
+        <section id="screen-unit13" class="hidden h-full w-full flex-col p-2 md:p-4 justify-between overflow-hidden">
+            <!-- Arahan & Header Aktiviti -->
+            <div class="bg-white/90 rounded-2xl p-2 md:p-3 border-2 border-emerald-300 shadow-sm flex flex-col sm:flex-row justify-between items-center shrink-0 mb-1">
+                <div class="flex items-center space-x-3 md:space-x-4">
+                    <span class="text-3xl md:text-4xl">🔍</span>
+                    <div>
+                        <h2 class="text-lg md:text-xl font-bold text-emerald-900">Unit 13: Muafakat Membawa Berkat</h2>
+                        <p class="text-base md:text-lg font-semibold text-slate-700 mt-0.5">Arahan: Cari dan warnakan 10 perkataan di dalam petak di bawah.</p>
+                    </div>
+                </div>
+                <div class="text-xs md:text-sm font-bold text-emerald-700 bg-emerald-100 px-3 py-1.5 rounded-full mt-2 sm:mt-0">
+                    Dijumpai: <span id="u13-count">0</span> / 10
+                </div>
+            </div>
+
+            <!-- Main Play Area (Grid + Word Bank / Rujukan Visual) -->
+            <div class="flex-grow min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-2 my-1">
+                
+                <!-- Ruang Grid Perkataan (7 col on lg) -->
+                <div class="lg:col-span-7 bg-white rounded-2xl p-2 border-4 border-emerald-300 shadow-md flex flex-col items-center justify-center min-h-0">
+                    <div id="u13-grid" class="grid grid-cols-10 gap-1 w-full h-full max-h-[52vh] max-w-[52vh] aspect-square p-1 bg-emerald-50 rounded-xl border border-emerald-200">
+                        <!-- Grid cells inserted dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- Senarai Perkataan & Imej Rujukan (5 col on lg) -->
+                <div class="lg:col-span-5 bg-white/90 rounded-2xl p-3 border-4 border-emerald-200 shadow-md flex flex-col min-h-0 overflow-y-auto">
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
+                        <span>Senarai Perkataan Rujukan</span>
+                        <i class="fa-solid fa-images text-emerald-500"></i>
+                    </h3>
+                    <div id="u13-words-list" class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-2 gap-1.5 text-xs flex-grow min-h-0 overflow-y-auto pr-1">
+                        <!-- Word cards with visual illustrations dynamically rendered -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Action Button -->
+            <div class="shrink-0 pt-1 pb-1 flex justify-center">
+                <button onclick="checkUnit13()" class="bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-bold text-base md:text-lg px-8 py-2.5 rounded-2xl shadow-lg border-b-4 border-emerald-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-xl"></i>
+                    <span>Semak Jawapan</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. SKRIN UNIT 14: TAIP SEMULA -->
+        <section id="screen-unit14" class="hidden h-full w-full flex-col p-2 md:p-4 justify-between overflow-hidden">
+            <!-- Arahan -->
+            <div class="bg-white/90 rounded-2xl p-2 md:p-3 border-2 border-sky-300 shadow-sm flex items-center space-x-3 md:space-x-4 shrink-0 mb-1">
+                <span class="text-3xl md:text-4xl">✍️</span>
+                <div>
+                    <h2 class="text-lg md:text-xl font-bold text-sky-900">Unit 14: Berganding Bahu</h2>
+                    <p class="text-base md:text-lg font-semibold text-slate-700 mt-0.5">Arahan: Taip semula teks di dalam imej ke dalam kotak kosong di bawah.</p>
+                </div>
+            </div>
+
+            <!-- Content Container (Bersebelahan di skrin besar, Atas-Bawah di skrin kecil) -->
+            <div class="flex-grow min-h-0 flex flex-col lg:flex-row gap-2 lg:gap-4 my-1">
+                <!-- Visual Card -->
+                <div class="w-full lg:w-1/2 h-[45%] lg:h-full bg-white rounded-2xl p-2 border-4 border-sky-300 shadow-md flex items-center justify-center min-h-0 overflow-hidden">
+                    <img src="Taip.png" alt="Taip.png" class="max-h-full max-w-full object-contain rounded-lg shadow-sm" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-center text-sky-600 p-4\'><i class=\'fa-solid fa-file-image text-4xl mb-2\'></i><p class=\'font-bold text-sm\'>Taip.png</p></div>';">
+                </div>
+
+                <!-- Input Area -->
+                <div class="w-full lg:w-1/2 h-[55%] lg:h-full bg-white rounded-2xl p-3 border-4 border-sky-300 shadow-md flex flex-col justify-between min-h-0">
+                    <div class="flex flex-col flex-grow min-h-0">
+                        <label for="u14-input" class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center justify-between">
+                            <span>Ruang Menaip Jawapan:</span>
+                            <span id="u14-char-count" class="text-sky-600 font-normal text-xs">0 karakter</span>
+                        </label>
+                        <textarea id="u14-input" oninput="updateCharCount()" placeholder="Mula menaip teks dari imej di sini..." class="w-full flex-grow min-h-0 p-3 bg-slate-50 border-2 border-slate-300 focus:border-sky-500 focus:bg-white rounded-xl text-slate-800 font-medium text-sm md:text-base resize-none focus:outline-none transition shadow-inner leading-relaxed"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Action Button -->
+            <div class="shrink-0 pt-1 pb-1 flex justify-center">
+                <button onclick="checkUnit14()" class="bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-bold text-base md:text-lg px-8 py-2.5 rounded-2xl shadow-lg border-b-4 border-sky-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-xl"></i>
+                    <span>Semak Jawapan</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 4. SKRIN UNIT 15: PADANKAN KOD TANGAN -->
+        <section id="screen-unit15" class="hidden h-full w-full flex-col p-2 md:p-4 justify-between overflow-hidden">
+            <!-- Arahan -->
+            <div class="bg-white/90 rounded-2xl p-2 md:p-3 border-2 border-purple-300 shadow-sm flex items-center space-x-3 md:space-x-4 shrink-0 mb-1">
+                <span class="text-3xl md:text-4xl">🤟</span>
+                <div>
+                    <h2 class="text-lg md:text-xl font-bold text-purple-900">Unit 15: Semangat Kekitaan</h2>
+                    <p class="text-base md:text-lg font-semibold text-slate-700 mt-0.5">Arahan: Klik perkataan di barisan jawapan, kemudian klik petak kosong di bawah imej kod tangan untuk memadankan.</p>
+                </div>
+            </div>
+
+            <!-- Barisan Jawapan (Word Bank) -->
+            <div class="shrink-0 bg-white rounded-2xl p-2 border-4 border-purple-200 shadow-sm mb-1 mt-1">
+                <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 text-center">Barisan Jawapan</h3>
+                <div id="u15-word-bank" class="flex flex-wrap justify-center gap-2 md:gap-4">
+                    <!-- Butang jawapan dijana melalui JS -->
+                </div>
+            </div>
+
+            <!-- Grid 4 Petak (Padanan Kod Tangan & Kotak Kosong) -->
+            <div class="flex-grow min-h-0 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 my-1">
+                
+                <!-- Card 1: Bagai -->
+                <div class="bg-white rounded-2xl p-2 border-4 border-purple-300 shadow-md flex flex-col justify-between items-center min-h-0 overflow-hidden">
+                    <div class="w-full flex-grow min-h-0 flex flex-col items-center justify-center bg-purple-50 rounded-xl p-1 border border-purple-100 mb-1 overflow-hidden">
+                        <img src="Bagai.png" alt="Bagai.png" class="flex-grow min-h-0 max-h-[85%] w-auto object-contain transition transform hover:scale-105" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-4xl text-purple-600 mb-1\'>🤟</span>';">
+                    </div>
+                    <!-- Empty Slot -->
+                    <div id="u15-slot-0" onclick="slotU15Click('u15-slot-0')" class="u15-slot w-full shrink-0 h-10 md:h-12 bg-purple-50 border-2 border-dashed border-purple-400 rounded-xl flex items-center justify-center cursor-pointer hover:bg-purple-100 transition" data-value="">
+                    </div>
+                </div>
+
+                <!-- Card 2: Aur -->
+                <div class="bg-white rounded-2xl p-2 border-4 border-purple-300 shadow-md flex flex-col justify-between items-center min-h-0 overflow-hidden">
+                    <div class="w-full flex-grow min-h-0 flex flex-col items-center justify-center bg-purple-50 rounded-xl p-1 border border-purple-100 mb-1 overflow-hidden">
+                        <img src="Aur.png" alt="Aur.png" class="flex-grow min-h-0 max-h-[85%] w-auto object-contain transition transform hover:scale-105" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-4xl text-purple-600 mb-1\'>👌</span>';">
+                    </div>
+                    <!-- Empty Slot -->
+                    <div id="u15-slot-1" onclick="slotU15Click('u15-slot-1')" class="u15-slot w-full shrink-0 h-10 md:h-12 bg-purple-50 border-2 border-dashed border-purple-400 rounded-xl flex items-center justify-center cursor-pointer hover:bg-purple-100 transition" data-value="">
+                    </div>
+                </div>
+
+                <!-- Card 3: Dengan -->
+                <div class="bg-white rounded-2xl p-2 border-4 border-purple-300 shadow-md flex flex-col justify-between items-center min-h-0 overflow-hidden">
+                    <div class="w-full flex-grow min-h-0 flex flex-col items-center justify-center bg-purple-50 rounded-xl p-1 border border-purple-100 mb-1 overflow-hidden">
+                        <img src="Dengan.png" alt="Dengan.png" class="flex-grow min-h-0 max-h-[85%] w-auto object-contain transition transform hover:scale-105" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-4xl text-purple-600 mb-1\'>🤞</span>';">
+                    </div>
+                    <!-- Empty Slot -->
+                    <div id="u15-slot-2" onclick="slotU15Click('u15-slot-2')" class="u15-slot w-full shrink-0 h-10 md:h-12 bg-purple-50 border-2 border-dashed border-purple-400 rounded-xl flex items-center justify-center cursor-pointer hover:bg-purple-100 transition" data-value="">
+                    </div>
+                </div>
+
+                <!-- Card 4: Tebing -->
+                <div class="bg-white rounded-2xl p-2 border-4 border-purple-300 shadow-md flex flex-col justify-between items-center min-h-0 overflow-hidden">
+                    <div class="w-full flex-grow min-h-0 flex flex-col items-center justify-center bg-purple-50 rounded-xl p-1 border border-purple-100 mb-1 overflow-hidden">
+                        <img src="Tebing.png" alt="Tebing.png" class="flex-grow min-h-0 max-h-[85%] w-auto object-contain transition transform hover:scale-105" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-4xl text-purple-600 mb-1\'>👍</span>';">
+                    </div>
+                    <!-- Empty Slot -->
+                    <div id="u15-slot-3" onclick="slotU15Click('u15-slot-3')" class="u15-slot w-full shrink-0 h-10 md:h-12 bg-purple-50 border-2 border-dashed border-purple-400 rounded-xl flex items-center justify-center cursor-pointer hover:bg-purple-100 transition" data-value="">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Action Button -->
+            <div class="shrink-0 pt-1 pb-1 flex justify-center">
+                <button onclick="checkUnit15()" class="bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-bold text-base md:text-lg px-8 py-2.5 rounded-2xl shadow-lg border-b-4 border-purple-800 transition flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-xl"></i>
+                    <span>Semak Jawapan</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- POPUP MODAL NOTIFIKASI (Tahniah / Sila Cuba Lagi / Isikan Ruang) -->
+    <div id="modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div id="modal-card" class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl border-4 transform transition-all duration-300 scale-90 opacity-0 flex flex-col items-center">
+            
+            <div id="modal-icon-bg" class="w-20 h-20 rounded-full flex items-center justify-center text-4xl mb-4 shadow-inner">
+                <span id="modal-icon">🎉</span>
+            </div>
+
+            <h3 id="modal-title" class="text-2xl font-extrabold mb-2 text-slate-800">Tahniah</h3>
+            <p id="modal-message" class="text-sm md:text-base text-slate-600 mb-6 font-semibold">Jawapan anda betul!</p>
+
+            <button onclick="closeModal()" class="w-full py-3 bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold rounded-2xl shadow-md border-b-4 border-amber-600 active:scale-95 transition">
+                Teruskan
+            </button>
+        </div>
+    </div>
+
+    <!-- SCRIPT LOGIK APLIKASI -->
+    <script>
+        // State Pengurusan Skrin & Audio
+        let currentScreen = 'screen-menu';
+        let previousScreen = 'screen-menu';
+
+        // Data Unit 13 - Word Search dengan Fail Imej Rujukan
+        const unit13Words = [
+            { word: 'BUMBUNG', image: 'Bumbung.png', desc: 'Penutup atas rumah' },
+            { word: 'ROBOH', image: 'Roboh.png', desc: 'Runtuh atau tumbang' },
+            { word: 'AKIBAT', image: 'Akibat.png', desc: 'Kesan daripada sesuatu' },
+            { word: 'RIBUT', image: 'Ribut.png', desc: 'Angin kencang' },
+            { word: 'PRIHATIN', image: 'Prihatin.png', desc: 'Ambil berat' },
+            { word: 'BELUKAR', image: 'Belukar.png', desc: 'Hutan kecil' },
+            { word: 'MUSIBAH', image: 'Musibah.png', desc: 'Bencana atau kesusahan' },
+            { word: 'SUMBANGAN', image: 'Sumbangan.png', desc: 'Bantuan atau pemberian' },
+            { word: 'DITIMPA', image: 'Ditimpa.png', desc: 'Kena sesuatu kemalangan' },
+            { word: 'SEPAKAT', image: 'Sepakat.png', desc: 'Muafakat atau bersatu' }
+        ];
+
+        // Layout Grid 10x10 (Diatur khas mengandungi 10 perkataan)
+        const gridData = [
+            ['B','U','M','B','U','N','G','X','R','O'],
+            ['R','O','B','O','H','A','K','I','B','A'],
+            ['A','K','I','B','A','T','S','E','P','K'],
+            ['R','I','B','U','T','P','R','I','H','A'],
+            ['P','R','I','H','A','T','I','N','B','E'],
+            ['B','E','L','U','K','A','R','M','U','S'],
+            ['M','U','S','I','B','A','H','S','U','M'],
+            ['S','U','M','B','A','N','G','A','N','D'],
+            ['D','I','T','I','M','P','A','S','E','P'],
+            ['S','E','P','A','K','A','T','R','I','B']
+        ];
+
+        // Track dijumpai bagi Unit 13
+        let foundWords = new Set();
+        let selectedCells = [];
+        let isDragging = false;
+        let dragMode = 'select'; // 'select' atau 'deselect'
+
+        // Data Unit 14 - Teks Taip Semula (Teks Baharu)
+        const targetTextUnit14 = "Selepas ucapan selesai, para guru dijemput ke kantin untuk menikmati jamuan. Setelah selesai menikmati jamuan, murid-murid memberikan hadiah kepada guru-guru sebagai tanda terima kasih. Sebelum pulang ke rumah, semua murid beratur dan bersalaman dengan semua guru. Guru-guru kelihatan gembira bersalaman dengan semua murid.";
+
+        // Data Unit 15 - Padanan Betul
+        const unit15Answers = {
+            'u15-slot-0': "Bagai",   // Bagai.png
+            'u15-slot-1': "Aur",     // Aur.png
+            'u15-slot-2': "Dengan",  // Dengan.png
+            'u15-slot-3': "Tebing"   // Tebing.png
+        };
+        let selectedU15BankWord = null;
+
+        // Inisialisasi Apabila Laman Dimuatkan
+        window.addEventListener('DOMContentLoaded', () => {
+            initUnit13Grid();
+            initUnit13WordList();
+            initU15(); // Setup word bank
+        });
+
+        // -------------------------------------------------------------
+        // SKRIN & NAVIGASI LOGIC
+        // -------------------------------------------------------------
+        function switchScreen(screenId) {
+            previousScreen = currentScreen;
+            currentScreen = screenId;
+
+            document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(screenId).classList.remove('hidden');
+            document.getElementById(screenId).classList.add('flex');
+
+            const badgeText = document.getElementById('unit-badge-text');
+            if (screenId === 'screen-menu') {
+                badgeText.innerText = 'Pilih Unit';
+            } else if (screenId === 'screen-unit13') {
+                badgeText.innerText = 'Unit 13';
+            } else if (screenId === 'screen-unit14') {
+                badgeText.innerText = 'Unit 14';
+            } else if (screenId === 'screen-unit15') {
+                badgeText.innerText = 'Unit 15';
+            }
+        }
+
+        function goHome() {
+            resetAllInputs();
+            switchScreen('screen-menu');
+        }
+
+        function goBack() {
+            resetAllInputs();
+            if (currentScreen !== 'screen-menu') {
+                switchScreen('screen-menu');
+            }
+        }
+
+        function resetAllInputs() {
+            // Reset Unit 13
+            foundWords.clear();
+            selectedCells = [];
+            document.querySelectorAll('.grid-letter').forEach(cell => {
+                cell.classList.remove('selected', 'found');
+            });
+            document.getElementById('u13-count').innerText = '0';
+            updateUnit13WordCards();
+
+            // Reset Unit 14
+            const input14 = document.getElementById('u14-input');
+            if (input14) {
+                input14.value = '';
+                input14.readOnly = false;
+                input14.classList.remove('border-emerald-500', 'bg-emerald-50');
+                updateCharCount();
+            }
+
+            // Reset Unit 15
+            initU15();
+        }
+
+        // -------------------------------------------------------------
+        // LOGIK UNIT 13: CARI PERKATAAN
+        // -------------------------------------------------------------
+        function initUnit13Grid() {
+            const gridContainer = document.getElementById('u13-grid');
+            gridContainer.innerHTML = '';
+
+            // Hentikan fungsi seret apabila dilepaskan di mana-mana pada skrin
+            document.addEventListener('mouseup', () => { isDragging = false; });
+            document.addEventListener('touchend', () => { isDragging = false; });
+
+            for (let r = 0; r < 10; r++) {
+                for (let c = 0; c < 10; c++) {
+                    const char = gridData[r][c];
+                    const btn = document.createElement('button');
+                    btn.className = `grid-letter font-bold text-xs sm:text-base md:text-lg rounded-lg border border-emerald-200 bg-white hover:bg-emerald-100 flex items-center justify-center shadow-xs`;
+                    btn.innerText = char;
+                    btn.dataset.row = r;
+                    btn.dataset.col = c;
+                    
+                    // Acara Mouse (Desktop)
+                    btn.addEventListener('mousedown', (e) => {
+                        e.preventDefault(); // Elak teks terpilih
+                        isDragging = true;
+                        if (btn.classList.contains('selected')) {
+                            dragMode = 'deselect';
+                            deselectCell(btn, r, c);
+                        } else {
+                            dragMode = 'select';
+                            selectCell(btn, r, c);
+                        }
+                    });
+                    
+                    btn.addEventListener('mouseenter', () => {
+                        if (isDragging) {
+                            if (dragMode === 'select') selectCell(btn, r, c);
+                            else deselectCell(btn, r, c);
+                        }
+                    });
+
+                    // Acara Touch (Mobile)
+                    btn.addEventListener('touchstart', (e) => {
+                        e.preventDefault(); // Elak scroll skrin bila mula sentuh
+                        isDragging = true;
+                        if (btn.classList.contains('selected')) {
+                            dragMode = 'deselect';
+                            deselectCell(btn, r, c);
+                        } else {
+                            dragMode = 'select';
+                            selectCell(btn, r, c);
+                        }
+                    }, {passive: false});
+
+                    gridContainer.appendChild(btn);
+                }
+            }
+
+            // Mengesan pergerakan jari (touch) pada keseluruhan grid
+            gridContainer.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const touch = e.touches[0];
+                const el = document.elementFromPoint(touch.clientX, touch.clientY);
+                if (el && el.classList.contains('grid-letter')) {
+                    const r = parseInt(el.dataset.row);
+                    const c = parseInt(el.dataset.col);
+                    if (dragMode === 'select') selectCell(el, r, c);
+                    else deselectCell(el, r, c);
+                }
+            }, {passive: false});
+        }
+
+        function initUnit13WordList() {
+            const listContainer = document.getElementById('u13-words-list');
+            listContainer.innerHTML = '';
+
+            unit13Words.forEach(item => {
+                const card = document.createElement('div');
+                card.id = `u13-card-${item.word}`;
+                card.className = `p-1.5 md:p-2 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center space-x-2 md:space-x-3 transition overflow-hidden`;
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.word}" class="w-12 h-12 md:w-16 md:h-16 object-contain shrink-0 rounded-lg bg-white p-1 shadow-sm border border-emerald-100" onerror="this.onerror=null; this.replaceWith(document.createTextNode('📌'));">
+                    <div class="leading-tight min-w-0 flex-1">
+                        <p class="font-bold text-slate-800 text-xs md:text-sm truncate">${item.word}</p>
+                        <p class="text-[9px] md:text-xs text-slate-500 truncate mt-0.5">${item.desc}</p>
+                    </div>
+                    <i class="fa-solid fa-circle-check text-slate-300 status-icon text-sm md:text-base shrink-0 pr-1"></i>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+
+        function selectCell(btn, r, c) {
+            if (btn.classList.contains('found')) return;
+            if (!btn.classList.contains('selected')) {
+                btn.classList.add('selected');
+                selectedCells.push({ r, c, char: gridData[r][c], el: btn });
+                checkFormedWord();
+            }
+        }
+
+        function deselectCell(btn, r, c) {
+            if (btn.classList.contains('found')) return;
+            if (btn.classList.contains('selected')) {
+                btn.classList.remove('selected');
+                selectedCells = selectedCells.filter(cell => !(cell.r === r && cell.c === c));
+            }
+        }
+
+        function checkFormedWord() {
+            if (selectedCells.length < 3) return;
+
+            const currentStr = selectedCells.map(c => c.char).join('');
+            const matchedObj = unit13Words.find(w => w.word === currentStr && !foundWords.has(w.word));
+
+            if (matchedObj) {
+                foundWords.add(matchedObj.word);
+                selectedCells.forEach(cell => {
+                    cell.el.classList.remove('selected');
+                    cell.el.classList.add('found');
+                });
+                selectedCells = [];
+                document.getElementById('u13-count').innerText = foundWords.size;
+                updateUnit13WordCards();
+            }
+        }
+
+        function updateUnit13WordCards() {
+            unit13Words.forEach(w => {
+                const card = document.getElementById(`u13-card-${w.word}`);
+                if (!card) return;
+                const icon = card.querySelector('.status-icon');
+                if (foundWords.has(w.word)) {
+                    card.classList.remove('bg-emerald-50', 'border-emerald-200');
+                    card.classList.add('bg-emerald-200', 'border-emerald-400');
+                    icon.classList.remove('text-slate-300');
+                    icon.classList.add('text-emerald-700');
+                } else {
+                    card.classList.remove('bg-emerald-200', 'border-emerald-400');
+                    card.classList.add('bg-emerald-50', 'border-emerald-200');
+                    icon.classList.remove('text-emerald-700');
+                    icon.classList.add('text-slate-300');
+                }
+            });
+        }
+
+        function checkUnit13() {
+            // Check if user has found all 10 words
+            if (foundWords.size === 0) {
+                showModal('Isi Ruangan', 'Sila cari dan warnakan perkataan di dalam petak terlebih dahulu!', 'warning');
+                return;
+            }
+
+            if (foundWords.size === 10) {
+                showModal('Tahniah', 'Tahniah! Anda telah berjaya menemui kesemua 10 perkataan!', 'success');
+            } else {
+                showModal('Sila cuba lagi', `Anda telah menjumpai ${foundWords.size} daripada 10 perkataan. Sila cuba lagi untuk cari selebihnya!`, 'error');
+            }
+        }
+
+        // -------------------------------------------------------------
+        // LOGIK UNIT 14: TAIP SEMULA
+        // -------------------------------------------------------------
+        function updateCharCount() {
+            const input = document.getElementById('u14-input').value;
+            document.getElementById('u14-char-count').innerText = `${input.length} karakter`;
+        }
+
+        function checkUnit14() {
+            const inputEl = document.getElementById('u14-input');
+            const inputVal = inputEl.value.trim();
+
+            if (!inputVal) {
+                showModal('Isi Ruangan', 'Sila isi ruangan kosong dengan menaip semula teks terlebih dahulu!', 'warning');
+                return;
+            }
+
+            // Normalise multiple spaces and newlines for friendly matching
+            const cleanUserText = inputVal.replace(/\s+/g, ' ');
+            const cleanTargetText = targetTextUnit14.replace(/\s+/g, ' ');
+
+            if (cleanUserText === cleanTargetText) {
+                showModal('Tahniah', 'Tahniah! Teks yang ditaip adalah tepat dan betul.', 'success');
+                // Kekalkan di dalam kotak dan tandakan betul
+                inputEl.classList.add('border-emerald-500', 'bg-emerald-50');
+                inputEl.readOnly = true;
+            } else {
+                showModal('Sila cuba lagi', 'Sila cuba lagi. Jawapan yang salah telah dikosongkan.', 'error');
+                // Kosongkan kotak jika salah mengikut arahan
+                inputEl.value = '';
+                updateCharCount();
+            }
+        }
+
+        // -------------------------------------------------------------
+        // LOGIK UNIT 15: PADAN KOD TANGAN
+        // -------------------------------------------------------------
+        function initU15() {
+            const bank = document.getElementById('u15-word-bank');
+            if (!bank) return;
+            bank.innerHTML = '';
+            
+            // Susunan barisan jawapan (Rawakkan susunan)
+            let words = ['Bagai', 'Aur', 'Dengan', 'Tebing'];
+            words.sort(() => Math.random() - 0.5);
+            
+            words.forEach(w => {
+                bank.innerHTML += `<button id="bank-word-${w}" onclick="selectU15Word('${w}')" class="u15-word-btn bg-purple-100 hover:bg-purple-200 border-2 border-purple-400 text-purple-900 font-bold py-1.5 px-4 rounded-xl shadow-sm transition transform active:scale-95 text-sm md:text-base">${w}</button>`;
+            });
+
+            // Kosongkan slot
+            document.querySelectorAll('.u15-slot').forEach(slot => {
+                slot.innerHTML = '';
+                slot.dataset.value = '';
+                slot.classList.remove('border-emerald-500', 'bg-emerald-50', 'text-emerald-900', 'cursor-default');
+                slot.classList.add('border-dashed', 'border-purple-400', 'bg-purple-50', 'cursor-pointer');
+                slot.onclick = () => slotU15Click(slot.id); // Restore click event
+            });
+            selectedU15BankWord = null;
+        }
+
+        function selectU15Word(word) {
+            // Deselect existing
+            document.querySelectorAll('.u15-word-btn').forEach(btn => btn.classList.remove('ring-4', 'ring-purple-500', 'scale-110'));
+            
+            const btn = document.getElementById(`bank-word-${word}`);
+            if (btn) {
+                btn.classList.add('ring-4', 'ring-purple-500', 'scale-110');
+                selectedU15BankWord = word;
+            }
+        }
+
+        function slotU15Click(slotId) {
+            const slot = document.getElementById(slotId);
+            
+            // Jika slot sudah ada perkataan, kembalikan perkataan tersebut ke bank
+            if (slot.dataset.value) {
+                const wordToReturn = slot.dataset.value;
+                const btn = document.getElementById(`bank-word-${wordToReturn}`);
+                if (btn) btn.classList.remove('hidden'); // Munculkan semula di bank
+                
+                // Kosongkan slot
+                slot.dataset.value = '';
+                slot.innerHTML = '';
+                slot.classList.add('border-dashed', 'border-purple-400');
+                slot.classList.remove('border-solid', 'border-purple-600');
+            }
+
+            // Jika ada perkataan terpilih di bank, masukkan ke slot ini
+            if (selectedU15BankWord) {
+                slot.dataset.value = selectedU15BankWord;
+                slot.innerHTML = `<span class="font-bold text-purple-900 pointer-events-none">${selectedU15BankWord}</span>`;
+                slot.classList.remove('border-dashed', 'border-purple-400');
+                slot.classList.add('border-solid', 'border-purple-600');
+
+                // Hilangkan dari bank
+                const btn = document.getElementById(`bank-word-${selectedU15BankWord}`);
+                if (btn) btn.classList.add('hidden');
+
+                // Clear bank selection
+                document.querySelectorAll('.u15-word-btn').forEach(b => b.classList.remove('ring-4', 'ring-purple-500', 'scale-110'));
+                selectedU15BankWord = null;
+            }
+        }
+
+        function checkUnit15() {
+            const slots = ['u15-slot-0', 'u15-slot-1', 'u15-slot-2', 'u15-slot-3'];
+            let allFilled = true;
+            let unFilledIndex = [];
+
+            slots.forEach((id, idx) => {
+                const el = document.getElementById(id);
+                if (!el.dataset.value) {
+                    allFilled = false;
+                    unFilledIndex.push(idx + 1);
+                }
+            });
+
+            // Semak jika terdapat kotak kosong
+            if (!allFilled) {
+                showModal('Isi Ruangan', `Sila pilih dan letak jawapan untuk semua petak terlebih dahulu! (Petak ${unFilledIndex.join(', ')} belum diisi)`, 'warning');
+                return;
+            }
+
+            let allCorrect = true;
+
+            slots.forEach(id => {
+                const el = document.getElementById(id);
+                const userVal = el.dataset.value;
+                const correctVal = unit15Answers[id];
+
+                if (userVal === correctVal) {
+                    // Kekalkan jawapan betul
+                    el.classList.remove('border-purple-600', 'bg-purple-50', 'cursor-pointer');
+                    el.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900', 'cursor-default');
+                    el.onclick = null; // Kunci slot
+                } else {
+                    // Jawapan salah dipaksa balik semula ke barisan jawapan
+                    allCorrect = false;
+                    
+                    const btn = document.getElementById(`bank-word-${userVal}`);
+                    if (btn) btn.classList.remove('hidden');
+
+                    el.dataset.value = '';
+                    el.innerHTML = '';
+                    el.classList.add('border-dashed', 'border-purple-400');
+                    el.classList.remove('border-solid', 'border-purple-600');
+                }
+            });
+
+            if (allCorrect) {
+                showModal('Tahniah', 'Tahniah! Semua padanan kod tangan anda adalah tepat.', 'success');
+            } else {
+                showModal('Sila cuba lagi', 'Sila cuba lagi. Jawapan yang salah dipaksa balik semula ke barisan jawapan.', 'error');
+            }
+        }
+
+        // -------------------------------------------------------------
+        // SYSTEM MODAL / NOTIFIKASI
+        // -------------------------------------------------------------
+        function showModal(title, message, type) {
+            const modal = document.getElementById('modal');
+            const card = document.getElementById('modal-card');
+            const iconBg = document.getElementById('modal-icon-bg');
+            const iconEl = document.getElementById('modal-icon');
+            const titleEl = document.getElementById('modal-title');
+            const msgEl = document.getElementById('modal-message');
+
+            titleEl.innerText = title;
+            msgEl.innerText = message;
+
+            if (type === 'success') {
+                iconBg.className = 'w-20 h-20 rounded-full flex items-center justify-center text-4xl mb-4 bg-emerald-100 text-emerald-600 border-4 border-emerald-300 shadow-lg';
+                iconEl.innerText = '🎉';
+                card.className = 'bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl border-4 border-emerald-400 transform transition-all duration-300 scale-100 opacity-100 flex flex-col items-center';
+            } else if (type === 'warning') {
+                iconBg.className = 'w-20 h-20 rounded-full flex items-center justify-center text-4xl mb-4 bg-amber-100 text-amber-600 border-4 border-amber-300 shadow-lg';
+                iconEl.innerText = '⚠️';
+                card.className = 'bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl border-4 border-amber-400 transform transition-all duration-300 scale-100 opacity-100 flex flex-col items-center';
+            } else {
+                iconBg.className = 'w-20 h-20 rounded-full flex items-center justify-center text-4xl mb-4 bg-rose-100 text-rose-600 border-4 border-rose-300 shadow-lg';
+                iconEl.innerText = '💪';
+                card.className = 'bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl border-4 border-rose-400 transform transition-all duration-300 scale-100 opacity-100 flex flex-col items-center';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                card.classList.remove('scale-90', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const card = document.getElementById('modal-card');
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-90', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+    </script>
+</body>
+</html>

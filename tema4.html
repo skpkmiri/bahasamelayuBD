@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tema 4: Kemasyarakatan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #e0f2fe; /* Light blue bg */
+            background-image: radial-gradient(#bae6fd 20%, transparent 20%), radial-gradient(#bae6fd 20%, transparent 20%);
+            background-position: 0 0, 25px 25px;
+            background-size: 50px 50px;
+        }
+        
+        /* Animations */
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            80% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop-in { animation: popIn 0.4s ease-out forwards; }
+        
+        /* Drag & Drop Styles */
+        .drop-zone.active { background-color: #fef08a; border-color: #ca8a04; }
+        .word-item { cursor: grab; user-select: none; touch-action: none; }
+        .word-item:active { cursor: grabbing; }
+        
+        /* Custom Table for Unit 11 to guarantee fit */
+        .u11-table-row { flex: 1 1 0; min-height: 0; display: flex; align-items: center; border-bottom: 2px dashed #bae6fd; }
+        .u11-table-row:last-child { border-bottom: none; }
+    </style>
+</head>
+<body class="h-[100dvh] w-screen overflow-hidden flex flex-col text-slate-800">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-white border-b-4 border-blue-400 shadow-md p-2 sm:p-3 flex justify-between items-center z-10 shrink-0">
+        <!-- Home Button -->
+        <a href="index.html" class="transition transform hover:scale-110 active:scale-95">
+            <img src="home.png" alt="Home" onerror="this.src='https://cdn-icons-png.flaticon.com/512/25/25694.png'" class="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-sm">
+        </a>
+        
+        <h1 id="main-title" class="text-xl sm:text-2xl md:text-3xl font-black text-blue-600 tracking-wide text-center uppercase drop-shadow">
+            Tema 4: Kemasyarakatan
+        </h1>
+
+        <!-- Back Button -->
+        <button onclick="goBack()" class="transition transform hover:scale-110 active:scale-95">
+            <img src="kembali.png" alt="Kembali" onerror="this.src='https://cdn-icons-png.flaticon.com/512/93/93634.png'" class="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-sm">
+        </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 min-h-0 relative flex flex-col p-2 sm:p-4">
+        
+        <!-- ==================== HOME SCREEN ==================== -->
+        <div id="screen-home" class="screen-panel w-full h-full flex flex-col items-center justify-center space-y-6">
+            <div class="bg-white p-6 rounded-3xl shadow-xl border-4 border-yellow-400 text-center animate-pop-in max-w-lg w-full">
+                <h2 class="text-3xl font-black text-pink-500 mb-6">Pilih Aktiviti</h2>
+                <div class="flex flex-col space-y-4">
+                    <button onclick="goToScreen('u10')" class="w-full py-4 bg-gradient-to-r from-green-400 to-green-500 rounded-2xl font-bold text-white text-2xl shadow-lg border-b-4 border-green-700 hover:scale-105 transition-transform active:translate-y-1 active:border-b-0">
+                        Unit 10: Komuniti Sepakat
+                    </button>
+                    <button onclick="goToScreen('u11')" class="w-full py-4 bg-gradient-to-r from-purple-400 to-purple-500 rounded-2xl font-bold text-white text-2xl shadow-lg border-b-4 border-purple-700 hover:scale-105 transition-transform active:translate-y-1 active:border-b-0">
+                        Unit 11: Baktiku Untukmu
+                    </button>
+                    <button onclick="goToScreen('u12')" class="w-full py-4 bg-gradient-to-r from-orange-400 to-orange-500 rounded-2xl font-bold text-white text-2xl shadow-lg border-b-4 border-orange-700 hover:scale-105 transition-transform active:translate-y-1 active:border-b-0">
+                        Unit 12: Bersatu Teguh
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== UNIT 10 ==================== -->
+        <div id="screen-u10" class="screen-panel hidden w-full h-full flex-col">
+            <div class="text-center shrink-0 mb-2">
+                <p class="font-bold text-indigo-700 bg-white/80 inline-block px-4 py-1 rounded-full text-sm sm:text-base border-2 border-indigo-200">Arahan: Isi tempat kosong dengan jawapan yang betul.</p>
+            </div>
+
+            <!-- Word Bank -->
+            <div class="shrink-0 mb-2 p-2 bg-white rounded-xl shadow-inner border-2 border-slate-200 min-h-[60px] flex items-center justify-center gap-2 flex-wrap" id="u10-bank">
+                <!-- Draggable Words -->
+                <div class="word-item bg-pink-400 text-white font-bold py-1 px-3 rounded-lg shadow border-b-4 border-pink-600 text-sm sm:text-base" draggable="true" data-answer="air tangan" data-bank="u10-bank">air tangan</div>
+                <div class="word-item bg-teal-400 text-white font-bold py-1 px-3 rounded-lg shadow border-b-4 border-teal-600 text-sm sm:text-base" draggable="true" data-answer="menambat hati" data-bank="u10-bank">menambat hati</div>
+                <div class="word-item bg-amber-400 text-white font-bold py-1 px-3 rounded-lg shadow border-b-4 border-amber-600 text-sm sm:text-base" draggable="true" data-answer="raja sehari" data-bank="u10-bank">raja sehari</div>
+            </div>
+
+            <!-- 2x2 Grid Layout -->
+            <div class="flex-1 min-h-0 grid grid-cols-2 grid-rows-2 gap-2 sm:gap-4">
+                <!-- Petak 1 -->
+                <div class="bg-white rounded-2xl shadow-md p-2 flex flex-col border-4 border-blue-200">
+                    <img src="Gambar 1.png" alt="Gambar 1" onerror="this.src='https://placehold.co/400x300/4facfe/ffffff?text=Gambar+1'" class="flex-grow min-h-0 object-contain w-full rounded-xl">
+                </div>
+                <!-- Petak 2 -->
+                <div class="bg-white rounded-2xl shadow-md p-2 flex flex-col border-4 border-green-200">
+                    <img src="Gambar 2.png" alt="Gambar 2" onerror="this.src='https://placehold.co/400x300/43e97b/ffffff?text=Gambar+2'" class="flex-grow min-h-0 object-contain w-full rounded-xl">
+                    <div class="shrink-0 h-10 sm:h-12 border-2 border-dashed border-gray-400 rounded-lg mt-2 flex items-center justify-center bg-gray-50 drop-zone" data-expected="air tangan"></div>
+                </div>
+                <!-- Petak 3 -->
+                <div class="bg-white rounded-2xl shadow-md p-2 flex flex-col border-4 border-purple-200">
+                    <img src="Gambar 3.png" alt="Gambar 3" onerror="this.src='https://placehold.co/400x300/b19cd9/ffffff?text=Gambar+3'" class="flex-grow min-h-0 object-contain w-full rounded-xl">
+                    <div class="shrink-0 h-10 sm:h-12 border-2 border-dashed border-gray-400 rounded-lg mt-2 flex items-center justify-center bg-gray-50 drop-zone" data-expected="raja sehari"></div>
+                </div>
+                <!-- Petak 4 -->
+            <div class="bg-white rounded-2xl shadow-md p-2 flex flex-col border-4 border-red-200">
+                <img src="Gambar 4.png" alt="Gambar 4" onerror="this.src='https://placehold.co/400x300/ff6a88/ffffff?text=Gambar+4'" class="flex-grow min-h-0 object-contain w-full rounded-xl">
+                <div class="shrink-0 h-10 sm:h-12 border-2 border-dashed border-gray-400 rounded-lg mt-2 flex items-center justify-center bg-gray-50 drop-zone" data-expected="menambat hati"></div>
+            </div>
+        </div>
+
+        <!-- Semak & Reset Buttons -->
+        <div class="shrink-0 text-center mt-2 flex justify-center gap-2 sm:gap-3">
+            <button onclick="semakU10()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 sm:px-8 rounded-full shadow-lg border-b-4 border-blue-700 active:translate-y-1 active:border-b-0 transition-all text-sm sm:text-lg">
+                Semak Jawapan
+            </button>
+            <button onclick="resetU10()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-6 sm:px-8 rounded-full shadow-lg border-b-4 border-amber-700 active:translate-y-1 active:border-b-0 transition-all text-sm sm:text-lg">
+                Mula Semula
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== UNIT 11 ==================== -->
+        <div id="screen-u11" class="screen-panel hidden w-full h-full flex-col">
+            <div class="text-center shrink-0 mb-1 sm:mb-2">
+                <p class="font-bold text-indigo-700 bg-white/80 inline-block px-4 py-1 rounded-full text-xs sm:text-sm border-2 border-indigo-200">Arahan: Pilih kata dasar dan makna perkataan yang tepat dari menu.</p>
+            </div>
+
+            <!-- Table Container - Extremely compact to fit screen -->
+            <div class="flex-1 min-h-0 bg-white rounded-xl shadow-lg border-4 border-pink-300 flex flex-col overflow-hidden">
+                <!-- Header -->
+                <div class="flex bg-pink-400 text-white font-bold text-[10px] sm:text-xs text-center shrink-0">
+                    <div class="w-1/4 py-1 border-r-2 border-pink-300">Perkataan</div>
+                    <div class="w-[30%] py-1 border-r-2 border-pink-300">Kata Dasar</div>
+                    <div class="w-[45%] py-1">Makna Perkataan</div>
+                </div>
+                
+                <!-- Body Rows -->
+                <div class="flex-1 flex flex-col min-h-0 text-[9px] sm:text-[11px] md:text-[11px] font-semibold text-gray-700" id="u11-table">
+                    <!-- Row 1 -->
+                    <div class="u11-table-row bg-pink-50">
+                        <div class="w-1/4 px-1 text-center font-bold text-blue-600">kanopi</div>
+                        <div class="w-[30%] px-1 flex items-center gap-1 sm:gap-2 border-x border-pink-200">
+                            <img src="Kanopi.png" onerror="this.style.display='none'" class="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain bg-white p-0.5 rounded shadow-sm border border-pink-200 shrink-0">
+                            <select class="kata-dasar-select w-full flex-1 p-0.5 rounded border border-gray-400 bg-white text-center focus:ring-2 focus:ring-blue-400 text-[9px] sm:text-[10px]" data-expected="kanopi">
+                                <option value="">Pilih</option><option value="hidang">hidang</option><option value="undang">undang</option><option value="pasang">pasang</option><option value="lancar">lancar</option><option value="cedok">cedok</option><option value="khemah">khemah</option><option value="kanopi">kanopi</option>
+                            </select>
+                        </div>
+                        <div class="w-[45%] px-1">
+                            <select class="makna-select w-full p-0.5 rounded border border-gray-400 bg-white text-left focus:ring-2 focus:ring-blue-400 text-[8px] sm:text-[10px] leading-tight" data-expected="makna_kanopi">
+                                <option value="">Pilih Makna...</option>
+                                <option value="makna_khemah">tempat berteduh kanvas bersokong tiang/tali.</option>
+                                <option value="makna_lancar">melakukan atau mengadakan sesuatu.</option>
+                                <option value="makna_kanopi">khemah kanvas untuk kenduri kahwin.</option>
+                                <option value="makna_undang">memanggil supaya datang, menjemput.</option>
+                                <option value="makna_cedok">mengambil sesuatu dengan gayung/senduk.</option>
+                                <option value="makna_hidang">menyajikan atau menyediakan makanan.</option>
+                                <option value="makna_pasang">mencantumkan bahagian menjadi lengkap.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="u11-table-row bg-white">
+                        <div class="w-1/4 px-1 text-center font-bold text-blue-600">khemah</div>
+                        <div class="w-[30%] px-1 flex items-center gap-1 sm:gap-2 border-x border-pink-200">
+                            <img src="Khemah.png" onerror="this.style.display='none'" class="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain bg-white p-0.5 rounded shadow-sm border border-pink-200 shrink-0">
+                            <select class="kata-dasar-select w-full flex-1 p-0.5 rounded border border-gray-400 bg-white text-center focus:ring-2 focus:ring-blue-400 text-[9px] sm:text-[10px]" data-expected="khemah">
+                                <option value="">Pilih</option><option value="hidang">hidang</option><option value="undang">undang</option><option value="pasang">pasang</option><option value="lancar">lancar</option><option value="cedok">cedok</option><option value="khemah">khemah</option><option value="kanopi">kanopi</option>
+                            </select>
+                        </div>
+                        <div class="w-[45%] px-1">
+                            <select class="makna-select w-full p-0.5 rounded border border-gray-400 bg-white text-left focus:ring-2 focus:ring-blue-400 text-[8px] sm:text-[10px] leading-tight" data-expected="makna_khemah">
+                                <option value="">Pilih Makna...</option>
+                                <option value="makna_hidang">menyajikan atau menyediakan makanan.</option>
+                                <option value="makna_kanopi">khemah kanvas untuk kenduri kahwin.</option>
+                                <option value="makna_khemah">tempat berteduh kanvas bersokong tiang/tali.</option>
+                                <option value="makna_pasang">mencantumkan bahagian menjadi lengkap.</option>
+                                <option value="makna_lancar">melakukan atau mengadakan sesuatu.</option>
+                                <option value="makna_cedok">mengambil sesuatu dengan gayung/senduk.</option>
+                                <option value="makna_undang">memanggil supaya datang, menjemput.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Row 3 -->
+                    <div class="u11-table-row bg-pink-50">
+                        <div class="w-1/4 px-1 text-center font-bold text-blue-600">mencedok</div>
+                        <div class="w-[30%] px-1 flex items-center gap-1 sm:gap-2 border-x border-pink-200">
+                            <img src="Cedok.png" onerror="this.style.display='none'" class="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain bg-white p-0.5 rounded shadow-sm border border-pink-200 shrink-0">
+                            <select class="kata-dasar-select w-full flex-1 p-0.5 rounded border border-gray-400 bg-white text-center focus:ring-2 focus:ring-blue-400 text-[9px] sm:text-[10px]" data-expected="cedok">
+                                <option value="">Pilih</option><option value="hidang">hidang</option><option value="undang">undang</option><option value="pasang">pasang</option><option value="lancar">lancar</option><option value="cedok">cedok</option><option value="khemah">khemah</option><option value="kanopi">kanopi</option>
+                            </select>
+                        </div>
+                        <div class="w-[45%] px-1">
+                            <select class="makna-select w-full p-0.5 rounded border border-gray-400 bg-white text-left focus:ring-2 focus:ring-blue-400 text-[8px] sm:text-[10px] leading-tight" data-expected="makna_cedok">
+                                <option value="">Pilih Makna...</option>
+                                <option value="makna_undang">memanggil supaya datang, menjemput.</option>
+                                <option value="makna_pasang">mencantumkan bahagian menjadi lengkap.</option>
+                                <option value="makna_cedok">mengambil sesuatu dengan gayung/senduk.</option>
+                                <option value="makna_khemah">tempat berteduh kanvas bersokong tiang/tali.</option>
+                                <option value="makna_hidang">menyajikan atau menyediakan makanan.</option>
+                                <option value="makna_kanopi">khemah kanvas untuk kenduri kahwin.</option>
+                                <option value="makna_lancar">melakukan atau mengadakan sesuatu.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Row 4 -->
+                    <div class="u11-table-row bg-white">
+                        <div class="w-1/4 px-1 text-center font-bold text-blue-600">melancarkan</div>
+                        <div class="w-[30%] px-1 flex items-center gap-1 sm:gap-2 border-x border-pink-200">
+                            <img src="Lancar.png" onerror="this.style.display='none'" class="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain bg-white p-0.5 rounded shadow-sm border border-pink-200 shrink-0">
+                            <select class="kata-dasar-select w-full flex-1 p-0.5 rounded border border-gray-400 bg-white text-center focus:ring-2 focus:ring-blue-400 text-[9px] sm:text-[10px]" data-expected="lancar">
+                                <option value="">Pilih</option><option value="hidang">hidang</option><option value="undang">undang</option><option value="pasang">pasang</option><option value="lancar">lancar</option><option value="cedok">cedok</option><option value="khemah">khemah</option><option value="kanopi">kanopi</option>
+                            </select>
+                        </div>
+                        <div class="w-[45%] px-1">
+                            <select class="makna-select w-full p-0.5 rounded border border-gray-400 bg-white text-left focus:ring-2 focus:ring-blue-400 text-[8px] sm:text-[10px] leading-tight" data-expected="makna_lancar">
+                                <option value="">Pilih Makna...</option>
+                                <option value="makna_lancar">melakukan atau mengadakan sesuatu.</option>
+                                <option value="makna_cedok">mengambil sesuatu dengan gayung/senduk.</option>
+                                <option value="makna_khemah">tempat berteduh kanvas bersokong tiang/tali.</option>
+                                <option value="makna_undang">memanggil supaya datang, menjemput.</option>
+                                <option value="makna_kanopi">khemah kanvas untuk kenduri kahwin.</option>
+                                <option value="makna_pasang">mencantumkan bahagian menjadi lengkap.</option>
+                                <option value="makna_hidang">menyajikan atau menyediakan makanan.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Row 5 -->
+                    <div class="u11-table-row bg-pink-50">
+                        <div class="w-1/4 px-1 text-center font-bold text-blue-600">memasang</div>
+                        <div class="w-[30%] px-1 flex items-center gap-1 sm:gap-2 border-x border-pink-200">
+                            <img src="Pasang.png" onerror="this.style.display='none'" class="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain bg-white p-0.5 rounded shadow-sm border border-pink-200 shrink-0">
+                            <select class="kata-dasar-select w-full flex-1 p-0.5 rounded border border-gray-400 bg-white text-center focus:ring-2 focus:ring-blue-400 text-[9px] sm:text-[10px]" data-expected="pasang">
+                                <option value="">Pilih</option><option value="hidang">hidang</option><option value="undang">undang</option><option value="pasang">pasang</option><option value="lancar">lancar</option><option value="cedok">cedok</option><option value="khemah">khemah</option><option value="kanopi">kanopi</option>
+                            </select>
+                        </div>
+                        <div class="w-[45%] px-1">
+                            <select class="makna-select w-full p-0.5 rounded border border-gray-400 bg-white text-left focus:ring-2 focus:ring-blue-400 text-[8px] sm:text-[10px] leading-tight" data-expected="makna_pasang">
+                                <option value="">Pilih Makna...</option>
+                                <option value="makna_pasang">mencantumkan bahagian menjadi lengkap.</option>
+                                <option value="makna_hidang">menyajikan atau menyediakan makanan.</option>
+                                <option value="makna_kanopi">khemah kanvas untuk kenduri kahwin.</option>
+                                <option value="makna_lancar">melakukan atau mengadakan sesuatu.</option>
+                                <option value="makna_cedok">mengambil sesuatu dengan gayung/senduk.</option>
+                                <option value="makna_khemah">tempat berteduh kanvas bersokong tiang/tali.</option>
+                                <option value="makna_undang">memanggil supaya datang, menjemput.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Row 6 -->
+                    <div class="u11-table-row bg-white">
+                        <div class="w-1/4 px-1 text-center font-bold text-blue-600">undangan</div>
+                        <div class="w-[30%] px-1 flex items-center gap-1 sm:gap-2 border-x border-pink-200">
+                            <img src="Undang.png" onerror="this.style.display='none'" class="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain bg-white p-0.5 rounded shadow-sm border border-pink-200 shrink-0">
+                            <select class="kata-dasar-select w-full flex-1 p-0.5 rounded border border-gray-400 bg-white text-center focus:ring-2 focus:ring-blue-400 text-[9px] sm:text-[10px]" data-expected="undang">
+                                <option value="">Pilih</option><option value="hidang">hidang</option><option value="undang">undang</option><option value="pasang">pasang</option><option value="lancar">lancar</option><option value="cedok">cedok</option><option value="khemah">khemah</option><option value="kanopi">kanopi</option>
+                            </select>
+                        </div>
+                        <div class="w-[45%] px-1">
+                            <select class="makna-select w-full p-0.5 rounded border border-gray-400 bg-white text-left focus:ring-2 focus:ring-blue-400 text-[8px] sm:text-[10px] leading-tight" data-expected="makna_undang">
+                                <option value="">Pilih Makna...</option>
+                                <option value="makna_kanopi">khemah kanvas untuk kenduri kahwin.</option>
+                                <option value="makna_lancar">melakukan atau mengadakan sesuatu.</option>
+                                <option value="makna_undang">memanggil supaya datang, menjemput.</option>
+                                <option value="makna_pasang">mencantumkan bahagian menjadi lengkap.</option>
+                                <option value="makna_khemah">tempat berteduh kanvas bersokong tiang/tali.</option>
+                                <option value="makna_cedok">mengambil sesuatu dengan gayung/senduk.</option>
+                                <option value="makna_hidang">menyajikan atau menyediakan makanan.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Row 7 -->
+                    <div class="u11-table-row bg-pink-50">
+                        <div class="w-1/4 px-1 text-center font-bold text-blue-600">dihidangkan</div>
+                        <div class="w-[30%] px-1 flex items-center gap-1 sm:gap-2 border-x border-pink-200">
+                            <img src="Hidang.png" onerror="this.style.display='none'" class="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain bg-white p-0.5 rounded shadow-sm border border-pink-200 shrink-0">
+                            <select class="kata-dasar-select w-full flex-1 p-0.5 rounded border border-gray-400 bg-white text-center focus:ring-2 focus:ring-blue-400 text-[9px] sm:text-[10px]" data-expected="hidang">
+                                <option value="">Pilih</option><option value="hidang">hidang</option><option value="undang">undang</option><option value="pasang">pasang</option><option value="lancar">lancar</option><option value="cedok">cedok</option><option value="khemah">khemah</option><option value="kanopi">kanopi</option>
+                            </select>
+                        </div>
+                        <div class="w-[45%] px-1">
+                            <select class="makna-select w-full p-0.5 rounded border border-gray-400 bg-white text-left focus:ring-2 focus:ring-blue-400 text-[8px] sm:text-[10px] leading-tight" data-expected="makna_hidang">
+                                <option value="">Pilih Makna...</option>
+                                <option value="makna_cedok">mengambil sesuatu dengan gayung/senduk.</option>
+                                <option value="makna_undang">memanggil supaya datang, menjemput.</option>
+                                <option value="makna_hidang">menyajikan atau menyediakan makanan.</option>
+                                <option value="makna_khemah">tempat berteduh kanvas bersokong tiang/tali.</option>
+                                <option value="makna_kanopi">khemah kanvas untuk kenduri kahwin.</option>
+                                <option value="makna_pasang">mencantumkan bahagian menjadi lengkap.</option>
+                                <option value="makna_lancar">melakukan atau mengadakan sesuatu.</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Semak & Reset Buttons -->
+            <div class="shrink-0 text-center mt-2 flex justify-center gap-2 sm:gap-3">
+                <button onclick="semakU11()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 sm:px-8 rounded-full shadow-lg border-b-4 border-blue-700 active:translate-y-1 active:border-b-0 transition-all text-sm sm:text-lg">
+                    Semak Jawapan
+                </button>
+                <button onclick="resetU11()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-6 sm:px-8 rounded-full shadow-lg border-b-4 border-amber-700 active:translate-y-1 active:border-b-0 transition-all text-sm sm:text-lg">
+                    Mula Semula
+                </button>
+            </div>
+        </div>
+
+        <!-- ==================== UNIT 12 ==================== -->
+        <div id="screen-u12" class="screen-panel hidden w-full h-full flex-col">
+            <div class="text-center shrink-0 mb-2">
+                <p class="font-bold text-indigo-700 bg-white/80 inline-block px-4 py-1 rounded-full text-sm sm:text-base border-2 border-indigo-200">Arahan: Lengkapkan dialog di bawah.</p>
+            </div>
+
+            <!-- Word Bank -->
+            <div class="shrink-0 mb-4 p-3 bg-white rounded-xl shadow-inner border-2 border-slate-200 flex items-center justify-center gap-3 flex-wrap" id="u12-bank">
+                <!-- Draggable Words (Rawak) -->
+                <div class="word-item bg-lime-400 text-slate-800 font-bold py-1 px-4 rounded-lg shadow border-b-4 border-lime-600" draggable="true" data-answer="kesihatan" data-bank="u12-bank">kesihatan</div>
+                <div class="word-item bg-cyan-400 text-slate-800 font-bold py-1 px-4 rounded-lg shadow border-b-4 border-cyan-600" draggable="true" data-answer="percuma" data-bank="u12-bank">percuma</div>
+                <div class="word-item bg-orange-400 text-slate-800 font-bold py-1 px-4 rounded-lg shadow border-b-4 border-orange-600" draggable="true" data-answer="membantu" data-bank="u12-bank">membantu</div>
+            </div>
+
+            <!-- Dialog Container -->
+            <div class="flex-1 min-h-0 bg-white rounded-3xl shadow-xl border-4 border-green-300 p-4 sm:p-6 overflow-y-auto">
+                <div class="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-gray-800 leading-[2.5] sm:leading-[3]">
+                    <p class="mb-2"><span class="font-bold text-red-500">Sarita:</span> Kawan-kawan, popia sayur Mak Cik Idah itu sangat sedap rasanya. Emak saya pernah membelinya.</p>
+                    <p class="mb-2"><span class="font-bold text-blue-500">Aisya:</span> Betulkah, Sarita? Saya lihat harganya murah. Ada promosi pula. Kalau kita beli lima 
+                        <span class="drop-zone inline-flex items-center justify-center w-28 h-10 border-b-4 border-dashed border-gray-400 bg-gray-50 mx-1 align-middle rounded-lg" data-expected="percuma"></span> 
+                        satu.
+                    </p>
+                    <p class="mb-2"><span class="font-bold text-green-600">Samanta:</span> Wah, murahnya popia itu! Popia sayur banyak khasiatnya. Sayur baik untuk 
+                        <span class="drop-zone inline-flex items-center justify-center w-28 h-10 border-b-4 border-dashed border-gray-400 bg-gray-50 mx-1 align-middle rounded-lg" data-expected="kesihatan"></span> 
+                        kita.
+                    </p>
+                    <p class="mb-2"><span class="font-bold text-blue-500">Aisya:</span> Betul, Samanta. Mari kita membelinya.</p>
+                    <p><span class="font-bold text-red-500">Sarita:</span> Mari, kawan-kawan. Sambil membeli, kita boleh 
+                        <span class="drop-zone inline-flex items-center justify-center w-28 h-10 border-b-4 border-dashed border-gray-400 bg-gray-50 mx-1 align-middle rounded-lg" data-expected="membantu"></span> 
+                        Mak Cik Idah. Dia ibu tunggal.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Semak & Reset Buttons -->
+            <div class="shrink-0 text-center mt-3 flex justify-center gap-2 sm:gap-3">
+                <button onclick="semakU12()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-full shadow-lg border-b-4 border-blue-700 active:translate-y-1 active:border-b-0 transition-all text-lg">
+                    Semak Jawapan
+                </button>
+                <button onclick="resetU12()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-8 rounded-full shadow-lg border-b-4 border-amber-700 active:translate-y-1 active:border-b-0 transition-all text-lg">
+                    Mula Semula
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Notification Modal -->
+    <div id="noti-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 px-4">
+        <div class="bg-white rounded-3xl p-6 md:p-8 text-center max-w-sm w-full shadow-2xl transform scale-90 transition-transform duration-300" id="noti-box">
+            <div id="noti-icon" class="text-5xl mb-4">🌟</div>
+            <h3 id="noti-title" class="text-2xl font-black mb-2">Tahniah!</h3>
+            <p id="noti-msg" class="text-gray-600 font-medium mb-6">Anda berjaya menjawab dengan betul.</p>
+            <button onclick="closeNoti()" class="bg-blue-500 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-blue-600 w-full text-lg">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Navigation Logic ---
+        const screens = ['home', 'u10', 'u11', 'u12'];
+        const titles = {
+            'home': 'Tema 4: Kemasyarakatan',
+            'u10': 'Unit 10: Komuniti Sepakat',
+            'u11': 'Unit 11: Baktiku Untukmu',
+            'u12': 'Unit 12: Bersatu Teguh'
+        };
+        let currentScreen = 'home';
+        let historyStack = [];
+
+        function goToScreen(screenId) {
+            // Kosongkan semula semua jawapan jika meninggalkan skrin permainan
+            if (currentScreen !== screenId) {
+                if (currentScreen === 'u10') resetU10();
+                else if (currentScreen === 'u11') resetU11();
+                else if (currentScreen === 'u12') resetU12();
+            }
+
+            if (currentScreen !== 'home' && screenId !== 'home' && screenId !== currentScreen) {
+                historyStack.push(currentScreen);
+            } else if (screenId === 'home') {
+                historyStack = [];
+            }
+
+            screens.forEach(s => {
+                document.getElementById(`screen-${s}`).classList.add('hidden');
+                document.getElementById(`screen-${s}`).classList.remove('flex');
+            });
+            
+            const target = document.getElementById(`screen-${screenId}`);
+            target.classList.remove('hidden');
+            target.classList.add('flex');
+            target.classList.add('animate-pop-in');
+            
+            setTimeout(() => target.classList.remove('animate-pop-in'), 400);
+
+            document.getElementById('main-title').innerText = titles[screenId];
+            currentScreen = screenId;
+        }
+
+        function goBack() {
+            if (currentScreen === 'home') {
+                // Kembali ke "page sebelum" (browser history) apabila di menu utama aplikasi ini
+                window.history.back();
+                return;
+            }
+            if (historyStack.length > 0) {
+                goToScreen(historyStack.pop());
+            } else {
+                goToScreen('home');
+            }
+        }
+
+        // --- Notification Logic ---
+        function showAlert(title, message, type) {
+            const modal = document.getElementById('noti-modal');
+            const box = document.getElementById('noti-box');
+            const icon = document.getElementById('noti-icon');
+            const titleEl = document.getElementById('noti-title');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Animation reset
+            box.classList.remove('scale-100');
+            box.classList.add('scale-90');
+            setTimeout(() => {
+                box.classList.remove('scale-90');
+                box.classList.add('scale-100');
+            }, 10);
+
+            titleEl.innerText = title;
+            document.getElementById('noti-msg').innerText = message;
+
+            if (type === 'success') {
+                icon.innerText = '🌟';
+                titleEl.className = 'text-3xl font-black mb-2 text-green-500';
+            } else if (type === 'error') {
+                icon.innerText = '❌';
+                titleEl.className = 'text-3xl font-black mb-2 text-red-500';
+            } else {
+                icon.innerText = '⚠️';
+                titleEl.className = 'text-3xl font-black mb-2 text-orange-500';
+            }
+        }
+
+        function closeNoti() {
+            document.getElementById('noti-modal').classList.add('hidden');
+            document.getElementById('noti-modal').classList.remove('flex');
+        }
+
+        // --- Universal Drag & Drop / Click-to-Place Logic (Mouse & Touch) ---
+        let selectedWord = null;
+
+        document.querySelectorAll('.word-item').forEach(item => {
+            // Native Drag Start (For Desktop)
+            item.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', e.target.dataset.answer);
+                selectedWord = e.target;
+                setTimeout(() => e.target.classList.add('opacity-50'), 0);
+            });
+            item.addEventListener('dragend', (e) => {
+                e.target.classList.remove('opacity-50');
+                selectedWord = null;
+            });
+
+            // Click / Touch Start (For Mobile & Kids Fallback)
+            item.addEventListener('click', (e) => {
+                const w = e.currentTarget;
+                if (w.parentElement.classList.contains('drop-zone')) {
+                    // Clicked inside drop zone -> return to bank
+                    if(!w.classList.contains('locked')){
+                        document.getElementById(w.dataset.bank).appendChild(w);
+                        w.classList.remove('ring-4', 'ring-white', 'scale-90');
+                    }
+                } else {
+                    // Clicked in bank -> select it
+                    document.querySelectorAll('.word-item').forEach(x => x.classList.remove('ring-4', 'ring-white', 'scale-110'));
+                    selectedWord = w;
+                    w.classList.add('ring-4', 'ring-white', 'scale-110');
+                }
+            });
+        });
+
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            // Desktop Drag & Drop
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.add('active');
+            });
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('active');
+            });
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('active');
+                if (selectedWord && zone.children.length === 0 && !zone.classList.contains('locked')) {
+                    zone.appendChild(selectedWord);
+                    selectedWord.classList.remove('ring-4', 'ring-white', 'scale-110', 'opacity-50');
+                }
+            });
+
+            // Mobile Click-to-Drop
+            zone.addEventListener('click', (e) => {
+                if (selectedWord && zone.children.length === 0 && !zone.classList.contains('locked')) {
+                    zone.appendChild(selectedWord);
+                    selectedWord.classList.remove('ring-4', 'ring-white', 'scale-110', 'opacity-50');
+                    selectedWord = null;
+                }
+            });
+        });
+
+        // --- Validation Logic ---
+
+        function semakU10() {
+            const zones = document.querySelectorAll('#screen-u10 .drop-zone');
+            let allFilled = true;
+            
+            zones.forEach(zone => { if (zone.children.length === 0) allFilled = false; });
+            
+            if (!allFilled) {
+                return showAlert('Perhatian!', 'Sila isi semua kotak kosong sebelum menyemak.', 'warning');
+            }
+
+            let allCorrect = true;
+            zones.forEach(zone => {
+                const word = zone.children[0];
+                if (word.dataset.answer === zone.dataset.expected) {
+                    // Correct
+                    zone.classList.add('border-green-500', 'bg-green-100', 'locked');
+                    zone.classList.remove('border-gray-400', 'bg-gray-50');
+                    word.classList.add('locked');
+                    word.draggable = false;
+                } else {
+                    // Wrong
+                    allCorrect = false;
+                    document.getElementById('u10-bank').appendChild(word);
+                }
+            });
+
+            if (allCorrect) showAlert('Tahniah!', 'Semua jawapan anda betul bagi Unit 10.', 'success');
+            else showAlert('Sila cuba lagi!', 'Jawapan yang salah telah dikosongkan. Sila cuba letak semula.', 'error');
+        }
+
+        function semakU11() {
+            const selects = document.querySelectorAll('#u11-table select');
+            let allFilled = true;
+
+            selects.forEach(sel => { if (sel.value === '') allFilled = false; });
+
+            if (!allFilled) {
+                return showAlert('Perhatian!', 'Sila pilih semua jawapan untuk Kata Dasar dan Makna Perkataan bagi kesemua kotak.', 'warning');
+            }
+
+            let allCorrect = true;
+            selects.forEach(sel => {
+                if (sel.value === sel.dataset.expected) {
+                    sel.classList.add('bg-green-100', 'border-green-500', 'text-green-800', 'font-bold');
+                    sel.classList.remove('bg-white', 'border-gray-400');
+                    sel.disabled = true;
+                } else {
+                    allCorrect = false;
+                    sel.value = ''; // Reset wrong answer
+                }
+            });
+
+            if (allCorrect) showAlert('Tahniah!', 'Hebat! Anda telah mengenal pasti semua Kata Dasar dan Makna Perkataan dengan betul.', 'success');
+            else showAlert('Sila cuba lagi!', 'Terdapat pilihan yang salah telah dikosongkan. Cuba pilih semula.', 'error');
+        }
+
+        function semakU12() {
+            const zones = document.querySelectorAll('#screen-u12 .drop-zone');
+            let allFilled = true;
+            
+            zones.forEach(zone => { if (zone.children.length === 0) allFilled = false; });
+            
+            if (!allFilled) {
+                return showAlert('Perhatian!', 'Terdapat tempat kosong yang belum diisi. Lengkapkan dialog dahulu.', 'warning');
+            }
+
+            let allCorrect = true;
+            zones.forEach(zone => {
+                const word = zone.children[0];
+                if (word.dataset.answer === zone.dataset.expected) {
+                    zone.classList.add('border-green-500', 'bg-green-100', 'locked');
+                    zone.classList.remove('border-gray-400', 'bg-gray-50');
+                    word.classList.add('locked');
+                    word.draggable = false;
+                } else {
+                    allCorrect = false;
+                    document.getElementById('u12-bank').appendChild(word);
+                }
+            });
+
+            if (allCorrect) showAlert('Tahniah!', 'Dialog berjaya dilengkapkan dengan sempurna!', 'success');
+            else showAlert('Sila cuba lagi!', 'Beberapa perkataan tidak diletakkan di tempat yang sesuai. Cuba lagi.', 'error');
+        }
+
+        // --- Reset Logic ---
+        function resetU10() {
+            const bank = document.getElementById('u10-bank');
+            const zones = document.querySelectorAll('#screen-u10 .drop-zone');
+            zones.forEach(zone => {
+                zone.classList.remove('border-green-500', 'bg-green-100', 'locked');
+                zone.classList.add('border-gray-400', 'bg-gray-50');
+                while (zone.children.length > 0) {
+                    const word = zone.children[0];
+                    word.classList.remove('locked', 'ring-4', 'ring-white', 'scale-90', 'scale-110');
+                    word.draggable = true;
+                    bank.appendChild(word);
+                }
+            });
+        }
+
+        function resetU11() {
+            const selects = document.querySelectorAll('#u11-table select');
+            selects.forEach(sel => {
+                sel.value = '';
+                sel.disabled = false;
+                sel.classList.remove('bg-green-100', 'border-green-500', 'text-green-800', 'font-bold');
+                sel.classList.add('bg-white', 'border-gray-400');
+            });
+        }
+
+        function resetU12() {
+            const bank = document.getElementById('u12-bank');
+            const zones = document.querySelectorAll('#screen-u12 .drop-zone');
+            zones.forEach(zone => {
+                zone.classList.remove('border-green-500', 'bg-green-100', 'locked');
+                zone.classList.add('border-gray-400', 'bg-gray-50');
+                while (zone.children.length > 0) {
+                    const word = zone.children[0];
+                    word.classList.remove('locked', 'ring-4', 'ring-white', 'scale-90', 'scale-110');
+                    word.draggable = true;
+                    bank.appendChild(word);
+                }
+            });
+        }
+
+        // Initialize Home View
+        goToScreen('home');
+    </script>
+</body>
+</html>

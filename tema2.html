@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tema 2: Kesihatan dan Kebersihan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #f0fdf4;
+            background-image: radial-gradient(#bbf7d0 2px, transparent 2px);
+            background-size: 30px 30px;
+            margin: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .bg-buah {
+            background-color: #fef08a;
+            /* Latar belakang Unit 6 akan menggunakan Buahan.png jika ada */
+            background-image: url('Buahan.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .view {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn {
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .nav-btn:hover { transform: scale(1.1); }
+        .nav-btn:active { transform: scale(0.95); }
+
+        .btn-primary {
+            background: linear-gradient(to bottom, #60a5fa, #3b82f6);
+            box-shadow: 0 4px 0 #2563eb, 0 5px 10px rgba(0,0,0,0.2);
+            transition: all 0.1s;
+        }
+        .btn-primary:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #2563eb, 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn-check {
+            background: linear-gradient(to bottom, #34d399, #10b981);
+            box-shadow: 0 4px 0 #059669, 0 5px 10px rgba(0,0,0,0.2);
+            transition: all 0.1s;
+        }
+        .btn-check:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #059669;
+        }
+
+        .drop-zone {
+            min-height: 100px;
+            border: 3px dashed #cbd5e1;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            background: rgba(255,255,255,0.7);
+            cursor: pointer;
+            overflow: visible;
+        }
+        .drop-zone.active-zone { border-color: #3b82f6; background: #eff6ff; }
+        .drop-zone.correct-zone { border-color: #10b981; border-style: solid; background: #ecfdf5; pointer-events: none; }
+
+        /* Memastikan jawapan yang dimasukkan ke dalam drop zone memenuhi ruang & terpapar penuh */
+        .drop-zone .draggable-item {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            min-height: 100% !important;
+            box-shadow: none;
+        }
+        
+        .draggable-item {
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .draggable-item:hover { transform: translateY(-2px); }
+        .draggable-item.selected { 
+            border-color: #3b82f6; 
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.5); 
+            transform: scale(1.05);
+        }
+
+        /* Kotak 16x16cm (Diadaptasi ke saiz web) */
+        .box-16cm {
+            width: 160px;
+            height: 160px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 640px) {
+            .box-16cm { width: 120px; height: 120px; }
+        }
+
+        .ws-grid {
+            display: grid;
+            gap: 4px;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+            touch-action: none; 
+        }
+        .ws-cell {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            background: #f8fafc;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+            color: #334155;
+            transition: background-color 0.1s;
+        }
+        @media (min-width: 640px) {
+            .ws-cell { width: 45px; height: 45px; font-size: 1.4rem; }
+        }
+        .ws-cell.selecting { background: #fef08a; color: #854d0e; }
+        .ws-cell.found { background: #86efac; color: #166534; }
+
+        .word-list-item {
+            transition: all 0.3s;
+        }
+        .word-list-item.found {
+            text-decoration: line-through;
+            color: #94a3b8;
+            opacity: 0.7;
+        }
+
+        #custom-modal {
+            backdrop-filter: blur(4px);
+            display: none;
+            z-index: 9999;
+        }
+        #custom-modal.show { display: flex; }
+        .modal-content {
+            animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem top 50%;
+            background-size: 0.65rem auto;
+        }
+        .correct-select { border-color: #10b981 !important; background-color: #ecfdf5 !important; color: #047857; pointer-events: none;}
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Top Navigation -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 p-3 flex justify-between items-center border-b-4 border-yellow-400">
+        <div onclick="goBack()" class="nav-btn w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-md border-2 border-slate-200" title="Kembali">
+            <img src="kembali.png" alt="Kembali" class="w-8 h-8 object-contain" onerror="this.onerror=null; this.src='https://placehold.co/40x40/ff8787/white?text=K'">
+        </div>
+        
+        <div class="text-center flex-grow mx-4">
+            <h1 class="text-xl md:text-2xl font-bold text-sky-600">Tema 2: Kesihatan dan Kebersihan</h1>
+        </div>
+        
+        <div onclick="goHome()" class="nav-btn w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-md border-2 border-slate-200" title="Laman Utama">
+            <img src="home.png" alt="Home" class="w-8 h-8 object-contain" onerror="this.onerror=null; this.src='https://placehold.co/40x40/38bdf8/white?text=H'">
+        </div>
+    </header>
+
+    <main class="flex-grow p-4 md:p-8 max-w-6xl mx-auto w-full relative">
+
+        <!-- VIEW: HOME -->
+        <div id="view-home" class="view active text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-rose-500 mb-8 drop-shadow-sm">Jom Belajar Bersama!</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                
+                <div onclick="navTo('unit4-menu')" class="bg-white rounded-3xl p-6 shadow-xl border-4 border-sky-400 cursor-pointer transform hover:-translate-y-2 transition duration-300">
+                    <div class="bg-sky-100 rounded-full w-24 h-24 mx-auto flex items-center justify-center mb-4 text-5xl">🛡️</div>
+                    <h3 class="text-2xl font-bold text-sky-600">Unit 4</h3>
+                    <p class="text-slate-500 mt-2 font-medium">Jagalah Dirimu</p>
+                </div>
+
+                <div onclick="navTo('unit5-menu')" class="bg-white rounded-3xl p-6 shadow-xl border-4 border-emerald-400 cursor-pointer transform hover:-translate-y-2 transition duration-300">
+                    <div class="bg-emerald-100 rounded-full w-24 h-24 mx-auto flex items-center justify-center mb-4 text-5xl">🌳</div>
+                    <h3 class="text-2xl font-bold text-emerald-600">Unit 5</h3>
+                    <p class="text-slate-500 mt-2 font-medium">Persekitaran yang Sihat</p>
+                </div>
+
+                <div onclick="navTo('unit6-menu')" class="bg-white rounded-3xl p-6 shadow-xl border-4 border-amber-400 cursor-pointer transform hover:-translate-y-2 transition duration-300">
+                    <div class="bg-amber-100 rounded-full w-24 h-24 mx-auto flex items-center justify-center mb-4 text-5xl">💖</div>
+                    <h3 class="text-2xl font-bold text-amber-600">Unit 6</h3>
+                    <p class="text-slate-500 mt-2 font-medium">Sayangi Dirimu</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- VIEW: UNIT 4 MENU -->
+        <div id="view-unit4-menu" class="view text-center">
+            <h2 class="text-3xl font-bold text-sky-600 mb-8">Unit 4: Jagalah Dirimu</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <button onclick="initU4A1(); navTo('u4-akt1')" class="btn-primary text-white text-xl py-4 px-8 rounded-2xl w-full md:w-auto shadow-lg">Aktiviti 1</button>
+                <button onclick="navTo('u4-akt2')" class="btn-primary text-white text-xl py-4 px-8 rounded-2xl w-full md:w-auto shadow-lg">Aktiviti 2</button>
+            </div>
+        </div>
+
+        <!-- VIEW: UNIT 5 MENU -->
+        <div id="view-unit5-menu" class="view text-center">
+            <h2 class="text-3xl font-bold text-emerald-600 mb-8">Unit 5: Persekitaran yang Sihat</h2>
+            <div class="flex justify-center">
+                <button onclick="initU5A1(); navTo('u5-akt1')" class="btn-primary text-white text-xl py-4 px-8 rounded-2xl shadow-lg">Aktiviti 1</button>
+            </div>
+        </div>
+
+        <!-- VIEW: UNIT 6 MENU -->
+        <div id="view-unit6-menu" class="view text-center">
+            <h2 class="text-3xl font-bold text-amber-600 mb-8">Unit 6: Sayangi Dirimu</h2>
+            <div class="flex justify-center">
+                <button onclick="initU6A1(); navTo('u6-akt1')" class="btn-primary text-white text-xl py-4 px-8 rounded-2xl shadow-lg">Aktiviti 1</button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ACTIVITY VIEWS -->
+        <!-- ========================================== -->
+
+        <!-- Unit 4 - Aktiviti 1 -->
+        <div id="view-u4-akt1" class="view">
+            <div class="bg-white rounded-3xl p-4 md:p-6 shadow-lg border-4 border-sky-300">
+                <div class="text-center mb-6">
+                    <span class="inline-block bg-sky-100 text-sky-600 px-4 py-1 rounded-full font-bold mb-2">Unit 4: Aktiviti 1</span>
+                    <h3 class="text-xl font-bold text-slate-700">Arahan aktiviti: Susun gambar ikut pernyataan yang betul.</h3>
+                    <p class="text-sm text-slate-500 mt-2 bg-yellow-50 inline-block px-4 py-2 rounded-lg">Klik pilihan jawapan di bawah, kemudian klik pada petak kosong yang betul.</p>
+                </div>
+
+                <!-- Pilihan Jawapan Bank -->
+                <div class="bg-slate-100 p-4 rounded-2xl mb-8 border-2 border-slate-200 shadow-inner">
+                    <h4 class="font-bold text-center mb-4 text-slate-600 bg-white inline-block px-4 py-1 rounded-full mx-auto shadow-sm">Pilihan Jawapan</h4>
+                    <div id="u4a1-bank" class="flex flex-wrap justify-center gap-4">
+                        <!-- Disuntik melalui JS -->
+                    </div>
+                </div>
+
+                <!-- Petak Soalan -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="u4a1-questions">
+                    <!-- Disuntik melalui JS -->
+                </div>
+
+                <div class="text-center mt-10">
+                    <button onclick="checkU4A1()" class="btn-check text-white text-xl font-bold py-4 px-12 rounded-full w-full md:w-auto shadow-xl">Semak Jawapan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit 4 - Aktiviti 2 -->
+        <div id="view-u4-akt2" class="view">
+            <div class="bg-white rounded-3xl p-4 md:p-8 shadow-lg border-4 border-sky-300">
+                <div class="text-center mb-8">
+                    <span class="inline-block bg-sky-100 text-sky-600 px-4 py-1 rounded-full font-bold mb-2">Unit 4: Aktiviti 2</span>
+                    <h3 class="text-2xl font-bold text-slate-700">Arahan aktiviti: Pilih jawapan yang betul.</h3>
+                </div>
+
+                <div class="space-y-8 max-w-4xl mx-auto text-xl md:text-2xl font-medium leading-relaxed" id="u4a2-form">
+                    
+                    <!-- Soalan 1 -->
+                    <div class="bg-sky-50 p-6 rounded-2xl border-2 border-sky-100 shadow-sm flex items-center flex-wrap gap-3">
+                        <span>1. Ibu</span>
+                        <span class="inline-flex flex-col items-center align-middle mx-2 bg-white p-3 rounded-xl shadow-sm border border-slate-200">
+                            <img src="Gembira.png" alt="Gembira" class="w-16 h-16 object-contain mb-2" onerror="this.onerror=null; this.src='https://placehold.co/64x64/fde047/a16207?text=Gembira'">
+                            <select id="u4a2-q1" class="bg-slate-50 border-2 border-sky-300 text-sky-700 text-lg md:text-xl rounded-xl focus:ring-sky-500 focus:border-sky-500 block p-2 md:p-3 font-bold cursor-pointer">
+                                <option value="">- Pilih -</option>
+                                <option value="Gembira">Gembira</option>
+                                <option value="Sedih">Sedih</option>
+                                <option value="Marah">Marah</option>
+                            </select>
+                        </span>
+                        <span>apabila melihat keletah adik yang bermain di taman.</span>
+                    </div>
+
+                    <!-- Soalan 2 -->
+                    <div class="bg-emerald-50 p-6 rounded-2xl border-2 border-emerald-100 shadow-sm flex items-center flex-wrap gap-3">
+                        <span>2. Udara di tepi tasik sangat</span>
+                        <span class="inline-flex flex-col items-center align-middle mx-2 bg-white p-3 rounded-xl shadow-sm border border-slate-200">
+                            <img src="Segar.png" alt="Segar" class="w-16 h-16 object-contain mb-2" onerror="this.onerror=null; this.src='https://placehold.co/64x64/86efac/166534?text=Segar'">
+                            <select id="u4a2-q2" class="bg-slate-50 border-2 border-emerald-300 text-emerald-700 text-lg md:text-xl rounded-xl focus:ring-emerald-500 focus:border-emerald-500 block p-2 md:p-3 font-bold cursor-pointer">
+                                <option value="">- Pilih -</option>
+                                <option value="Busuk">Busuk</option>
+                                <option value="Segar">Segar</option>
+                                <option value="Buruk">Buruk</option>
+                            </select>
+                        </span>
+                        <span>.</span>
+                    </div>
+
+                    <!-- Soalan 3 -->
+                    <div class="bg-blue-50 p-6 rounded-2xl border-2 border-blue-100 shadow-sm flex items-center flex-wrap gap-3">
+                        <span>3. Air tasik di kawasan permainan itu sungguh</span>
+                        <span class="inline-flex flex-col items-center align-middle mx-2 bg-white p-3 rounded-xl shadow-sm border border-slate-200">
+                            <img src="Jernih.png" alt="Jernih" class="w-16 h-16 object-contain mb-2" onerror="this.onerror=null; this.src='https://placehold.co/64x64/93c5fd/1e3a8a?text=Jernih'">
+                            <select id="u4a2-q3" class="bg-slate-50 border-2 border-blue-300 text-blue-700 text-lg md:text-xl rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-2 md:p-3 font-bold cursor-pointer">
+                                <option value="">- Pilih -</option>
+                                <option value="Bau">Bau</option>
+                                <option value="Jernih">Jernih</option>
+                                <option value="Hitam">Hitam</option>
+                            </select>
+                        </span>
+                        <span>.</span>
+                    </div>
+
+                    <!-- Soalan 4 -->
+                    <div class="bg-amber-50 p-6 rounded-2xl border-2 border-amber-100 shadow-sm flex items-center flex-wrap gap-3">
+                        <span>4. Datuk Fitri sungguh</span>
+                        <span class="inline-flex flex-col items-center align-middle mx-2 bg-white p-3 rounded-xl shadow-sm border border-slate-200">
+                            <img src="Rajin.png" alt="Rajin" class="w-16 h-16 object-contain mb-2" onerror="this.onerror=null; this.src='https://placehold.co/64x64/fdba74/9a3412?text=Rajin'">
+                            <select id="u4a2-q4" class="bg-slate-50 border-2 border-amber-300 text-amber-700 text-lg md:text-xl rounded-xl focus:ring-amber-500 focus:border-amber-500 block p-2 md:p-3 font-bold cursor-pointer">
+                                <option value="">- Pilih -</option>
+                                <option value="Malas">Malas</option>
+                                <option value="Rajin">Rajin</option>
+                                <option value="Lemah">Lemah</option>
+                            </select>
+                        </span>
+                        <span>bersenam.</span>
+                    </div>
+
+                    <!-- Soalan 5 -->
+                    <div class="bg-purple-50 p-6 rounded-2xl border-2 border-purple-100 shadow-sm flex items-center flex-wrap gap-3">
+                        <span>5. Ayah Fitri mengelap peluh dengan kain yang</span>
+                        <span class="inline-flex flex-col items-center align-middle mx-2 bg-white p-3 rounded-xl shadow-sm border border-slate-200">
+                            <img src="Bersih 2.png" alt="Bersih 2" class="w-16 h-16 object-contain mb-2" onerror="this.onerror=null; this.src='https://placehold.co/64x64/d8b4fe/581c87?text=Bersih+2'">
+                            <select id="u4a2-q5" class="bg-slate-50 border-2 border-purple-300 text-purple-700 text-lg md:text-xl rounded-xl focus:ring-purple-500 focus:border-purple-500 block p-2 md:p-3 font-bold cursor-pointer">
+                                <option value="">- Pilih -</option>
+                                <option value="Bersih">Bersih</option>
+                                <option value="Kotor">Kotor</option>
+                                <option value="Busuk">Busuk</option>
+                            </select>
+                        </span>
+                        <span>.</span>
+                    </div>
+                </div>
+
+                <div class="text-center mt-10">
+                    <button onclick="checkU4A2()" class="btn-check text-white text-xl font-bold py-4 px-12 rounded-full w-full md:w-auto shadow-xl">Semak Jawapan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit 5 - Aktiviti 1 (Cari Kata) -->
+        <div id="view-u5-akt1" class="view">
+            <div class="bg-white rounded-3xl p-4 md:p-8 shadow-lg border-4 border-emerald-300 flex flex-col md:flex-row gap-8">
+                
+                <div class="w-full md:w-1/3 order-2 md:order-1">
+                    <div class="text-center mb-6">
+                        <span class="inline-block bg-emerald-100 text-emerald-600 px-4 py-1 rounded-full font-bold mb-2">Unit 5: Aktiviti 1</span>
+                        <h3 class="text-xl font-bold text-slate-700">Latihan Cari Kata</h3>
+                        <p class="text-sm text-slate-500 mt-2 bg-yellow-50 inline-block px-3 py-1 rounded-lg">Arahan: Warnakan perkataan yang anda jumpa (Kata Penguat & Pemeri).</p>
+                    </div>
+                    
+                    <div class="bg-emerald-50 p-6 rounded-2xl border-2 border-emerald-100 shadow-sm">
+                        <h4 class="font-bold text-emerald-800 mb-4 text-center border-b-2 border-emerald-200 pb-2">Senarai Perkataan:</h4>
+                        <div id="word-list" class="grid grid-cols-2 gap-3 text-lg font-bold text-slate-700 text-center">
+                            <!-- Disuntik melalui JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                         <button onclick="checkU5A1()" class="btn-check text-white text-xl font-bold py-4 px-8 rounded-full w-full shadow-lg">Semak Status</button>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-2/3 order-1 md:order-2 flex justify-center items-center overflow-x-auto bg-slate-50 p-4 rounded-2xl border-2 border-slate-100">
+                    <div id="ws-grid-container" class="ws-grid">
+                        <!-- Grid Disuntik melalui JS -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Unit 6 - Aktiviti 1 -->
+        <div id="view-u6-akt1" class="view bg-buah rounded-3xl p-4 md:p-8 shadow-xl border-4 border-amber-400">
+            <div class="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-md">
+                <div class="text-center mb-6">
+                    <span class="inline-block bg-amber-100 text-amber-600 px-4 py-1 rounded-full font-bold mb-2">Unit 6: Aktiviti 1</span>
+                    <h3 class="text-xl font-bold text-slate-700">Lengkapkan maklumat buah-buahan.</h3>
+                    <p class="text-sm text-slate-500 mt-2 bg-yellow-50 inline-block px-4 py-2 rounded-lg">Klik pilihan di bawah, kemudian klik pada kotak kosong yang sesuai.</p>
+                </div>
+
+                <!-- Pilihan Jawapan Bank -->
+                <div class="bg-slate-100 p-5 rounded-2xl mb-8 border-2 border-slate-200 shadow-inner">
+                    <h4 class="font-bold text-center mb-4 text-slate-600 bg-white inline-block px-4 py-1 rounded-full mx-auto shadow-sm">Pilihan Jawapan</h4>
+                    <div id="u6a1-bank" class="flex flex-wrap justify-center gap-3">
+                        <!-- Disuntik melalui JS -->
+                    </div>
+                </div>
+
+                <!-- Layout Buah-buahan -->
+                <div class="space-y-6" id="u6a1-questions">
+                    
+                    <!-- Kotak Kosong 1: Tembikai -->
+                    <div class="flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border-2 border-red-200 hover:border-red-400 transition-colors">
+                        <div class="w-32 h-32 bg-red-50 rounded-2xl flex flex-col items-center justify-center border-4 border-red-100 flex-shrink-0 shadow-sm p-2">
+                            <img src="Tembikai.png" alt="Tembikai" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/fca5a5/7f1d1d?text=Tembikai'">
+                        </div>
+                        <div class="flex-grow w-full space-y-3">
+                            <div class="flex flex-col md:flex-row gap-3 items-stretch">
+                                <div class="w-full md:w-1/4 font-bold text-slate-500 flex items-center justify-center bg-slate-50 border border-slate-200 rounded-xl p-3 shadow-sm">Vitamin</div>
+                                <div class="drop-zone flex-grow w-full min-h-[70px] h-auto p-2 text-base md:text-lg text-center font-medium text-slate-700 u6-drop" data-fruit="Tembikai" data-type="Vit"></div>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-3 items-stretch">
+                                <div class="w-full md:w-1/4 font-bold text-slate-500 flex items-center justify-center bg-slate-50 border border-slate-200 rounded-xl p-3 shadow-sm">Fungsi</div>
+                                <div class="drop-zone flex-grow w-full min-h-[90px] h-auto p-2 text-base md:text-lg text-center font-medium text-slate-700 u6-drop" data-fruit="Tembikai" data-type="Fungsi"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kotak Kosong 2: Pisang -->
+                    <div class="flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border-2 border-yellow-300 hover:border-yellow-400 transition-colors">
+                        <div class="w-32 h-32 bg-yellow-50 rounded-2xl flex flex-col items-center justify-center border-4 border-yellow-100 flex-shrink-0 shadow-sm p-2">
+                            <img src="Pisang.png" alt="Pisang" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/fde047/a16207?text=Pisang'">
+                        </div>
+                        <div class="flex-grow w-full space-y-3">
+                            <div class="flex flex-col md:flex-row gap-3 items-stretch">
+                                <div class="w-full md:w-1/4 font-bold text-slate-500 flex items-center justify-center bg-slate-50 border border-slate-200 rounded-xl p-3 shadow-sm">Vitamin</div>
+                                <div class="drop-zone flex-grow w-full min-h-[70px] h-auto p-2 text-base md:text-lg text-center font-medium text-slate-700 u6-drop" data-fruit="Pisang" data-type="Vit"></div>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-3 items-stretch">
+                                <div class="w-full md:w-1/4 font-bold text-slate-500 flex items-center justify-center bg-slate-50 border border-slate-200 rounded-xl p-3 shadow-sm">Fungsi</div>
+                                <div class="drop-zone flex-grow w-full min-h-[90px] h-auto p-2 text-base md:text-lg text-center font-medium text-slate-700 u6-drop" data-fruit="Pisang" data-type="Fungsi"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kotak Kosong 3: Jambu Batu -->
+                    <div class="flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border-2 border-green-300 hover:border-green-400 transition-colors">
+                        <div class="w-32 h-32 bg-green-50 rounded-2xl flex flex-col items-center justify-center border-4 border-green-100 flex-shrink-0 shadow-sm p-2">
+                            <img src="Jambu Batu.png" alt="Jambu Batu" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/bbf7d0/166534?text=Jambu+Batu'">
+                        </div>
+                        <div class="flex-grow w-full space-y-3">
+                            <div class="flex flex-col md:flex-row gap-3 items-stretch">
+                                <div class="w-full md:w-1/4 font-bold text-slate-500 flex items-center justify-center bg-slate-50 border border-slate-200 rounded-xl p-3 shadow-sm">Vitamin</div>
+                                <div class="drop-zone flex-grow w-full min-h-[70px] h-auto p-2 text-base md:text-lg text-center font-medium text-slate-700 u6-drop" data-fruit="Jambu" data-type="Vit"></div>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-3 items-stretch">
+                                <div class="w-full md:w-1/4 font-bold text-slate-500 flex items-center justify-center bg-slate-50 border border-slate-200 rounded-xl p-3 shadow-sm">Fungsi</div>
+                                <div class="drop-zone flex-grow w-full min-h-[90px] h-auto p-2 text-base md:text-lg text-center font-medium text-slate-700 u6-drop" data-fruit="Jambu" data-type="Fungsi"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-10">
+                    <button onclick="checkU6A1()" class="btn-check text-white text-xl font-bold py-4 px-12 rounded-full w-full md:w-auto shadow-xl">Semak Jawapan</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Custom Alert Modal -->
+    <div id="custom-modal" class="fixed inset-0 items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="modal-content relative bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border-4">
+            <div id="modal-icon" class="text-7xl mb-4 drop-shadow-md"></div>
+            <h3 id="modal-title" class="text-3xl font-bold mb-3"></h3>
+            <p id="modal-message" class="text-slate-600 text-lg mb-8 font-medium leading-relaxed"></p>
+            <button onclick="closeModal()" class="btn-primary text-white font-bold py-4 px-8 rounded-full w-full text-xl shadow-lg">OK</button>
+        </div>
+    </div>
+
+    <script>
+        let historyStack = ['home'];
+        
+        function navTo(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + viewId).classList.add('active');
+            window.scrollTo(0, 0);
+            
+            if(historyStack[historyStack.length - 1] !== viewId) {
+                historyStack.push(viewId);
+            }
+            activeSelectedItem = null; 
+        }
+
+        // Kemaskini: Fungsi butang kembali ke paparan sebelum, atau terus ke page sebelum dalam web browser
+        function goBack() {
+            if(historyStack.length > 1) {
+                historyStack.pop(); 
+                let prev = historyStack[historyStack.length - 1];
+                navTo(prev);
+                historyStack.pop(); 
+            } else {
+                window.history.back(); // Kembali ke halaman sebelumnya dalam sejarah browser
+            }
+        }
+
+        // Kemaskini: Fungsi butang home ke fail index.html
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        function playSuccessSound() {
+            try {
+                if (typeof Tone !== 'undefined') {
+                    Tone.start();
+                    const synth = new Tone.Synth().toDestination();
+                    const now = Tone.now();
+                    synth.triggerAttackRelease("C5", "8n", now);
+                    synth.triggerAttackRelease("E5", "8n", now + 0.15);
+                    synth.triggerAttackRelease("G5", "8n", now + 0.3);
+                }
+            } catch (e) {
+                console.log("Audio play error:", e);
+            }
+        }
+
+        function playErrorSound() {
+            try {
+                if (typeof Tone !== 'undefined') {
+                    Tone.start();
+                    const synth = new Tone.Synth().toDestination();
+                    const now = Tone.now();
+                    synth.triggerAttackRelease("G3", "8n", now);
+                    synth.triggerAttackRelease("Eb3", "8n", now + 0.2);
+                }
+            } catch (e) {
+                console.log("Audio play error:", e);
+            }
+        }
+
+        const modal = document.getElementById('custom-modal');
+        const modalContent = modal.querySelector('.modal-content');
+        
+        function showModal(type, title, message) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').textContent = message;
+            
+            if(type === 'success') {
+                document.getElementById('modal-icon').innerHTML = '🌟';
+                modalContent.className = 'modal-content relative bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border-4 border-emerald-400';
+                document.getElementById('modal-title').className = 'text-3xl font-bold mb-2 text-emerald-600';
+            } else if (type === 'error') {
+                document.getElementById('modal-icon').innerHTML = '💡';
+                modalContent.className = 'modal-content relative bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border-4 border-rose-400';
+                document.getElementById('modal-title').className = 'text-3xl font-bold mb-2 text-rose-600';
+            } else {
+                document.getElementById('modal-icon').innerHTML = '⚠️';
+                modalContent.className = 'modal-content relative bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border-4 border-amber-400';
+                document.getElementById('modal-title').className = 'text-3xl font-bold mb-2 text-amber-600';
+            }
+            
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+        }
+
+        let activeSelectedItem = null;
+
+        // FUNGSI SERET DAN LEPAS (DRAG & DROP)
+        function handleDragStart(e) {
+            if (e.target.classList.contains('locked')) {
+                e.preventDefault();
+                return;
+            }
+            e.dataTransfer.setData('text/plain', e.target.id);
+            // Nyahpilih jawapan jika sedang aktif supaya tiada konflik dengan seretan
+            if (activeSelectedItem) {
+                activeSelectedItem.classList.remove('selected');
+                activeSelectedItem = null;
+            }
+            // Jadikan item sedikit lutsinar ketika ditarik
+            setTimeout(() => e.target.style.opacity = '0.5', 0);
+        }
+
+        function handleDragEnd(e) {
+            e.target.style.opacity = '1';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault(); // Membenarkan item dilepaskan (drop)
+        }
+
+        function handleDrop(e, bankId) {
+            e.preventDefault();
+            let zone = e.currentTarget;
+            if(zone.classList.contains('correct-zone')) return;
+
+            let draggedId = e.dataTransfer.getData('text/plain');
+            let draggedEl = document.getElementById(draggedId);
+            if (!draggedEl) return;
+
+            // Jika dilepaskan di petak yang sudah ada jawapan (tukarkan kedudukan)
+            if(zone.classList.contains('drop-zone') && zone.children.length > 0) {
+                let existingItem = zone.children[0];
+                if(!existingItem.classList.contains('locked')) {
+                    document.getElementById(bankId).appendChild(existingItem);
+                    existingItem.classList.remove('selected');
+                }
+            }
+
+            zone.appendChild(draggedEl);
+            draggedEl.classList.remove('selected');
+        }
+
+        function handleItemClick(e, typeClass) {
+            e.stopPropagation();
+            let item = e.currentTarget;
+            if(item.classList.contains('locked')) return;
+
+            // Jika item sudah ada di dalam petak jawapan dan tiada item lain dipilihi, kembalikan ke bank jawapan
+            let parentZone = item.parentElement;
+            if(parentZone && parentZone.classList.contains('drop-zone') && !activeSelectedItem) {
+                let bankId = parentZone.classList.contains('u6-drop') ? 'u6a1-bank' : 'u4a1-bank';
+                document.getElementById(bankId).appendChild(item);
+                item.classList.remove('selected');
+                return;
+            }
+
+            if(activeSelectedItem === item) {
+                item.classList.remove('selected');
+                activeSelectedItem = null;
+            } else {
+                document.querySelectorAll('.draggable-item').forEach(el => el.classList.remove('selected'));
+                item.classList.add('selected');
+                activeSelectedItem = item;
+            }
+        }
+
+        function handleZoneClick(e, bankId) {
+            let zone = e.currentTarget;
+            if(zone.classList.contains('correct-zone')) return;
+            
+            // Jika petak sudah mengandungi jawapan
+            if(zone.children.length > 0) {
+                let existingItem = zone.children[0];
+                if(!existingItem.classList.contains('locked')) {
+                    if(activeSelectedItem !== existingItem) {
+                        document.getElementById(bankId).appendChild(existingItem);
+                        existingItem.classList.remove('selected');
+                    }
+                }
+            }
+
+            if(activeSelectedItem) {
+                zone.appendChild(activeSelectedItem);
+                activeSelectedItem.classList.remove('selected');
+                activeSelectedItem = null;
+            }
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const u4a1Data = [
+            { id: 1, text: "Makan secukupnya nasi, bijirin dan produk makanan berasaskan bijirin penuh.", img: "Nasi.png" },
+            { id: 2, text: "Ambil makanan dan minuman yang bersih serta selamat.", img: "Bersih.png" },
+            { id: 3, text: "Makan secara sederhana ikan, ayam, telur, daging dan legum.", img: "Ayam.png" },
+            { id: 4, text: "Ambil susu dan produk tenusu setiap hari.", img: "Susu.png" },
+            { id: 5, text: "Hadkan makanan manis, berminyak dan berlemak.", img: "Lolipop.png" },
+            { id: 6, text: "Minumlah 6 hingga 8 gelas air kosong setiap hari.", img: "Air Kosong.png" },
+            { id: 7, text: "Aktifkan diri setiap hari dan awasi berat badan anda.", img: "Kasut.png" },
+            { id: 8, text: "Jangan lupa makan sarapan berkhasiat.", img: "Sarapan.png" },
+            { id: 9, text: "Hadkan pengambilan makanan masin.", img: "Masin.png" },
+            { id: 10, text: "Makan banyak sayur dan buah setiap hari.", img: "Sayur buah.png" }
+        ];
+
+        let u4a1Initialized = false;
+        function initU4A1() {
+            if(u4a1Initialized) return;
+            const qContainer = document.getElementById('u4a1-questions');
+            const bankContainer = document.getElementById('u4a1-bank');
+            qContainer.innerHTML = ''; bankContainer.innerHTML = '';
+
+            u4a1Data.forEach((q, index) => {
+                let html = `
+                <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm">
+                    <div class="flex-grow">
+                        <span class="font-bold text-sky-600 bg-sky-100 px-2 py-1 rounded-md mr-2">Petak ${index + 1}</span> 
+                        <span class="text-base font-medium text-slate-700 block mt-2">${q.text}</span>
+                    </div>
+                    <div class="drop-zone box-16cm u4-drop bg-slate-50" data-answer="${q.img}"></div>
+                </div>`;
+                qContainer.innerHTML += html;
+            });
+
+            let items = [...u4a1Data];
+            shuffleArray(items);
+            items.forEach((item, idx) => {
+                // Tambah draggable="true" dan ID untuk ditarik, pointer-events-none pada imej untuk elak konflik tarikan pelayar
+                let html = `
+                <div draggable="true" id="u4-item-${idx}" class="draggable-item bg-white border-2 border-slate-300 rounded-2xl w-24 h-24 md:w-32 md:h-32 m-1 u4-item overflow-hidden relative group" data-id="${item.img}">
+                    <img src="${item.img}" alt="Pilihan" class="w-full h-full object-contain p-2 pointer-events-none" onerror="this.onerror=null; this.src='https://placehold.co/100x100/e2e8f0/64748b?text=${encodeURIComponent(item.img)}'">
+                </div>`;
+                bankContainer.innerHTML += html;
+            });
+
+            document.querySelectorAll('.u4-item').forEach(el => {
+                el.addEventListener('click', (e) => handleItemClick(e, 'u4-item'));
+                el.addEventListener('dragstart', handleDragStart);
+                el.addEventListener('dragend', handleDragEnd);
+            });
+            document.querySelectorAll('.u4-drop').forEach(el => {
+                el.addEventListener('click', (e) => handleZoneClick(e, 'u4a1-bank'));
+                el.addEventListener('dragover', handleDragOver);
+                el.addEventListener('drop', (e) => handleDrop(e, 'u4a1-bank'));
+            });
+
+            // Membenarkan jawapan ditarik semula ke dalam kotak bank jawapan
+            bankContainer.addEventListener('dragover', handleDragOver);
+            bankContainer.addEventListener('drop', (e) => handleDrop(e, 'u4a1-bank'));
+
+            u4a1Initialized = true;
+        }
+
+        function checkU4A1() {
+            let drops = document.querySelectorAll('.u4-drop');
+            let allFilled = true;
+            let allCorrect = true;
+
+            drops.forEach(drop => {
+                if(drop.children.length === 0) allFilled = false;
+            });
+
+            if(!allFilled) {
+                playErrorSound();
+                showModal('warning', 'Peringatan', 'Sila isi kesemua kotak kosong dengan jawapan yang disediakan sebelum menyemak.');
+                return;
+            }
+
+            drops.forEach(drop => {
+                if(drop.classList.contains('correct-zone')) return;
+                
+                let item = drop.children[0];
+                let expected = drop.getAttribute('data-answer');
+                let actual = item.getAttribute('data-id');
+
+                if(expected === actual) {
+                    drop.classList.add('correct-zone');
+                    item.classList.add('locked');
+                    item.classList.remove('cursor-pointer');
+                    item.classList.replace('border-slate-300', 'border-emerald-500');
+                    item.classList.add('bg-emerald-50');
+                } else {
+                    allCorrect = false;
+                    setTimeout(() => {
+                        document.getElementById('u4a1-bank').appendChild(item);
+                    }, 300);
+                }
+            });
+
+            if(allCorrect) {
+                playSuccessSound();
+                showModal('success', 'Tahniah!', 'Semua padanan gambar anda tepat!');
+            } else {
+                playErrorSound();
+                showModal('error', 'Sila cuba lagi', 'Ada padanan yang salah. Kotak yang salah telah dikosongkan.');
+            }
+        }
+
+        const u4a2Answers = {
+            'u4a2-q1': 'Gembira',
+            'u4a2-q2': 'Segar',
+            'u4a2-q3': 'Jernih',
+            'u4a2-q4': 'Rajin',
+            'u4a2-q5': 'Bersih'
+        };
+
+        function checkU4A2() {
+            let allFilled = true;
+            let allCorrect = true;
+
+            Object.keys(u4a2Answers).forEach(id => {
+                let select = document.getElementById(id);
+                if (!select.value) {
+                    allFilled = false;
+                }
+            });
+
+            if (!allFilled) {
+                playErrorSound();
+                showModal('warning', 'Peringatan', 'Sila isi kesemua pilihan jawapan sebelum menyemak.');
+                return;
+            }
+
+            Object.keys(u4a2Answers).forEach(id => {
+                let select = document.getElementById(id);
+                if (select.value === u4a2Answers[id]) {
+                    select.classList.add('correct-select');
+                    select.disabled = true;
+                } else {
+                    allCorrect = false;
+                    select.value = '';
+                }
+            });
+
+            if (allCorrect) {
+                playSuccessSound();
+                showModal('success', 'Tahniah!', 'Semua jawapan anda betul!');
+            } else {
+                playErrorSound();
+                showModal('error', 'Sila cuba lagi', 'Ada jawapan yang salah. Pilihan yang salah telah dikosongkan.');
+            }
+        }
+
+        const targetWords = ['IALAH', 'ADALAH', 'PALING', 'SUNGGUH', 'SEKALI', 'AMAT', 'BENAR', 'AGAK'];
+        let foundWords = new Set();
+        let u5a1Initialized = false;
+
+        function initU5A1() {
+            if (u5a1Initialized) return;
+            const wordListEl = document.getElementById('word-list');
+            wordListEl.innerHTML = '';
+            targetWords.forEach(w => {
+                wordListEl.innerHTML += `<div id="word-${w}" class="word-list-item border border-emerald-200 bg-white py-2 px-3 rounded-xl shadow-sm">${w}</div>`;
+            });
+
+            const gridContainer = document.getElementById('ws-grid-container');
+            gridContainer.style.gridTemplateColumns = 'repeat(10, minmax(0, 1fr))';
+            gridContainer.innerHTML = '';
+
+            // Grid 10x10 dengan perkataan tersembunyi
+            const gridData = [
+                ['I','A','L','A','H','X','K','M','N','P'],
+                ['A','D','A','L','A','H','Z','O','R','S'],
+                ['P','A','L','I','N','G','W','Q','Y','T'],
+                ['S','U','N','G','G','U','H','V','B','C'],
+                ['S','E','K','A','L','I','J','K','L','M'],
+                ['A','M','A','T','D','E','F','G','H','I'],
+                ['B','E','N','A','R','N','O','P','Q','R'],
+                ['A','G','A','K','S','T','U','V','W','X'],
+                ['Y','Z','A','B','C','D','E','F','G','H'],
+                ['I','J','K','L','M','N','O','P','Q','R']
+            ];
+
+            gridData.forEach((row, rIdx) => {
+                row.forEach((char, cIdx) => {
+                    let cell = document.createElement('div');
+                    cell.className = 'ws-cell';
+                    cell.textContent = char;
+                    cell.dataset.row = rIdx;
+                    cell.dataset.col = cIdx;
+                    cell.onclick = () => toggleCell(cell);
+                    gridContainer.appendChild(cell);
+                });
+            });
+
+            u5a1Initialized = true;
+        }
+
+        function toggleCell(cell) {
+            if (cell.classList.contains('found')) return;
+            cell.classList.toggle('selecting');
+            checkWordSearchProgress();
+        }
+
+        function checkWordSearchProgress() {
+            const gridData = [
+                { word: 'IALAH', cells: [[0,0],[0,1],[0,2],[0,3],[0,4]] },
+                { word: 'ADALAH', cells: [[1,0],[1,1],[1,2],[1,3],[1,4],[1,5]] },
+                { word: 'PALING', cells: [[2,0],[2,1],[2,2],[2,3],[2,4],[2,5]] },
+                { word: 'SUNGGUH', cells: [[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6]] },
+                { word: 'SEKALI', cells: [[4,0],[4,1],[4,2],[4,3],[4,4],[4,5]] },
+                { word: 'AMAT', cells: [[5,0],[5,1],[5,2],[5,3]] },
+                { word: 'BENAR', cells: [[6,0],[6,1],[6,2],[6,3],[6,4]] },
+                { word: 'AGAK', cells: [[7,0],[7,1],[7,2],[7,3]] }
+            ];
+
+            gridData.forEach(item => {
+                if (foundWords.has(item.word)) return;
+                let allSelected = item.cells.every(([r, c]) => {
+                    let cell = document.querySelector(`.ws-cell[data-row="${r}"][data-col="${c}"]`);
+                    return cell && (cell.classList.contains('selecting') || cell.classList.contains('found'));
+                });
+
+                if (allSelected) {
+                    foundWords.add(item.word);
+                    item.cells.forEach(([r, c]) => {
+                        let cell = document.querySelector(`.ws-cell[data-row="${r}"][data-col="${c}"]`);
+                        cell.classList.remove('selecting');
+                        cell.classList.add('found');
+                    });
+                    let wordEl = document.getElementById(`word-${item.word}`);
+                    if (wordEl) wordEl.classList.add('found');
+                }
+            });
+        }
+
+        function checkU5A1() {
+            if (foundWords.size === targetWords.length) {
+                playSuccessSound();
+                showModal('success', 'Tahniah!', 'Anda telah menjumpai kesemua kata penguat dan kata pemeri!');
+            } else {
+                playErrorSound();
+                showModal('error', 'Sila cuba lagi', `Anda telah menjumpai ${foundWords.size} daripada ${targetWords.length} perkataan. Teruskan mencari!`);
+            }
+        }
+
+        const u6a1Answers = {
+            'Tembikai_Vit': 'Vitamin A dan C',
+            'Tembikai_Fungsi': 'Menstabilkan tekanan darah, baik untuk kesihatan jantung dan penghadaman',
+            'Pisang_Vit': 'Vitamin C, B kompleks, kalsium dan mineral',
+            'Pisang_Fungsi': 'Baik untuk kesihatan jantung, sumber tenaga, menurunkan berat badan dan mengatasi sembelit',
+            'Jambu_Vit': 'Vitamin C dan antioksidan',
+            'Jambu_Fungsi': 'Meningkatkan Kesihatan jantung, menurunkan paras kolestrol dan menurunkan berat badan.'
+        };
+
+        const u6a1DataItems = [
+            { text: "Vitamin A dan C" },
+            { text: "Menstabilkan tekanan darah, baik untuk kesihatan jantung dan penghadaman" },
+            { text: "Vitamin C, B kompleks, kalsium dan mineral" },
+            { text: "Baik untuk kesihatan jantung, sumber tenaga, menurunkan berat badan dan mengatasi sembelit" },
+            { text: "Vitamin C dan antioksidan" },
+            { text: "Meningkatkan Kesihatan jantung, menurunkan paras kolestrol dan menurunkan berat badan." }
+        ];
+
+        let u6a1Initialized = false;
+        function initU6A1() {
+            if (u6a1Initialized) return;
+            const bankContainer = document.getElementById('u6a1-bank');
+            bankContainer.innerHTML = '';
+
+            let items = [...u6a1DataItems];
+            shuffleArray(items);
+
+            items.forEach((item, idx) => {
+                let div = document.createElement('div');
+                div.id = 'u6-item-' + idx;
+                div.draggable = true; // Benarkan seretan
+                div.className = 'draggable-item bg-amber-50 border-2 border-amber-300 rounded-xl p-3 text-sm md:text-base font-medium text-slate-800 cursor-pointer u6-item shadow-sm hover:shadow-md';
+                div.setAttribute('data-ans', item.text);
+                div.textContent = item.text;
+                bankContainer.appendChild(div);
+            });
+
+            document.querySelectorAll('.u6-item').forEach(el => {
+                el.addEventListener('click', (e) => handleItemClick(e, 'u6-item'));
+                el.addEventListener('dragstart', handleDragStart);
+                el.addEventListener('dragend', handleDragEnd);
+            });
+            document.querySelectorAll('.u6-drop').forEach(el => {
+                el.addEventListener('click', (e) => handleZoneClick(e, 'u6a1-bank'));
+                el.addEventListener('dragover', handleDragOver);
+                el.addEventListener('drop', (e) => handleDrop(e, 'u6a1-bank'));
+            });
+
+            // Membenarkan jawapan ditarik semula ke dalam kotak bank jawapan
+            bankContainer.addEventListener('dragover', handleDragOver);
+            bankContainer.addEventListener('drop', (e) => handleDrop(e, 'u6a1-bank'));
+
+            u6a1Initialized = true;
+        }
+
+        function checkU6A1() {
+            let drops = document.querySelectorAll('.u6-drop');
+            let allFilled = true;
+            let allCorrect = true;
+
+            drops.forEach(drop => {
+                if (drop.children.length === 0) allFilled = false;
+            });
+
+            if (!allFilled) {
+                playErrorSound();
+                showModal('warning', 'Peringatan', 'Sila isi kesemua kotak kosong dengan jawapan yang disediakan sebelum menyemak.');
+                return;
+            }
+
+            drops.forEach(drop => {
+                if (drop.classList.contains('correct-zone')) return;
+
+                let item = drop.children[0];
+                let fruit = drop.getAttribute('data-fruit');
+                let type = drop.getAttribute('data-type');
+                let key = `${fruit}_${type}`;
+                let correctAnsText = u6a1Answers[key];
+                let userAnsText = item.getAttribute('data-ans');
+
+                if (correctAnsText && correctAnsText.trim() === userAnsText.trim()) {
+                    drop.classList.add('correct-zone');
+                    item.classList.add('locked');
+                    item.classList.remove('cursor-pointer');
+                    item.classList.replace('border-amber-300', 'border-emerald-500');
+                    item.classList.add('bg-emerald-50', 'text-emerald-800');
+                } else {
+                    allCorrect = false;
+                    setTimeout(() => {
+                        document.getElementById('u6a1-bank').appendChild(item);
+                    }, 300);
+                }
+            });
+
+            if (allCorrect) {
+                playSuccessSound();
+                showModal('success', 'Tahniah!', 'Semua padanan anda tepat!');
+            } else {
+                playErrorSound();
+                showModal('error', 'Sila cuba lagi', 'Ada padanan yang salah. Kotak yang salah telah dikosongkan.');
+            }
+        }
+    </script>
+</body>
+</html>

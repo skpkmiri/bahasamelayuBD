@@ -80,6 +80,23 @@
             border: 4px solid white;
         }
         
+        /* Dropdown effect untuk kotak Tema */
+        .tema-card .dropdown-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-in-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        .tema-card:hover .dropdown-content {
+            max-height: 800px;
+            opacity: 1;
+            padding-top: 1.25rem; /* Menyamai p-5 */
+            padding-bottom: 1.25rem;
+        }
+        
         /* Floating animation for decoration */
         .float-anim {
             animation: floating 3s ease-in-out infinite;
@@ -97,7 +114,8 @@
     <!-- Navigasi Atas / Top Bar -->
     <nav class="fixed top-0 w-full z-50 glass-card shadow-md px-4 py-3 flex justify-between items-center">
         <button onclick="window.location.href='index.html'" class="btn-press flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-400 text-white px-5 py-2 rounded-full font-bold shadow-btn border-2 border-white text-lg">
-            🏠 <span class="hidden sm:inline">HOME</span>
+            <img src="home.png" alt="Home" class="w-6 h-6 sm:w-8 sm:h-8">
+            <span class="hidden sm:inline">HOME</span>
         </button>
         
         <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-center flex-1 mx-4 drop-shadow-sm uppercase tracking-wider">
@@ -133,8 +151,8 @@
                     <h3 id="detail-tema-title" class="text-xl font-bold text-gray-500 uppercase tracking-wide">TEMA</h3>
                     <h2 id="detail-unit-title" class="text-3xl sm:text-4xl font-bold text-blue-700 mt-1">Tajuk Unit</h2>
                 </div>
-                <button onclick="navigate('tema-grid')" class="btn-press bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-2xl font-bold border-2 border-gray-300 w-full sm:w-auto">
-                    ⬅️ Kembali ke Tema
+                <button onclick="navigate('tema-grid')" class="btn-press flex items-center justify-center gap-2 bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-2xl font-bold border-2 border-gray-300 w-full sm:w-auto">
+                    <img src="kembali.png" alt="Kembali" class="w-6 h-6"> Kembali ke Tema
                 </button>
             </div>
 
@@ -162,8 +180,8 @@
                     <p class="text-gray-500 mt-2">Cikgu boleh meletakkan gambar rajah, video isyarat tangan, atau soalan interaktif di sini.</p>
                 </div>
                 
-                <button onclick="navigate('unit-detail')" class="btn-press bg-gradient-to-r from-red-400 to-red-500 text-white px-8 py-3 rounded-full font-bold shadow-btn border-2 border-white text-xl relative z-10">
-                    ⬅️ Kembali
+                <button onclick="navigate('unit-detail')" class="btn-press flex items-center justify-center gap-2 bg-gradient-to-r from-red-400 to-red-500 text-white px-8 py-3 rounded-full font-bold shadow-btn border-2 border-white text-xl relative z-10 mx-auto w-fit">
+                    <img src="kembali.png" alt="Kembali" class="w-6 h-6"> Kembali
                 </button>
             </div>
         </section>
@@ -236,19 +254,20 @@
             container.innerHTML = ''; // Kosongkan sebelum render semula
 
             kurikulumData.forEach((kumpulan, index) => {
-                // Bina kad Tema
+                // Bina kad Tema dengan kelas .tema-card untuk membolehkan efek dropdown hover
                 const temaCard = document.createElement('div');
-                temaCard.className = `glass-card rounded-[2rem] overflow-hidden flex flex-col h-full transform transition duration-300 hover:-translate-y-2 hover:shadow-kid`;
+                temaCard.className = `tema-card glass-card rounded-[2rem] overflow-hidden flex flex-col h-auto transform transition duration-300 hover:-translate-y-2 hover:shadow-kid`;
                 
-                // Header Tema
-                const header = document.createElement('div');
-                header.className = `${kumpulan.warna} text-white font-extrabold text-xl p-5 text-center shadow-md relative z-10`;
+                // Header Tema dijadikan pautan untuk ke tema1.html, tema2.html, dan seterusnya
+                const header = document.createElement('a');
+                header.href = `tema${index + 1}.html`;
+                header.className = `${kumpulan.warna} block text-white font-extrabold text-xl p-5 text-center shadow-md relative z-10 hover:brightness-110 transition`;
                 header.innerHTML = kumpulan.tema;
                 temaCard.appendChild(header);
 
-                // Kontena Senarai Unit
+                // Kontena Senarai Unit sebagai dropdown yang disorokkan secara lalai
                 const unitList = document.createElement('div');
-                unitList.className = "p-5 flex-1 flex flex-col gap-3 bg-white/50";
+                unitList.className = "dropdown-content px-5 flex-1 flex flex-col gap-3 bg-white/50";
                 
                 kumpulan.unit.forEach(unit => {
                     const unitBtn = document.createElement('button');

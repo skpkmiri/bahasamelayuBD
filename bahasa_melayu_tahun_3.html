@@ -43,6 +43,7 @@
     </style>
 </head>
 <body class="min-h-screen pb-10">
+
     <div class="fixed top-2 left-2 md:top-4 md:left-4 flex gap-2 z-50">
         <button onclick="goHome()" class="btn-3d bg-white/80 p-2 md:p-3 rounded-full shadow-[0_4px_0_#ccc] hover:bg-white backdrop-blur-sm transition-all border-2 border-gray-100">
             <img src="home.png" alt="Home" class="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md" onerror="this.src='https://placehold.co/100x100/FF5252/FFFFFF?text=H'">
@@ -64,7 +65,6 @@
 
     <main class="max-w-6xl mx-auto px-4 mt-6">
         
-        <!-- VIEW 1: HOME (Grid Tema) -->
         <section id="view-home" class="view-section fade-in">
             <div class="bg-white/60 backdrop-blur-md p-6 md:p-10 rounded-[2.5rem] shadow-2xl border-4 border-white max-w-5xl mx-auto relative overflow-hidden">
                 <div class="absolute top-0 right-0 -mt-4 -mr-4 text-6xl opacity-30 animate-pulse">🎈</div>
@@ -74,7 +74,6 @@
             </div>
         </section>
 
-        <!-- VIEW 2: SENARAI UNIT (Center Aligned) -->
         <section id="view-units" class="view-section hidden fade-in">
             <div class="flex flex-col justify-center items-center min-h-[65vh] w-full max-w-5xl mx-auto">
                 <h2 id="title-tema" class="text-3xl md:text-5xl text-center font-chewy text-purple-600 mb-8 drop-shadow-md bg-white px-8 py-4 rounded-3xl border-4 border-purple-200 shadow-lg"></h2>
@@ -84,7 +83,6 @@
             </div>
         </section>
 
-        <!-- VIEW 3: SENARAI AKTIVITI -->
         <section id="view-activities" class="view-section hidden fade-in">
             <h2 id="title-unit" class="text-3xl md:text-4xl text-center font-chewy text-teal-600 mb-8 drop-shadow-md bg-white py-4 rounded-3xl border-4 border-teal-200 px-4 shadow-lg"></h2>
             <div id="activity-list" class="flex flex-col gap-4 max-w-2xl mx-auto">
@@ -102,11 +100,11 @@
             </div>
         </section>
 
-        <!-- VIEW 4: PLAYGROUND (Main Aktiviti) -->
         <section id="view-play" class="view-section hidden fade-in">
             <div class="bg-white/95 backdrop-blur-md p-4 md:p-8 rounded-3xl border-4 border-indigo-200 shadow-2xl max-w-6xl mx-auto min-h-[60vh] flex flex-col relative overflow-hidden">
                 <h2 id="play-title" class="text-2xl md:text-4xl font-chewy text-indigo-600 mb-8 text-center border-b-4 border-dashed border-indigo-100 pb-4"></h2>
-                <div id="play-container" class="flex-grow flex flex-col justify-center items-center w-full">
+                
+                <div id="play-container" class="flex-grow flex flex-col justify-start items-center w-full">
                     <!-- Kandungan disuntik di sini -->
                 </div>
             </div>
@@ -205,11 +203,11 @@
                                 id: 'u2a4', name: "Aktiviti 4: KATA NAMA AM", type: "padan-overlay",
                                 image: "katakerja.png",
                                 targets: [
-                                    { ans: "majalah", top: 30, left: 46, w: 18, h: 8 },
-                                    { ans: "rak", top: 70, left: 36, w: 18, h: 8 },
-                                    { ans: "meja", top: 40, left: 2, w: 16, h: 8 },
-                                    { ans: "permaidani", top: 65, left: 61, w: 18, h: 8 },
-                                    { ans: "pembersih vakum", top: 73, left: 28, w: 20, h: 8 }
+                                    { ans: "majalah", top: 39, left: 67, w: 16, h: 7 },
+                                    { ans: "rak", top: 53, left: 82, w: 15, h: 7 },
+                                    { ans: "meja", top: 53, left: 11, w: 16, h: 7 },
+                                    { ans: "permaidani", top: 68, left: 35, w: 18, h: 7 },
+                                    { ans: "pembersih vakum", top: 84, left: 56, w: 20, h: 7 }
                                 ],
                                 pool: ["majalah", "rak", "meja", "permaidani", "pembersih vakum"]
                             }
@@ -335,7 +333,7 @@
                         title: "Unit 6: Kami Prihatin",
                         activities: [
                             {
-                                id: 'u6a1', name: "Aktiviti 1: Pemahaman", type: "mcq-berkaitan", overallImage: "petikan.png",
+                                id: 'u6a1', name: "Aktiviti 1: Pemahaman", type: "mcq-berkaitan", overallImage: "kawanbaru.png", layOutFormat: "vertical",
                                 items: [
                                     { q: "Nama kawan baharu Sarah ialah ______________.", options: ["Mala", "Syafik", "Siti"], ans: "Mala" },
                                     { q: "Mala duduk ________________________________", options: ["berasa sedih sebab tidak ada kawan", "berasa gembira sebab dapat kawan baru", "berasa mengantuk kerana banyak belajar"], ans: "berasa sedih sebab tidak ada kawan" }
@@ -415,7 +413,7 @@
                             },
                             {
                                 id: 'u7a3', name: "Aktiviti 3: Padankan Isyarat", type: "padan-overlay",
-                                image: "membaca.png",
+                                image: "membaca.png", choicesPosition: "bottom",
                                 targets: [
                                     { ans: "bersenam.png", top: 7, left: 70, w: 17, h: 11 },
                                     { ans: "melontar.png", top: 45, left: 31, w: 17, h: 11 },
@@ -521,34 +519,33 @@
                     }
                 ]
             },
-            { 
-                tema: "TEMA 4: KESELAMATAN", color: "from-orange-400 to-orange-600", 
+            {
+                tema: "TEMA 4: KESELAMATAN", color: "from-orange-400 to-orange-600",
                 units: [
                     {
-                        title: "Unit 10: Keselamatan di Dapur",
+                        title: "Unit 10: Pentingnya Keselamatan",
                         activities: [
                             {
                                 id: 'u10a1', name: "Aktiviti 1: Susun Perkataan", type: "susun-ayat",
                                 items: [
-                                    { media: "Emak.png", ans: "Saya membantu emak meletakkan roti di atas piring." },
-                                    { media: "Teko.png", ans: "Emak memasukkan uncang teh ke dalam teko." },
-                                    { media: "Pisau.png", ans: "Emak menyimpan pisau dan gunting ke dalam laci." }
+                                    { media: "Emak.png", ans: "Emak sedang memotong sayur." },
+                                    { media: "Teko.png", ans: "Air panas di dalam teko." },
+                                    { media: "Pisau.png", ans: "Pisau itu sangat tajam." }
                                 ]
                             },
                             {
                                 id: 'u10a2', name: "Aktiviti 2: Pilih Ayat", type: "mcq",
                                 items: [
-                                    { media: "Emak.png", type: "image", ans: "Saya membantu emak meletakkan roti di atas piring." },
-                                    { media: "Teko.png", type: "image", ans: "Emak memasukkan uncang teh ke dalam teko." },
-                                    { media: "Pisau.png", type: "image", ans: "Emak menyimpan pisau dan gunting ke dalam laci." }
+                                    { media: "Emak.png", type: "image", ans: "Emak sedang memotong sayur." },
+                                    { media: "Teko.png", type: "image", ans: "Air panas di dalam teko." },
+                                    { media: "Pisau.png", type: "image", ans: "Pisau itu sangat tajam." }
                                 ],
-                                pool: ["Saya membantu emak meletakkan roti di atas piring.", "Emak memasukkan uncang teh ke dalam teko.", "Emak menyimpan pisau dan gunting ke dalam laci.", "Emak memegang cerek panas dengan menggunakan sarung tangan."]
+                                pool: ["Emak sedang memotong sayur.", "Air panas di dalam teko.", "Pisau itu sangat tajam.", "Adik bermain bola.", "Ayah membaca surat khabar."]
                             },
                             {
                                 id: 'u10a3', name: "Aktiviti 3: Isi Tempat Kosong", type: "isi-kosong-perenggan",
                                 images: ["Emak.png", "Teko.png", "Pisau.png"],
-                                text: "Cuti sekolah sudah bermula. Saya bangun awal untuk membantu emak menyediakan sarapan.<br><br>[0] membantu [1] meletakkan roti di atas [2]. Emak pula membuat [3].<br><br>Mula-mula, emak memasukkan uncang teh ke dalam [4]. Kemudian, emak menuang air panas ke dalam teko. Emak memegang [5] dengan menggunakan [6].<br><br>Selepas bersarapan, kami mengemas dapur bersama-sama. Emak menyimpan alatan tajam seperti [7] dan [8] ke dalam [9].<br><br>Saya berasa gembira kerana dapat menolong emak di dapur.",
-                                blanks: ["Saya", "emak", "piring", "air teh", "teko", "cerek", "sarung tangan", "pisau", "gunting", "laci"],
+                                text: "Cuti sekolah sudah bermula. [0] bangun awal untuk membantu [1] menyediakan sarapan.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Saya membantu emak meletakkan roti di atas [2]. Emak pula membuat [3]. Mula-mula, emak memasukkan uncang teh ke dalam [4]. Kemudian, emak menuang air panas ke dalam teko. Emak memegang [5] dengan menggunakan [6].<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Selepas bersarapan, kami mengemas dapur bersama-sama. Emak menyimpan alatan tajam seperi [7] dan [8] ke dalam [9].<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Saya berasa gembira kerana dapat menolong emak di dapur.",
                                 pool: ["Saya", "emak", "piring", "air teh", "teko", "cerek", "sarung tangan", "pisau", "gunting", "laci"]
                             },
                             {
@@ -562,25 +559,36 @@
                                 pool: ["atau", "untuk", "dan", "sambil"]
                             },
                             {
-                                id: 'u10a5', name: "Aktiviti 5: Cari Kata Hubung", type: "word-search"
+                                id: 'u10a5', name: "Aktiviti 5: Cari Kata Hubung", type: "word-search",
+                                grid: [
+                                    ['A','T','A','U','X','Y','Z','P'],
+                                    ['K','L','M','N','O','P','Q','R'],
+                                    ['U','N','T','U','K','A','B','C'],
+                                    ['D','E','F','G','H','I','J','K'],
+                                    ['D','A','N','S','T','U','V','W'],
+                                    ['S','A','M','B','I','L','X','Y'],
+                                    ['Z','A','B','C','D','E','F','G'],
+                                    ['H','I','J','K','L','M','N','O']
+                                ],
+                                words: ["ATAU", "UNTUK", "DAN", "SAMBIL"]
                             }
                         ]
                     },
                     {
-                        title: "Unit 11: Lawatan ke Balai Bomba",
+                        title: "Unit 11: Pasukan Penyelamat",
                         activities: [
                             {
                                 id: 'u11a1', name: "Aktiviti 1: Lengkapkan Peta Minda", type: "padan-overlay",
-                                image: "Screenshot 2026-08-30 214809.png",
+                                image: "petaminda.png", choicesPosition: "bottom", fontClass: "text-xs md:text-sm p-1 md:p-2",
                                 targets: [
-                                    { ans: "sarung tangan", top: 4, left: 2, w: 24, h: 25 },
-                                    { ans: "alat pemadam api", top: 35, left: 2, w: 24, h: 25 },
-                                    { ans: "kasut perlindungan", top: 68, left: 2, w: 24, h: 25 },
-                                    { ans: "topi keselamatan", top: 4, left: 74, w: 24, h: 25 },
-                                    { ans: "baju operasi bomba", top: 35, left: 74, w: 24, h: 25 },
-                                    { ans: "pelindung pernafasan", top: 68, left: 74, w: 24, h: 25 }
+                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 31, left: 3, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 55, left: 3, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 78, left: 3, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 31, left: 74, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 55, left: 74, w: 23, h: 18 },
+                                    { ans: ["sarungtangan.png", "alat.png", "kasut.png", "topi.png", "baju.png", "pelindung.png"], top: 78, left: 74, w: 23, h: 18 }
                                 ],
-                                pool: ["sarung tangan", "alat pemadam api", "kasut perlindungan", "topi keselamatan", "baju operasi bomba", "pelindung pernafasan", "tali pinggang", "cermin mata", "sarung kaki", "payung"]
+                                pool: ["walkie.png", "lampu.png", "tali.png", "hos.png", "pelindung.png", "baju.png", "topi.png", "kasut.png", "alat.png", "sarungtangan.png"]
                             },
                             {
                                 id: 'u11a2', name: "Aktiviti 2: Pilih Ayat Sesuai", type: "mcq",
@@ -602,20 +610,24 @@
                                 ]
                             },
                             {
-                                id: 'u11a3', name: "Aktiviti 3: Lengkapkan Laporan", type: "padan", cols: 1, overallImage: "Screenshot 2026-08-30 215000.png",
-                                targets: [
-                                    { text: "Selepas itu, kami mengunjungi pameran ____________.", ans: "kenderaan bomba" },
-                                    { text: "Ada ____________ kenderaan bomba seperti motosikal, van, kereta dan lori.", ans: "pelbagai jenis" },
-                                    { text: "Kemudian pegawai bomba membuat ____________", ans: "demonstrasi" },
-                                    { text: "cara menggunakan ____________ dengan betul", ans: "alat pemadam api" },
-                                    { text: "kepada ____________.", ans: "murid-murid" },
-                                    { text: "Tepat jam 12:30 tengah hari, kami ____________.", ans: "bergerak pulang" },
-                                    { text: "Kami ____________.", ans: "berasa sangat gembira" }
-                                ],
-                                pool: ["kenderaan bomba", "pelbagai jenis", "demonstrasi", "alat pemadam api", "murid-murid", "bergerak pulang", "berasa sangat gembira"]
+                                id: 'u11a3', name: "Aktiviti 3: Lengkapkan Laporan", type: "isi-kosong-perenggan",
+                                textClass: "text-sm md:text-base leading-relaxed md:leading-relaxed text-justify", 
+                                layOutFormat: "16:9",
+                                text: `<div class="text-center font-bold mb-4 text-base md:text-xl">LAPORAN LAWATAN KE BALAI BOMBA</div>
+                                       &nbsp;&nbsp;&nbsp;&nbsp;Pada 22 Ogos 2026, Sekolah Kebangsaan Taman Cempaka telah mengadakan [0] sambil belajar ke [1] Sri Setia. Lawatan ini disertai oleh 32 orang murid dan 5 orang guru. Kami pergi dengan menaiki [2].<br>
+                                       &nbsp;&nbsp;&nbsp;&nbsp;Setibanya kami di sana, kami disambut oleh seorang [3]. Pegawai bomba tersebut telah memberikan [4]. Kemudian kami dibawa melawat ke [5]. Banyak [6], bahan-bahan sejarah dan anugerah-anugerah yang pernah diterima.<br>
+                                       &nbsp;&nbsp;&nbsp;&nbsp;Selepas itu, kami mengunjungi pameran [7]. Ada [8] kenderaan bomba seperti motosikal, van, kereta dan lori. Kemudian pegawai bomba membuat [9] cara menggunakan [10] dengan betul kepada [11].<br>
+                                       &nbsp;&nbsp;&nbsp;&nbsp;Tepat jam 12:30 tengah hari, kami [12]. Kami [13].<br><br>
+                                       Disediakan oleh,<br>
+                                       <i>Syafik</i><br>
+                                       (SYAFIK BIN AMRAN)<br>
+                                       Setiausaha Kelas 3 Cemerlang<br>
+                                       SK Taman Cempaka<br>
+                                       25 Ogos 2026`,
+                                pool: ["lawatan", "balai bomba", "bas sekolah", "pegawai bomba", "taklimat", "galeri bomba", "alatan", "kenderaan bomba", "pelbagai jenis", "demonstrasi", "alat pemadam api", "murid-murid", "bergerak pulang", "berasa sangat gembira"]
                             },
                             {
-                                id: 'u11a4', name: "Aktiviti 4: Carta Alir Pemadam Api", type: "padan", cols: 4,
+                                id: 'u11a4', name: "Aktiviti 4: Cara Penggunaan Pemadam Api", type: "padan", cols: 4,
                                 targets: [
                                     { text: "Langkah 1", ans: "cara1.png" },
                                     { text: "Langkah 2", ans: "cara2.png" },
@@ -625,10 +637,113 @@
                                 pool: ["cara1.png", "cara2.png", "cara3.png", "cara4.png"]
                             }
                         ]
+                    },
+                    {
+                        title: "Unit 12: Beringat Sebelum Kena",
+                        activities: [
+                            {
+                                id: 'u12a1', name: "Aktiviti 1: Kata Sendi Nama", type: "padan", cols: 2,
+                                targets: [{ image: "dari.png", ans: "dari" }, { image: "ke.png", ans: "ke" }, { image: "pada.png", ans: "pada" }, { image: "di.png", ans: "di" }],
+                                pool: ["dari", "ke", "pada", "di"]
+                            },
+                            {
+                                id: 'u12a2', name: "Aktiviti 2: Kata Tanya", type: "padan", cols: 2,
+                                targets: [{ image: "dimanakah.png", ans: "dimanakah" }, { image: "siapakah.png", ans: "siapakah" }, { image: "berapakah.png", ans: "berapakah" }, { image: "mengapakah.png", ans: "mengapakah" }],
+                                pool: ["dimanakah", "siapakah", "berapakah", "mengapakah"]
+                            },
+                            {
+                                id: 'u12a3', name: "Aktiviti 3: Kata Arah", type: "padan", cols: 2,
+                                targets: [{ image: "dalam.png", ans: "dalam" }, { image: "atas.png", ans: "atas" }, { image: "luar.png", ans: "luar" }, { image: "belakang.png", ans: "belakang" }],
+                                pool: ["dalam", "atas", "luar", "belakang"]
+                            }
+                        ]
                     }
-                ] 
+                ]
             },
-            { tema: "TEMA 5: PERPADUAN", color: "from-blue-400 to-blue-600", units: [] }
+            {
+                tema: "TEMA 5: PERPADUAN", color: "from-blue-400 to-blue-600",
+                units: [
+                    {
+                        title: "Unit 13: Jadikan Inspirasi",
+                        activities: [
+                            {
+                                id: 'u13a1', name: "Aktiviti 1: Pemahaman (Pesta Kuih Bulan)", type: "mcq-berkaitan", overallImage: "petikan.png", layOutFormat: "vertical",
+                                items: [
+                                    { q: "1. Siapakah yang menyambut perayaan pesta kuih bulan?", options: ["Kaum Cina", "Kaum Melayu", "Kaum India"], ans: "Kaum Cina" },
+                                    { q: "2. Bilakah pesta kuih bulan disambut?", options: ["Hari ke-15 bulan kelapan kalendar Cina", "Hari pertama", "Hujung tahun"], ans: "Hari ke-15 bulan kelapan kalendar Cina" },
+                                    { q: "3. Mengapakah pesta kuih bulan disambut?", options: ["Melambangkan keluarga yang harmoni dan masyarakat bersatu padu", "Untuk bermain tanglung", "Untuk makan besar bersama jiran"], ans: "Melambangkan keluarga yang harmoni dan masyarakat bersatu padu" }
+                                ]
+                            },
+                            {
+                                id: 'u13a2', name: "Aktiviti 2: Kata Perintah", type: "padan", cols: 3,
+                                targets: [{ image: "sila.png", ans: "sila" }, { image: "jemput.png", ans: "jemput" }, { image: "tolong.png", ans: "tolong" }, { image: "minta.png", ans: "minta" }, { image: "jangan.png", ans: "jangan" }, { image: "harap.png", ans: "harap" }],
+                                pool: ["sila", "jemput", "tolong", "minta", "jangan", "harap"]
+                            },
+                            {
+                                id: 'u13a3', name: "Aktiviti 3: Kosa Kata", type: "padan", cols: 3,
+                                targets: [{ image: "senang.png", ans: "senang" }, { image: "rakyat.png", ans: "rakyat" }, { image: "agama.png", ans: "agama" }, { image: "bangsa.png", ans: "bangsa" }, { image: "budaya.png", ans: "budaya" }, { image: "sengketa.png", ans: "sengketa" }],
+                                pool: ["senang", "rakyat", "agama", "bangsa", "budaya", "sengketa", "tanpa.png"]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Unit 14: Kenali Kesenian Kita",
+                        activities: [
+                            {
+                                id: 'u14a1', name: "Aktiviti 1: Pemahaman (Makanan Sarawak)", type: "mcq-berkaitan", overallImage: "petikan2.png", layOutFormat: "vertical",
+                                items: [
+                                    { q: "1. Siapakah yang mengadakan Pesta Makanan Negeri Sarawak?", options: ["Kelab Komuniti Taman Sri Setia", "Kelab Sukan", "Pihak Sekolah"], ans: "Kelab Komuniti Taman Sri Setia" },
+                                    { q: "2. Apakah tujuan festival ini diadakan?", options: ["Untuk memperkenalkan makanan pelbagai dari negeri Sarawak", "Untuk berniaga pada waktu malam", "Untuk pertandingan memasak sesama jiran"], ans: "Untuk memperkenalkan makanan pelbagai dari negeri Sarawak" },
+                                    { q: "3. Pilih makanan yang terdapat di Sarawak.", options: ["Mi Kolok dan Laksa Sarawak", "Nasi Lemak dan Roti Canai", "Sate dan Ketupat"], ans: "Mi Kolok dan Laksa Sarawak" }
+                                ]
+                            },
+                            {
+                                id: 'u14a2', name: "Aktiviti 2: Pemahaman (Tarian Singa)", type: "mcq-berkaitan", overallImage: "petikan3.png", layOutFormat: "vertical",
+                                items: [
+                                    { q: "1. Apakah pertandingan yang disertai oleh Syafik, Wei Hong dan Openg?", options: ["Pertandingan tarian singa", "Pertandingan menyanyi", "Pertandingan melukis"], ans: "Pertandingan tarian singa" },
+                                    { q: "2. Di manakah mereka berlatih dengan bersungguh-sungguh?", options: ["Di dewan sekolah", "Di padang", "Di rumah Syafik"], ans: "Di dewan sekolah" },
+                                    { q: "3. Apakah keputusan pertandingan tersebut?", options: ["Pasukan Syafik berjaya mendapat tempat pertama", "Mereka mendapat tempat kedua", "Mereka kalah dalam pertandingan tersebut"], ans: "Pasukan Syafik berjaya mendapat tempat pertama" }
+                                ]
+                            },
+                            {
+                                id: 'u14a3', name: "Aktiviti 3: Isi Tempat Kosong", type: "padan-overlay", image: "pertandingan.png", choicesPosition: "top", fontClass: "text-xs md:text-sm p-1 md:p-2",
+                                targets: [
+                                    { ans: "Sarah", top: 18, left: 6, w: 12, h: 5 }, { ans: "Priya", top: 18, left: 20, w: 11, h: 5 }, { ans: "Jeriah", top: 18, left: 38, w: 11, h: 5 },
+                                    { ans: "bulan hadapan", top: 22, left: 56, w: 19, h: 5 }, { ans: "Sarah", top: 26, left: 7, w: 16, h: 5 }, { ans: "bilik tarian", top: 39, left: 10, w: 16, h: 5 },
+                                    { ans: "Sarah", top: 72, left: 7, w: 12, h: 5 }, { ans: "johan", top: 77, left: 27, w: 16, h: 5 }, { ans: "Sarah", top: 82, left: 7, w: 16, h: 5 },
+                                    { ans: "Priya", top: 82, left: 25, w: 19, h: 5 }, { ans: "Jeriah", top: 87, left: 7, w: 19, h: 5 }
+                                ],
+                                pool: ["Sarah", "Priya", "Jeriah", "bulan hadapan", "bilik tarian", "johan"]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Unit 15: Hidup Harmoni",
+                        activities: [
+                            {
+                                id: 'u15a1', name: "Aktiviti 1: Pemahaman (Hidup Harmoni)", type: "mcq-berkaitan", overallImage: "hidupharmoni.png", layOutFormat: "vertical",
+                                items: [
+                                    { q: "1. Di manakah kampung Puan Rita?", options: ["Sarawak", "Kuala Lumpur", "Johor"], ans: "Sarawak" },
+                                    { q: "2. Apakah yang Sarah berikan kepada Jeriah?", options: ["Roti sardin", "Roti canai", "Biskut"], ans: "Roti sardin" },
+                                    { q: "3. Mengapakah ibu Jeriah berjumpa dengan ibu Sarah?", options: ["Meminta tolong tengok-tengokkan rumahnya", "Untuk meminjam barang", "Untuk bersembang kosong"], ans: "Meminta tolong tengok-tengokkan rumahnya" }
+                                ]
+                            },
+                            {
+                                id: 'u15a2', name: "Aktiviti 2: Baca dan Isyarat", type: "bacaan", image: "katapenguat.png"
+                            },
+                            {
+                                id: 'u15a3', name: "Aktiviti 3: Padankan Isyarat Kata Penguat", type: "padan", cols: 3,
+                                targets: [{ image: "terlalu.png", ans: "terlalu" }, { image: "paling.png", ans: "paling" }, { image: "agak.png", ans: "agak" }, { image: "sangat.png", ans: "sangat" }, { image: "sekali.png", ans: "sekali" }, { image: "benar.png", ans: "benar" }, { image: "betul.png", ans: "betul" }],
+                                pool: ["terlalu", "paling", "agak", "sangat", "sekali", "benar", "betul"]
+                            },
+                            {
+                                id: 'u15a4', name: "Aktiviti 4: Salin Semula", type: "salin-menaip",
+                                image: "salinsemula.png", minWords: 30
+                            }
+                        ]
+                    }
+                ]
+            }
         ];
 
         let navHistory = ['view-home'];
@@ -664,11 +779,7 @@
         }
 
         function goHome() {
-            navHistory = ['view-home'];
-            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
-            document.getElementById('view-home').classList.remove('hidden');
-            document.getElementById('main-banner').classList.remove('hidden');
-            updateNavButtons();
+            window.location.href = 'index.html';
         }
 
         function updateNavButtons() {
@@ -751,8 +862,8 @@
             stepIndex = 0;
             selectedIndex = null;
             
-            if (activeData.type === 'padan' || activeData.type === 'padan-overlay') {
-                activeData.poolState = activeData.pool.map((t, i) => ({ text: t, used: false, id: i }));
+            if (activeData.type === 'padan' || activeData.type === 'padan-overlay' || activeData.type === 'isi-kosong-perenggan') {
+                activeData.poolState = [...activeData.pool].sort(() => 0.5 - Math.random()).map((t, i) => ({ text: t, used: false, id: i }));
             } else if (activeData.type === 'kategori-inline') {
                 activeData.pool.forEach((p, i) => { p.id = i; p.catId = null; });
             } else if (activeData.type === 'padan-3-kolum') {
@@ -765,36 +876,106 @@
             navigateTo('view-play');
         }
 
+        function getInstruction(type) {
+            switch(type) {
+                case 'mcq': return "Pilih satu jawapan yang paling tepat.";
+                case 'mcq-berkaitan': return "Pilih jawapan yang betul berdasarkan maklumat yang diberikan.";
+                case 'padan': return "Klik pilihan jawapan di bawah, kemudian klik pada petak kosong yang sepadan.";
+                case 'padan-overlay': return "Klik pilihan jawapan, kemudian letakkan ke dalam petak kosong pada gambar.";
+                case 'padan-3-kolum': return "Klik pilihan jawapan, kemudian susun ke dalam lajur yang betul.";
+                case 'susun-ayat': return "Klik dan susun perkataan di bawah mengikut urutan untuk membentuk ayat yang betul.";
+                case 'kategori-inline': return "Klik pilihan jawapan dan masukkan ke dalam kumpulan kategori yang betul.";
+                case 'bacaan': return "Sila baca petikan di bawah dengan teliti sebelum meneruskan pembelajaran.";
+                case 'isi-kosong': return "Klik pilihan jawapan, kemudian klik pada tempat kosong pada ayat.";
+                case 'isi-kosong-perenggan': return "Klik pilihan jawapan, kemudian klik pada tempat kosong di dalam petikan.";
+                case 'hotspot-klik': return "Klik pada bahagian gambar yang betul berdasarkan soalan yang diberikan.";
+                case 'word-search': return "Klik pada huruf-huruf bersebelahan di dalam grid untuk mencari perkataan tersembunyi.";
+                case 'salin-menaip': return "Taip semula petikan di atas ke dalam ruangan yang disediakan dengan ejaan yang betul.";
+                default: return "Selesaikan tugasan interaktif di bawah.";
+            }
+        }
+
         function renderActivityView() {
             const container = document.getElementById('play-container');
             container.innerHTML = '';
             
-            if (activeData.type === 'mcq') renderMCQ(container);
-            else if (activeData.type === 'padan') renderPadan(container);
-            else if (activeData.type === 'padan-overlay') renderPadanOverlay(container);
-            else if (activeData.type === 'kategori-inline') renderKategoriInline(container);
-            else if (activeData.type === 'susun-ayat') renderSusunAyat(container);
-            else if (activeData.type === 'padan-3-kolum') renderPadan3Kolum(container);
-            else if (activeData.type === 'bacaan') renderBacaan(container);
-            else if (activeData.type === 'isi-kosong') renderIsiKosong(container);
-            else if (activeData.type === 'mcq-berkaitan') renderMCQBerkaitan(container);
-            else if (activeData.type === 'hotspot-klik') renderHotspotKlik(container);
-            else if (activeData.type === 'isi-kosong-perenggan') renderIsiKosongPerenggan(container);
-            else if (activeData.type === 'word-search') renderWordSearch(container);
+            const arahanHTML = `
+                <div class="w-full text-center mb-6 fade-in">
+                    <div class="inline-block bg-yellow-100 text-yellow-900 font-bold text-sm md:text-lg px-6 py-2 rounded-full border-4 border-yellow-300 shadow-md">
+                        <i class="fas fa-lightbulb mr-2 animate-pulse text-yellow-600"></i>
+                        <span class="font-chewy tracking-wide text-yellow-700">ARAHAN:</span> ${getInstruction(activeData.type)}
+                    </div>
+                </div>`;
+            container.innerHTML = arahanHTML;
+
+            const contentContainer = document.createElement('div');
+            contentContainer.className = "w-full flex-grow flex flex-col justify-center items-center";
+            container.appendChild(contentContainer);
+            
+            if (activeData.type === 'mcq') renderMCQ(contentContainer);
+            else if (activeData.type === 'padan') renderPadan(contentContainer);
+            else if (activeData.type === 'padan-overlay') renderPadanOverlay(contentContainer);
+            else if (activeData.type === 'kategori-inline') renderKategoriInline(contentContainer);
+            else if (activeData.type === 'susun-ayat') renderSusunAyat(contentContainer);
+            else if (activeData.type === 'padan-3-kolum') renderPadan3Kolum(contentContainer);
+            else if (activeData.type === 'bacaan') renderBacaan(contentContainer);
+            else if (activeData.type === 'isi-kosong') renderIsiKosong(contentContainer);
+            else if (activeData.type === 'mcq-berkaitan') renderMCQBerkaitan(contentContainer);
+            else if (activeData.type === 'hotspot-klik') renderHotspotKlik(contentContainer);
+            else if (activeData.type === 'isi-kosong-perenggan') renderIsiKosongPerenggan(contentContainer);
+            else if (activeData.type === 'word-search') renderWordSearch(contentContainer);
+            else if (activeData.type === 'salin-menaip') renderSalinMenaip(contentContainer);
+        }
+
+        function tapSelect(poolIndex) {
+            selectedIndex = (selectedIndex === poolIndex) ? null : poolIndex; 
+            renderActivityView();
+        }
+
+        function renderSalinMenaip(container) {
+            let html = `<div class="flex flex-col lg:flex-row gap-6 w-full max-w-6xl mx-auto items-stretch">`;
+            
+            html += `<div class="w-full lg:w-1/2 flex justify-center bg-blue-50 p-4 rounded-3xl shadow-inner border-4 border-blue-200">
+                        <img src="${activeData.image}" class="w-full object-contain rounded-2xl shadow-md border-4 border-white bg-white">
+                     </div>`;
+                     
+            html += `<div class="w-full lg:w-1/2 flex flex-col gap-4">
+                        <div class="bg-yellow-50 p-4 md:p-6 rounded-3xl shadow-md border-4 border-yellow-200 flex-grow flex flex-col">
+                            <h3 class="text-xl md:text-2xl font-chewy text-yellow-800 mb-4 text-center border-b-4 border-dashed border-yellow-200 pb-2">Taip Semula Petikan Di Sini</h3>
+                            <textarea id="taip-ruang" class="w-full flex-grow min-h-[250px] p-4 rounded-xl border-4 border-yellow-300 focus:outline-none focus:border-yellow-500 focus:ring-4 ring-yellow-200 text-lg md:text-xl text-gray-800 resize-none font-bold shadow-inner" style="background-image: repeating-linear-gradient(transparent, transparent 31px, #fcd34d 31px, #fcd34d 32px); line-height: 32px; background-attachment: local;" placeholder="Mula menaip di sini..."></textarea>
+                        </div>
+                        <button onclick="semakSalinMenaip()" class="btn-3d w-full bg-green-500 text-white font-chewy text-2xl py-4 rounded-2xl border-b-[6px] border-green-700 shadow-xl hover:bg-green-400 transition-all bounce-in">
+                            Semak Jawapan!
+                        </button>
+                     </div>`;
+                     
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function semakSalinMenaip() {
+            const text = document.getElementById('taip-ruang').value.trim();
+            const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+            
+            if (wordCount >= (activeData.minWords || 30)) {
+                showFeedback(true, '', '', () => { paparTamatAktiviti(); });
+            } else {
+                showFeedback(false, "Sila taip petikan dengan lebih panjang berdasarkan gambar.", "Petikan anda terlalu pendek atau belum lengkap.", () => {});
+            }
         }
 
         function renderIsiKosongPerenggan(container) {
             if (!activeData.targets) {
-                activeData.targets = activeData.blanks.map(b => ({ ans: b, placedId: undefined }));
-                activeData.poolState = activeData.pool.map((w, i) => ({ text: w, used: false, id: i }));
+                const matches = activeData.text.match(/\[\d+\]/g) || [];
+                activeData.targets = matches.map((b, i) => ({ id: i, placedId: undefined, ansKey: b }));
             }
 
-            let html = `<div class="w-full max-w-5xl mx-auto flex flex-col items-center gap-6">`;
+            let html = `<div class="w-full max-w-5xl mx-auto flex flex-col items-center gap-4">`;
             
             if (activeData.images) {
-                html += `<div class="flex gap-4 justify-center flex-wrap mb-4 bg-white/50 p-4 rounded-3xl border-4 border-dashed border-gray-300 w-full shadow-inner">`;
+                html += `<div class="flex gap-4 justify-center flex-wrap mb-2 bg-white/50 p-3 rounded-3xl border-4 border-dashed border-gray-300 w-full shadow-inner">`;
                 activeData.images.forEach(img => {
-                    html += `<img src="${img}" class="h-28 md:h-40 object-contain rounded-2xl shadow-md border-4 border-white transform transition hover:scale-105 bg-white">`;
+                    html += `<img src="${img}" class="h-20 md:h-32 object-contain rounded-2xl shadow-md border-4 border-white transform transition hover:scale-105 bg-white">`;
                 });
                 html += `</div>`;
             }
@@ -804,58 +985,64 @@
                 const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
                 let slotHtml = '';
                 if (placedItem) {
-                    slotHtml = `<span class="px-4 py-1 mx-1 bg-green-100 text-green-800 border-b-4 border-green-500 font-bold rounded-lg inline-block shadow-sm">${placedItem.text}</span>`;
+                    slotHtml = `<span class="px-2 py-0.5 mx-1 bg-green-100 text-green-800 border-b-2 border-green-500 font-bold rounded-md inline-block shadow-sm whitespace-nowrap min-w-[50px] text-center cursor-pointer" onclick="kembalikanPerenggan(${i})">${placedItem.text}</span>`;
                 } else {
                     const hSlot = selectedIndex !== null ? 'border-rose-400 bg-rose-50 cursor-pointer animate-pulse' : 'border-gray-400 bg-gray-100';
-                    slotHtml = `<span onclick="tapPlacePerenggan(${i})" class="px-8 py-3 mx-1 border-b-4 border-dashed rounded-lg inline-block transition-all ${hSlot} min-w-[80px]"></span>`;
+                    slotHtml = `<span onclick="tapPlacePerenggan(${i})" class="px-5 py-1.5 mx-1 border-b-2 border-dashed rounded-md inline-block transition-all ${hSlot} min-w-[50px]"></span>`;
                 }
                 textHtml = textHtml.replace(`[${i}]`, slotHtml);
             });
 
-            html += `<div class="text-xl md:text-2xl font-bold text-gray-700 bg-white p-6 md:p-10 rounded-3xl shadow-xl border-4 border-blue-100 leading-loose w-full text-justify lg:leading-[2.5]">${textHtml}</div>`;
+            const styling = activeData.textClass || "text-sm md:text-base lg:text-lg leading-relaxed md:leading-loose text-justify";
+            const aspectStyle = activeData.layOutFormat === '16:9' ? 'aspect-[16/9]' : 'aspect-[4/3] md:aspect-[16/9]';
+
+            html += `<div class="w-full ${aspectStyle} max-h-[50vh] overflow-y-auto bg-white p-5 md:p-8 rounded-3xl shadow-xl border-4 border-blue-100 hide-scroll mx-auto">
+                        <div class="font-bold text-gray-700 w-full ${styling}">${textHtml}</div>
+                     </div>`;
             
-            html += `<div class="flex flex-wrap gap-3 justify-center w-full bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner mt-4">`;
+            html += `<div class="flex flex-wrap gap-2 justify-center w-full bg-blue-50 p-4 rounded-3xl border-4 border-blue-200 shadow-inner mt-2">`;
             activeData.poolState.forEach((p, i) => {
                 if (p.used) return;
                 const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-700 border-blue-300 hover:bg-blue-100';
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 px-5 rounded-xl text-lg transition-all ${btnClass}">${p.text}</button>`;
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-2 px-3 rounded-xl text-sm md:text-base transition-all ${btnClass}">${p.text}</button>`;
             });
-            html += `</div></div>`;
+            html += `</div>`;
+            
+            html += `<button onclick="semakPerenggan()" class="btn-3d w-full max-w-sm mt-4 bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg block mx-auto transition-all ${activeData.targets.every(t => t.placedId !== undefined) ? 'animate-bounce shadow-yellow-400/50 hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${activeData.targets.every(t => t.placedId !== undefined) ? '' : 'disabled'}>Semak Laporan</button>`;
+
+            html += `</div>`;
             container.innerHTML = html;
         }
 
         function tapPlacePerenggan(tIdx) {
             if (selectedIndex === null) return;
-            const poolItem = activeData.poolState[selectedIndex];
-            const target = activeData.targets[tIdx];
+            activeData.targets[tIdx].placedId = activeData.poolState[selectedIndex].id;
+            activeData.poolState[selectedIndex].used = true;
+            selectedIndex = null;
+            renderActivityView();
+        }
+        function kembalikanPerenggan(tIdx) {
+            const placedId = activeData.targets[tIdx].placedId;
+            if (placedId !== undefined) activeData.poolState.find(p => p.id === placedId).used = false;
+            activeData.targets[tIdx].placedId = undefined;
+            renderActivityView();
+        }
+        function semakPerenggan() {
+            let isAllCorrect = true;
+            activeData.targets.forEach((t, i) => {
+                const placedItem = activeData.poolState.find(p => p.id === t.placedId);
+                if (!placedItem || placedItem.text !== activeData.pool[i]) isAllCorrect = false;
+            });
 
-            if (poolItem.text === target.ans) {
-                target.placedId = poolItem.id;
-                poolItem.used = true;
-                selectedIndex = null;
-                renderActivityView();
-                if (activeData.targets.every(t => t.placedId !== undefined)) {
-                    setTimeout(paparTamatAktiviti, 800);
-                }
+            if (isAllCorrect) {
+                showFeedback(true, '', '', () => { paparTamatAktiviti(); });
             } else {
-                selectedIndex = null;
-                showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
+                showFeedback(false, "Sila pastikan semua jawapan diletakkan di tempat yang betul berdasarkan turutan yang logik.", "Terdapat kesalahan pada susunan jawapan anda.", () => { renderActivityView(); });
             }
         }
 
         function renderWordSearch(container) {
-            if (!activeData.grid) {
-                activeData.grid = [
-                    ['S','A','M','B','I','L','P','Q'],
-                    ['K','A','Y','D','V','N','Z','U'],
-                    ['G','T','F','A','L','O','P','N'],
-                    ['U','A','W','N','Q','X','M','T'],
-                    ['Y','U','D','A','N','H','J','U'],
-                    ['O','L','O','K','M','H','T','K'],
-                    ['I','J','K','L','M','N','O','P'],
-                    ['Q','R','S','T','U','V','W','X']
-                ];
-                activeData.words = ['SAMBIL', 'ATAU', 'DAN', 'UNTUK'];
+            if (!activeData.selectedCells) {
                 activeData.foundWords = [];
                 activeData.selectedCells = [];
             }
@@ -910,16 +1097,10 @@
             let matchedWord = activeData.words.find(w => w === selectedWord || w === reversedWord);
             
             if (matchedWord && !activeData.foundWords.some(fw => fw.word === matchedWord)) {
-                activeData.foundWords.push({
-                    word: matchedWord,
-                    cells: [...activeData.selectedCells]
-                });
+                activeData.foundWords.push({ word: matchedWord, cells: [...activeData.selectedCells] });
                 activeData.selectedCells = [];
-                if (activeData.foundWords.length === activeData.words.length) {
-                    setTimeout(paparTamatAktiviti, 600);
-                }
+                if (activeData.foundWords.length === activeData.words.length) setTimeout(paparTamatAktiviti, 600);
             }
-            
             renderActivityView();
         }
 
@@ -928,14 +1109,8 @@
             renderActivityView();
         }
 
-        function tapSelect(poolIndex) {
-            selectedIndex = (selectedIndex === poolIndex) ? null : poolIndex; 
-            renderActivityView();
-        }
-
         function renderHotspotKlik(container) {
             const qData = activeData.items[stepIndex];
-            
             if (!activeData.selectedHotspots || activeData.currentQ !== stepIndex) {
                 activeData.selectedHotspots = [];
                 activeData.currentQ = stepIndex;
@@ -949,15 +1124,11 @@
             activeData.hotspots.forEach(hs => {
                 const isSelected = activeData.selectedHotspots.includes(hs.id);
                 const styleClass = isSelected ? 'bg-green-400/50 border-4 border-green-600 scale-105 z-10' : 'bg-white/10 hover:bg-white/30 border-2 border-dashed border-gray-800/50';
-                
                 html += `<div onclick="tapHotspot('${hs.id}')" class="absolute rounded-xl transition-all cursor-pointer flex items-center justify-center group ${styleClass}" style="top: ${hs.top}%; left: ${hs.left}%; width: ${hs.w}%; height: ${hs.h}%;">
-                            <div class="absolute -top-12 bg-black text-white font-bold py-1 px-3 rounded-lg text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg z-20">
-                                ${hs.text}
-                            </div>
+                            <div class="absolute -top-12 bg-black text-white font-bold py-1 px-3 rounded-lg text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg z-20">${hs.text}</div>
                             ${isSelected ? '<i class="fas fa-check-circle text-3xl text-green-700 drop-shadow-md bg-white rounded-full"></i>' : ''}
                          </div>`;
             });
-            
             html += `</div>`;
             
             html += `<div class="w-full md:w-1/3 flex flex-col gap-6">
@@ -965,13 +1136,9 @@
                             <h3 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4 leading-snug">${qData.q}</h3>
                             <div class="flex items-center gap-2 text-lg font-bold text-gray-600 mb-6 bg-white p-3 rounded-xl border-2 border-blue-100">
                                 <span>Pilihan Semasa: </span>
-                                <span class="${activeData.selectedHotspots.length === qData.reqCount ? 'text-green-600 font-black' : 'text-rose-500'} text-2xl">
-                                    ${activeData.selectedHotspots.length} / ${qData.reqCount}
-                                </span>
+                                <span class="${activeData.selectedHotspots.length === qData.reqCount ? 'text-green-600 font-black' : 'text-rose-500'} text-2xl">${activeData.selectedHotspots.length} / ${qData.reqCount}</span>
                             </div>
-                            <button onclick="semakHotspot()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-4 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${activeData.selectedHotspots.length === qData.reqCount ? 'animate-bounce shadow-yellow-400/50 hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${activeData.selectedHotspots.length === qData.reqCount ? '' : 'disabled'}>
-                                Semak Jawapan!
-                            </button>
+                            <button onclick="semakHotspot()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-4 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${activeData.selectedHotspots.length === qData.reqCount ? 'animate-bounce shadow-yellow-400/50 hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${activeData.selectedHotspots.length === qData.reqCount ? '' : 'disabled'}>Semak Jawapan!</button>
                         </div>
                         <div class="text-center text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block text-lg border-2 border-gray-200 shadow-sm mx-auto">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>
                      </div>`;
@@ -983,50 +1150,31 @@
         function tapHotspot(hsId) {
             const qData = activeData.items[stepIndex];
             const idx = activeData.selectedHotspots.indexOf(hsId);
-            
-            if (idx > -1) {
-                activeData.selectedHotspots.splice(idx, 1);
-            } else {
-                if (activeData.selectedHotspots.length < qData.reqCount) {
-                    activeData.selectedHotspots.push(hsId);
-                }
-            }
+            if (idx > -1) activeData.selectedHotspots.splice(idx, 1);
+            else if (activeData.selectedHotspots.length < qData.reqCount) activeData.selectedHotspots.push(hsId);
             renderActivityView();
         }
 
         function semakHotspot() {
             const qData = activeData.items[stepIndex];
             const selectedObj = activeData.selectedHotspots.map(id => activeData.hotspots.find(h => h.id === id));
-            
-            let isAllCorrect = false;
-            if (qData.targetType === 'any') {
-                isAllCorrect = true; // Bebas pilih
-            } else {
-                isAllCorrect = selectedObj.every(hs => hs.type === qData.targetType);
-            }
+            let isAllCorrect = (qData.targetType === 'any') ? true : selectedObj.every(hs => hs.type === qData.targetType);
             
             if (isAllCorrect) {
                 showFeedback(true, '', '', () => { 
                     stepIndex++; 
-                    if (stepIndex >= activeData.items.length) {
-                        stepIndex--; // Berhenti di skrin akhir
-                        paparTamatAktiviti();
-                    } else {
-                        renderActivityView(); 
-                    }
+                    if (stepIndex >= activeData.items.length) { stepIndex--; paparTamatAktiviti(); }
+                    else { renderActivityView(); }
                 });
             } else {
                 const wrongOnes = selectedObj.filter(hs => hs.type !== qData.targetType).map(hs => hs.text).join(", ");
                 const expectedText = qData.targetType === 'any' ? 'Mana-mana makanan berkhasiat' : `Makanan jenis ${qData.targetType.toUpperCase()}`;
-                showFeedback(false, expectedText, wrongOnes, () => {
-                    activeData.selectedHotspots = []; renderActivityView();
-                });
+                showFeedback(false, expectedText, wrongOnes, () => { activeData.selectedHotspots = []; renderActivityView(); });
             }
         }
 
         function renderMCQ(container) {
             const q = activeData.items[stepIndex];
-            
             if (!activeData.currentOptions || activeData.currentQ !== stepIndex) {
                 let wrongOptions = activeData.pool.filter(opt => opt !== q.ans);
                 wrongOptions = wrongOptions.sort(() => 0.5 - Math.random()).slice(0, 3);
@@ -1036,37 +1184,24 @@
             }
 
             let mediaHtml = '';
-            if (q.type === 'video') {
-                mediaHtml = `<video src="${q.media}" controls autoplay class="max-h-[40vh] w-full object-cover rounded-2xl border-4 border-gray-200"></video>`;
-            } else {
-                mediaHtml = `<img src="${q.media}" class="max-h-[40vh] object-contain rounded-2xl border-4 border-white shadow-md">`;
-            }
+            if (q.type === 'video') mediaHtml = `<video src="${q.media}" controls autoplay class="max-h-[40vh] w-full object-cover rounded-2xl border-4 border-gray-200"></video>`;
+            else mediaHtml = `<img src="${q.media}" class="max-h-[40vh] object-contain rounded-2xl border-4 border-white shadow-md">`;
 
             let html = `
                 <div class="flex flex-col md:flex-row gap-6 items-center w-full max-w-5xl mx-auto">
-                    <div class="w-full md:w-1/2 flex justify-center bg-gray-100/50 p-4 rounded-3xl shadow-inner">
-                        ${mediaHtml}
-                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center bg-gray-100/50 p-4 rounded-3xl shadow-inner">${mediaHtml}</div>
                     <div class="w-full md:w-1/2 grid grid-cols-1 gap-4">
             `;
-            
-            activeData.currentOptions.forEach((opt, idx) => {
+            activeData.currentOptions.forEach((opt) => {
                 const safeOpt = opt.replace(/'/g, "\\'").replace(/"/g, "&quot;");
-                html += `<button onclick="checkMCQ('${safeOpt}')" class="btn-3d w-full bg-white border-4 border-blue-200 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors">
-                            ${opt}
-                         </button>`;
+                html += `<button onclick="checkMCQ('${safeOpt}')" class="btn-3d w-full bg-white border-4 border-blue-200 text-blue-800 font-bold p-4 md:p-5 rounded-2xl text-left text-lg md:text-xl hover:bg-blue-50 shadow-md transition-colors">${opt}</button>`;
             });
-            
-            html += `</div></div>
-                     <div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">
-                        Soalan ${stepIndex + 1} / ${activeData.items.length}
-                     </div>`;
+            html += `</div></div><div class="text-center mt-8 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
             container.innerHTML = html;
         }
 
         function renderMCQBerkaitan(container) {
             const item = activeData.items[stepIndex];
-            
             if (!activeData.currentOptions || activeData.currentQ !== stepIndex) {
                 activeData.currentOptions = [...item.options].sort(() => 0.5 - Math.random());
                 activeData.currentAns = item.ans;
@@ -1075,28 +1210,19 @@
             }
             
             let html = '';
-
-            // Check if this activity requires vertical layout (Unit 7, 8, 9)
             if (activeData.layOutFormat === 'vertical') {
                 html += `<div class="flex flex-col gap-6 lg:gap-8 items-center w-full max-w-6xl mx-auto">`;
-                
-                // Gambar Petikan di Atas
                 html += `<div class="w-full flex justify-center bg-gray-50/50 p-3 md:p-5 rounded-3xl shadow-inner border-4 border-gray-200">
                             <img src="${activeData.overallImage}" class="w-full max-w-3xl max-h-[45vh] lg:max-h-[60vh] object-contain rounded-2xl shadow-sm bg-white">
                          </div>`;
-                
-                // Soalan & Pilihan Jawapan di Bawah
                 html += `<div class="w-full max-w-4xl flex flex-col gap-4">`;
                 html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-5 md:p-6 rounded-3xl shadow-md border-4 border-purple-200 text-center text-xl md:text-2xl font-bold text-purple-900 leading-snug">${item.q}</div>`;
                 
-                // Determine if options are short enough for inline layout
                 const areOptionsShort = activeData.currentOptions.every(opt => opt.length < 25);
                 const optionsLayoutClass = areOptionsShort ? 'flex flex-row flex-wrap justify-center gap-4' : 'flex flex-col gap-4';
-
                 html += `<div class="w-full ${optionsLayoutClass}">`;
                 activeData.currentOptions.forEach((opt) => {
                     const safeOpt = opt.replace(/'/g, "\\'").replace(/"/g, "&quot;");
-                    
                     if (item.type === 'multi') {
                         const isSelected = activeData.multiSelected.includes(opt);
                         const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-[1.02] shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50';
@@ -1117,27 +1243,18 @@
                                 <button onclick="checkMultiMCQ()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 px-8 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${isReady ? 'animate-bounce hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${isReady ? '' : 'disabled'}>Semak Jawapan!</button>
                              </div>`;
                 }
-                
                 html += `<div class="text-center mt-6 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
-                
                 html += `</div></div>`;
             } else {
-                // Susunan Bersebelahan (Side-by-side) - Original Layout
                 html += `<div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start w-full max-w-6xl mx-auto">`;
-                
-                // BAHAGIAN KIRI: Gambar Petikan
                 html += `<div class="w-full lg:w-1/2 flex justify-center bg-gray-50/50 p-3 md:p-5 rounded-3xl shadow-inner border-4 border-gray-200 sticky top-4">
                             <img src="${activeData.overallImage}" class="w-full max-h-[45vh] lg:max-h-[70vh] object-contain rounded-2xl shadow-sm bg-white">
                          </div>`;
-                
-                // BAHAGIAN KANAN: Soalan & Pilihan Jawapan
                 html += `<div class="w-full lg:w-1/2 flex flex-col gap-4">`;
                 html += `<div class="w-full bg-gradient-to-r from-blue-50 to-purple-50 p-5 md:p-6 rounded-3xl shadow-md border-4 border-purple-200 text-center text-xl md:text-2xl font-bold text-purple-900 leading-snug">${item.q}</div>`;
-                
                 html += `<div class="w-full flex flex-col gap-4">`;
                 activeData.currentOptions.forEach((opt) => {
                     const safeOpt = opt.replace(/'/g, "\\'").replace(/"/g, "&quot;");
-                    
                     if (item.type === 'multi') {
                         const isSelected = activeData.multiSelected.includes(opt);
                         const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-[1.02] shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-50';
@@ -1148,7 +1265,6 @@
                     }
                 });
                 html += `</div>`;
-                
                 if (item.type === 'multi') {
                     const isReady = activeData.multiSelected.length === item.reqCount;
                     html += `<div class="mt-4 flex flex-col items-center bg-blue-50 p-5 rounded-3xl border-4 border-blue-200 w-full shadow-inner">
@@ -1156,9 +1272,7 @@
                                 <button onclick="checkMultiMCQ()" class="btn-3d w-full bg-yellow-400 text-yellow-900 font-chewy text-2xl py-3 px-8 rounded-2xl border-b-[6px] border-yellow-600 shadow-lg transition-all ${isReady ? 'animate-bounce hover:bg-yellow-300' : 'opacity-50 cursor-not-allowed grayscale'}" ${isReady ? '' : 'disabled'}>Semak Jawapan!</button>
                              </div>`;
                 }
-                
                 html += `<div class="text-center mt-6 text-gray-500 font-bold bg-gray-100 rounded-full py-2 px-6 inline-block mx-auto text-lg border-2 border-gray-200">Soalan ${stepIndex + 1} / ${activeData.items.length}</div>`;
-                
                 html += `</div></div>`;
             }
             container.innerHTML = html;
@@ -1167,13 +1281,8 @@
         function toggleMultiMCQ(opt) {
             const item = activeData.items[stepIndex];
             const idx = activeData.multiSelected.indexOf(opt);
-            if (idx > -1) {
-                activeData.multiSelected.splice(idx, 1);
-            } else {
-                if (activeData.multiSelected.length < item.reqCount) {
-                    activeData.multiSelected.push(opt);
-                }
-            }
+            if (idx > -1) activeData.multiSelected.splice(idx, 1);
+            else if (activeData.multiSelected.length < item.reqCount) activeData.multiSelected.push(opt);
             renderActivityView();
         }
 
@@ -1184,17 +1293,14 @@
 
             if (isAllCorrect) {
                 showFeedback(true, '', '', () => { 
-                    stepIndex++; 
-                    activeData.multiSelected = [];
+                    stepIndex++; activeData.multiSelected = [];
                     if (stepIndex >= activeData.items.length) { stepIndex--; paparTamatAktiviti(); }
                     else renderActivityView(); 
                 });
             } else {
                 const wrongOnes = activeData.multiSelected.filter(ans => !correctAns.includes(ans)).join(" & ");
                 const expected = correctAns.join("<br><br>• ");
-                showFeedback(false, "• " + expected, wrongOnes || "Sila lengkapkan pilihan", () => {
-                    activeData.multiSelected = []; renderActivityView();
-                });
+                showFeedback(false, "• " + expected, wrongOnes || "Sila lengkapkan pilihan", () => { activeData.multiSelected = []; renderActivityView(); });
             }
         }
 
@@ -1212,20 +1318,8 @@
         }
 
         function renderPadan(container) {
-            let html = ``;
-
-            if (activeData.overallImage) {
-                html += `<div class="w-full flex justify-center mb-6"><img src="${activeData.overallImage}" class="max-h-[40vh] object-contain rounded-2xl shadow-md border-4 border-white bg-white/50 p-2"></div>`;
-            } else if (activeData.overallImages) {
-                html += `<div class="flex flex-wrap justify-center gap-4 mb-8 w-full bg-white/40 p-4 rounded-3xl border-4 border-dashed border-gray-300">`;
-                activeData.overallImages.forEach(img => {
-                    html += `<img src="${img}" class="h-28 md:h-40 object-contain rounded-2xl shadow-xl border-4 border-white transform transition hover:scale-105">`;
-                });
-                html += `</div>`;
-            }
-
-            const colClass = activeData.cols === 4 ? 'grid-cols-2 lg:grid-cols-4' : (activeData.cols === 2 ? 'md:grid-cols-2' : (activeData.cols === 1 ? 'grid-cols-1' : 'md:grid-cols-3'));
-            html += `<div class="grid grid-cols-2 ${colClass} gap-4 md:gap-6 mb-8 w-full">`;
+            const colClass = activeData.cols === 2 ? 'md:grid-cols-2' : (activeData.cols === 1 ? 'grid-cols-1' : 'md:grid-cols-3');
+            let html = `<div class="grid grid-cols-2 ${colClass} gap-4 md:gap-6 mb-8 w-full">`;
             
             activeData.targets.forEach((t, i) => {
                 const placedItem = t.placedId !== undefined ? activeData.poolState.find(p => p.id === t.placedId) : null;
@@ -1240,32 +1334,22 @@
                             ${contentHtml}`;
                             
                 if (placedItem) {
-                    let placedContent = placedItem.text.match(/\.(jpeg|jpg|gif|png)$/) != null
-                        ? `<img src="${placedItem.text}" class="h-14 md:h-20 object-contain mx-auto rounded-md drop-shadow-sm">`
-                        : `<i class="fas fa-check-circle mr-2 hidden md:inline"></i>${placedItem.text}`;
-                        
-                    html += `<div class="w-full bg-green-100 text-green-800 border-4 border-green-500 font-bold p-2 md:p-3 rounded-xl text-center text-sm md:text-xl shadow-sm flex items-center justify-center">
-                                ${placedContent}
+                    html += `<div class="w-full bg-green-100 text-green-800 border-4 border-green-500 font-bold p-3 rounded-xl text-center text-lg md:text-xl shadow-sm">
+                                <i class="fas fa-check-circle mr-2"></i>${placedItem.text}
                              </div>`;
                 } else {
-                    html += `<div onclick="tapPlaceNormal(${i})" class="w-full h-14 md:h-16 border-4 border-dashed rounded-xl flex items-center justify-center font-bold transition-all ${hoverClass}"></div>`;
+                    html += `<div onclick="tapPlaceNormal(${i})" class="w-full h-14 border-4 border-dashed rounded-xl flex items-center justify-center font-bold transition-all ${hoverClass}"></div>`;
                 }
                 html += `</div>`;
             });
             
             html += `</div>`;
-            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-5xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider"><i class="fas fa-hand-pointer mr-2 animate-bounce"></i>PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
+            html += `<div class="bg-blue-50 p-6 rounded-3xl border-4 border-blue-200 shadow-inner w-full max-w-4xl"><h3 class="text-center font-bold text-blue-500 mb-4 text-xl tracking-wider"><i class="fas fa-hand-pointer mr-2"></i>PILIHAN JAWAPAN</h3><div class="flex flex-wrap gap-3 justify-center">`;
             
             activeData.poolState.forEach((p, i) => {
                 if (p.used) return;
-                const isSelected = selectedIndex === i;
-                const btnClass = isSelected ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
-                
-                let poolContent = p.text.match(/\.(jpeg|jpg|gif|png)$/) != null
-                    ? `<img src="${p.text}" class="h-12 md:h-16 w-auto object-contain pointer-events-none drop-shadow-md rounded-md">`
-                    : p.text;
-                    
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all flex items-center justify-center min-w-[80px] ${btnClass}">${poolContent}</button>`;
+                const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-4 font-bold p-3 md:p-4 rounded-xl text-lg md:text-xl transition-all ${btnClass}">${p.text}</button>`;
             });
             html += `</div></div>`;
             container.innerHTML = html;
@@ -1285,7 +1369,8 @@
                         ? `<img src="${placedItem.text}" class="w-full h-full object-contain p-1">`
                         : placedItem.text;
 
-                    html += `<div class="w-full h-full bg-white text-green-800 border-4 border-green-600 font-bold flex items-center justify-center text-xs md:text-base shadow-lg overflow-hidden p-0 text-center leading-tight rounded-xl">
+                    const pFont = activeData.fontClass || "text-xs md:text-base p-0";
+                    html += `<div class="w-full h-full bg-white text-green-800 border-4 border-green-600 font-bold flex items-center justify-center shadow-lg overflow-hidden text-center leading-tight rounded-xl ${pFont}">
                                 ${innerContent}
                              </div>`;
                 } else {
@@ -1302,29 +1387,28 @@
                 const btnClass = selectedIndex === i ? 'bg-rose-500 text-white border-rose-600 scale-110 shadow-xl' : 'bg-white text-blue-800 border-blue-300 hover:bg-blue-100';
                 
                 let poolContent = p.text.match(/\.(jpeg|jpg|gif|png)$/) != null
-                    ? `<img src="${p.text}" class="h-20 md:h-32 w-auto object-contain pointer-events-none drop-shadow-md">`
+                    ? `<img src="${p.text}" class="h-16 md:h-24 w-auto object-contain pointer-events-none drop-shadow-md">`
                     : p.text;
 
-                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-8 font-bold p-3 md:p-5 rounded-2xl text-lg md:text-xl transition-all flex items-center justify-center min-w-[100px] md:min-w-[140px] ${btnClass}">${poolContent}</button>`;
+                html += `<button onclick="tapSelect(${i})" class="btn-3d border-b-8 font-bold p-3 md:p-5 rounded-2xl text-lg md:text-xl transition-all flex items-center justify-center min-w-[80px] md:min-w-[120px] ${btnClass}">${poolContent}</button>`;
             });
             html += `</div>`;
             container.innerHTML = html;
         }
 
-        function tapPlaceNormal(targetIndex) {
-            tapPlaceLogic(targetIndex, renderPadan);
-        }
+        function tapPlaceNormal(targetIndex) { tapPlaceLogic(targetIndex); }
+        function tapPlaceOverlay(targetIndex) { tapPlaceLogic(targetIndex); }
 
-        function tapPlaceOverlay(targetIndex) {
-            tapPlaceLogic(targetIndex, renderPadanOverlay);
-        }
-
-        function tapPlaceLogic(targetIndex, renderFunc) {
+        function tapPlaceLogic(targetIndex) {
             if (selectedIndex === null) return;
             const poolItem = activeData.poolState[selectedIndex];
             const target = activeData.targets[targetIndex];
             
-            if (poolItem.text === target.ans) {
+            let isCorrect = false;
+            if (Array.isArray(target.ans)) isCorrect = target.ans.includes(poolItem.text);
+            else isCorrect = poolItem.text === target.ans;
+
+            if (isCorrect) {
                 target.placedId = poolItem.id;
                 poolItem.used = true;
                 selectedIndex = null;
@@ -1332,13 +1416,13 @@
                 if (activeData.targets.every(t => t.placedId !== undefined)) setTimeout(paparTamatAktiviti, 600);
             } else {
                 selectedIndex = null;
-                showFeedback(false, target.ans, poolItem.text, () => renderActivityView());
+                const expected = Array.isArray(target.ans) ? "salah satu jawapan yang betul" : target.ans;
+                showFeedback(false, expected, poolItem.text, () => renderActivityView());
             }
         }
 
         function renderSusunAyat(container) {
             const item = activeData.items[stepIndex];
-            
             if (!activeData.currentItem || activeData.currentItem.ans !== item.ans) {
                 activeData.currentItem = item;
                 const words = item.ans.trim().split(/\s+/);
@@ -1393,7 +1477,6 @@
 
         function renderIsiKosong(container) {
             const item = activeData.items[stepIndex];
-            
             if (!activeData.currentItem || activeData.currentItem.ans !== item.ans) {
                 activeData.currentItem = item;
                 activeData.poolState = activeData.pool.map((w, i) => ({ text: w, used: false, id: i }));
@@ -1439,10 +1522,10 @@
         }
 
         function renderKategoriInline(container) {
-            let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-8 max-w-6xl mx-auto">`;
+            let html = `<div class="flex flex-wrap justify-center items-stretch gap-6 w-full mb-8 max-w-6xl mx-auto">`;
             activeData.categories.forEach(cat => {
                 const itemsInCat = activeData.pool.filter(p => p.catId === cat.id);
-                html += `<div class="bg-white border-4 border-purple-200 rounded-3xl p-6 shadow-xl min-h-[250px] flex flex-col hover:border-purple-300 transition-colors">
+                html += `<div class="flex-1 min-w-[280px] max-w-md w-full bg-white border-4 border-purple-200 rounded-3xl p-6 shadow-xl min-h-[250px] flex flex-col hover:border-purple-300 transition-colors">
                             <h3 class="text-2xl font-chewy text-purple-600 text-center border-b-4 border-dashed border-purple-100 pb-3 mb-4">${cat.name}</h3>
                             <div onclick="tapPlaceKategori('${cat.id}')" class="flex-grow flex flex-col gap-3 rounded-2xl p-4 transition-colors ${selectedIndex !== null && !activeData.isChecked ? 'bg-purple-50 border-4 border-dashed border-purple-400 cursor-pointer animate-pulse' : 'bg-gray-50 border-4 border-dashed border-transparent'}">`;
                             
@@ -1577,12 +1660,11 @@
             document.getElementById('btn-next').innerText = 'Tutup & Bincang';
             document.getElementById('btn-next').onclick = () => {
                 modal.classList.add('hidden');
-                // Skrin dibiarkan supaya guru boleh bincang dengan murid pada soalan terakhir
             };
             modal.classList.remove('hidden');
         }
 
-        // Start App
+        // Jalankan App
         window.onload = initApp;
 
     </script>

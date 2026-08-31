@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Melayu Tahun 5 - Tema Kekeluargaan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0fdf4; 
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .fun-font {
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 1px;
+        }
+        .btn-hover-effect {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-hover-effect:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .btn-hover-effect:active {
+            transform: translateY(1px);
+            box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .activity-container {
+            position: relative;
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 8px solid white;
+            background-color: white;
+        }
+        
+        .main-image {
+            width: 100%;
+            display: block;
+        }
+        
+        .interactive-area {
+            position: absolute;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 20px;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .interactive-area::-webkit-scrollbar { display: none; }
+        
+        .area-guru {
+            top: 2%; left: 32%; width: 66%; height: 52%;
+            background-color: rgba(254, 240, 138, 0.45);
+            border: 3px solid rgba(250, 204, 21, 0.8);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .area-murid {
+            top: 2%; left: 2%; width: 29%; height: 60%;
+            background-color: rgba(147, 197, 253, 0.45);
+            border: 3px solid rgba(96, 165, 250, 0.8);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .word-input {
+            border: 3px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 4px 6px;
+            font-weight: 800;
+            color: #1e293b;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s;
+            font-size: clamp(0.9rem, 1.8vw, 1.25rem);
+            width: clamp(120px, 16vw, 170px);
+            margin: 2px 4px;
+            background-color: white;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #u1_input2 { width: clamp(180px, 28vw, 280px); }
+
+        .word-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            border-style: solid;
+        }
+        
+        /* Correct/Incorrect State Animations */
+        .word-input.correct, .drop-zone.correct {
+            border-color: #22c55e !important;
+            background-color: #dcfce7 !important;
+            border-style: solid !important;
+            color: #166534 !important;
+        }
+        .word-input.incorrect, .drop-zone.incorrect {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            border-style: solid !important;
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .hint-container { display: inline-flex; flex-direction: column; align-items: center; margin: 0 4px; vertical-align: middle; }
+        .hint-images { display: flex; gap: 6px; margin-bottom: 2px; z-index: 30; }
+        .hint-image { width: auto; height: auto; max-height: clamp(40px, 6vw, 75px); max-width: clamp(70px, 10vw, 140px); object-fit: contain; border-radius: 8px; border: 2px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.2); background-color: white; }
+
+        .choice-item {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            border: 3px solid #38bdf8; border-radius: 14px; padding: 8px 18px;
+            font-family: 'Fredoka One', cursive; font-size: clamp(1rem, 1.8vw, 1.25rem);
+            color: #ffffff; box-shadow: 0 5px 0 #075985, 0 8px 15px rgba(0,0,0,0.15);
+            cursor: grab; user-select: none; transition: all 0.2s ease; position: relative; text-align: center;
+        }
+        .choice-item:active { cursor: grabbing; transform: translateY(3px); box-shadow: 0 2px 0 #075985, 0 4px 8px rgba(0,0,0,0.1); }
+        .choice-item.selected { border-color: #f59e0b; background: linear-gradient(135deg, #d97706 0%, #b45309 100%); color: #ffffff; box-shadow: 0 5px 0 #78350f, 0 0 15px rgba(245, 158, 11, 0.5); }
+        .choice-item.placed { opacity: 0.35; pointer-events: none; box-shadow: none; transform: scale(0.92); }
+
+        .drop-zone {
+            min-width: clamp(100px, 12vw, 130px); height: clamp(40px, 6vw, 50px);
+            border: 3px dashed #0284c7; border-radius: 12px; background-color: rgba(255, 255, 255, 0.95);
+            display: inline-flex; align-items: center; justify-content: center; margin: 4px 6px;
+            vertical-align: middle; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+            font-family: 'Fredoka One', cursive; font-size: clamp(0.9rem, 1.5vw, 1.1rem); color: #0369a1; cursor: pointer;
+        }
+        
+        .drop-zone.large-zone { min-width: clamp(140px, 20vw, 200px); }
+        
+        /* Kelas khas untuk kotak jawapan perkataan bina ayat (Unit 2 Aktiviti 2) */
+        .drop-zone.flex-zone { 
+            flex: 1 1 auto; 
+            min-width: clamp(75px, 8vw, 100px); 
+            height: auto; 
+            min-height: clamp(40px, 6vw, 50px);
+            padding: 4px;
+        }
+        .drop-zone.flex-zone .choice-item {
+            height: auto;
+            min-height: 100%;
+            padding: 6px 10px;
+            white-space: nowrap; /* Pastikan perkataan kekal pada satu baris dan tidak terpotong */
+        }
+        
+        /* Kelas khas untuk kotak jawapan frasa panjang (Unit 2 Aktiviti 1) */
+        .drop-zone.phrase-zone {
+            flex: 1 1 45%;
+            min-width: clamp(220px, 30vw, 280px);
+            height: auto;
+            min-height: clamp(50px, 6vw, 60px);
+            padding: 6px;
+        }
+        .drop-zone.phrase-zone .choice-item {
+            white-space: normal;
+            height: auto;
+            min-height: 100%;
+            line-height: 1.3;
+            padding: 8px 12px;
+        }
+
+        .drop-zone.hovered { background-color: #e0f2fe; border-color: #0284c7; border-style: solid; transform: scale(1.05); }
+        .drop-zone .choice-item { cursor: pointer; box-shadow: none; border-width: 2px; padding: 2px 10px; margin: 0; background: #0284c7; border-radius: 8px; font-size: inherit; width: 100%; height: 100%; }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 100; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
+        .modal-content { background-color: white; padding: 2rem; border-radius: 1.5rem; text-align: center; max-width: 90%; width: 420px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); transform: scale(0.9); opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .modal-overlay.active { display: flex; }
+        .modal-overlay.active .modal-content { transform: scale(1); opacity: 1; }
+
+        .nav-button { width: 60px; height: 60px; border-radius: 50%; background-color: white; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; border: 4px solid; padding: 8px; z-index: 50; }
+        .home-btn { border-color: #3b82f6; }
+        .back-btn { border-color: #ef4444; }
+
+        .dialog-text { font-size: clamp(0.95rem, 1.8vw, 1.2rem); line-height: 1.5; color: #111827; text-align: left; font-weight: 700; }
+
+        .tab-btn { font-family: 'Fredoka One', cursive; transition: all 0.25s ease; border: 2px solid transparent; }
+        .tab-btn.active { background-color: #3b82f6; color: white; box-shadow: 0 6px 12px rgba(59, 130, 246, 0.35); transform: translateY(-2px); border-color: #2563eb; }
+
+        /* Unit Menu Cards */
+        .unit-card { cursor: pointer; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .unit-card:hover { transform: translateY(-10px) scale(1.02); }
+        
+        .hidden-section { display: none !important; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center py-6 px-4">
+
+    <!-- Top Navigation Header -->
+    <div class="w-full max-w-5xl flex justify-between items-center mb-6 px-4">
+        <!-- Butang Kembali -->
+        <button id="btnBack" class="nav-button back-btn btn-hover-effect" title="Kembali">
+            <img src="kembali.png" alt="Kembali" class="w-full h-full object-contain rounded-full" onerror="this.src='https://placehold.co/100x100/ff9999/ffffff?text=<-'">
+        </button>
+        
+        <div class="text-center">
+            <h1 class="text-3xl md:text-5xl text-blue-600 drop-shadow-md mb-1">Tema 1: Kekeluargaan</h1>
+        </div>
+
+        <!-- Butang Home -->
+        <button id="btnHome" class="nav-button home-btn btn-hover-effect" title="Menu Utama">
+            <img src="home.png" alt="Home" class="w-full h-full object-contain rounded-full" onerror="this.src='https://placehold.co/100x100/99ccff/ffffff?text=Home'">
+        </button>
+    </div>
+
+    <!-- ==================== MENU UTAMA ==================== -->
+    <div id="mainMenu" class="w-full max-w-5xl flex flex-col items-center flex-grow justify-center">
+        <h3 class="fun-font text-3xl text-gray-700 mb-8 bg-white px-8 py-3 rounded-full shadow-lg border-4 border-yellow-300">Pilih Unit Pembelajaran</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full px-4">
+            <!-- Unit 1 Card -->
+            <div class="unit-card bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl p-2 shadow-2xl border-4 border-blue-200" onclick="openUnit('unit1')">
+                <div class="bg-white rounded-2xl p-6 h-full flex flex-col items-center text-center">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center text-5xl mb-4 border-4 border-blue-300 shadow-inner">👨‍👩‍👧‍👦</div>
+                    <h4 class="fun-font text-2xl text-blue-700 mb-2">Unit 1</h4>
+                    <p class="text-gray-600 font-bold text-lg">Keluarga Tersayang</p>
+                    <button class="mt-auto pt-4 text-blue-500 font-bold hover:text-blue-700 flex items-center gap-2">Mula Aktiviti <span class="text-xl">➔</span></button>
+                </div>
+            </div>
+
+            <!-- Unit 2 Card -->
+            <div class="unit-card bg-gradient-to-br from-green-400 to-green-600 rounded-3xl p-2 shadow-2xl border-4 border-green-200" onclick="openUnit('unit2')">
+                <div class="bg-white rounded-2xl p-6 h-full flex flex-col items-center text-center">
+                    <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center text-5xl mb-4 border-4 border-green-300 shadow-inner">🏡</div>
+                    <h4 class="fun-font text-2xl text-green-700 mb-2">Unit 2</h4>
+                    <p class="text-gray-600 font-bold text-lg">Keluargaku Hebat</p>
+                    <button class="mt-auto pt-4 text-green-500 font-bold hover:text-green-700 flex items-center gap-2">Mula Aktiviti <span class="text-xl">➔</span></button>
+                </div>
+            </div>
+
+            <!-- Unit 3 Card -->
+            <div class="unit-card bg-gradient-to-br from-pink-400 to-pink-600 rounded-3xl p-2 shadow-2xl border-4 border-pink-200" onclick="openUnit('unit3')">
+                <div class="bg-white rounded-2xl p-6 h-full flex flex-col items-center text-center">
+                    <div class="w-24 h-24 bg-pink-100 rounded-full flex items-center justify-center text-5xl mb-4 border-4 border-pink-300 shadow-inner">🤝</div>
+                    <h4 class="fun-font text-2xl text-pink-700 mb-2">Unit 3</h4>
+                    <p class="text-gray-600 font-bold text-lg">Hubungan Yang Erat</p>
+                    <button class="mt-auto pt-4 text-pink-500 font-bold hover:text-pink-700 flex items-center gap-2">Mula Aktiviti <span class="text-xl">➔</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Selector Tabs (Shared logic for all units) -->
+    <div id="activityTabs" class="hidden-section flex gap-4 mb-6 bg-white p-2 rounded-full shadow-lg border-2 border-gray-200">
+        <button id="tabAct1" class="tab-btn active px-6 py-2.5 rounded-full text-lg md:text-xl text-gray-600 hover:text-blue-600 flex items-center gap-2" onclick="switchActivity(1)">
+            <span>🎯</span> Aktiviti 1
+        </button>
+        <button id="tabAct2" class="tab-btn px-6 py-2.5 rounded-full text-lg md:text-xl text-gray-600 hover:text-blue-600 flex items-center gap-2" onclick="switchActivity(2)">
+            <span>🏷️</span> Aktiviti 2
+        </button>
+    </div>
+
+    <!-- ==================== UNIT 1 CONTAINER ==================== -->
+    <div id="unit1Container" class="hidden-section w-full max-w-4xl flex-col items-center">
+        <!-- U1 AKTIVITI 1 -->
+        <div id="u1_act1" class="w-full flex flex-col items-center">
+            <div class="w-full bg-white rounded-3xl p-6 shadow-xl border-4 border-yellow-400 mb-6 relative overflow-hidden">
+                <div class="absolute -top-4 -left-4 w-16 h-16 bg-yellow-400 rounded-full opacity-50"></div>
+                <div class="mb-2">
+                    <span class="bg-orange-500 text-white font-bold fun-font text-xl md:text-2xl px-5 py-1.5 rounded-full inline-flex items-center gap-2 shadow-md">Unit 1 | Aktiviti 1</span>
+                </div>
+                <h3 class="text-xl md:text-2xl text-purple-700 fun-font mb-2 flex items-center gap-3 mt-3">
+                    <span class="bg-purple-100 p-2 rounded-full shadow-inner">📝</span> Arahan Aktiviti:
+                </h3>
+                <p class="text-xl text-gray-700 font-semibold ml-2">Isi tempat kosong dengan perkataan yang betul berpandukan gambar rujukan. Taip jawapan di dalam kotak kosong.</p>
+            </div>
+
+            <div class="activity-container relative w-full">
+                <img src="Kelas.png" alt="Suasana di dalam kelas" class="main-image" onerror="this.src='https://placehold.co/950x650/e2e8f0/64748b?text=Sila+muat+naik+Kelas.png'">
+                <!-- Guru -->
+                <div class="interactive-area area-guru">
+                    <p class="dialog-text">
+                        Setiap ibu bapa mempunyai 
+                        <span class="hint-container">
+                            <span class="hint-images"><img src="Harapan.png" alt="Harapan" class="hint-image" title="Harapan" onerror="this.src='https://placehold.co/100x100/fcd34d/b45309?text=Harapan'"></span>
+                            <input type="text" id="u1_input1" class="word-input validate-text" data-answer="harapan" autocomplete="off">
+                        </span>
+                        terhadap anak mereka. Apakah 
+                        <span class="hint-container">
+                            <span class="hint-images">
+                                <img src="Harapan.png" alt="Harapan" class="hint-image" title="Harapan" onerror="this.src='https://placehold.co/100x100/fcd34d/b45309?text=H'">
+                                <img src="Keluarga.png" alt="Keluarga" class="hint-image" title="Keluarga" onerror="this.src='https://placehold.co/100x100/fca5a5/7f1d1d?text=K'">
+                            </span>
+                            <input type="text" id="u1_input2" class="word-input validate-text" data-answer="harapan keluarga" autocomplete="off">
+                        </span>
+                        terhadap kamu, Fitri?
+                    </p>
+                </div>
+                <!-- Murid -->
+                <div class="interactive-area area-murid">
+                    <p class="dialog-text">
+                        Ibu dan ayah mengharapkan saya menjadi
+                        <span class="hint-container my-1">
+                            <span class="hint-images"><img src="Doktor.png" alt="Doktor" class="hint-image" title="Doktor" onerror="this.src='https://placehold.co/100x100/86efac/14532d?text=Doktor'"></span>
+                            <input type="text" id="u1_input3" class="word-input validate-text" data-answer="doktor" autocomplete="off">
+                        </span>
+                        , cikgu.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-8 flex gap-6">
+                <button onclick="resetTextInputs('u1_act1')" class="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-full fun-font text-xl shadow-lg border-b-4 border-gray-500 btn-hover-effect">Mula Semula</button>
+                <button onclick="checkTextInputs('u1_act1')" class="px-10 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full fun-font text-xl shadow-lg border-b-4 border-green-700 btn-hover-effect flex items-center gap-2"><span>Semak Jawapan</span> <span>✅</span></button>
+            </div>
+        </div>
+
+        <!-- U1 AKTIVITI 2 -->
+        <div id="u1_act2" class="hidden-section w-full flex-col items-center">
+            <div class="w-full bg-white rounded-3xl p-6 shadow-xl border-4 border-sky-400 mb-6 relative overflow-hidden">
+                <div class="absolute -top-4 -left-4 w-16 h-16 bg-sky-300 rounded-full opacity-50"></div>
+                <div class="mb-2">
+                    <span class="bg-sky-500 text-white font-bold fun-font text-xl md:text-2xl px-5 py-1.5 rounded-full inline-flex items-center gap-2 shadow-md">Unit 1 | Aktiviti 2: Kata Ganti Nama</span>
+                </div>
+                <h3 class="text-xl md:text-2xl text-sky-800 fun-font mb-2 mt-3 flex items-center gap-2">📝 Arahan Aktiviti:</h3>
+                <p class="text-xl text-gray-700 font-semibold ml-2">Pilih jawapan yang betul dan seret ke dalam petak kosong.</p>
+            </div>
+
+            <div class="w-full bg-sky-50 p-6 rounded-3xl border-3 border-sky-200 shadow-inner mb-6 text-center">
+                <h4 class="fun-font text-sky-800 text-xl mb-4">🏷️ Pilihan Jawapan:</h4>
+                <div id="u1_bank" class="flex flex-wrap justify-center gap-4 min-h-[60px] items-center drag-bank">
+                    <div class="choice-item" draggable="true" data-word="mereka">mereka</div>
+                    <div class="choice-item" draggable="true" data-word="kamu">kamu</div>
+                    <div class="choice-item" draggable="true" data-word="saya">saya</div>
+                    <div class="choice-item" draggable="true" data-word="nya">nya</div>
+                </div>
+            </div>
+
+            <div class="activity-container relative w-full min-h-[400px] flex justify-center items-center p-6 md:p-12 overflow-hidden">
+                <img src="Banglo.png" alt="Rumah Banglo" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='https://placehold.co/950x500/e0f2fe/0284c7?text=Sila+muat+naik+Banglo.png'">
+                <div class="relative z-10 bg-white/90 backdrop-blur-sm p-6 md:p-8 rounded-3xl border-4 border-sky-400 shadow-2xl max-w-2xl text-left text-gray-800 text-lg md:text-xl font-bold leading-relaxed space-y-5">
+                    <p>Setelah seharian di rumah saudaranya, <span class="drop-zone validate-drop" data-answer="mereka"></span> pulang ke rumah. Dalam perjalanan pulang, Sarita berangan-angan untuk memiliki sebuah rumah banglo.</p>
+                    <p>"Apakah yang <span class="drop-zone validate-drop" data-answer="kamu"></span> fikirkan, Sarita?" tanya ibu kepada Sarita.</p>
+                    <p>"Ibu, saya yakin dan percaya bahawa suatu hari nanti <span class="drop-zone validate-drop" data-answer="saya"></span> akan memiliki sebuah rumah banglo," kata <span class="drop-zone validate-drop" data-answer="nya"></span> sambil tersenyum girang.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 flex gap-6">
+                <button onclick="resetDragDrop('u1_act2', 'u1_bank')" class="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-full fun-font text-xl shadow-lg border-b-4 border-gray-500 btn-hover-effect">Mula Semula</button>
+                <button onclick="checkDragDrop('u1_act2', 'u1_bank')" class="px-10 py-3 bg-sky-500 hover:bg-sky-600 text-white rounded-full fun-font text-xl shadow-lg border-b-4 border-sky-700 btn-hover-effect">Semak Jawapan ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== UNIT 2 CONTAINER ==================== -->
+    <div id="unit2Container" class="hidden-section w-full max-w-4xl flex-col items-center">
+        <!-- U2 AKTIVITI 1: Peribahasa -->
+        <div id="u2_act1" class="w-full flex flex-col items-center">
+            <div class="w-full bg-white rounded-3xl p-6 shadow-xl border-4 border-green-400 mb-6 relative overflow-hidden">
+                <div class="absolute -top-4 -left-4 w-16 h-16 bg-green-300 rounded-full opacity-50"></div>
+                <div class="mb-2">
+                    <span class="bg-green-600 text-white font-bold fun-font text-xl md:text-2xl px-5 py-1.5 rounded-full inline-flex items-center gap-2 shadow-md">Unit 2 | Aktiviti 1: Peribahasa</span>
+                </div>
+                <h3 class="text-xl md:text-2xl text-green-800 fun-font mb-2 mt-3 flex items-center gap-2">📝 Arahan Aktiviti:</h3>
+                <p class="text-xl text-gray-700 font-semibold ml-2">Susun maksud peribahasa mengikut urutan yang betul di dalam ruangan yang disediakan.</p>
+            </div>
+
+            <div class="w-full bg-white p-6 rounded-3xl shadow-lg border-4 border-green-200 text-left text-lg md:text-xl font-bold mb-6">
+                <p class="mb-2 text-green-700">1. Di mana ada kemahuan, di situ ada jalan.</p>
+                <p class="text-gray-600 font-semibold text-base md:text-lg pl-6 mb-6">Maksud: Seseorang itu mesti berusaha dengan gigih semasa melakukan sesuatu dan segala kesukaran yang dihadapi perlu ditempuhi agar keinginan dapat diperoleh.</p>
+                
+                <p class="mb-2 text-green-700">2. Hendak seribu daya, tidak hendak seribu dalih.</p>
+                <div class="bg-green-50 p-4 rounded-xl border-2 border-dashed border-green-400 flex flex-wrap gap-2 items-center justify-start mt-2">
+                    <span class="text-gray-700 mr-2 w-full md:w-auto font-bold">Maksud:</span>
+                    <!-- Sequence Drop Zones -->
+                    <span class="drop-zone phrase-zone validate-drop" data-answer="jika seseorang benar-benar"></span>
+                    <span class="drop-zone phrase-zone validate-drop" data-answer="mahu melakukan sesuatu,"></span>
+                    <span class="drop-zone phrase-zone validate-drop" data-answer="dia akan mencari pelbagai"></span>
+                    <span class="drop-zone phrase-zone validate-drop" data-answer="cara untuk mencapainya,"></span>
+                    <span class="drop-zone phrase-zone validate-drop" data-answer="jika tidak mahu, dia akan"></span>
+                    <span class="drop-zone phrase-zone validate-drop" data-answer="mencipta pelbagai alasan."></span>
+                </div>
+            </div>
+
+            <!-- Draggable Phrases Bank -->
+            <div class="w-full bg-green-50 p-6 rounded-3xl border-3 border-green-200 shadow-inner mb-6 text-center">
+                <h4 class="fun-font text-green-800 text-xl mb-4">🏷️ Pilihan Frasa:</h4>
+                <div id="u2a1_bank" class="flex flex-wrap justify-center gap-3 min-h-[60px] items-center drag-bank">
+                    <div class="choice-item text-sm md:text-base px-4" draggable="true" data-word="cara untuk mencapainya,">cara untuk mencapainya,</div>
+                    <div class="choice-item text-sm md:text-base px-4" draggable="true" data-word="dia akan mencari pelbagai">dia akan mencari pelbagai</div>
+                    <div class="choice-item text-sm md:text-base px-4" draggable="true" data-word="jika seseorang benar-benar">jika seseorang benar-benar</div>
+                    <div class="choice-item text-sm md:text-base px-4" draggable="true" data-word="mencipta pelbagai alasan.">mencipta pelbagai alasan.</div>
+                    <div class="choice-item text-sm md:text-base px-4" draggable="true" data-word="jika tidak mahu, dia akan">jika tidak mahu, dia akan</div>
+                    <div class="choice-item text-sm md:text-base px-4" draggable="true" data-word="mahu melakukan sesuatu,">mahu melakukan sesuatu,</div>
+                </div>
+            </div>
+
+            <div class="mt-4 flex gap-6">
+                <button onclick="resetDragDrop('u2_act1', 'u2a1_bank')" class="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-full fun-font text-xl shadow-lg border-b-4 border-gray-500 btn-hover-effect">Mula Semula</button>
+                <button onclick="checkDragDrop('u2_act1', 'u2a1_bank')" class="px-10 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full fun-font text-xl shadow-lg border-b-4 border-green-700 btn-hover-effect">Semak Jawapan ✅</button>
+            </div>
+        </div>
+
+        <!-- U2 AKTIVITI 2: Penjodoh Bilangan -->
+        <div id="u2_act2" class="hidden-section w-full flex-col items-center">
+            <div class="w-full bg-white rounded-3xl p-6 shadow-xl border-4 border-teal-400 mb-6 relative overflow-hidden">
+                <div class="absolute -top-4 -left-4 w-16 h-16 bg-teal-300 rounded-full opacity-50"></div>
+                <div class="mb-2">
+                    <span class="bg-teal-500 text-white font-bold fun-font text-xl md:text-2xl px-5 py-1.5 rounded-full inline-flex items-center gap-2 shadow-md">Unit 2 | Aktiviti 2: Bina Ayat</span>
+                </div>
+                <h3 class="text-xl md:text-2xl text-teal-800 fun-font mb-2 mt-3 flex items-center gap-2">📝 Arahan Aktiviti:</h3>
+                <p class="text-xl text-gray-700 font-semibold ml-2">Bina ayat menggunakan penjodoh bilangan yang diberikan dengan menyusun perkataan.</p>
+            </div>
+
+            <!-- Words Bank (Randomized visually) -->
+            <div class="w-full bg-teal-50 p-6 rounded-3xl border-3 border-teal-200 shadow-inner mb-6 text-center">
+                <h4 class="fun-font text-teal-800 text-xl mb-4">🏷️ Pilihan Perkataan:</h4>
+                <div id="u2a2_bank" class="flex flex-wrap justify-center gap-2 min-h-[60px] items-center drag-bank">
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="Peng Fei">Peng Fei</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="mempunyai">mempunyai</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="sebuah">sebuah</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="helmet">helmet</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="khas">khas</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="untuk">untuk</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="berlumba">berlumba</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="Ali">Ali</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="mempunyai">mempunyai</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="sehelai">sehelai</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="baju">baju</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="yang">yang</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="cantik">cantik</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="Peng Fei">Peng Fei</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="mempunyai">mempunyai</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="sepasang">sepasang</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="kasut">kasut</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="khas">khas</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="untuk">untuk</div>
+                    <div class="choice-item text-base px-4 py-2" draggable="true" data-word="berlumba">berlumba</div>
+                </div>
+            </div>
+
+            <!-- Sentence Tracks -->
+            <div class="w-full bg-white p-6 rounded-3xl shadow-lg border-4 border-teal-200 text-left font-bold mb-6 flex flex-col gap-6">
+                <!-- S1: orang -->
+                <div class="flex flex-col md:flex-row md:items-center gap-3">
+                    <span class="text-teal-700 text-xl min-w-[80px]">1. orang:</span>
+                    <div class="bg-gray-100 p-3 rounded-xl flex-grow text-gray-700 font-semibold border-2 border-transparent">
+                        Encik Azhar mempunyai seorang anak perempuan.
+                    </div>
+                </div>
+                <!-- S2: buah -->
+                <div class="flex flex-col md:flex-row md:items-center gap-3">
+                    <span class="text-teal-700 text-xl min-w-[80px]">2. buah:</span>
+                    <div class="bg-teal-50 p-2 rounded-xl flex flex-wrap gap-1 border-2 border-dashed border-teal-300 flex-grow justify-start">
+                        <span class="drop-zone validate-drop flex-zone" data-answer="Peng Fei"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="mempunyai"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="sebuah"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="helmet"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="khas"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="untuk"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="berlumba"></span>
+                    </div>
+                </div>
+                <!-- S3: helai -->
+                <div class="flex flex-col md:flex-row md:items-center gap-3">
+                    <span class="text-teal-700 text-xl min-w-[80px]">3. helai:</span>
+                    <div class="bg-teal-50 p-2 rounded-xl flex flex-wrap gap-1 border-2 border-dashed border-teal-300 flex-grow justify-start">
+                        <span class="drop-zone validate-drop flex-zone" data-answer="Ali"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="mempunyai"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="sehelai"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="baju"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="yang"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="cantik"></span>
+                    </div>
+                </div>
+                <!-- S4: pasang -->
+                <div class="flex flex-col md:flex-row md:items-center gap-3">
+                    <span class="text-teal-700 text-xl min-w-[80px]">4. pasang:</span>
+                    <div class="bg-teal-50 p-2 rounded-xl flex flex-wrap gap-1 border-2 border-dashed border-teal-300 flex-grow justify-start">
+                        <span class="drop-zone validate-drop flex-zone" data-answer="Peng Fei"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="mempunyai"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="sepasang"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="kasut"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="khas"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="untuk"></span>
+                        <span class="drop-zone validate-drop flex-zone" data-answer="berlumba"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 flex gap-6">
+                <button onclick="resetDragDrop('u2_act2', 'u2a2_bank')" class="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-full fun-font text-xl shadow-lg border-b-4 border-gray-500 btn-hover-effect">Mula Semula</button>
+                <button onclick="checkDragDrop('u2_act2', 'u2a2_bank')" class="px-10 py-3 bg-teal-500 hover:bg-teal-600 text-white rounded-full fun-font text-xl shadow-lg border-b-4 border-teal-700 btn-hover-effect">Semak Jawapan ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== UNIT 3 CONTAINER ==================== -->
+    <div id="unit3Container" class="hidden-section w-full max-w-4xl flex-col items-center">
+        <!-- U3 AKTIVITI 1: Pantun -->
+        <div id="u3_act1" class="w-full flex flex-col items-center">
+            <div class="w-full bg-white rounded-3xl p-6 shadow-xl border-4 border-pink-400 mb-6 relative overflow-hidden">
+                <div class="absolute -top-4 -left-4 w-16 h-16 bg-pink-300 rounded-full opacity-50"></div>
+                <div class="mb-2">
+                    <span class="bg-pink-500 text-white font-bold fun-font text-xl md:text-2xl px-5 py-1.5 rounded-full inline-flex items-center gap-2 shadow-md">Unit 3 | Aktiviti 1: Pemahaman Pantun</span>
+                </div>
+                <h3 class="text-xl md:text-2xl text-pink-800 fun-font mb-2 mt-3 flex items-center gap-2">📝 Arahan Aktiviti:</h3>
+                <p class="text-xl text-gray-700 font-semibold ml-2">Jawab soalan berikut berdasarkan pantun di dalam imej. Taip jawapan ke dalam kotak.</p>
+            </div>
+
+            <div class="w-full max-w-2xl mx-auto rounded-3xl overflow-hidden border-8 border-pink-200 shadow-2xl bg-white mb-6 flex flex-col">
+                <img src="Pantun.jpg" alt="Pantun" class="w-full h-auto object-cover border-b-4 border-pink-200" onerror="this.src='https://placehold.co/800x600/fdf2f8/be185d?text=Sila+muat+naik+Pantun.jpg'">
+                
+                <!-- Question Container (Below Image) -->
+                <div class="p-6 md:p-8 bg-pink-50 flex flex-col items-center text-center">
+                    <p class="font-bold text-xl md:text-2xl text-pink-700 mb-4">Berpandukan pantun, siapakah yang perlu kita hormati dan sayangi?</p>
+                    <input type="text" id="u3_input1" class="word-input validate-text !w-full max-w-[300px] !text-xl !py-2 border-2 border-pink-300 focus:border-pink-500 shadow-inner" data-answer="ayah dan ibu|ibu dan ayah" autocomplete="off" placeholder="Taip jawapan di sini...">
+                </div>
+            </div>
+
+            <div class="mt-4 flex gap-6">
+                <button onclick="resetTextInputs('u3_act1')" class="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-full fun-font text-xl shadow-lg border-b-4 border-gray-500 btn-hover-effect">Mula Semula</button>
+                <button onclick="checkTextInputs('u3_act1')" class="px-10 py-3 bg-pink-500 hover:bg-pink-600 text-white rounded-full fun-font text-xl shadow-lg border-b-4 border-pink-700 btn-hover-effect">Semak Jawapan ✅</button>
+            </div>
+        </div>
+
+        <!-- U3 AKTIVITI 2: Latihan Bergambar -->
+        <div id="u3_act2" class="hidden-section w-full flex-col items-center">
+            <div class="w-full bg-white rounded-3xl p-6 shadow-xl border-4 border-indigo-400 mb-6 relative overflow-hidden">
+                <div class="absolute -top-4 -left-4 w-16 h-16 bg-indigo-300 rounded-full opacity-50"></div>
+                <div class="mb-2">
+                    <span class="bg-indigo-500 text-white font-bold fun-font text-xl md:text-2xl px-5 py-1.5 rounded-full inline-flex items-center gap-2 shadow-md">Unit 3 | Aktiviti 2: Latihan Bergambar</span>
+                </div>
+                <h3 class="text-xl md:text-2xl text-indigo-800 fun-font mb-2 mt-3 flex items-center gap-2">📝 Arahan Aktiviti:</h3>
+                <p class="text-xl text-gray-700 font-semibold ml-2">Berdasarkan imej di bawah, masukkan pilihan jawapan ke dalam ruang kosong yang disediakan mengikut urutan nombor.</p>
+            </div>
+
+            <div class="w-full max-w-3xl mx-auto rounded-3xl overflow-hidden border-8 border-indigo-200 shadow-2xl bg-white mb-6">
+                <img src="Latihan 1.jpg" alt="Latihan 1" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/800x500/e0e7ff/4338ca?text=Sila+muat+naik+Latihan+1.jpg'">
+            </div>
+
+            <!-- Draggable Choices -->
+            <div class="w-full bg-indigo-50 p-6 rounded-3xl border-3 border-indigo-200 shadow-inner mb-6 text-center">
+                <h4 class="fun-font text-indigo-800 text-xl mb-4">🏷️ Pilihan Jawapan:</h4>
+                <div id="u3a2_bank" class="flex flex-wrap justify-center gap-4 min-h-[60px] items-center drag-bank">
+                    <div class="choice-item" draggable="true" data-word="bangun">bangun</div>
+                    <div class="choice-item" draggable="true" data-word="tersenyum">tersenyum</div>
+                    <div class="choice-item" draggable="true" data-word="bernyanyi">bernyanyi</div>
+                    <div class="choice-item" draggable="true" data-word="berdiri">berdiri</div>
+                </div>
+            </div>
+
+            <!-- Explicit Drop Zones Mapping to Image -->
+            <div class="w-full bg-white p-6 rounded-3xl shadow-lg border-4 border-indigo-200 flex flex-wrap justify-center gap-6">
+                <div class="flex flex-col items-center bg-indigo-50 p-4 rounded-xl border-2 border-indigo-100">
+                    <span class="font-bold text-indigo-800 text-xl mb-2 bg-indigo-200 w-8 h-8 rounded-full flex items-center justify-center">1</span>
+                    <span class="drop-zone large-zone validate-drop" data-answer="bangun"></span>
+                </div>
+                <div class="flex flex-col items-center bg-indigo-50 p-4 rounded-xl border-2 border-indigo-100">
+                    <span class="font-bold text-indigo-800 text-xl mb-2 bg-indigo-200 w-8 h-8 rounded-full flex items-center justify-center">2</span>
+                    <span class="drop-zone large-zone validate-drop" data-answer="tersenyum"></span>
+                </div>
+                <div class="flex flex-col items-center bg-indigo-50 p-4 rounded-xl border-2 border-indigo-100">
+                    <span class="font-bold text-indigo-800 text-xl mb-2 bg-indigo-200 w-8 h-8 rounded-full flex items-center justify-center">3</span>
+                    <span class="drop-zone large-zone validate-drop" data-answer="bernyanyi"></span>
+                </div>
+                <div class="flex flex-col items-center bg-indigo-50 p-4 rounded-xl border-2 border-indigo-100">
+                    <span class="font-bold text-indigo-800 text-xl mb-2 bg-indigo-200 w-8 h-8 rounded-full flex items-center justify-center">4</span>
+                    <span class="drop-zone large-zone validate-drop" data-answer="berdiri"></span>
+                </div>
+            </div>
+
+            <div class="mt-8 flex gap-6 mb-8">
+                <button onclick="resetDragDrop('u3_act2', 'u3a2_bank')" class="px-8 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-full fun-font text-xl shadow-lg border-b-4 border-gray-500 btn-hover-effect">Mula Semula</button>
+                <button onclick="checkDragDrop('u3_act2', 'u3a2_bank')" class="px-10 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-full fun-font text-xl shadow-lg border-b-4 border-indigo-700 btn-hover-effect">Semak Jawapan ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification / Feedback Modal -->
+    <div id="msgModal" class="modal-overlay">
+        <div class="modal-content relative overflow-hidden">
+            <div id="modalDecor1" class="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-20"></div>
+            <div id="modalDecor2" class="absolute -bottom-10 -left-10 w-32 h-32 rounded-full opacity-20"></div>
+            
+            <div id="modalIcon" class="text-6xl mb-4"></div>
+            <h3 id="modalTitle" class="text-3xl fun-font mb-2"></h3>
+            <p id="modalMessage" class="text-lg text-gray-600 mb-6 font-semibold"></p>
+            <button id="btnTutupModal" class="px-8 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-bold shadow-md btn-hover-effect w-full" onclick="closeModal()">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // State variables
+        let currentUnit = null; // 'unit1', 'unit2', 'unit3' or null for main menu
+        let currentActivity = 1; // 1 or 2
+        let selectedChoice = null; // For click-to-place drag drop fallback
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initGlobalNavigation();
+            initAllDragDrop();
+            shuffleChildren('u2a2_bank'); // Rawakkan pilihan perkataan Unit 2 Aktiviti 2
+            shuffleChildren('u3a2_bank'); // Rawakkan pilihan jawapan Unit 3 Aktiviti 2
+        });
+
+        // Fungsi untuk merawakkan susunan elemen anak (Fisher-Yates shuffle)
+        function shuffleChildren(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const elementsArray = Array.from(container.children);
+            for (let i = elementsArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [elementsArray[i], elementsArray[j]] = [elementsArray[j], elementsArray[i]];
+            }
+            // Susun semula elemen ke dalam bekas (container) mengikut urutan baharu
+            elementsArray.forEach(el => container.appendChild(el));
+        }
+
+        /* --- Navigation Logic --- */
+        function initGlobalNavigation() {
+            // Butang Home diubah untuk terus link ke index.html
+            document.getElementById('btnHome').addEventListener('click', () => {
+                window.location.href = 'index.html'; 
+            });
+            
+            // Butang Kembali diubah untuk sentiasa kembali ke halaman sebelum (browser history)
+            document.getElementById('btnBack').addEventListener('click', () => {
+                window.history.back(); 
+            });
+        }
+
+        function openUnit(unitId) {
+            currentUnit = unitId;
+            document.getElementById('mainMenu').classList.add('hidden-section');
+            document.getElementById('mainMenu').classList.remove('flex');
+            
+            // Show selected unit container, hide others
+            ['unit1', 'unit2', 'unit3'].forEach(id => {
+                const el = document.getElementById(id + 'Container');
+                if (id === unitId) {
+                    el.classList.remove('hidden-section');
+                    el.classList.add('flex');
+                } else {
+                    el.classList.add('hidden-section');
+                    el.classList.remove('flex');
+                }
+            });
+
+            // Show Tabs and Reset to Activity 1
+            document.getElementById('activityTabs').classList.remove('hidden-section');
+            switchActivity(1);
+        }
+
+        function returnToMainMenu() {
+            currentUnit = null;
+            document.getElementById('activityTabs').classList.add('hidden-section');
+            
+            ['unit1', 'unit2', 'unit3'].forEach(id => {
+                const el = document.getElementById(id + 'Container');
+                el.classList.add('hidden-section');
+                el.classList.remove('flex');
+            });
+            
+            const mm = document.getElementById('mainMenu');
+            mm.classList.remove('hidden-section');
+            mm.classList.add('flex');
+        }
+
+        function switchActivity(actNum) {
+            currentActivity = actNum;
+            
+            // Update Tab UI
+            document.getElementById('tabAct1').classList.toggle('active', actNum === 1);
+            document.getElementById('tabAct2').classList.toggle('active', actNum === 2);
+
+            // Update visible section within the current unit
+            if(!currentUnit) return;
+            const prefix = currentUnit.replace('unit', 'u'); // 'unit1' -> 'u1'
+            
+            const act1El = document.getElementById(`${prefix}_act1`);
+            const act2El = document.getElementById(`${prefix}_act2`);
+            
+            if(actNum === 1) {
+                act1El.classList.remove('hidden-section');
+                act1El.classList.add('flex');
+                act2El.classList.add('hidden-section');
+                act2El.classList.remove('flex');
+            } else {
+                act2El.classList.remove('hidden-section');
+                act2El.classList.add('flex');
+                act1El.classList.add('hidden-section');
+                act1El.classList.remove('flex');
+            }
+        }
+
+        function checkTextInputs(containerId) {
+            const container = document.getElementById(containerId);
+            const inputs = container.querySelectorAll('.validate-text');
+            
+            let unfilledCount = 0;
+            let emptyFields = [];
+
+            inputs.forEach((input, index) => {
+                if (input.value.trim() === '') {
+                    unfilledCount++;
+                    emptyFields.push(`Kotak ${index + 1}`);
+                }
+            });
+
+            if (unfilledCount > 0) {
+                showMessage("Perhatian!", `Sila isi semua kotak kosong. Kotak yang belum diisi: ${emptyFields.join(', ')}.`, "warning");
+                return;
+            }
+
+            let allCorrect = true;
+            let hasIncorrect = false;
+
+            inputs.forEach(input => {
+                const userAnswer = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+                // Pecahkan data-answer menggunakan '|' untuk membenarkan pelbagai pilihan jawapan
+                const correctAnswers = input.dataset.answer.toLowerCase().split('|');
+
+                if (correctAnswers.includes(userAnswer)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    input.disabled = true;
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                    input.value = ''; // Kosongkan jawapan salah
+                    allCorrect = false;
+                    hasIncorrect = true;
+                }
+            });
+
+            if (allCorrect) {
+                showMessage("Tahniah!", "Anda telah menjawab semua soalan dengan betul. Syabas!", "success");
+            } else if (hasIncorrect) {
+                showMessage("Sila cuba lagi", "Terdapat jawapan yang salah. Jawapan yang salah telah dikosongkan. Sila cuba lagi.", "error");
+            }
+        }
+
+        function resetTextInputs(containerId) {
+            const container = document.getElementById(containerId);
+            const inputs = container.querySelectorAll('.validate-text');
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('correct', 'incorrect');
+                input.disabled = false;
+            });
+        }
+
+        function initAllDragDrop() {
+            // Assign unique IDs to all choice items to handle duplicates correctly
+            let idCounter = 1;
+            document.querySelectorAll('.choice-item').forEach(item => {
+                if (!item.id) {
+                    item.id = 'drag_chip_' + idCounter++;
+                }
+
+                // Drag Start Event
+                item.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', item.id);
+                    selectedChoice = item; // fallback for click
+                });
+
+                // Click to Select (Mobile Fallback)
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (item.parentElement.classList.contains('drop-zone')) return;
+
+                    // Deselect if already selected
+                    if (selectedChoice === item) {
+                        item.classList.remove('selected');
+                        selectedChoice = null;
+                    } else {
+                        // Deselect others globally
+                        document.querySelectorAll('.choice-item.selected').forEach(c => c.classList.remove('selected'));
+                        item.classList.add('selected');
+                        selectedChoice = item;
+                    }
+                });
+            });
+
+            // Initialize all Drop Zones
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    if(!zone.classList.contains('correct')) {
+                        zone.classList.add('hovered');
+                    }
+                });
+
+                zone.addEventListener('dragleave', () => {
+                    zone.classList.remove('hovered');
+                });
+
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('hovered');
+                    const chipId = e.dataTransfer.getData('text/plain');
+                    const choiceElem = document.getElementById(chipId);
+                    
+                    if (choiceElem) {
+                        placeChoiceInZone(choiceElem, zone);
+                    }
+                });
+
+                // Click to Drop (Mobile Fallback)
+                zone.addEventListener('click', () => {
+                    if (zone.classList.contains('correct')) return;
+
+                    // If zone already has a chip, send it back to its specific bank
+                    if (zone.children.length > 0) {
+                        const existingChoice = zone.children[0];
+                        // Find the nearest drag bank to return it to
+                        const section = zone.closest('[id$="_act1"], [id$="_act2"]');
+                        if(section) {
+                            const bank = section.querySelector('.drag-bank');
+                            if(bank) {
+                                bank.appendChild(existingChoice);
+                                existingChoice.classList.remove('placed', 'selected');
+                            }
+                        }
+                    }
+
+                    if (selectedChoice && !selectedChoice.classList.contains('placed')) {
+                        // Check if the selected choice belongs to the same activity section
+                        const zoneSection = zone.closest('[id$="_act1"], [id$="_act2"]');
+                        const choiceSection = selectedChoice.closest('[id$="_act1"], [id$="_act2"]');
+                        
+                        if (zoneSection === choiceSection) {
+                            placeChoiceInZone(selectedChoice, zone);
+                            selectedChoice.classList.remove('selected');
+                            selectedChoice = null;
+                        }
+                    }
+                });
+            });
+
+            // Clear input styling on typing
+            document.querySelectorAll('.validate-text').forEach(input => {
+                input.addEventListener('input', function() {
+                    this.classList.remove('incorrect');
+                });
+            });
+        }
+
+        function placeChoiceInZone(choice, zone) {
+            if (zone.classList.contains('correct')) return;
+
+            // Return existing chip to bank if present
+            if (zone.children.length > 0) {
+                const oldChoice = zone.children[0];
+                const section = zone.closest('[id$="_act1"], [id$="_act2"]');
+                const bank = section.querySelector('.drag-bank');
+                if(bank) {
+                    bank.appendChild(oldChoice);
+                    oldChoice.classList.remove('placed');
+                }
+            }
+
+            zone.appendChild(choice);
+            choice.classList.add('placed');
+            zone.classList.remove('incorrect');
+        }
+
+        function checkDragDrop(containerId, bankId) {
+            const container = document.getElementById(containerId);
+            const bank = document.getElementById(bankId);
+            const dropZones = container.querySelectorAll('.validate-drop');
+            
+            let emptyCount = 0;
+            let totalZones = dropZones.length;
+
+            dropZones.forEach(zone => {
+                if (zone.children.length === 0) emptyCount++;
+            });
+
+            if (emptyCount > 0) {
+                showMessage("Perhatian!", `Sila isi semua petak kosong. Terdapat ${emptyCount} petak yang belum diisi.`, "warning");
+                return;
+            }
+
+            let allCorrect = true;
+            let hasIncorrect = false;
+
+            dropZones.forEach(zone => {
+                const placedChoice = zone.children[0];
+                const placedWord = placedChoice ? placedChoice.dataset.word : '';
+                const correctWord = zone.dataset.answer;
+
+                if (placedWord === correctWord) {
+                    zone.classList.add('correct');
+                    zone.classList.remove('incorrect');
+                } else {
+                    zone.classList.add('incorrect');
+                    zone.classList.remove('correct');
+                    // Reset incorrect choice back to bank
+                    if (placedChoice) {
+                        bank.appendChild(placedChoice);
+                        placedChoice.classList.remove('placed', 'selected');
+                    }
+                    allCorrect = false;
+                    hasIncorrect = true;
+                }
+            });
+
+            if (allCorrect) {
+                showMessage("Tahniah!", "Anda telah berjaya melengkapkan jawapan dengan betul. Syabas!", "success");
+            } else if (hasIncorrect) {
+                showMessage("Sila cuba lagi", "Terdapat susunan atau jawapan yang salah. Ia telah dikembalikan ke pilihan jawapan. Sila cuba lagi.", "error");
+            }
+        }
+
+        function resetDragDrop(containerId, bankId) {
+            const container = document.getElementById(containerId);
+            const bank = document.getElementById(bankId);
+            const dropZones = container.querySelectorAll('.validate-drop');
+            
+            dropZones.forEach(zone => {
+                zone.classList.remove('correct', 'incorrect');
+                if (zone.children.length > 0) {
+                    const choice = zone.children[0];
+                    bank.appendChild(choice);
+                    choice.classList.remove('placed', 'selected');
+                }
+            });
+
+            // Ensure any stragglers in the bank lose formatting
+            bank.querySelectorAll('.choice-item').forEach(c => {
+                c.classList.remove('placed', 'selected');
+            });
+            selectedChoice = null;
+
+            // Rawakkan susunan pilihan jawapan apabila butang Mula Semula ditekan
+            shuffleChildren(bankId);
+        }
+
+        const modal = document.getElementById('msgModal');
+        const modalIcon = document.getElementById('modalIcon');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const btnTutupModal = document.getElementById('btnTutupModal');
+        const modalDecor1 = document.getElementById('modalDecor1');
+        const modalDecor2 = document.getElementById('modalDecor2');
+
+        function showMessage(title, message, type) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modalTitle.className = 'text-3xl fun-font mb-2';
+            
+            if (type === 'success') {
+                modalIcon.textContent = '🎉';
+                modalTitle.classList.add('text-green-500');
+                modalDecor1.className = 'absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-20 bg-green-500';
+                modalDecor2.className = 'absolute -bottom-10 -left-10 w-32 h-32 rounded-full opacity-20 bg-green-400';
+                btnTutupModal.className = 'px-8 py-2 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold shadow-md btn-hover-effect w-full mt-4';
+            } else if (type === 'error') {
+                modalIcon.textContent = '💡';
+                modalTitle.classList.add('text-red-500');
+                modalDecor1.className = 'absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-20 bg-red-500';
+                modalDecor2.className = 'absolute -bottom-10 -left-10 w-32 h-32 rounded-full opacity-20 bg-orange-400';
+                btnTutupModal.className = 'px-8 py-2 bg-red-500 hover:bg-red-600 text-white rounded-full font-bold shadow-md btn-hover-effect w-full mt-4';
+            } else if (type === 'warning') {
+                modalIcon.textContent = '⚠️';
+                modalTitle.classList.add('text-orange-500');
+                modalDecor1.className = 'absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-20 bg-yellow-500';
+                modalDecor2.className = 'absolute -bottom-10 -left-10 w-32 h-32 rounded-full opacity-20 bg-orange-400';
+                btnTutupModal.className = 'px-8 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-bold shadow-md btn-hover-effect w-full mt-4';
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+        
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

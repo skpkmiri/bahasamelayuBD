@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Melayu Tahun 4</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Fon khusus untuk kanak-kanak */
+        .comic-font {
+            font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+        }
+
+        /* Latar Belakang Corak Titik (Polka Dots) */
+        .bg-pattern {
+            background-color: #FFFBEB;
+            background-image: radial-gradient(#FCD34D 1.5px, transparent 1.5px), radial-gradient(#FCD34D 1.5px, #FFFBEB 1.5px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        /* Animasi Khas */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-fadeInUp { animation: fadeInUp 0.5s ease-out both; }
+        .animate-zoomIn { animation: zoomIn 0.3s ease-out; }
+        .animate-slideDown { animation: slideDown 0.4s ease-out; }
+        .animate-spin-slow { animation: spinSlow 6s linear infinite; }
+        
+        /* Memastikan ikon lucide dipaparkan dengan betul */
+        .lucide {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="text-slate-900 overflow-x-hidden">
+
+    <!-- Ruang paparan utama -->
+    <div id="app-root"></div>
+
+    <script>
+        // --- DATA PEMBELAJARAN ---
+        const courseData = [
+            {
+                id: 'tema1',
+                title: 'Kekeluargaan',
+                temaNumber: 1,
+                color: 'bg-yellow-300 border-yellow-500 text-yellow-900',
+                lightColor: 'bg-yellow-100',
+                hexBg: '#FEF3C7',
+                icon: 'heart',
+                units: [
+                    { id: 't1u1', unitNumber: 1, title: 'Keluargaku Sayang', page: 2 },
+                    { id: 't1u2', unitNumber: 2, title: 'Membaca Amalan Kami', page: 12 },
+                    { id: 't1u3', unitNumber: 3, title: 'Cerita Keluargaku', page: 22 },
+                ]
+            },
+            {
+                id: 'tema2',
+                title: 'Kesihatan dan Kebersihan',
+                temaNumber: 2,
+                color: 'bg-pink-300 border-pink-500 text-pink-900',
+                lightColor: 'bg-pink-100',
+                hexBg: '#FCE7F3',
+                icon: 'smile',
+                units: [
+                    { id: 't2u4', unitNumber: 4, title: 'Kawanku, Cergaskan Diri!', page: 36 },
+                    { id: 't2u5', unitNumber: 5, title: 'Sayangi Dirimu', page: 46 },
+                    { id: 't2u6', unitNumber: 6, title: 'Saya Bersih dan Saya Sihat', page: 56 },
+                ]
+            },
+            {
+                id: 'tema3',
+                title: 'Keselamatan Di Sekeliling Kita',
+                temaNumber: 3,
+                color: 'bg-sky-300 border-sky-500 text-sky-900',
+                lightColor: 'bg-sky-100',
+                hexBg: '#E0F2FE',
+                icon: 'shield-alert',
+                units: [
+                    { id: 't3u7', unitNumber: 7, title: 'Utamakan Keselamatan', page: 70 },
+                    { id: 't3u8', unitNumber: 8, title: 'Biar Lambat Asalkan Selamat', page: 80 },
+                    { id: 't3u9', unitNumber: 9, title: 'Awas Selalu', page: 92 },
+                ]
+            },
+            {
+                id: 'tema4',
+                title: 'Kemasyarakatan',
+                temaNumber: 4,
+                color: 'bg-orange-300 border-orange-500 text-orange-900',
+                lightColor: 'bg-orange-100',
+                hexBg: '#FFEDD5',
+                icon: 'users',
+                units: [
+                    { id: 't4u10', unitNumber: 10, title: 'Khidmat Masyarakat', page: 106 },
+                    { id: 't4u11', unitNumber: 11, title: 'Kami Penyayang', page: 118 },
+                    { id: 't4u12', unitNumber: 12, title: 'Bersama-sama Kita Prihatin', page: 130 },
+                ]
+            },
+            {
+                id: 'tema5',
+                title: 'Kebudayaan, Kesenian dan Estetika',
+                temaNumber: 5,
+                color: 'bg-purple-300 border-purple-500 text-purple-900',
+                lightColor: 'bg-purple-100',
+                hexBg: '#F3E8FF',
+                icon: 'palette',
+                units: [
+                    { id: 't5u13', unitNumber: 13, title: 'Indahnya Seni Budaya Kita', page: 146 },
+                    { id: 't5u14', unitNumber: 14, title: 'Seni Mempertahankan Diri', page: 158 },
+                    { id: 't5u15', unitNumber: 15, title: 'Masyarakatku Kreatif', page: 170 },
+                ]
+            }
+        ];
+
+        // --- STATE & FUNGSI KAWALAN ---
+        let selectedTema = null;
+        let selectedUnit = null;
+
+        function renderApp() {
+            const root = document.getElementById('app-root');
+            
+            if (selectedUnit) {
+                root.innerHTML = getUnitViewHTML();
+            } else if (selectedTema) {
+                root.innerHTML = getTemaViewHTML();
+            } else {
+                root.innerHTML = getHomeViewHTML();
+            }
+
+            // Inisialisasi semula ikon Lucide selepas DOM berubah
+            lucide.createIcons();
+        }
+
+        // Fungsi Tukar Halaman
+        window.handleSetTema = function(temaId) {
+            selectedTema = courseData.find(t => t.id === temaId);
+            selectedUnit = null;
+            renderApp();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.handleSetUnit = function(unitId) {
+            selectedUnit = selectedTema.units.find(u => u.id === unitId);
+            renderApp();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.handleHomeClick = function() {
+            selectedTema = null;
+            selectedUnit = null;
+            renderApp();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.handleBackToTema = function() {
+            selectedUnit = null;
+            renderApp();
+        }
+
+        // --- TEMPLAT HTML ---
+
+        // Paparan Utama (Home View)
+        function getHomeViewHTML() {
+            let cardsHTML = courseData.map(tema => `
+                <button
+                    onclick="handleSetTema('${tema.id}')"
+                    class="rounded-[2.5rem] p-8 text-center relative overflow-hidden group hover:shadow-[0_12px_20px_rgba(0,0,0,0.15)] transition-all duration-300 transform hover:-translate-y-2 border-4 border-slate-800 shadow-[0_8px_0_0_rgba(15,23,42,1)] h-72 flex flex-col justify-center items-center ${tema.color} active:translate-y-1 active:shadow-[0_4px_0_0_rgba(15,23,42,1)] w-full"
+                >
+                    <!-- Ikon Latar -->
+                    <div class="absolute inset-0 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 ease-in-out opacity-10 pointer-events-none">
+                        <i data-lucide="${tema.icon}" style="width: 180px; height: 180px;"></i>
+                    </div>
+                    
+                    <div class="relative z-10 flex flex-col items-center justify-center h-full">
+                        <span class="inline-block bg-white bg-opacity-70 text-slate-800 px-4 py-1.5 rounded-full text-sm font-black uppercase tracking-widest mb-4 border-2 border-slate-800">
+                            TEMA ${tema.temaNumber}
+                        </span>
+                        <h3 class="comic-font text-3xl sm:text-4xl font-black leading-tight text-slate-900 drop-shadow-sm uppercase">
+                            ${tema.title}
+                        </h3>
+                    </div>
+                    
+                    <div class="relative z-10 mt-auto flex justify-center w-full pb-2">
+                        <div class="bg-white p-3 rounded-full border-2 border-slate-800 group-hover:bg-slate-800 group-hover:text-white transition-colors shadow-sm">
+                            <i data-lucide="arrow-left" style="transform: rotate(180deg); stroke-width: 3px;"></i>
+                        </div>
+                    </div>
+                </button>
+            `).join('');
+
+            return `
+            <div class="min-h-screen font-sans p-4 sm:p-8 bg-pattern">
+                <div class="max-w-6xl mx-auto relative">
+                    
+                    <!-- Hiasan Latar Utama -->
+                    <div class="absolute top-0 right-0 text-yellow-500 opacity-40 animate-pulse hidden md:block">
+                        <i data-lucide="sparkles" style="width: 64px; height: 64px;"></i>
+                    </div>
+                    
+                    <!-- Header Bar Utama -->
+                    <header class="bg-slate-800 text-white px-8 py-5 rounded-[2rem] flex items-center justify-between mb-8 shadow-[0_8px_0_0_rgba(15,23,42,1)] border-4 border-slate-900 relative z-10">
+                        <div class="w-12 flex items-center justify-center">
+                            <i data-lucide="book" class="text-sky-300" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <h1 class="comic-font text-2xl sm:text-4xl font-black tracking-widest text-center uppercase flex-1">
+                            Bahasa Melayu Tahun 4
+                        </h1>
+                        <div class="w-12 flex items-center justify-center">
+                            <div class="animate-spin-slow text-yellow-400">
+                                <i data-lucide="star" style="fill: currentColor; width: 36px; height: 36px;"></i>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Kotak Arahan -->
+                    <div class="bg-white p-5 rounded-[2rem] border-4 border-dashed border-sky-400 text-center mb-12 shadow-lg max-w-3xl mx-auto relative z-10 rotate-1">
+                        <p class="comic-font text-xl sm:text-2xl text-slate-700 font-bold">
+                            Pilih tema untuk mula belajar! ✨
+                        </p>
+                    </div>
+
+                    <!-- Tajuk Bahagian Menu -->
+                    <div class="flex flex-col items-center justify-center mb-10 gap-4 text-center">
+                        <div>
+                            <h2 class="text-sm font-black text-sky-600 uppercase tracking-widest mb-2 bg-white inline-block px-3 py-1 rounded-full border-2 border-sky-200">MENU PEMBELAJARAN</h2>
+                            <h3 class="comic-font text-4xl font-black text-slate-800 uppercase">Pilih Tema Anda</h3>
+                        </div>
+                        <div class="bg-white border-4 border-slate-800 px-6 py-3 rounded-full font-black text-slate-800 shadow-[0_4px_0_0_rgba(15,23,42,1)] text-lg mt-2">
+                            5 Tema • 15 Unit
+                        </div>
+                    </div>
+
+                    <!-- Grid Tema -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
+                        ${cardsHTML}
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        // Paparan Senarai Unit (Tema View)
+        function getTemaViewHTML() {
+            let unitsHTML = selectedTema.units.map((unit, index) => {
+                let textColorClass = selectedTema.color.split(' ').find(c => c.startsWith('text-'));
+                return `
+                <button
+                    onclick="handleSetUnit('${unit.id}')"
+                    class="w-full text-center bg-white rounded-[2rem] p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-b-8 border-slate-800 flex flex-col items-center justify-center group cursor-pointer animate-fadeInUp gap-4"
+                    style="animation-delay: ${index * 0.1}s; animation-fill-mode: both;"
+                >
+                    <div class="flex flex-col items-center gap-4 w-full">
+                        <div class="w-20 h-20 rounded-[1.5rem] flex items-center justify-center text-3xl font-black ${selectedTema.color} border-4 border-slate-800 shadow-inner rotate-3 group-hover:rotate-6 transition-transform mx-auto">
+                            ${unit.unitNumber}
+                        </div>
+                        <div class="text-center">
+                            <span class="text-sm font-bold text-slate-400 uppercase tracking-widest block mb-1">UNIT ${unit.unitNumber}</span>
+                            <h3 class="text-2xl sm:text-3xl font-black text-slate-700 group-hover:text-slate-900 transition-colors leading-tight">${unit.title}</h3>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 mt-2">
+                        <span class="text-lg font-bold text-slate-400 bg-slate-100 px-4 py-2 rounded-xl border-2 border-slate-200 shadow-inner">
+                            M/S ${unit.page}
+                        </span>
+                        <div class="p-4 rounded-2xl ${selectedTema.color} border-4 border-slate-800 group-hover:bg-slate-800 group-hover:text-white transition-all shadow-md group-hover:scale-110 flex items-center justify-center">
+                            <i data-lucide="chevron-right" style="stroke-width: 3px; width: 28px; height: 28px;"></i>
+                        </div>
+                    </div>
+                </button>
+            `}).join('');
+            
+            let textColorClassForThemeLabel = selectedTema.color.split(' ').find(c => c.startsWith('text-'));
+
+            return `
+            <div class="min-h-screen font-sans p-4 sm:p-8 bg-pattern" style="background-color: ${selectedTema.hexBg};">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Header Tema -->
+                    <div class="flex items-center justify-between mb-10 bg-white p-6 rounded-[2rem] shadow-lg border-4 border-slate-800 animate-slideDown">
+                        <button 
+                            onclick="handleHomeClick()"
+                            class="flex items-center gap-2 text-slate-700 hover:bg-slate-100 px-5 py-3 rounded-2xl transition-colors font-bold border-2 border-transparent hover:border-slate-300"
+                        >
+                            <i data-lucide="arrow-left" style="width: 28px; height: 28px;"></i>
+                            <span class="hidden sm:inline uppercase tracking-wider">KEMBALI</span>
+                        </button>
+                        <div class="text-center flex-1">
+                            <span class="text-base font-black ${textColorClassForThemeLabel} tracking-widest uppercase bg-opacity-20 px-4 py-1 rounded-full inline-block mb-1">
+                                TEMA ${selectedTema.temaNumber}
+                            </span>
+                            <h2 class="text-3xl sm:text-4xl font-black text-slate-800 mt-2 uppercase">${selectedTema.title}</h2>
+                        </div>
+                        <div class="w-16"></div> <!-- Spacer -->
+                    </div>
+
+                    <!-- Senarai Unit -->
+                    <div class="space-y-6">
+                        ${unitsHTML}
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        // Paparan Pembelajaran (Unit View)
+        function getUnitViewHTML() {
+            return `
+            <div class="min-h-screen font-sans p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden bg-pattern">
+                
+                <!-- Elemen hiasan terapung -->
+                <div class="absolute top-10 left-10 text-yellow-400 opacity-50 animate-pulse">
+                    <i data-lucide="sparkles" style="width: 48px; height: 48px;"></i>
+                </div>
+                <div class="absolute bottom-20 right-10 text-pink-400 opacity-50 animate-bounce">
+                    <i data-lucide="star" style="width: 40px; height: 40px;"></i>
+                </div>
+
+                <div class="max-w-2xl w-full bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border-8 border-sky-200 z-10 animate-zoomIn">
+                    <div class="bg-sky-400 p-6 flex items-center justify-between border-b-8 border-sky-500 rounded-t-[2rem]">
+                        <button 
+                            onclick="handleBackToTema()"
+                            class="text-white hover:bg-sky-500 p-3 rounded-full transition-colors flex items-center gap-2 border-2 border-transparent hover:border-white"
+                        >
+                            <i data-lucide="arrow-left" style="width: 28px; height: 28px;"></i>
+                            <span class="font-bold text-lg hidden sm:inline tracking-wider">KEMBALI</span>
+                        </button>
+                        <h2 class="text-white text-2xl font-black uppercase tracking-widest drop-shadow-md text-center flex-1">UNIT ${selectedUnit.unitNumber}</h2>
+                        <button 
+                            onclick="handleHomeClick()"
+                            class="text-white hover:bg-sky-500 p-3 rounded-full transition-colors border-2 border-transparent hover:border-white"
+                        >
+                            <i data-lucide="home" style="width: 28px; height: 28px;"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="p-12 text-center bg-gradient-to-b from-sky-50 to-white">
+                        <h1 class="text-4xl sm:text-5xl font-black text-sky-800 mb-8 drop-shadow-sm leading-tight text-center mx-auto">${selectedUnit.title}</h1>
+                        <div class="bg-white p-10 rounded-[2rem] border-4 border-dashed border-sky-300 shadow-inner flex flex-col items-center text-center">
+                            <p class="text-xl text-sky-700 font-medium">Mari belajar <strong class="text-sky-900">Unit ${selectedUnit.unitNumber}</strong> bersama-sama!</p>
+                            <p class="text-lg text-sky-600 mt-2">Buka buku teks muka surat <strong class="text-sky-900">${selectedUnit.page}</strong>.</p>
+                            
+                            <div class="mt-10 animate-bounce flex justify-center">
+                                <i data-lucide="book" class="text-sky-400" style="width: 80px; height: 80px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        // Mulakan aplikasi apabila halaman siap dimuatkan
+        window.onload = () => {
+            renderApp();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Melayu Tahun 5 - Tema 3: Utamakan Keselamatan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font-Awesome for fallback icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Fredoka for Kid Friendly Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fredoka', cursive, sans-serif;
+            background: linear-gradient(135deg, #a8ff78 0%, #78ffd6 100%);
+            min-height: 100vh;
+        }
+
+        .bg-pattern {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#ffd166 2px, transparent 2px), radial-gradient(#06d6a0 2px, #fdfbf7 2px);
+            background-size: 80px 80px;
+            background-position: 0 0, 40px 40px;
+        }
+
+        .btn-bounce {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-bounce:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .btn-bounce:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Drag & Drop Styling */
+        .draggable {
+            cursor: grab;
+            user-select: none;
+            touch-action: none;
+        }
+        .draggable:active {
+            cursor: grabbing;
+        }
+        .drop-zone {
+            transition: all 0.2s ease;
+        }
+        .drop-zone.drag-over {
+            background-color: #fef08a !important;
+            border-color: #eab308 !important;
+            transform: scale(1.05);
+        }
+
+        /* Modal & Animations */
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            80% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop {
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+    </style>
+</head>
+<body class="bg-pattern min-height-screen flex flex-col justify-between text-gray-800">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-amber-400 border-b-8 border-amber-500 p-4 shadow-lg sticky top-0 z-40">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            
+            <!-- Left Controls: Home & Back -->
+            <div class="flex items-center gap-3">
+                <!-- Home Button -->
+                <button onclick="window.location.href='index.html'" title="Ke Halaman Utama (index.html)" class="btn-bounce bg-white p-2 md:p-3 rounded-2xl border-4 border-amber-600 shadow-md flex items-center justify-center">
+                    <img src="home.png" alt="[Imej Laman Utama]" class="w-8 h-8 md:w-10 md:h-10 object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-home text-amber-600 text-2xl md:text-3xl\'></i>';">
+                </button>
+
+                <!-- Back Button -->
+                <button id="btn-back" onclick="goBack()" title="Kembali ke Halaman Sebelumnya" class="btn-bounce bg-white p-2 md:p-3 rounded-2xl border-4 border-amber-600 shadow-md flex items-center justify-center hidden">
+                    <img src="kembali.png" alt="[Imej Kembali]" class="w-8 h-8 md:w-10 md:h-10 object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-arrow-left text-amber-600 text-2xl md:text-3xl\'></i>';">
+                </button>
+            </div>
+
+            <!-- Title -->
+            <div class="text-center px-2">
+                <h1 class="text-xl md:text-3xl font-extrabold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] tracking-wide">
+                    Bahasa Melayu Tahun 5
+                </h1>
+                <p class="text-xs md:text-base font-bold text-amber-900 bg-amber-200 px-3 py-0.5 rounded-full inline-block mt-1">
+                    Tema 3: Utamakan Keselamatan
+                </p>
+            </div>
+
+            <!-- Decorative Kid Badge -->
+            <div class="hidden sm:flex items-center gap-2 bg-amber-100 border-2 border-amber-400 px-3 py-1.5 rounded-2xl">
+                <span class="text-2xl">🛡️</span>
+                <span class="text-xs font-bold text-amber-800">Mari Belajar!</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-5xl mx-auto w-full p-4 md:p-6 flex-grow">
+
+        <!-- ================= HOME PAGE / MENU ================= -->
+        <section id="page-home" class="space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-emerald-400 shadow-xl text-center relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-emerald-100 rounded-full z-0 opacity-50"></div>
+                <div class="relative z-10">
+                    <span class="text-5xl md:text-6xl mb-2 inline-block animate-bounce">🚨</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-emerald-600 mb-2">Pilih Unit Pembelajaran</h2>
+                    <p class="text-gray-600 text-sm md:text-lg max-w-xl mx-auto">
+                        Sila pilih unit di bawah untuk memulakan aktiviti pemahaman dan latihan interaktif!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Unit 7 Card -->
+                <div onclick="navigate('unit7')" class="btn-bounce bg-pink-100 border-4 border-pink-400 rounded-3xl p-6 shadow-lg cursor-pointer flex flex-col items-center text-center relative">
+                    <span class="bg-pink-500 text-white font-extrabold text-xs px-3 py-1 rounded-full absolute top-4 left-4">UNIT 7</span>
+                    <div class="w-24 h-24 bg-pink-200 rounded-full flex items-center justify-center my-4 border-4 border-pink-300">
+                        <span class="text-5xl">🤔</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-pink-700 mb-2">Fikir Dahulu Sebelum Buat</h3>
+                    <p class="text-xs text-pink-900 font-medium bg-white/80 p-2 rounded-xl w-full border border-pink-200">
+                        Aktiviti Pemahaman (Pilihan Jawapan)
+                    </p>
+                    <button class="mt-4 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-2xl shadow-md w-full">
+                        Mula <i class="fas fa-play ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Unit 8 Card -->
+                <div onclick="navigate('unit8')" class="btn-bounce bg-blue-100 border-4 border-blue-400 rounded-3xl p-6 shadow-lg cursor-pointer flex flex-col items-center text-center relative">
+                    <span class="bg-blue-500 text-white font-extrabold text-xs px-3 py-1 rounded-full absolute top-4 left-4">UNIT 8</span>
+                    <div class="w-24 h-24 bg-blue-200 rounded-full flex items-center justify-center my-4 border-4 border-blue-300">
+                        <span class="text-5xl">🚲</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-700 mb-2">Seronoknya ke Sekolah</h3>
+                    <p class="text-xs text-blue-900 font-medium bg-white/80 p-2 rounded-xl w-full border border-blue-200">
+                        Isi Tempat Kosong (Tarik & Lepas)
+                    </p>
+                    <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-2xl shadow-md w-full">
+                        Mula <i class="fas fa-play ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Unit 9 Card -->
+                <div onclick="navigate('unit9')" class="btn-bounce bg-purple-100 border-4 border-purple-400 rounded-3xl p-6 shadow-lg cursor-pointer flex flex-col items-center text-center relative">
+                    <span class="bg-purple-500 text-white font-extrabold text-xs px-3 py-1 rounded-full absolute top-4 left-4">UNIT 9</span>
+                    <div class="w-24 h-24 bg-purple-200 rounded-full flex items-center justify-center my-4 border-4 border-purple-300">
+                        <span class="text-5xl">🤟</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-purple-700 mb-2">Jangan Cuai</h3>
+                    <p class="text-xs text-purple-900 font-medium bg-white/80 p-2 rounded-xl w-full border border-purple-200">
+                        Padankan Perkataan & Kod Isyarat
+                    </p>
+                    <button class="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-6 rounded-2xl shadow-md w-full">
+                        Mula <i class="fas fa-play ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= UNIT 7 ================= -->
+        <section id="page-unit7" class="hidden space-y-6">
+            <div class="bg-pink-500 text-white p-5 rounded-3xl border-4 border-pink-600 shadow-md flex items-center justify-between">
+                <div>
+                    <span class="bg-pink-700 text-xs font-bold px-3 py-1 rounded-full uppercase">Unit 7</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mt-1">Fikir Dahulu Sebelum Buat</h2>
+                    <p class="text-pink-100 text-xs md:text-sm">Aktiviti Pemahaman: Pilih jawapan yang tepat.</p>
+                </div>
+                <span class="text-4xl md:text-5xl">🧯</span>
+            </div>
+
+            <div class="bg-white rounded-3xl p-5 md:p-8 border-4 border-pink-300 shadow-lg space-y-6">
+                <!-- Question 1 -->
+                <div class="p-4 rounded-2xl bg-pink-50 border-2 border-pink-200" id="u7-q1-container">
+                    <label class="block font-bold text-gray-800 text-base md:text-lg mb-2">
+                        1. Apakah kegunaan alat pemadam api yang disediakan di bengkel RBT?
+                    </label>
+                    <select id="u7-q1" class="w-full p-3 bg-white border-2 border-pink-300 rounded-xl font-medium focus:ring-4 focus:ring-pink-300 focus:outline-none text-gray-700">
+                        <option value="">-- Pilih Jawapan --</option>
+                        <option value="Untuk memadam api">Untuk memadam api</option>
+                        <option value="Untuk hiasan bengkel">Untuk hiasan bengkel</option>
+                        <option value="Untuk disembur sesuka hati">Untuk disembur sesuka hati</option>
+                    </select>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="p-4 rounded-2xl bg-pink-50 border-2 border-pink-200" id="u7-q2-container">
+                    <label class="block font-bold text-gray-800 text-base md:text-lg mb-2">
+                        2. Mengapakah murid tidak boleh bermain dengan peralatan tajam?
+                    </label>
+                    <select id="u7-q2" class="w-full p-3 bg-white border-2 border-pink-300 rounded-xl font-medium focus:ring-4 focus:ring-pink-300 focus:outline-none text-gray-700">
+                        <option value="">-- Pilih Jawapan --</option>
+                        <option value="Kerana boleh menggembirakan rakan">Kerana boleh menggembirakan rakan</option>
+                        <option value="Kerana boleh mencederakan diri atau rakan">Kerana boleh mencederakan diri atau rakan</option>
+                        <option value="Kerana tidak berbahaya kepada diri dan rakan">Kerana tidak berbahaya kepada diri dan rakan</option>
+                    </select>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="p-4 rounded-2xl bg-pink-50 border-2 border-pink-200" id="u7-q3-container">
+                    <label class="block font-bold text-gray-800 text-base md:text-lg mb-2">
+                        3. Mengapakah murid mesti memakai apron ketika melakukan aktiviti?
+                    </label>
+                    <select id="u7-q3" class="w-full p-3 bg-white border-2 border-pink-300 rounded-xl font-medium focus:ring-4 focus:ring-pink-300 focus:outline-none text-gray-700">
+                        <option value="">-- Pilih Jawapan --</option>
+                        <option value="Supaya nampak bergaya">Supaya nampak bergaya</option>
+                        <option value="Supaya pakaian tidak kotor">Supaya pakaian tidak kotor</option>
+                        <option value="Supaya kerja tidak siap">Supaya kerja tidak siap</option>
+                    </select>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="p-4 rounded-2xl bg-pink-50 border-2 border-pink-200" id="u7-q4-container">
+                    <label class="block font-bold text-gray-800 text-base md:text-lg mb-2">
+                        4. Jika berlaku kecederaan kecil, apakah yang perlu kamu lakukan?
+                    </label>
+                    <select id="u7-q4" class="w-full p-3 bg-white border-2 border-pink-300 rounded-xl font-medium focus:ring-4 focus:ring-pink-300 focus:outline-none text-gray-700">
+                        <option value="">-- Pilih Jawapan --</option>
+                        <option value="Merakamkan video untuk diviralkan">Merakamkan video untuk diviralkan</option>
+                        <option value="Mengubat luka menggunakan alatan dari peti kecemasan">Mengubat luka menggunakan alatan dari peti kecemasan</option>
+                        <option value="Mengabaikan kecederaan tersebut kerana tidak memudaratkan">Mengabaikan kecederaan tersebut kerana tidak memudaratkan</option>
+                    </select>
+                </div>
+
+                <!-- Check Answer Button -->
+                <button onclick="checkUnit7()" class="btn-bounce w-full bg-emerald-500 hover:bg-emerald-600 text-white text-xl font-extrabold py-4 rounded-2xl shadow-lg border-b-4 border-emerald-700 flex items-center justify-center gap-3">
+                    <i class="fas fa-check-circle text-2xl"></i> Semak Jawapan
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= UNIT 8 ================= -->
+        <section id="page-unit8" class="hidden space-y-6">
+            <div class="bg-blue-500 text-white p-5 rounded-3xl border-4 border-blue-600 shadow-md flex items-center justify-between">
+                <div>
+                    <span class="bg-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase">Unit 8</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mt-1">Seronoknya ke Sekolah</h2>
+                    <p class="text-blue-100 text-xs md:text-sm">Aktiviti Pemahaman: Lengkapkan Peraturan di Jalan Raya.</p>
+                </div>
+                <span class="text-4xl md:text-5xl">🚦</span>
+            </div>
+
+            <!-- Word Bank Box -->
+            <div class="bg-amber-100 border-4 border-amber-300 rounded-3xl p-5 shadow-md">
+                <h3 class="text-center font-extrabold text-amber-800 mb-3 text-lg">
+                    ✨ Pilihan Jawapan (Tarik / Tekan dan masukkan ke dalam kotak) ✨
+                </h3>
+                <div id="u8-word-bank" class="flex flex-wrap justify-center gap-3 min-h-[60px] p-2 bg-white/70 rounded-2xl border-2 border-dashed border-amber-300">
+                    <!-- Dynamic draggable words will be populated here -->
+                </div>
+            </div>
+
+            <!-- Sentence Filling Box -->
+            <div class="bg-white rounded-3xl p-5 md:p-8 border-4 border-blue-300 shadow-lg space-y-5 text-gray-800">
+                
+                <!-- Item 1 -->
+                <div class="p-4 rounded-2xl bg-blue-50 border-2 border-blue-200 flex flex-wrap items-center gap-2 text-base md:text-lg leading-relaxed">
+                    <span>• Murid</span>
+                    <div id="u8-box-1" data-correct="dikehendaki" class="drop-zone min-w-[140px] h-11 border-2 border-dashed border-blue-400 bg-white rounded-xl flex items-center justify-center px-3 font-bold text-blue-700 shadow-inner"></div>
+                    <span>berjalan kaki sehingga berada di hadapan sekolah.</span>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="p-4 rounded-2xl bg-blue-50 border-2 border-blue-200 flex flex-wrap items-center gap-2 text-base md:text-lg leading-relaxed">
+                    <span>• Murid perlu</span>
+                    <div id="u8-box-2" data-correct="mematuhi" class="drop-zone min-w-[140px] h-11 border-2 border-dashed border-blue-400 bg-white rounded-xl flex items-center justify-center px-3 font-bold text-blue-700 shadow-inner"></div>
+                    <span>arahan petugas yang mengawal lalu lintas pada waktu pergi dan balik sekolah.</span>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="p-4 rounded-2xl bg-blue-50 border-2 border-blue-200 flex flex-wrap items-center gap-2 text-base md:text-lg leading-relaxed">
+                    <span>• Murid mestilah berdiri di kaki lima atau bahu jalan ketika hendak</span>
+                    <div id="u8-box-3" data-correct="melintasi" class="drop-zone min-w-[140px] h-11 border-2 border-dashed border-blue-400 bg-white rounded-xl flex items-center justify-center px-3 font-bold text-blue-700 shadow-inner"></div>
+                    <span>jalan raya.</span>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="p-4 rounded-2xl bg-blue-50 border-2 border-blue-200 flex flex-wrap items-center gap-2 text-base md:text-lg leading-relaxed">
+                    <span>• Murid dikehendaki memastikan basikal dalam</span>
+                    <div id="u8-box-4" data-correct="keadaan" class="drop-zone min-w-[140px] h-11 border-2 border-dashed border-blue-400 bg-white rounded-xl flex items-center justify-center px-3 font-bold text-blue-700 shadow-inner"></div>
+                    <span>baik.</span>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="p-4 rounded-2xl bg-blue-50 border-2 border-blue-200 flex flex-wrap items-center gap-2 text-base md:text-lg leading-relaxed">
+                    <span>• Murid dilarang</span>
+                    <div id="u8-box-5" data-correct="mengayuh" class="drop-zone min-w-[140px] h-11 border-2 border-dashed border-blue-400 bg-white rounded-xl flex items-center justify-center px-3 font-bold text-blue-700 shadow-inner"></div>
+                    <span>basikal terlalu laju.</span>
+                </div>
+
+                <!-- Check Answer Button -->
+                <button onclick="checkUnit8()" class="btn-bounce w-full bg-emerald-500 hover:bg-emerald-600 text-white text-xl font-extrabold py-4 rounded-2xl shadow-lg border-b-4 border-emerald-700 flex items-center justify-center gap-3">
+                    <i class="fas fa-check-circle text-2xl"></i> Semak Jawapan
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= UNIT 9 ================= -->
+        <section id="page-unit9" class="hidden space-y-6">
+            <div class="bg-purple-500 text-white p-5 rounded-3xl border-4 border-purple-600 shadow-md flex items-center justify-between">
+                <div>
+                    <span class="bg-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase">Unit 9</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mt-1">Jangan Cuai</h2>
+                    <p class="text-purple-100 text-xs md:text-sm">Aktiviti Padankan: Padankan perkataan dengan kod isyarat yang betul.</p>
+                </div>
+                <span class="text-4xl md:text-5xl">🖐️</span>
+            </div>
+
+            <!-- Image Bank Box -->
+            <div class="bg-pink-100 border-4 border-pink-300 rounded-3xl p-5 shadow-md">
+                <h3 class="text-center font-extrabold text-pink-800 mb-3 text-lg">
+                    🖼️ Pilihan Kod Isyarat (Tarik / Tekan kad gambar ke petak padanan) 🖼️
+                </h3>
+                <div id="u9-image-bank" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 p-2 bg-white/70 rounded-2xl border-2 border-dashed border-pink-300">
+                    <!-- Dynamic draggable image cards will be placed here -->
+                </div>
+            </div>
+
+            <!-- Matching Grid -->
+            <div class="bg-white rounded-3xl p-5 md:p-8 border-4 border-purple-300 shadow-lg space-y-6">
+                
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                    <!-- Matching Slot 1 -->
+                    <div class="p-4 bg-purple-50 border-2 border-purple-200 rounded-2xl flex flex-col items-center justify-between space-y-3">
+                        <div class="bg-purple-600 text-white font-extrabold text-lg px-4 py-1.5 rounded-xl w-full text-center shadow-sm">
+                            Bilik
+                        </div>
+                        <div id="u9-box-1" data-correct="Bilik.png" class="u9-drop-zone w-full h-32 border-2 border-dashed border-purple-400 bg-white rounded-xl flex items-center justify-center p-1 shadow-inner">
+                            <span class="text-xs text-gray-400 text-center font-medium">Letak Gambar Di Sini</span>
+                        </div>
+                    </div>
+
+                    <!-- Matching Slot 2 -->
+                    <div class="p-4 bg-purple-50 border-2 border-purple-200 rounded-2xl flex flex-col items-center justify-between space-y-3">
+                        <div class="bg-purple-600 text-white font-extrabold text-lg px-4 py-1.5 rounded-xl w-full text-center shadow-sm">
+                            Komputer
+                        </div>
+                        <div id="u9-box-2" data-correct="Komputer.png" class="u9-drop-zone w-full h-32 border-2 border-dashed border-purple-400 bg-white rounded-xl flex items-center justify-center p-1 shadow-inner">
+                            <span class="text-xs text-gray-400 text-center font-medium">Letak Gambar Di Sini</span>
+                        </div>
+                    </div>
+
+                    <!-- Matching Slot 3 -->
+                    <div class="p-4 bg-purple-50 border-2 border-purple-200 rounded-2xl flex flex-col items-center justify-between space-y-3">
+                        <div class="bg-purple-600 text-white font-extrabold text-lg px-4 py-1.5 rounded-xl w-full text-center shadow-sm">
+                            Telefon
+                        </div>
+                        <div id="u9-box-3" data-correct="Telefon.png" class="u9-drop-zone w-full h-32 border-2 border-dashed border-purple-400 bg-white rounded-xl flex items-center justify-center p-1 shadow-inner">
+                            <span class="text-xs text-gray-400 text-center font-medium">Letak Gambar Di Sini</span>
+                        </div>
+                    </div>
+
+                    <!-- Matching Slot 4 -->
+                    <div class="p-4 bg-purple-50 border-2 border-purple-200 rounded-2xl flex flex-col items-center justify-between space-y-3">
+                        <div class="bg-purple-600 text-white font-extrabold text-lg px-4 py-1.5 rounded-xl w-full text-center shadow-sm">
+                            Kipas
+                        </div>
+                        <div id="u9-box-4" data-correct="Kipas.png" class="u9-drop-zone w-full h-32 border-2 border-dashed border-purple-400 bg-white rounded-xl flex items-center justify-center p-1 shadow-inner">
+                            <span class="text-xs text-gray-400 text-center font-medium">Letak Gambar Di Sini</span>
+                        </div>
+                    </div>
+
+                    <!-- Matching Slot 5 -->
+                    <div class="p-4 bg-purple-50 border-2 border-purple-200 rounded-2xl flex flex-col items-center justify-between space-y-3">
+                        <div class="bg-purple-600 text-white font-extrabold text-lg px-4 py-1.5 rounded-xl w-full text-center shadow-sm">
+                            Menjaga
+                        </div>
+                        <div id="u9-box-5" data-correct="Menjaga.png" class="u9-drop-zone w-full h-32 border-2 border-dashed border-purple-400 bg-white rounded-xl flex items-center justify-center p-1 shadow-inner">
+                            <span class="text-xs text-gray-400 text-center font-medium">Letak Gambar Di Sini</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Check Answer Button -->
+                <button onclick="checkUnit9()" class="btn-bounce w-full bg-emerald-500 hover:bg-emerald-600 text-white text-xl font-extrabold py-4 rounded-2xl shadow-lg border-b-4 border-emerald-700 flex items-center justify-center gap-3">
+                    <i class="fas fa-check-circle text-2xl"></i> Semak Jawapan
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t-4 border-amber-300 py-4 text-center text-xs md:text-sm text-gray-500 font-bold mt-8">
+        Bahasa Melayu Tahun 5 • Tema 3 Utamakan Keselamatan
+    </footer>
+
+    <!-- Kid Friendly Alert / Notification Modal -->
+    <div id="modal-alert" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div id="modal-content" class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full border-8 text-center shadow-2xl transform transition-all animate-pop">
+            <div id="modal-icon" class="text-6xl mb-4">🎉</div>
+            <h3 id="modal-title" class="text-2xl font-black mb-2">Notifikasi</h3>
+            <p id="modal-message" class="text-gray-700 font-bold mb-6 text-base md:text-lg">Mesej di sini...</p>
+            <button onclick="closeModal()" class="btn-bounce bg-amber-400 hover:bg-amber-500 border-b-4 border-amber-600 text-amber-950 font-black text-lg py-3 px-8 rounded-2xl w-full">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // State variables
+        let currentPage = 'home';
+        let previousPage = 'home';
+
+        // Navigation function
+        function navigate(pageId) {
+            if (currentPage === pageId) return;
+
+            previousPage = currentPage;
+            currentPage = pageId;
+
+            // Hide all pages
+            document.getElementById('page-home').classList.add('hidden');
+            document.getElementById('page-unit7').classList.add('hidden');
+            document.getElementById('page-unit8').classList.add('hidden');
+            document.getElementById('page-unit9').classList.add('hidden');
+
+            // Show selected page
+            document.getElementById(`page-${pageId}`).classList.remove('hidden');
+
+            // Toggle Back button visibility
+            const backBtn = document.getElementById('btn-back');
+            if (pageId === 'home') {
+                backBtn.classList.add('hidden');
+            } else {
+                backBtn.classList.remove('hidden');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Kemaskini fungsi goBack() untuk kembali ke page sebelumnya
+        function goBack() {
+            if (previousPage && previousPage !== currentPage) {
+                navigate(previousPage);
+            } else {
+                navigate('home');
+            }
+        }
+
+        // Kid Friendly Sound Synth Effect
+        function playSound(type) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                if (type === 'success') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(400, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.3);
+                    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                } else if (type === 'error') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(300, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.3);
+                    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                } else if (type === 'warn') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(500, ctx.currentTime);
+                    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.2);
+                }
+            } catch (e) {
+                // Audio Context fallback if blocked
+            }
+        }
+
+        // Show Custom Notification Modal
+        function showAlert(type, title, message) {
+            const modal = document.getElementById('modal-alert');
+            const modalContent = document.getElementById('modal-content');
+            const modalIcon = document.getElementById('modal-icon');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
+
+            modalMessage.textContent = message;
+            modalTitle.textContent = title;
+
+            if (type === 'success') {
+                playSound('success');
+                modalIcon.textContent = '🌟';
+                modalContent.className = "bg-emerald-50 border-8 border-emerald-400 rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl transform transition-all animate-pop";
+                modalTitle.className = "text-2xl font-black mb-2 text-emerald-700";
+            } else if (type === 'error') {
+                playSound('error');
+                modalIcon.textContent = '❌';
+                modalContent.className = "bg-rose-50 border-8 border-rose-400 rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl transform transition-all animate-pop";
+                modalTitle.className = "text-2xl font-black mb-2 text-rose-700";
+            } else {
+                playSound('warn');
+                modalIcon.textContent = '⚠️';
+                modalContent.className = "bg-amber-50 border-8 border-amber-400 rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl transform transition-all animate-pop";
+                modalTitle.className = "text-2xl font-black mb-2 text-amber-700";
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-alert').classList.add('hidden');
+        }
+
+
+        /* ================= UNIT 7 LOGIC ================= */
+        const unit7Answers = {
+            'u7-q1': 'Untuk memadam api',
+            'u7-q2': 'Kerana boleh mencederakan diri atau rakan',
+            'u7-q3': 'Supaya pakaian tidak kotor',
+            'u7-q4': 'Mengubat luka menggunakan alatan dari peti kecemasan'
+        };
+
+        function checkUnit7() {
+            let allFilled = true;
+            let uncompleteQuestions = [];
+
+            for (let i = 1; i <= 4; i++) {
+                const val = document.getElementById(`u7-q${i}`).value;
+                if (!val) {
+                    allFilled = false;
+                    uncompleteQuestions.push(i);
+                }
+            }
+
+            if (!allFilled) {
+                showAlert('warn', 'Kotak Belum Diisi!', `Sila isi jawapan untuk Soalan ${uncompleteQuestions.join(', ')} terlebih dahulu.`);
+                return;
+            }
+
+            let isAllCorrect = true;
+
+            for (let i = 1; i <= 4; i++) {
+                const selectEl = document.getElementById(`u7-q${i}`);
+                const userAns = selectEl.value;
+                const correctAns = unit7Answers[`u7-q${i}`];
+
+                if (userAns === correctAns) {
+                    selectEl.classList.remove('border-pink-300', 'border-rose-500');
+                    selectEl.classList.add('border-emerald-500', 'bg-emerald-50');
+                } else {
+                    isAllCorrect = false;
+                    selectEl.value = ""; // Kosongkan jawapan salah
+                    selectEl.classList.remove('border-pink-300', 'border-emerald-500', 'bg-emerald-50');
+                    selectEl.classList.add('border-rose-500', 'bg-rose-50');
+                }
+            }
+
+            if (isAllCorrect) {
+                showAlert('success', 'Tahniah!', 'Tahniah! Semua jawapan anda adalah betul!');
+            } else {
+                showAlert('error', 'Sila Cuba Lagi', 'Sila cuba lagi! Jawapan yang salah telah dikosongkan.');
+            }
+        }
+
+
+        /* ================= UNIT 8 LOGIC (DRAG & DROP WORDS) ================= */
+        const unit8Words = [
+            { id: 'w1', text: 'dikehendaki' },
+            { id: 'w2', text: 'mematuhi' },
+            { id: 'w3', text: 'melintasi' },
+            { id: 'w4', text: 'keadaan' },
+            { id: 'w5', text: 'mengayuh' }
+        ];
+
+        let selectedWordElem = null; // For click-to-place support
+
+        function initUnit8() {
+            const wordBank = document.getElementById('u8-word-bank');
+            wordBank.innerHTML = '';
+            
+            // Randomize order
+            const shuffled = [...unit8Words].sort(() => Math.random() - 0.5);
+
+            shuffled.forEach(item => {
+                const wordCard = document.createElement('div');
+                wordCard.id = item.id;
+                wordCard.dataset.word = item.text;
+                wordCard.draggable = true;
+                wordCard.className = 'draggable btn-bounce bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-xl shadow border-b-4 border-blue-700 cursor-pointer text-sm md:text-base';
+                wordCard.innerText = item.text;
+
+                // Drag events
+                wordCard.addEventListener('dragstart', handleDragStart);
+                // Touch/Click fallback
+                wordCard.addEventListener('click', handleWordClick);
+
+                wordBank.appendChild(wordCard);
+            });
+
+            // Set up Drop Zones
+            const dropZones = document.querySelectorAll('.drop-zone');
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('dragleave', handleDragLeave);
+                zone.addEventListener('drop', handleDrop);
+                zone.addEventListener('click', handleZoneClick);
+            });
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.id);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const zone = e.currentTarget;
+            zone.classList.remove('drag-over');
+
+            const cardId = e.dataTransfer.getData('text/plain');
+            const card = document.getElementById(cardId);
+
+            if (card) {
+                // If zone already has a word, move it back to bank
+                if (zone.children.length > 0) {
+                    document.getElementById('u8-word-bank').appendChild(zone.children[0]);
+                }
+                zone.appendChild(card);
+            }
+        }
+
+        // Mobile & Click alternative
+        function handleWordClick(e) {
+            const card = e.currentTarget;
+            if (selectedWordElem === card) {
+                card.classList.remove('ring-4', 'ring-yellow-400');
+                selectedWordElem = null;
+            } else {
+                if (selectedWordElem) {
+                    selectedWordElem.classList.remove('ring-4', 'ring-yellow-400');
+                }
+                selectedWordElem = card;
+                card.classList.add('ring-4', 'ring-yellow-400');
+            }
+        }
+
+        function handleZoneClick(e) {
+            const zone = e.currentTarget;
+            if (selectedWordElem) {
+                if (zone.children.length > 0) {
+                    document.getElementById('u8-word-bank').appendChild(zone.children[0]);
+                }
+                selectedWordElem.classList.remove('ring-4', 'ring-yellow-400');
+                zone.appendChild(selectedWordElem);
+                selectedWordElem = null;
+            } else if (zone.children.length > 0) {
+                // Move back to bank if clicked inside zone
+                document.getElementById('u8-word-bank').appendChild(zone.children[0]);
+            }
+        }
+
+        function checkUnit8() {
+            let allFilled = true;
+            let emptyBoxes = [];
+
+            for (let i = 1; i <= 5; i++) {
+                const zone = document.getElementById(`u8-box-${i}`);
+                if (zone.children.length === 0) {
+                    allFilled = false;
+                    emptyBoxes.push(i);
+                }
+            }
+
+            if (!allFilled) {
+                showAlert('warn', 'Kotak Belum Diisi!', `Sila isi tempat kosong untuk Kotak ${emptyBoxes.join(', ')} terlebih dahulu.`);
+                return;
+            }
+
+            let isAllCorrect = true;
+
+            for (let i = 1; i <= 5; i++) {
+                const zone = document.getElementById(`u8-box-${i}`);
+                const wordCard = zone.children[0];
+                const userWord = wordCard ? wordCard.dataset.word : '';
+                const correctWord = zone.dataset.correct;
+
+                if (userWord === correctWord) {
+                    zone.classList.remove('border-blue-400', 'border-rose-400');
+                    zone.classList.add('border-emerald-500', 'bg-emerald-50');
+                } else {
+                    isAllCorrect = false;
+                    // Kosongkan jawapan yang salah kembali ke bank
+                    document.getElementById('u8-word-bank').appendChild(wordCard);
+                    zone.classList.remove('border-emerald-500', 'bg-emerald-50');
+                    zone.classList.add('border-rose-400', 'bg-rose-50');
+                }
+            }
+
+            if (isAllCorrect) {
+                showAlert('success', 'Tahniah!', 'Tahniah! Semua jawapan anda adalah betul!');
+            } else {
+                showAlert('error', 'Sila Cuba Lagi', 'Sila cuba lagi! Jawapan yang salah telah dikosongkan.');
+            }
+        }
+
+
+        /* ================= UNIT 9 LOGIC (MATCHING SIGN LANGUAGE CARDS) ================= */
+        // Generator function for sign language SVG illustrations as fallbacks/primary graphics
+        function createSignSVG(type) {
+            let label = "";
+            let color = "#8b5cf6";
+            let icon = "✋";
+
+            if (type === 'Bilik.png') {
+                label = "BILIK";
+                color = "#3b82f6";
+                icon = "🚪🤟";
+            } else if (type === 'Komputer.png') {
+                label = "KOMPUTER";
+                color = "#ec4899";
+                icon = "💻🖐️";
+            } else if (type === 'Telefon.png') {
+                label = "TELEFON";
+                color = "#10b981";
+                icon = "📞🤙";
+            } else if (type === 'Kipas.png') {
+                label = "KIPAS";
+                color = "#f59e0b";
+                icon = "🌀✋";
+            } else if (type === 'Menjaga.png') {
+                label = "MENJAGA";
+                color = "#6366f1";
+                icon = "🛡️🤲";
+            }
+
+            return `
+                <div class="w-full h-full flex flex-col items-center justify-center p-2 text-center select-none">
+                    <img src="${type}" alt="[Imej ${label}]" class="max-h-16 w-auto object-contain" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="hidden flex-col items-center justify-center">
+                        <span class="text-3xl mb-1">${icon}</span>
+                        <span class="text-[10px] font-black tracking-wider text-white bg-black/30 px-2 py-0.5 rounded-full">KOD ISYARAT</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        const unit9Images = [
+            { id: 'img-1', file: 'Bilik.png' },
+            { id: 'img-2', file: 'Komputer.png' },
+            { id: 'img-3', file: 'Telefon.png' },
+            { id: 'img-4', file: 'Kipas.png' },
+            { id: 'img-5', file: 'Menjaga.png' }
+        ];
+
+        let selectedImgElem = null;
+
+        function initUnit9() {
+            const imgBank = document.getElementById('u9-image-bank');
+            imgBank.innerHTML = '';
+
+            const shuffled = [...unit9Images].sort(() => Math.random() - 0.5);
+
+            shuffled.forEach(item => {
+                const imgCard = document.createElement('div');
+                imgCard.id = item.id;
+                imgCard.dataset.file = item.file;
+                imgCard.draggable = true;
+                imgCard.className = 'draggable btn-bounce w-full h-28 bg-purple-500 rounded-xl border-b-4 border-purple-700 shadow flex items-center justify-center text-white cursor-pointer relative overflow-hidden';
+                imgCard.innerHTML = createSignSVG(item.file);
+
+                imgCard.addEventListener('dragstart', handleImgDragStart);
+                imgCard.addEventListener('click', handleImgClick);
+
+                imgBank.appendChild(imgCard);
+            });
+
+            const dropZones = document.querySelectorAll('.u9-drop-zone');
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', handleImgDragOver);
+                zone.addEventListener('dragleave', handleImgDragLeave);
+                zone.addEventListener('drop', handleImgDrop);
+                zone.addEventListener('click', handleU9ZoneClick);
+            });
+        }
+
+        function handleImgDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.id);
+        }
+
+        function handleImgDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleImgDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleImgDrop(e) {
+            e.preventDefault();
+            const zone = e.currentTarget;
+            zone.classList.remove('drag-over');
+
+            const cardId = e.dataTransfer.getData('text/plain');
+            const card = document.getElementById(cardId);
+
+            if (card) {
+                // If zone already has a card, move it back
+                const existingCard = zone.querySelector('.draggable');
+                if (existingCard) {
+                    document.getElementById('u9-image-bank').appendChild(existingCard);
+                }
+                
+                // Hide placeholder span if exists
+                const placeholder = zone.querySelector('span');
+                if (placeholder) placeholder.style.display = 'none';
+
+                zone.appendChild(card);
+            }
+        }
+
+        function handleImgClick(e) {
+            const card = e.currentTarget;
+            if (selectedImgElem === card) {
+                card.classList.remove('ring-4', 'ring-pink-400');
+                selectedImgElem = null;
+            } else {
+                if (selectedImgElem) {
+                    selectedImgElem.classList.remove('ring-4', 'ring-pink-400');
+                }
+                selectedImgElem = card;
+                card.classList.add('ring-4', 'ring-pink-400');
+            }
+        }
+
+        function handleU9ZoneClick(e) {
+            const zone = e.currentTarget;
+            const existingCard = zone.querySelector('.draggable');
+
+            if (selectedImgElem) {
+                if (existingCard) {
+                    document.getElementById('u9-image-bank').appendChild(existingCard);
+                }
+                selectedImgElem.classList.remove('ring-4', 'ring-pink-400');
+                
+                const placeholder = zone.querySelector('span');
+                if (placeholder) placeholder.style.display = 'none';
+
+                zone.appendChild(selectedImgElem);
+                selectedImgElem = null;
+            } else if (existingCard) {
+                document.getElementById('u9-image-bank').appendChild(existingCard);
+                const placeholder = zone.querySelector('span');
+                if (placeholder) placeholder.style.display = 'block';
+            }
+        }
+
+        function checkUnit9() {
+            let allFilled = true;
+            let emptyBoxes = [];
+
+            for (let i = 1; i <= 5; i++) {
+                const zone = document.getElementById(`u9-box-${i}`);
+                const card = zone.querySelector('.draggable');
+                if (!card) {
+                    allFilled = false;
+                    emptyBoxes.push(i);
+                }
+            }
+
+            if (!allFilled) {
+                showAlert('warn', 'Kotak Belum Diisi!', `Sila masukkan gambar kod isyarat untuk Kotak ${emptyBoxes.join(', ')} terlebih dahulu.`);
+                return;
+            }
+
+            let isAllCorrect = true;
+
+            for (let i = 1; i <= 5; i++) {
+                const zone = document.getElementById(`u9-box-${i}`);
+                const card = zone.querySelector('.draggable');
+                const userFile = card ? card.dataset.file : '';
+                const correctFile = zone.dataset.correct;
+
+                if (userFile === correctFile) {
+                    zone.classList.remove('border-purple-400', 'border-rose-400');
+                    zone.classList.add('border-emerald-500', 'bg-emerald-50');
+                } else {
+                    isAllCorrect = false;
+                    // Kosongkan jawapan salah kembali ke bank
+                    if (card) {
+                        document.getElementById('u9-image-bank').appendChild(card);
+                    }
+                    const placeholder = zone.querySelector('span');
+                    if (placeholder) placeholder.style.display = 'block';
+
+                    zone.classList.remove('border-emerald-500', 'bg-emerald-50');
+                    zone.classList.add('border-rose-400', 'bg-rose-50');
+                }
+            }
+
+            if (isAllCorrect) {
+                showAlert('success', 'Tahniah!', 'Tahniah! Semua jawapan padanan anda adalah betul!');
+            } else {
+                showAlert('error', 'Sila Cuba Lagi', 'Sila cuba lagi! Jawapan padanan yang salah telah dikosongkan.');
+            }
+        }
+
+
+        // Initialization on window load
+        window.onload = function() {
+            initUnit8();
+            initUnit9();
+        };
+    </script>
+</body>
+</html>
