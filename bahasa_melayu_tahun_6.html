@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Melayu Tahun 6</title>
+    
+    <!-- Memuatkan Tailwind CSS untuk gaya -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Konfigurasi animasi tambahan untuk Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.4s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Memuatkan Font Google (Fredoka dan Nunito) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Memuatkan FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Tambahan -->
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8fafc;
+            /* Corak latar belakang berbintik ceria */
+            background-image: radial-gradient(#cbd5e1 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+        
+        .font-tajuk {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Kesan butang 3D untuk kad tema */
+        .kad-tema {
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 0 0 rgba(0,0,0,0.05);
+            border: 4px solid white;
+            cursor: pointer;
+        }
+        
+        .kad-tema:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 0 0 rgba(0,0,0,0.08);
+            border-color: #e2e8f0;
+        }
+
+        .kad-tema:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 rgba(0,0,0,0.05);
+        }
+
+        /* Kelas untuk paparan penuh 16:9 (Fit to Screen) */
+        .kiosk-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            background-color: #334155; /* Latar belakang luar kawasan 16:9 (Letterbox) */
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Kotak 16:9 */
+        .kiosk-screen {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 2px, transparent 2px);
+            background-size: 30px 30px;
+            width: 100%;
+            height: 100%;
+            /* Mengekalkan nisbah 16:9 walau apa jua saiz skrin */
+            max-width: calc(100vh * (16 / 9));
+            max-height: calc(100vw * (9 / 16));
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="kiosk-wrapper">
+    
+    <!-- Kotak Paparan 16:9 -->
+    <div class="kiosk-screen p-4 md:p-8">
+        <!-- HEADER UTAMA -->
+        <header class="w-full flex flex-col items-center justify-center mb-6 mt-2 relative shrink-0">
+            <!-- Awan Hiasan di Latar Belakang -->
+            <div class="absolute -z-10 top-0 right-[20%] w-24 h-12 bg-white rounded-full opacity-60 blur-md"></div>
+            <div class="absolute -z-10 -top-4 left-[20%] w-32 h-16 bg-white rounded-full opacity-60 blur-md"></div>
+            
+            <div class="bg-white/80 backdrop-blur-sm py-2 px-8 rounded-full border-2 border-slate-200 shadow-sm mb-2">
+                <h1 class="font-tajuk text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 text-center tracking-wide">
+                    BAHASA MELAYU TAHUN 6
+                </h1>
+            </div>
+        </header>
+
+        <!-- KAWASAN KANDUNGAN UTAMA (Akan diubah menggunakan JavaScript) -->
+        <main id="app-content" class="w-full flex-1 flex flex-col justify-center">
+            <!-- Kandungan akan dimasukkan di sini oleh JS -->
+        </main>
+    </div>
+
+    <!-- LOGIK JAVASCRIPT -->
+    <script>
+        // --- DATA KANDUNGAN TEMA ---
+        // Nota: Cikgu boleh kemas kini teks di bawah mengikut sukatan sebenar Tahun 6.
+        const curriculumData = [
+            {
+                id: 1,
+                tema: "TEMA 1",
+                title: "Kekeluargaan",
+                range: "Unit 1 hingga Unit 3",
+                bgColor: "bg-[#ffd6e8]", // Merah Jambu
+                textColor: "text-pink-900",
+                badgeBg: "bg-pink-500",
+                icon: '<i class="fa-solid fa-heart"></i>',
+                units: [
+                    { unitNum: "Unit 1", title: "Bakat Unik" },
+                    { unitNum: "Unit 2", title: "Tanggungjawab Keluarga" },
+                    { unitNum: "Unit 3", title: "Mari Mengembara" }
+                ]
+            },
+            {
+                id: 2,
+                tema: "TEMA 2",
+                title: "Kesihatan dan Kebersihan",
+                range: "Unit 4 hingga Unit 6",
+                bgColor: "bg-[#dcfce7]", // Hijau
+                textColor: "text-green-900",
+                badgeBg: "bg-green-500",
+                icon: '<i class="fa-solid fa-wand-magic-sparkles"></i>',
+                units: [
+                    { unitNum: "Unit 4", title: "Badan Sihat Hidup Gembira" },
+                    { unitNum: "Unit 5", title: "Kebersihan Asas Kesihatan" },
+                    { unitNum: "Unit 6", title: "Amalan Cara Hidup Sihat" }
+                ]
+            },
+            {
+                id: 3,
+                tema: "TEMA 3",
+                title: "Keselamatan",
+                range: "Unit 7 hingga Unit 9",
+                bgColor: "bg-[#dbeafe]", // Biru
+                textColor: "text-blue-900",
+                badgeBg: "bg-blue-500",
+                icon: '<i class="fa-solid fa-shield-halved"></i>',
+                units: [
+                    { unitNum: "Unit 7", title: "Keselamatan Diri Tanggungjawab Bersama" },
+                    { unitNum: "Unit 8", title: "Keselamatan di Alam Siber" },
+                    { unitNum: "Unit 9", title: "Awasi Keselamatan Diri" }
+                ]
+            },
+            {
+                id: 4,
+                tema: "TEMA 4",
+                title: "Perpaduan",
+                range: "Unit 10 hingga Unit 12",
+                bgColor: "bg-[#fef08a]", // Kuning
+                textColor: "text-yellow-900",
+                badgeBg: "bg-yellow-500",
+                icon: '<i class="fa-solid fa-users"></i>',
+                units: [
+                    { unitNum: "Unit 10", title: "Berkat Perpaduan" },
+                    { unitNum: "Unit 11", title: "Bagai Aur dengan Tebing" },
+                    { unitNum: "Unit 12", title: "Bersama-sama Berpadu Tenaga" }
+                ]
+            },
+            {
+                id: 5,
+                tema: "TEMA 5",
+                title: "Kebudayaan, Kesenian dan Estetika",
+                range: "Unit 13 hingga Unit 15",
+                bgColor: "bg-[#f3e8ff]", // Ungu
+                textColor: "text-purple-900",
+                badgeBg: "bg-purple-500",
+                icon: '<i class="fa-solid fa-palette"></i>',
+                units: [
+                    { unitNum: "Unit 13", title: "Warisan Kesenian" },
+                    { unitNum: "Unit 14", title: "Cantiknya Budaya Bangsa" },
+                    { unitNum: "Unit 15", title: "Khazanah Berharga" }
+                ]
+            }
+        ];
+
+        const appContent = document.getElementById('app-content');
+
+        // Fungsi untuk memaparkan Menu Utama (Grid)
+        function paparkanMenuUtama() {
+            let html = `
+                <div class="animate-fade-in w-full h-full flex flex-col">
+                    <!-- Navigasi Butang Utama dan Kembali di Menu Utama -->
+                    <div class="flex gap-4 mb-2 md:mb-4 items-center shrink-0">
+                        <a href="index.html" class="hover:scale-105 transition-transform active:scale-95 inline-block">
+                            <img src="home.png" alt="Utama" class="h-10 md:h-12 w-auto object-contain drop-shadow-sm" onerror="this.onerror=null; this.outerHTML='<button class=\\'bg-white text-slate-700 px-5 py-2 rounded-full font-bold shadow-sm border border-slate-200\\'><i class=\\'fa-solid fa-house\\'></i> Utama</button>';">
+                        </a>
+
+                        <button onclick="window.history.back()" class="hover:scale-105 transition-transform active:scale-95 inline-block focus:outline-none cursor-pointer border-none bg-transparent p-0">
+                            <img src="kembali.png" alt="Kembali" class="h-10 md:h-12 w-auto object-contain drop-shadow-sm" onerror="this.onerror=null; this.outerHTML='<button class=\\'bg-slate-700 text-white px-5 py-2 rounded-full font-bold shadow-sm\\'><i class=\\'fa-solid fa-arrow-left\\'></i> Kembali</button>';">
+                        </button>
+                    </div>
+
+                    <div class="text-center mb-4 shrink-0">
+                        <span class="text-pink-500 font-bold tracking-widest text-sm uppercase bg-white px-4 py-1 rounded-full shadow-sm">
+                            Menu Utama
+                        </span>
+                        <h2 class="font-tajuk text-2xl mt-2 text-slate-700">Pilih Tema Pembelajaran</h2>
+                    </div>
+
+                    <!-- GRID 3x2 FIT SCREEN (Menggunakan 6 kolum untuk center baris kedua) -->
+                    <div class="grid grid-cols-6 grid-rows-2 gap-4 md:gap-6 flex-1 w-full max-w-6xl mx-auto pb-4">
+            `;
+
+            curriculumData.forEach((theme, index) => {
+                // Atur kedudukan untuk 5 item: 3 di atas, 2 di bawah (tengah)
+                let colClass = "col-span-2";
+                if (index === 3) {
+                    colClass = "col-start-2 col-span-2"; // Item ke-4 mula di kolum ke-2 (Baris kedua)
+                }
+
+                html += `
+                    <button onclick="paparkanUnitTema(${theme.id})" class="kad-tema ${colClass} ${theme.bgColor} w-full h-full rounded-[2rem] p-4 md:p-6 text-left relative overflow-hidden group flex flex-col">
+                        <div class="flex justify-between items-start mb-2 shrink-0">
+                            <span class="${theme.badgeBg} text-white font-bold px-3 py-1 rounded-full text-xs md:text-sm font-tajuk shadow-sm z-10 relative">
+                                ${theme.tema}
+                            </span>
+                            <div class="bg-white/50 p-2 rounded-full text-lg md:text-xl ${theme.textColor} z-10 relative">
+                                ${theme.icon}
+                            </div>
+                        </div>
+                        
+                        <div class="mt-auto relative z-10">
+                            <h3 class="font-tajuk text-xl md:text-2xl lg:text-3xl font-bold ${theme.textColor} leading-tight mb-1 group-hover:scale-105 origin-left transition-transform">
+                                ${theme.title}
+                            </h3>
+                            <p class="${theme.textColor} opacity-80 font-semibold text-xs md:text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-book-open"></i> ${theme.range}
+                            </p>
+                        </div>
+                        
+                        <!-- Ikon besar latar belakang -->
+                        <div class="absolute -bottom-4 -right-4 opacity-10 text-[6rem] ${theme.textColor} transform -rotate-12 group-hover:rotate-0 group-hover:scale-110 transition-all duration-300">
+                            ${theme.icon}
+                        </div>
+                    </button>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            appContent.innerHTML = html;
+        }
+
+        // Fungsi untuk memaparkan Senarai Unit selepas Tema ditekan
+        function paparkanUnitTema(themeId) {
+            const theme = curriculumData.find(t => t.id === themeId);
+            
+            let html = `
+                <div class="animate-fade-in w-full h-full flex flex-col max-w-5xl mx-auto">
+                    <!-- Navigasi Butang Utama dan Kembali Menggunakan Imej -->
+                    <div class="flex gap-4 mb-4 items-center shrink-0">
+                        <a href="index.html" class="hover:scale-105 transition-transform active:scale-95 inline-block">
+                            <img src="home.png" alt="Utama" class="h-10 md:h-12 w-auto object-contain drop-shadow-sm" onerror="this.onerror=null; this.outerHTML='<button class=\\'bg-white text-slate-700 px-5 py-2 rounded-full font-bold shadow-sm border border-slate-200\\'><i class=\\'fa-solid fa-house\\'></i> Utama</button>';">
+                        </a>
+
+                        <button onclick="paparkanMenuUtama()" class="hover:scale-105 transition-transform active:scale-95 inline-block focus:outline-none cursor-pointer border-none bg-transparent p-0">
+                            <img src="kembali.png" alt="Kembali" class="h-10 md:h-12 w-auto object-contain drop-shadow-sm" onerror="this.onerror=null; this.outerHTML='<button class=\\'bg-slate-700 text-white px-5 py-2 rounded-full font-bold shadow-sm\\'><i class=\\'fa-solid fa-arrow-left\\'></i> Kembali</button>';">
+                        </button>
+                    </div>
+
+                    <!-- Kad Tajuk Tema Terpilih -->
+                    <div class="${theme.bgColor} border-4 border-white shadow-sm rounded-2xl md:rounded-3xl p-4 md:p-6 mb-4 text-center relative overflow-hidden shrink-0">
+                        <div class="absolute -right-2 -top-2 opacity-10 text-[6rem] ${theme.textColor} transform rotate-12">
+                            ${theme.icon}
+                        </div>
+                        <span class="${theme.badgeBg} text-white font-bold px-4 py-1 rounded-full text-xs md:text-sm font-tajuk mb-2 inline-block shadow-sm">
+                            ${theme.tema}
+                        </span>
+                        <h2 class="font-tajuk text-2xl md:text-4xl font-bold ${theme.textColor} relative z-10">
+                            ${theme.title}
+                        </h2>
+                    </div>
+
+                    <!-- Senarai Sub Unit - Diregangkan secara automatik untuk muat 16:9 -->
+                    <div class="flex-1 flex flex-col gap-3 overflow-y-auto pb-4">
+            `;
+
+            theme.units.forEach(unit => {
+                const nomborUnit = unit.unitNum.replace('Unit ', '');
+                html += `
+                    <div class="bg-white border-2 border-slate-100 rounded-xl md:rounded-2xl p-3 md:p-5 flex items-center gap-4 md:gap-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer group flex-1">
+                        <div class="${theme.bgColor} ${theme.textColor} w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center font-tajuk font-bold text-xl md:text-2xl flex-shrink-0 border-2 border-white shadow-sm">
+                            ${nomborUnit}
+                        </div>
+                        <div class="flex-grow">
+                            <span class="text-slate-400 font-bold text-xs md:text-sm uppercase tracking-wider">${unit.unitNum}</span>
+                            <h3 class="font-tajuk text-lg md:text-xl lg:text-2xl text-slate-800 mt-1 group-hover:text-blue-600 transition-colors">
+                                ${unit.title}
+                            </h3>
+                        </div>
+                        <div class="hidden md:flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-50 text-slate-300 group-hover:bg-blue-50 group-hover:text-blue-500 transition-colors">
+                            <i class="fa-regular fa-circle-play text-2xl md:text-3xl"></i>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            appContent.innerHTML = html;
+        }
+
+        // Mulakan aplikasi dengan memaparkan menu utama
+        paparkanMenuUtama();
+    </script>
+</body>
+</html>
