@@ -770,7 +770,8 @@
         }
 
         function goHome() {
-            window.location.href = 'index.html';
+            navHistory = [];
+            navigateTo('view-home');
         }
 
         function updateNavButtons() {
