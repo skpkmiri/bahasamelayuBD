@@ -89,7 +89,26 @@
         }
     </style>
 </head>
-<body class="bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-kid-bg text-kid-text h-screen flex flex-col font-sans overflow-hidden selection:bg-kid-yellow selection:text-kid-text">
+<body class="bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-kid-bg text-kid-text h-screen flex flex-col font-sans overflow-hidden selection:bg-kid-yellow selection:text-kid-text relative">
+
+    <!-- BUTANG SKRIN PENUH (FULLSCREEN) -->
+    <button id="fullscreen-btn" class="absolute top-4 right-4 md:top-6 md:right-8 z-50 bg-white p-2 rounded-full shadow-md border-2 border-kid-blue hover:bg-kid-blue hover:text-white transition-colors duration-300 group outline-none" title="Papar Skrin Penuh">
+        <i class="fas fa-expand text-kid-blue group-hover:text-white text-lg md:text-xl"></i>
+    </button>
+
+    <!-- POPUP MESEJ SKRIN PENUH KOMPUTER (Tersembunyi secara lalai) -->
+    <div id="fullscreen-popup" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl border-4 border-kid-yellow transform transition-all text-center flex flex-col items-center">
+            <div class="bg-yellow-100 text-kid-yellow w-16 h-16 rounded-full flex items-center justify-center mb-4 border-2 border-kid-yellow">
+                <i class="fas fa-desktop text-3xl"></i>
+            </div>
+            <h3 class="font-display text-xl font-bold text-slate-800 mb-2">Makluman</h3>
+            <p class="text-slate-600 mb-6 font-medium">Sila tekan butang <span class="bg-slate-200 px-2 py-1 rounded text-slate-800 font-bold border border-slate-300">F11</span> pada papan kekunci anda untuk paparan skrin penuh di komputer.</p>
+            <button id="close-popup-btn" class="w-full bg-kid-blue text-white font-bold py-2.5 rounded-xl hover:bg-blue-600 transition-colors shadow-sm outline-none">
+                Faham & Tutup
+            </button>
+        </div>
+    </div>
 
     <header class="bg-gradient-to-r from-kid-blue via-kid-purple to-kid-pink text-white shadow-md z-20 border-b-4 border-white/30 rounded-b-2xl mx-3 md:mx-6 mt-0 md:mt-2 relative overflow-hidden">
         
@@ -422,6 +441,92 @@
             }
         `;
         document.head.appendChild(style);
+
+        // FUNGSI SKRIN PENUH
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const fullscreenIcon = fullscreenBtn.querySelector('i');
+        const popup = document.getElementById('fullscreen-popup');
+        const closePopupBtn = document.getElementById('close-popup-btn');
+
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                // Cuba untuk masuk mode skrin penuh
+                const docElm = document.documentElement;
+                let requestSuccess = false;
+
+                try {
+                    if (docElm.requestFullscreen) {
+                        docElm.requestFullscreen();
+                        requestSuccess = true;
+                    } else if (docElm.mozRequestFullScreen) { // Firefox
+                        docElm.mozRequestFullScreen();
+                        requestSuccess = true;
+                    } else if (docElm.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                        docElm.webkitRequestFullscreen();
+                        requestSuccess = true;
+                    } else if (docElm.msRequestFullscreen) { // IE/Edge
+                        docElm.msRequestFullscreen();
+                        requestSuccess = true;
+                    }
+                } catch (error) {
+                    console.log("Full screen API error:", error);
+                }
+
+                // Jika tiada ralat tapi tidak masuk skrin penuh, anggap ia perlukan F11 (di PC)
+                // Oleh kerana requestFullscreen adalah asynchronous, kita papar mesej dahulu jika gagal
+                // atau jika pelayar menolaknya (biasanya atas faktor keselamatan iFrame)
+                
+                // Cara lebih selamat untuk memaparkan mesej jika peranti adalah desktop
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                if (!isMobile) {
+                   popup.classList.remove('hidden');
+                }
+
+            } else {
+                // Keluar skrin penuh
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        });
+
+        // Tukar ikon apabila bertukar mode skrin
+        document.addEventListener('fullscreenchange', updateFullscreenIcon);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenIcon);
+        document.addEventListener('mozfullscreenchange', updateFullscreenIcon);
+        document.addEventListener('MSFullscreenChange', updateFullscreenIcon);
+
+        function updateFullscreenIcon() {
+            if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+                fullscreenIcon.classList.remove('fa-expand');
+                fullscreenIcon.classList.add('fa-compress');
+                fullscreenBtn.title = "Keluar Skrin Penuh";
+                popup.classList.add('hidden'); // Tutup popup jika berjaya
+            } else {
+                fullscreenIcon.classList.remove('fa-compress');
+                fullscreenIcon.classList.add('fa-expand');
+                fullscreenBtn.title = "Papar Skrin Penuh";
+            }
+        }
+
+        // Tutup Popup
+        closePopupBtn.addEventListener('click', () => {
+            popup.classList.add('hidden');
+        });
+        
+        // Tutup klik di luar kotak
+        popup.addEventListener('click', (e) => {
+            if(e.target === popup) {
+                popup.classList.add('hidden');
+            }
+        });
+
     </script>
 </body>
 </html>
