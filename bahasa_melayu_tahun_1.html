@@ -73,7 +73,6 @@
                 <h2 class="text-center text-sm sm:text-xl lg:text-3xl font-kids-title text-gray-700 mb-2 bg-white/90 inline-block px-4 lg:px-8 py-1 rounded-full border-2 lg:border-4 border-dashed border-pink-400 mx-auto w-fit shadow-sm flex-shrink-0">
                     Pilih Tema Pembelajaran
                 </h2>
-                <!-- GRID STRICT: Paksa elemen membahagi ruang tanpa scroll -->
                 <div id="theme-grid" class="grid grid-cols-1 grid-rows-6 sm:grid-cols-2 sm:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2 gap-2 sm:gap-4 lg:gap-6 flex-1 h-full w-full min-h-0 pb-2"></div>
             </div>
 
@@ -82,7 +81,6 @@
                 <div class="bg-white rounded-xl lg:rounded-3xl p-2 lg:p-4 shadow-lg border-2 lg:border-4 border-dashed border-blue-400 mb-2 lg:mb-4 text-center relative overflow-hidden flex-shrink-0">
                     <h2 id="current-theme-title" class="text-base sm:text-2xl lg:text-3xl font-kids-title relative z-10"></h2>
                 </div>
-                <!-- GRID STRICT UNIT -->
                 <div id="unit-grid" class="grid grid-cols-1 grid-rows-5 sm:grid-cols-2 sm:grid-rows-3 lg:grid-cols-5 lg:grid-rows-1 gap-2 lg:gap-5 flex-1 h-full w-full min-h-0 pb-2"></div>
             </div>
 
@@ -404,7 +402,6 @@
             
             let q = quizQuestions[currentQuizIndex];
             
-            // KUIZ FIT TO SCREEN (Tiada kotak putih berlebihan, terus bersatu dengan latar)
             let html = `<div class="w-full max-w-6xl mx-auto flex flex-col flex-1 h-full justify-center min-h-0">`;
             html += `<p class="font-bold text-gray-400 mb-2 lg:mb-4 text-xs lg:text-xl text-center flex-shrink-0 tracking-widest uppercase">Soalan ${currentQuizIndex + 1} / 10</p>`;
             
@@ -458,15 +455,15 @@
             }
         }
 
-        /* ----- FUNGSI MENYURIH UNIT 2 ----- */
+        /* ----- FUNGSI MENYURIH DENGAN 2 LAYER KANVAS & KATA POSITIF ----- */
         function startTracing(type) {
+            window.currentTraceType = type;
             const count = parseInt(document.getElementById('student-count').value);
             const workspace = document.getElementById('tracing-workspaces');
             
             workspace.classList.remove('hidden');
             workspace.innerHTML = '';
             
-            // STRICT GRID UNTUK MENYURIH (Tiada scroll, bahagi ruang sama rata)
             if (count === 1) workspace.className = "flex-1 w-full grid grid-cols-1 grid-rows-1 gap-2 lg:gap-4 h-full min-h-0 overflow-hidden";
             else if (count === 2) workspace.className = "flex-1 w-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 gap-2 lg:gap-4 h-full min-h-0 overflow-hidden";
             else if (count === 3) workspace.className = "flex-1 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-3 sm:grid-rows-2 lg:grid-rows-1 gap-2 lg:gap-4 h-full min-h-0 overflow-hidden";
@@ -476,78 +473,126 @@
                 const colors = ['border-pink-500', 'border-blue-500', 'border-green-500', 'border-orange-500'];
                 const box = document.createElement('div');
                 box.className = `bg-white rounded-xl lg:rounded-3xl border-2 lg:border-4 ${colors[i-1]} shadow-lg flex flex-col relative overflow-hidden h-full min-h-0`;
+                
+                // HTML baru: Terdapat 2 kanvas (bg-canvas untuk template kelabu, canvas untuk lukisan murid)
                 box.innerHTML = `
-                    <div class="bg-gray-100 p-1 lg:p-3 text-center border-b-2 lg:border-b-4 font-bold text-gray-700 flex justify-between items-center px-2 lg:px-6 text-[10px] lg:text-xl flex-shrink-0">
+                    <div class="bg-gray-100 p-1 lg:p-3 text-center border-b-2 lg:border-b-4 font-bold text-gray-700 flex justify-between items-center px-2 lg:px-6 text-[10px] lg:text-xl flex-shrink-0 z-10">
                         <span>Murid ${i}</span>
                         <span id="score-m${i}">Soalan 1/10</span>
                     </div>
-                    <canvas id="canvas-m${i}" class="flex-1 w-full cursor-crosshair touch-none min-h-0"></canvas>
-                    <div id="tahniah-m${i}" class="absolute inset-0 bg-white/90 hidden flex flex-col items-center justify-center z-10">
-                        <i class="fas fa-star text-4xl lg:text-7xl text-yellow-400 mb-1 lg:mb-4 animate-bounce"></i>
-                        <h2 class="text-lg lg:text-4xl font-kids-title text-green-500">TAHNIAH!</h2>
+                    <div class="relative flex-1 w-full min-h-0 bg-white">
+                        <canvas id="bg-canvas-m${i}" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+                        <canvas id="canvas-m${i}" class="absolute inset-0 w-full h-full cursor-crosshair touch-none"></canvas>
+                        
+                        <div id="feedback-m${i}" class="absolute inset-0 bg-white/90 hidden flex-col items-center justify-center z-20">
+                            <span id="feedback-text-m${i}" class="text-3xl lg:text-6xl font-kids-title text-pink-500 animate-bounce drop-shadow-md">BAGUS!</span>
+                        </div>
+                        
+                        <div id="tahniah-m${i}" class="absolute inset-0 bg-white/95 hidden flex flex-col items-center justify-center z-30">
+                            <i class="fas fa-star text-4xl lg:text-7xl text-yellow-400 mb-1 lg:mb-4 animate-bounce"></i>
+                            <h2 class="text-lg lg:text-4xl font-kids-title text-green-500">TAHNIAH!</h2>
+                        </div>
                     </div>
-                    <div class="p-1 lg:p-3 flex gap-2 lg:gap-4 justify-center bg-gray-50 border-t-2 lg:border-t-4 flex-shrink-0">
-                        <button onclick="clearCanvas('canvas-m${i}', '${type}')" class="bg-red-500 text-white px-2 lg:px-6 py-1 lg:py-2 rounded-full font-bold shadow-md text-[10px] lg:text-lg hover:bg-red-600 w-full max-w-[120px]">Padam</button>
-                        <button onclick="nextQuestion(${i}, '${type}')" class="bg-green-500 text-white px-2 lg:px-6 py-1 lg:py-2 rounded-full font-bold shadow-md text-[10px] lg:text-lg hover:bg-green-600 w-full max-w-[120px]">Seterusnya</button>
+                    <div class="p-1 lg:p-3 flex gap-2 lg:gap-4 justify-center bg-gray-50 border-t-2 lg:border-t-4 flex-shrink-0 z-10">
+                        <button onclick="clearCanvas(${i})" class="bg-red-500 text-white px-2 lg:px-6 py-1 lg:py-2 rounded-full font-bold shadow-md text-[10px] lg:text-lg hover:bg-red-600 w-full max-w-[120px]">Padam</button>
+                        <button onclick="submitTrace(${i})" class="bg-green-500 text-white px-2 lg:px-6 py-1 lg:py-2 rounded-full font-bold shadow-md text-[10px] lg:text-lg hover:bg-green-600 w-full max-w-[120px]">Siap!</button>
                     </div>
                 `;
                 workspace.appendChild(box);
                 
                 setTimeout(() => {
-                    initCanvas(`canvas-m${i}`);
+                    initCanvas(i);
                     window[`q_m${i}`] = 1; 
-                    drawTraceTemplate(`canvas-m${i}`, type);
+                    drawTraceTemplate(i, type);
                 }, 150);
             }
         }
 
-        function initCanvas(canvasId) {
-            const canvas = document.getElementById(canvasId);
+        function initCanvas(studentId) {
+            const canvas = document.getElementById(`canvas-m${studentId}`);
+            const bgCanvas = document.getElementById(`bg-canvas-m${studentId}`);
+            
+            function resize() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+                bgCanvas.width = rect.width;
+                bgCanvas.height = rect.height;
+            }
+            resize();
+            
             const ctx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
             let painting = false;
             
             function startPosition(e) { painting = true; draw(e); }
             function endPosition() { painting = false; ctx.beginPath(); }
+            
             function draw(e) {
                 if (!painting) return;
                 e.preventDefault();
-                let clientX = e.clientX || (e.touches && e.touches[0].clientX);
-                let clientY = e.clientY || (e.touches && e.touches[0].clientY);
                 const rect = canvas.getBoundingClientRect();
+                
+                let clientX = e.clientX;
+                let clientY = e.clientY;
+                if (e.touches && e.touches.length > 0) {
+                    clientX = e.touches[0].clientX;
+                    clientY = e.touches[0].clientY;
+                }
+
+                // Pengiraan koordinat yang tepat supaya tidak offset dari jari
+                const x = (clientX - rect.left) * (canvas.width / rect.width);
+                const y = (clientY - rect.top) * (canvas.height / rect.height);
                 
                 ctx.lineWidth = window.innerWidth < 768 ? 6 : (window.innerWidth < 1024 ? 12 : 24);
                 ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
                 ctx.strokeStyle = '#FF1493';
                 
-                ctx.lineTo(clientX - rect.left, clientY - rect.top);
+                ctx.lineTo(x, y);
                 ctx.stroke();
                 ctx.beginPath();
-                ctx.moveTo(clientX - rect.left, clientY - rect.top);
+                ctx.moveTo(x, y);
             }
 
             canvas.addEventListener('mousedown', startPosition);
             canvas.addEventListener('mouseup', endPosition);
+            canvas.addEventListener('mouseout', endPosition);
             canvas.addEventListener('mousemove', draw);
+            
             canvas.addEventListener('touchstart', startPosition, {passive: false});
             canvas.addEventListener('touchend', endPosition, {passive: false});
+            canvas.addEventListener('touchcancel', endPosition, {passive: false});
             canvas.addEventListener('touchmove', draw, {passive: false});
             
             window.addEventListener('resize', () => {
-                const tempCanvas = document.createElement('canvas');
-                tempCanvas.width = canvas.width; tempCanvas.height = canvas.height;
-                tempCanvas.getContext('2d').drawImage(canvas, 0, 0);
-                canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
-                ctx.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
+                resize();
+                if(window.currentTraceType) drawTraceTemplate(studentId, window.currentTraceType);
             });
         }
 
-        function clearCanvas(canvasId, type) {
-            const canvas = document.getElementById(canvasId);
+        // Fungsi padam kini hanya memadam lukisan murid (template kekal)
+        function clearCanvas(studentId) {
+            const canvas = document.getElementById(`canvas-m${studentId}`);
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawTraceTemplate(canvasId, type);
+        }
+
+        // Fungsi menghantar jawapan & memaparkan kata pujian
+        function submitTrace(studentId) {
+            const feedbackEl = document.getElementById(`feedback-m${studentId}`);
+            const textEl = document.getElementById(`feedback-text-m${studentId}`);
+            
+            const words = ["BAGUS!", "HEBAT!", "TERBAIK!", "PANDAI!", "CEMERLANG!"];
+            textEl.textContent = words[Math.floor(Math.random() * words.length)];
+            
+            feedbackEl.classList.remove('hidden');
+            feedbackEl.classList.add('flex');
+            
+            setTimeout(() => {
+                feedbackEl.classList.add('hidden');
+                feedbackEl.classList.remove('flex');
+                nextQuestion(studentId, window.currentTraceType);
+            }, 1500);
         }
 
         function nextQuestion(studentId, type) {
@@ -555,22 +600,28 @@
             if(qNum < 10) {
                 window[`q_m${studentId}`]++;
                 document.getElementById(`score-m${studentId}`).innerText = `Soalan ${window[`q_m${studentId}`]}/10`;
-                clearCanvas(`canvas-m${studentId}`, type);
+                clearCanvas(studentId);
+                drawTraceTemplate(studentId, type);
             } else {
                 document.getElementById(`tahniah-m${studentId}`).classList.remove('hidden');
             }
         }
 
-        function drawTraceTemplate(canvasId, type) {
-            const canvas = document.getElementById(canvasId);
-            const ctx = canvas.getContext('2d');
-            const cw = canvas.width;
-            const ch = canvas.height;
+        // Melukis di atas kanvas latar belakang (bg-canvas)
+        function drawTraceTemplate(studentId, type) {
+            const bgCanvas = document.getElementById(`bg-canvas-m${studentId}`);
+            if(!bgCanvas) return;
+            const ctx = bgCanvas.getContext('2d');
+            const cw = bgCanvas.width;
+            const ch = bgCanvas.height;
+            
+            ctx.clearRect(0, 0, cw, ch);
             ctx.beginPath();
             
             if(type === 'garisan') {
                 ctx.lineWidth = window.innerWidth < 768 ? 12 : 30;
                 ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
                 ctx.strokeStyle = '#E2E8F0'; 
                 ctx.setLineDash([20, 15]);
                 
